@@ -1,0 +1,16 @@
+.
+├── admin_search_containers.html
+├── admin_user.html
+├── admin_users.html
+├── containers.html
+├── edit_user.html
+├── estructura-de-admin.txt
+├── estructura-templates-admin.txt
+├── home.html
+├── list_users.html
+├── search_container.html
+├── user
+├── users.html
+└── view_user.html
+
+2 directories, 12 files

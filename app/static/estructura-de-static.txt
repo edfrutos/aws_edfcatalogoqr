@@ -1,0 +1,114 @@
+.
+├── container_pics
+│   ├── 034b8d0a29dccee7.jpg
+│   ├── 0a6c1af13b581aaa.jpg
+│   ├── 0ae249ba0dfebf5e.jpg
+│   ├── 13763fd90db53e96.jpg
+│   ├── 1727fb13b8bbc77d.JPG
+│   ├── 1c8ab444c3c0a2a8.jpg
+│   ├── 28715029cccc6340.png
+│   ├── 2bd1921ec7d551f0.jpg
+│   ├── 2befba92032324ee.jpg
+│   ├── 2d1b5a7f16068f9b.jpg
+│   ├── 3d29de4dde571bda.jpg
+│   ├── 3fb8bde8abcc60ff.jpg
+│   ├── 4063f57150733a0f.jpg
+│   ├── 43a6ec2d14e9399c.jpg
+│   ├── 43f2c46047602a5c.jpg
+│   ├── 46388df181b748ef.jpg
+│   ├── 577111f8d792999e.jpg
+│   ├── 5d4542e8a3d74328.jpg
+│   ├── 5d56044b54d7caec.JPG
+│   ├── 5da4768b43630c3c.png
+│   ├── 5dbae82b9fccd570.png
+│   ├── 5dc09f3ef63bd0c3.JPG
+│   ├── 609ef1920d754f44.jpg
+│   ├── 7b0791fc8315e622.JPG
+│   ├── 7f35a8e5ab0fa8dd.jpg
+│   ├── 8343088e856098a3.JPG
+│   ├── 85a8581b9ec0e328.jpg
+│   ├── 86725df7cd6d66fb.jpg
+│   ├── 8747d6b41ef3d50a.jpg
+│   ├── 87fe0c0ddbaf5784.jpg
+│   ├── 8859431b6cfba558.JPG
+│   ├── 8b633bb4f89f5cf8.jpg
+│   ├── 8f5df3ff8943098a.png
+│   ├── 97d92ad1abdba7d9.JPG
+│   ├── 99d13241664c4573.jpg
+│   ├── 9a7c0b575c519ed7.JPG
+│   ├── 9a87fa5f6273dfa4.jpg
+│   ├── 9b718e1af9375a96.jpg
+│   ├── 9bc1b5cbe2361430.jpg
+│   ├── BaldaSuperior.jpg
+│   ├── Cajon_1_Cajonera_Carton.jpg
+│   ├── EDF_QR_Carmen.jpg
+│   ├── a476a48070f90dcb.jpg
+│   ├── bc6feb972e29a4ad.jpg
+│   ├── bc8420e657f268ea.JPG
+│   ├── bd960c79bea5461b.png
+│   ├── c18aa2e67b1e3787.jpg
+│   ├── c7ddc78849f1c8bc.jpg
+│   ├── c844c473b8b980c3.jpg
+│   ├── d8ea968dc13939d2.jpg
+│   ├── da85ca8bfdcb5027.jpg
+│   ├── default.jpg
+│   ├── e29ffd456db50d4b.jpg
+│   ├── ea00ab78abbc4713.jpg
+│   ├── ee3af590dc3e5cf4.jpg
+│   ├── ee7bc4303dcf1c31.jpg
+│   ├── ef6d19ff5bb469fc.jpg
+│   ├── f7600147585b9aff.jpg
+│   └── fb14698895f13b6d.jpg
+├── css
+│   ├── style.css
+│   └── style_NEW.css
+├── estructura-de-static.txt
+├── images
+│   ├── background.jpg
+│   ├── f99d1c4b41ace051.jpg
+│   └── logo.png
+├── js
+├── profile_pics
+│   ├── 1b67d09f372a2d95.jpg
+│   ├── 39fd557c7dfdbcf1.jpg
+│   ├── 4deeaefcdc325dcb.jpg
+│   ├── 665493cae504c008.jpg
+│   ├── BaldaSuperior.jpg
+│   ├── Cajon_1_Cajonera_Carton.jpg
+│   ├── EDF_QR_Julia.jpg
+│   ├── EDF_QR_Maria.jpg
+│   ├── avi-richards-RQipmN_RVao-unsplash.jpg
+│   └── bin-thi-u-MVpkDq8oMLk-unsplash.jpg
+└── qr_codes
+    ├── Armario Ikea 1.png
+    ├── Armario Ikea Eugenio.png
+    ├── Armario Ikea Julia.png
+    ├── Armario Ikea.png
+    ├── Armarios Ikea.png
+    ├── Atiko Armario color madera .png
+    ├── Balda 3.png
+    ├── Caja nº3.png
+    ├── Cajon 3.png
+    ├── Cajon nº1.png
+    ├── Cajon nº2.png
+    ├── Cajon nº5.png
+    ├── Cajon.png
+    ├── Cajonera Ikea.png
+    ├── Cajonera de Cartón.png
+    ├── Cajonera izda. encimera Julia.png
+    ├── Cajón 3.png
+    ├── Cojonera Ikea Julia.png
+    ├── Container Name.png
+    ├── Contenedor Sara .png
+    ├── Eugenio De Frutos Sanchez.png
+    ├── Nombre del Contenedor Superior.png
+    ├── Nombre del Contenedor.png
+    ├── Nombre del Contenedor_02.png
+    ├── Nombre1.png
+    ├── Nombre2.png
+    ├── Nuevo con foto.png
+    ├── Nuevo contenedor.png
+    ├── Otro contenedor.png
+    └── Vitrina.png
+
+7 directories, 105 files

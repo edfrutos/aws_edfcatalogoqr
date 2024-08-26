@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<div class="modal-welcome">
+    <div class="modal-content-welcome text-center">
+        <h1>EDF Catalogación QR</h1>
+        <h4>Has iniciado sesión correctamente.</h4>
+        <div class="button-group-welcome mt-4">
+            <button class="btn btn-primary" onclick="location.href='{{ url_for('main.account') }}'">Cuenta</button>
+            <button class="btn btn-primary" onclick="location.href='{{ url_for('main.list_containers') }}'">Mis Contenedores</button>
+            <button class="btn btn-primary" onclick="location.href='{{ url_for('main.create_container') }}'">Crear Contenedor</button>
+            <button class="btn btn-primary" onclick="location.href='{{ url_for('main.contacto') }}'">Contacto</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

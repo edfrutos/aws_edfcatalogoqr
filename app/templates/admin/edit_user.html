@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Editar Usuario</h1>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('admin.edit_user', user_id=user.id) }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control") }}
+            {% for error in form.username.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+            {% for error in form.email.errors %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.address.label(class="form-label") }}
+            {{ form.address(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.phone.label(class="form-label") }}
+            {{ form.phone(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.is_admin.label(class="form-check-label") }}
+            {{ form.is_admin(class="form-check-input") }}
+        </div>
+        <div class="form-group">
+            {{ form.picture.label(class="form-label") }}
+            {{ form.picture(class="form-control-file") }}
+        </div>
+        <div class="form-group">
+            <img src="{{ image_file }}" alt="Foto de Perfil" class="img-thumbnail">
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('admin.search_user') }}" class="btn btn-secondary mt-3">Búsqueda Usuarios</a>
+            <a href="{{ url_for('main.welcome') }}" class="btn btn-primary">Opciones Generales</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

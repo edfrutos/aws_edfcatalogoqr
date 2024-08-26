@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contenedores</title>
+</head>
+<body>
+  <h1>Contenedores</h1>
+  <form action="/api/containers" method="POST">
+    <input type="text" name="name" placeholder="Nombre" required>
+    <input type="text" name="description" placeholder="Descripción">
+    <input type="text" name="location" placeholder="Ubicación" required>
+    <button type="submit">Crear Contenedor</button>
+  </form>
+
+  <ul id="containersList">
+    <% containers.forEach(container => { %>
+      <li>
+        <h3><%= container.name %></h3>
+        <p><%= container.description %></p>
+        <p><%= container.location %></p>
+        <form action="/api/containers/<%= container._id %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit">Eliminar</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+
+  <script>
+    fetch('/api/containers')
+      .then(response => response.json())
+      .then(data => {
+        const containersList = document.getElementById('containersList');
+        data.forEach(container => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <h3>${container.name}</h3>
+            <p>${container.description}</p>
+            <p>${container.location}</p>
+            <form action="/api/containers/${container._id}" method="POST">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit">Eliminar</button>
+            </form>
+          `;
+          containersList.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>

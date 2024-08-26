@@ -1,0 +1,11 @@
+{
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "prettier.htmlWhitespaceSensitivity": "ignore",
+    "[django-html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.associations": {
+      "*.html": "django-html"
+    },
+    "git.ignoreLimitWarning": true
+  }

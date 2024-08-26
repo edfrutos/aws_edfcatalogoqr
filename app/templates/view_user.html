@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="text-center">Ver Usuario</h2>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{ user.username }}</h4>
+            <p class="card-text">Email: {{ user.email }}</p>
+            <p class="card-text">Dirección: {{ user.address }}</p>
+            <p class="card-text">Teléfono: {{ user.phone }}</p>
+            <img src="{{ url_for('static', filename='profile_pics/' ~ user.image_file) }}" alt="Imagen de perfil" class="img-thumbnail">
+        </div>
+    </div>
+    <a href="{{ url_for('admin.edit_user', user_id=user.id) }}" class="btn btn-secondary">Editar Usuario</a>
+</div>
+{% endblock %}

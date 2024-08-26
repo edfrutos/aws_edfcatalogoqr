@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Buscar Contenedores</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.search_query.label }} {{ form.search_query() }}
+    </div>
+    <button type="submit">Buscar</button>
+</form>
+
+<h2>Resultados de la Búsqueda</h2>
+<ul>
+    {% if containers %}
+        {% for container in containers %}
+        <li>{{ container.name }} - {{ container.location }}</li>
+        {% endfor %}
+    {% else %}
+        <li>No se encontraron contenedores.</li>
+    {% endif %}
+</ul>
+{% endblock %}

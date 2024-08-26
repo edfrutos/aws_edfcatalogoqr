@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<h2 class="text-center">Contenedores</h2>
+{% if not has_containers %}
+<div class="alert alert-info" role="alert">
+    No tienes contenedores registrados. <a href="{{ url_for('main.create_container') }}">Crea uno aquí</a>.
+</div>
+{% else %}
+<div class="container-list">
+    {% for container in containers %}
+    <div class="container-item">
+        <h3>{{ container.name }}</h3>
+        <p>Ubicación: {{ container.location }}</p>
+        <p>Objetos: {{ container.items | join(", ") }}</p>
+        <div class="container-buttons">
+            <a href="{{ url_for('main.container_detail', container_id=container.id) }}" class="btn btn-primary">Ver Detalles</a>
+            <a href="{{ url_for('main.edit_container', container_id=container.id) }}" class="btn btn-secondary">Editar</a>
+            <form action="{{ url_for('main.delete_container', container_id=container.id) }}" method="post" style="display:inline;">
+                {{ form.hidden_tag() }}
+                <button type="submit" class="btn btn-delete">Eliminar</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

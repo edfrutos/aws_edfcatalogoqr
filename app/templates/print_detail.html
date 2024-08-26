@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Detalles del Contenedor</h2>
+<div id="printDetail">
+    <p><strong>Nombre:</strong> {{ container.name }}</p>
+    <p><strong>Ubicación:</strong> {{ container.location }}</p>
+    <p><strong>Objetos:</strong> {{ container.items | join(', ') }}</p>
+    <img src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}" alt="QR Code">
+</div>
+<button class="btn btn-primary" onclick="window.print()">Imprimir Detalle</button>
+<a class="btn btn-secondary" href="{{ url_for('main.list_containers') }}">Volver a la lista</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Admin - View User{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1>View User</h1>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ user.username }}</h5>
+            <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="card-text"><strong>Address:</strong> {{ user.address }}</p>
+            <p class="card-text"><strong>Phone:</strong> {{ user.phone }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

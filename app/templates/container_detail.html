@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Detalles del Contenedor</h2>
+                </div>
+                <div class="card-body">
+                    <h4>Nombre: {{ container.name }}</h4>
+                    <h5>Ubicación: {{ container.location }}</h5>
+                    <h5>Objetos:</h5>
+                    <ul>
+                        {% for item in container.items %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if container.image_files %}
+                        <h5>Imágenes:</h5>
+                        <p>Número de imágenes: {{ container.image_files|length }}</p>
+                        {% for image_file in container.image_files %}
+                            <p>Intentando cargar: {{ image_file }}</p>
+                            <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid mb-2">
+                        {% endfor %}
+                    {% else %}
+                        <p>No se encontraron imágenes.</p>
+                    {% endif %}
+                    <h5>Código QR:</h5>
+                    <img src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}" alt="QR Code" class="img-fluid" style="width: 150px; height: 150px;">
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ url_for('main.list_containers') }}" class="btn btn-primary">Listado Contenedores</a>
+                    <a href="{{ url_for('main.create_container') }}" class="btn btn-primary">Crear Contenedor</a>
+                    <a href="{{ url_for('main.welcome') }}" class="btn btn-primary">Opciones Generales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
