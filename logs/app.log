@@ -31403,3 +31403,49 @@
 2024-08-26 13:28:31,861 - app - INFO - Aplicación iniciada
 2024-08-26 13:28:31,869 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
 2024-08-26 13:28:32,110 - app.models - INFO - Conectado a la base de datos.
+2024-08-26 18:49:40,802 - app - INFO - Aplicación iniciada
+2024-08-26 18:49:41,015 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-26 18:49:41,062 - app.models - INFO - Conectado a la base de datos.
+2024-08-26 18:49:41,659 - app - INFO - Aplicación iniciada
+2024-08-26 18:49:41,805 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-26 18:49:41,851 - app.models - INFO - Conectado a la base de datos.
+2024-08-27 09:43:35,025 - app - INFO - Aplicación iniciada
+2024-08-27 09:43:35,159 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-27 09:43:35,208 - app.models - INFO - Conectado a la base de datos.
+2024-08-27 09:57:28,556 - app - INFO - Aplicación iniciada
+2024-08-27 09:57:28,698 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-27 09:57:28,747 - app.models - INFO - Conectado a la base de datos.
+2024-08-27 09:58:13,241 - app - INFO - Aplicación iniciada
+2024-08-27 09:58:13,374 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-27 09:58:13,425 - app.models - INFO - Conectado a la base de datos.
+2024-08-27 11:33:30,782 - app - INFO - Aplicación iniciada
+2024-08-27 11:33:31,102 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-27 11:33:31,154 - app.models - INFO - Conectado a la base de datos.
+2024-08-27 11:35:30,736 - app - INFO - Aplicación iniciada
+2024-08-27 11:35:30,869 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-27 11:35:30,917 - app.models - INFO - Conectado a la base de datos.
+2024-08-27 11:38:22,454 - app - INFO - Aplicación iniciada
+2024-08-27 11:38:22,702 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-27 11:38:22,803 - app.models - INFO - Conectado a la base de datos.
+2024-08-27 11:44:30,795 - app - ERROR - Exception on /reset_password [POST]
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 127, in reset_request
+    send_reset_email(user)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/utils.py", line 108, in send_reset_email
+    {url_for('main.reset_token', token=token, _external=True)}
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/werkzeug/routing.py", line 2315, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.reset_token' with values ['token']. Did you mean 'main.reset_request' instead?
+2024-08-27 17:38:15,257 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/5bb46686fe3cada8.png

@@ -1,3 +1,5 @@
+# app/__init__.py
+
 import os
 import ssl
 import logging
@@ -9,6 +11,20 @@ from app.extensions import db, bcrypt, login_manager, mail, csrf
 
 # Cargar variables de entorno desde .env
 load_dotenv()
+
+def configure_logging(app):
+    """Configura el logging para la aplicación Flask."""
+    if not app.debug:
+        if not os.path.exists('logs'):
+            os.mkdir('logs')
+        file_handler = logging.FileHandler('logs/app.log')
+        file_handler.setFormatter(logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        ))
+        file_handler.setLevel(logging.INFO)
+        app.logger.addHandler(file_handler)
+
+    app.logger.setLevel(logging.INFO)
 
 def create_app():
     app = Flask(__name__)
@@ -46,16 +62,5 @@ def create_app():
 
     return app
 
-def configure_logging(app):
-    """Configura el logging para la aplicación Flask."""
-    if not app.debug:
-        if not os.path.exists('logs'):
-            os.mkdir('logs')
-        file_handler = logging.FileHandler('logs/app.log')
-        file_handler.setFormatter(logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-        ))
-        file_handler.setLevel(logging.INFO)
-        app.logger.addHandler(file_handler)
-
-    app.logger.setLevel(logging.INFO)
+# Crear la instancia de la aplicación Flask a nivel de módulo
+app = create_app()
