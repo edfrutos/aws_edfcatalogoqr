@@ -3,12 +3,14 @@
 import os
 import ssl
 import logging
+import certifi
 from flask import Flask
 from dotenv import load_dotenv
 from mongoengine import connect, disconnect
 from app.config import Config
 from app.extensions import db, bcrypt, login_manager, mail, csrf
 
+os.environ['SSL_CERT_FILE'] = certifi.where()
 # Cargar variables de entorno desde .env
 load_dotenv()
 

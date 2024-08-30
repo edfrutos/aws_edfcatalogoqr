@@ -22,3 +22,9 @@
 2024-08-30 08:51:17,894 - app.routes - INFO - Container ID: 66d188053c6f1ee5f0b1a482
 2024-08-30 08:51:17,895 - app.routes - INFO - Container Name: Contenedor AWS
 2024-08-30 08:51:17,895 - app.routes - INFO - Images: []
+2024-08-30 11:31:29,767 - app - INFO - Aplicación iniciada
+2024-08-30 11:31:29,845 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-30 11:31:29,883 - app.models - INFO - Conectado a la base de datos.
+2024-08-30 14:17:45,327 - app - INFO - Aplicación iniciada
+2024-08-30 14:17:45,421 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-08-30 14:17:45,590 - app.models - INFO - Conectado a la base de datos.
