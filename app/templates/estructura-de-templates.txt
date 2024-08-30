@@ -1,4 +1,3 @@
-.
 ├── about.html
 ├── account.html
 ├── admin

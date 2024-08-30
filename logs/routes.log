@@ -1,0 +1,10 @@
+2024-08-28 09:02:42,209 - app.routes - INFO - Creación de contenedor iniciada.
+2024-08-28 09:02:42,298 - app.routes - INFO - Contenedor creado con ID: 66cee7b21800577efc2e68c3
+2024-08-28 09:02:42,420 - app.routes - INFO - Container ID: 66cee7b21800577efc2e68c3
+2024-08-28 09:02:42,421 - app.routes - INFO - Container Name: Armario Ikea bajo encimera eugenio
+2024-08-28 09:02:42,421 - app.routes - INFO - Images: []
+2024-08-30 08:51:17,700 - app.routes - INFO - Creación de contenedor iniciada.
+2024-08-30 08:51:17,751 - app.routes - INFO - Contenedor creado con ID: 66d188053c6f1ee5f0b1a482
+2024-08-30 08:51:17,894 - app.routes - INFO - Container ID: 66d188053c6f1ee5f0b1a482
+2024-08-30 08:51:17,895 - app.routes - INFO - Container Name: Contenedor AWS
+2024-08-30 08:51:17,895 - app.routes - INFO - Images: []

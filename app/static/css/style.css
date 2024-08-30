@@ -415,3 +415,10 @@ button {
   margin-top: 1px;
   margin-left: 1px;
 }
+
+.form-label {
+  width: 200px; /* Ajusta este valor según tus necesidades */
+  height: auto; /* Mantener la proporción de la imagen */
+  border-radius: 10px; /* Si deseas bordes redondeados */
+  margin-top: 10px; /* Espaciado opcional */
+}
