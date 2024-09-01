@@ -1,3 +1,7 @@
 2024-08-27 17:38:15,257 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/5bb46686fe3cada8.png
 2024-08-27 19:15:35,817 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/0405fee8dc931e2b.png
 2024-08-29 20:05:44,821 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/fa705162a27dc0e5.jpeg
+2024-09-01 18:56:31,851 - app.utils - INFO - Creando el directorio: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/container_pics
+2024-09-01 18:56:31,956 - app.utils - INFO - Imagen del contenedor guardada en: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/container_pics/15a2afe50102f970.jpg
+2024-09-01 20:14:02,260 - app.utils - INFO - Imagen del contenedor guardada en: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/container_pics/d9e37438ea526721.jpg
+2024-09-01 20:17:20,717 - app.utils - INFO - Imagen del contenedor guardada en: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/container_pics/8d6d9f3616f437f0.png

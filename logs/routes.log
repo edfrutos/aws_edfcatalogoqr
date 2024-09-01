@@ -8,3 +8,29 @@
 2024-08-30 08:51:17,894 - app.routes - INFO - Container ID: 66d188053c6f1ee5f0b1a482
 2024-08-30 08:51:17,895 - app.routes - INFO - Container Name: Contenedor AWS
 2024-08-30 08:51:17,895 - app.routes - INFO - Images: []
+2024-09-01 18:56:31,851 - app.routes - INFO - Creación de contenedor iniciada.
+2024-09-01 18:56:31,851 - app.routes - INFO - Tipo de datos de pictures: <class 'list'>
+2024-09-01 18:56:31,851 - app.routes - INFO - Procesando: <FileStorage: 'IMG_4834.jpg' ('image/jpeg')>, tipo: <class 'werkzeug.datastructures.FileStorage'>, filename: IMG_4834.jpg
+2024-09-01 18:56:31,851 - app.routes - INFO - Archivo recibido correctamente.
+2024-09-01 18:56:32,024 - app.routes - INFO - Contenedor creado con ID: 66d49cbf473104f4c4819778
+2024-09-01 18:56:32,175 - app.routes - INFO - Container ID: 66d49cbf473104f4c4819778
+2024-09-01 18:56:32,175 - app.routes - INFO - Container Name: Contenedor prueba foto 01
+2024-09-01 18:56:32,175 - app.routes - INFO - Images: ['15a2afe50102f970.jpg']
+2024-09-01 20:14:02,200 - app.routes - INFO - Creación de contenedor iniciada.
+2024-09-01 20:14:02,200 - app.routes - INFO - Tipo de datos de pictures: <class 'list'>
+2024-09-01 20:14:02,200 - app.routes - INFO - Procesando: <FileStorage: 'Miguel Angel y yo de niños.jpg' ('image/jpeg')>, tipo: <class 'werkzeug.datastructures.FileStorage'>, filename: Miguel Angel y yo de niños.jpg
+2024-09-01 20:14:02,200 - app.routes - INFO - Archivo recibido correctamente.
+2024-09-01 20:14:02,449 - app.routes - INFO - Contenedor creado con ID: 66d4aeea3abf1c553832fd26
+2024-09-01 20:14:02,561 - app.routes - INFO - Container ID: 66d4aeea3abf1c553832fd26
+2024-09-01 20:14:02,561 - app.routes - INFO - Container Name: 1.-Armario Ikea bajo encimera Eugenio
+2024-09-01 20:14:02,562 - app.routes - INFO - Images: ['d9e37438ea526721.jpg']
+2024-09-01 20:14:02,562 - app.routes - INFO - QR Image: 1.-Armario Ikea bajo encimera Eugenio.png
+2024-09-01 20:17:20,703 - app.routes - INFO - Creación de contenedor iniciada.
+2024-09-01 20:17:20,703 - app.routes - INFO - Tipo de datos de pictures: <class 'list'>
+2024-09-01 20:17:20,703 - app.routes - INFO - Procesando: <FileStorage: 'spain.png' ('image/png')>, tipo: <class 'werkzeug.datastructures.FileStorage'>, filename: spain.png
+2024-09-01 20:17:20,703 - app.routes - INFO - Archivo recibido correctamente.
+2024-09-01 20:17:20,768 - app.routes - INFO - Contenedor creado con ID: 66d4afb03abf1c553832fd27
+2024-09-01 20:17:20,878 - app.routes - INFO - Container ID: 66d4afb03abf1c553832fd27
+2024-09-01 20:17:20,878 - app.routes - INFO - Container Name: 1.- Cajonera Ikea debajo encimera Eugenio
+2024-09-01 20:17:20,879 - app.routes - INFO - Images: ['8d6d9f3616f437f0.png']
+2024-09-01 20:17:20,879 - app.routes - INFO - QR Image: 1.- Cajonera Ikea debajo encimera Eugenio.png

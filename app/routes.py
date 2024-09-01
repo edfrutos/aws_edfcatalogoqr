@@ -178,9 +178,12 @@ def create_container():
         logger.info("Creación de contenedor iniciada.")
         pictures = form.pictures.data
         picture_files = []
-
+        
+        logger.info(f"Tipo de datos de pictures: {type(pictures)}")
         for picture in pictures:
+            logger.info(f"Procesando: {picture}, tipo: {type(picture)}, filename: {picture.filename if isinstance(picture, FileStorage) else 'N/A'}")
             if isinstance(picture, FileStorage) and picture.filename != '':
+                logger.info("Archivo recibido correctamente.")
                 try:
                     picture_file = save_container_picture(picture)
                     picture_files.append(picture_file)
@@ -195,12 +198,13 @@ def create_container():
         qr_img_path = os.path.join(current_app.root_path, 'static', 'qr_codes', f"{form.name.data}.png")
         qr_img.save(qr_img_path)
         
-        # Guardar el contenedor en la base de datos
+        # Guardar el contenedor en la base de datos, incluyendo la referencia al archivo del QR
         container = Container(
             name=form.name.data,
             location=form.location.data,
             items=[item.strip() for item in form.items.data.split(",")],
             image_files=picture_files,
+            qr_image=f"{form.name.data}.png",  # Guardar el nombre del archivo QR
             user=current_user._get_current_object()
         )
 
@@ -224,8 +228,12 @@ def container_preview(container_id):
         logger.info(f"Container Name: {container.name}")
         logger.info(f"Images: {container.image_files}")
         
+        # Asegúrate de que el QR Code se muestra correctamente
+        logger.info(f"QR Image: {container.qr_image}")
+        
         return render_template('container_preview.html', container=container)
     except Container.DoesNotExist:
+        logger.error(f"Contenedor con ID {container_id} no encontrado.")
         abort(404)
 
 @main.route("/containers/<container_id>/download_qr")

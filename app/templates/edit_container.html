@@ -34,12 +34,7 @@
         <div class="mb-2">
           <!-- Muestra la imagen existente con una restricción de tamaño -->
           <img
-            src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
-            alt="Imagen del Objeto"
-            class="img-fluid"
-            style="max-width: 150px"
-          />
-
+            src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid" style="max-width: 150px" />
           <!-- Muestra el nombre del archivo de imagen -->
           <p>{{ image_file }}</p>
         </div>
@@ -48,15 +43,8 @@
       {% endif %}
     </div>
     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-    <a
-      href="{{ url_for('main.list_containers') }}"
-      class="btn btn-secondary mt-3"
-    >
-      Volver a la Lista
-    </a>
-    <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary mt-3">
-      Volver a Opciones
-    </a>
+    <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary mt-3">Volver a la Lista</a>
+    <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary mt-3">Volver a Opciones</a>
   </form>
 </div>
 {% endblock %}

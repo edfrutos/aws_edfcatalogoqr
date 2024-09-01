@@ -7,5 +7,7 @@
     "files.associations": {
       "*.html": "django-html"
     },
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "pieces.cloudCapabilities": "Blended",
+    "pieces.telemetry": true
   }

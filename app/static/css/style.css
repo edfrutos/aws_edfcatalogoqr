@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #28a74578;
+  background-color: #28a74578 !important;
 }
 
 
@@ -9,19 +9,17 @@ body {
   margin-top: 20px;
 }
 
-.container {
-  margin-top: 25px;
+.containers {
+  margin-top: 5px;
   padding-top: 3px !important;
-  background-color: #99D5A6;
+  background-color: #99D5A6 !important;
 }
 
-.container-content {
+.container, .container-content {
   padding-left: 0%;
   padding-right: 0%;
-}
-
-.containers {
-  background-color: #99D5A6;
+  padding-bottom: 60px;
+  background-color: #99d5a6;
 }
 
 .header-container {
@@ -325,12 +323,8 @@ button {
   align-items: center;
 }
 
-.navbar-dark .navbar-brand {
-  color: #292c32;
-}
-
 .navbar-brand img {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .close {
@@ -387,10 +381,6 @@ button {
   margin-top: 1rem !important;
 }
 
-.mt-5 {
-  margin-top: 7rem !important;
-}
-
 .mb-4 {
   margin-bottom: 1.5rem;
 }
@@ -421,4 +411,32 @@ button {
   height: auto; /* Mantener la proporción de la imagen */
   border-radius: 10px; /* Si deseas bordes redondeados */
   margin-top: 10px; /* Espaciado opcional */
+}
+
+.list-group-item {
+  display: contents !important;
+}
+
+.navbar .container, .navbar .container-fluid, .navbar .container-lg, .navbar .container-md, .navbar .container-sm, .navbar .container-xl {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 10px;
+}
+
+.align-top {
+  vertical-align: middle;
+}
+
+.row {
+  padding-top: 95px;
 }

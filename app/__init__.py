@@ -1,5 +1,4 @@
 # app/__init__.py
-
 import os
 import ssl
 import logging
@@ -31,6 +30,7 @@ def configure_logging(app):
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB, por ejemplo
     
     # Inicializar las extensiones con la aplicación Flask
     db.init_app(app)
