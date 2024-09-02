@@ -27,7 +27,8 @@ def edit_user(user_id):
         logging.warning(f"Usuario con ID {user_id} no encontrado.")
         abort(404)
     
-    form = UpdateUserForm()
+    form = UpdateUserForm(original_username=user.username, original_email=user.email)
+    
     if form.validate_on_submit():
         logging.debug(f"Actualizando usuario {user.username}")
         

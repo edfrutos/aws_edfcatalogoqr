@@ -3,11 +3,12 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <div class="container-content">
 </div>
-    <h1>Acerca de EDF Catalogación QR</h1>
-    <p>Aplicación con la que sabrás en cualquier momento donde están todos tus objetos guardados en los diferentes contenedores que tu registres en esta misma aplicación.
+    <h1 class="m-5">Acerca de EDF Catalogación QR</h1>
+    <p class="m-5">Aplicación con la que sabrás en cualquier momento donde están todos tus objetos guardados en los diferentes contenedores que tu registres en esta misma aplicación.
 
         De esta forma, puedes obtener información de en qué contenedor se encuentra, dónde está localizado dicho contenedor e inclusive adjuntar información gráfica (fotos) de los objetos buscados.
         
         Todo ello mediante la lectura del QR que se genera al crear el registro con la identificación del objeto buscado.</p>
-    <a href="{{ url_for('main.home') }}" class="btn btn-primary">Volver a Inicio</a>
+    <a href="{{ url_for('main.home') }}" class="btn btn-primary m-5">Volver a Inicio</a>
+
 {% endblock %}

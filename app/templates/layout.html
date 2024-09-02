@@ -37,14 +37,27 @@
             z-index: 1000;
         }
 
-        /* El contenido principal debe tener un margen superior e inferior para evitar que quede bajo el header o footer */
-        .container-content {
-            flex: 1;
-            padding-top: 70px; /* Ajustar según la altura real del header */
-            padding-bottom: 50px; /* Ajustar según la altura real del footer */
-            padding-left: 10%;
-            padding-right: 10%;
-            overflow-y: auto; /* Para hacer que el contenido sea desplazable */
+       
+
+        /* Botón de "Subir arriba" */
+        #scrollTopBtn {
+            display: none; /* Escondido por defecto */
+            position: fixed;
+            bottom: 80px; /* Posicionado sobre el footer */
+            right: 20px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #343a40; /* Color del botón */
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #555; /* Color al pasar el ratón */
         }
 
         /* Ajustes para pantallas más pequeñas */
@@ -59,6 +72,10 @@
             .container-content {
                 padding-left: 2%;
                 padding-right: 2%;
+            }
+
+            #scrollTopBtn {
+                bottom: 70px; /* Ajuste para pantallas más pequeñas */
             }
         }
     </style>
@@ -145,13 +162,35 @@
     <div class="container-content">
         {% block content %}{% endblock %}
     </div>
+
     <footer class="text-center">
         <a href="{{ url_for('main.contacto') }}">Contacto - Eugenio de Frutos</a>
         <p>&copy; {{ current_year }} EDF Proyectos. Todos los derechos reservados.</p>
     </footer>
+
+    <!-- Botón de "Subir arriba" -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" class="btn btn-primary" title="Subir arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
         function printDetail(containerId) {
             window.open('/containers/' + containerId + '/print_detail', '_blank');
+        }
+
+        // Mostrar el botón al hacer scroll
+        window.onscroll = function() {
+            var scrollTopBtn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        // Función para subir al inicio de la página
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>

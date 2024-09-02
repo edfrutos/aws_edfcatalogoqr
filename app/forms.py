@@ -87,6 +87,23 @@ class UpdateUserForm(BaseUserForm):
     is_admin = BooleanField('Admin')
     submit = SubmitField('Actualizar Usuario')
 
+    def __init__(self, original_username, original_email, *args, **kwargs):
+        super(UpdateUserForm, self).__init__(*args, **kwargs)
+        self.original_username = original_username
+        self.original_email = original_email
+
+    def validate_username(self, username):
+        if username.data != self.original_username:
+            user = User.objects(username=username.data).first()
+            if user:
+                raise ValidationError('Ese nombre de usuario está siendo usado. Por favor, elige uno diferente.')
+
+    def validate_email(self, email):
+        if email.data != self.original_email:
+            user = User.objects(email=email.data).first()
+            if user:
+                raise ValidationError('Ese correo electrónico está tomado. Por favor, elige uno diferente.')
+
 class SearchContainerForm(FlaskForm):
     search_query = StringField('Buscar contenedor', validators=[DataRequired()])
     submit = SubmitField('Buscar')

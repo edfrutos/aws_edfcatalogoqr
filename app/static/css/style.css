@@ -20,7 +20,7 @@ body {
   padding-left: 0% !important;
   padding-right: 0% !important;
   background-color: #99D5A6 !important;
-  margin-top: 10% !important;
+  margin-top: 5% !important;
   margin-bottom: 6% !important;
 }
 
@@ -477,11 +477,16 @@ button {
 
 .login {
   margin-top: 15rem;
-}
+}about
 
 .register {
   padding-left: 0%;
   padding-right: 0%;
   background-color: #99d5a6;
   margin-top: 10%;
+}
+
+.about {
+  text-align: justify;
+  margin: 0 0 10px 0;
 }
