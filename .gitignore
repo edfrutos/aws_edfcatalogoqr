@@ -1,0 +1,12 @@
+# Ignorar archivos de cache de Python
+*.pyc
+__pycache__/
+
+# Ignorar logs
+logs/*.log*.pyc
+
+# Ignorar directorios de entornos virtuales
+venv/
+
+# Ignorar archivos del sistema de macOS
+_DS_Store
