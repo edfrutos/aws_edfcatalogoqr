@@ -10,16 +10,32 @@ body {
 }
 
 .containers {
-  margin-top: 5px;
   padding-top: 3px !important;
   background-color: #99D5A6 !important;
+}
+
+.container-content {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+  background-color: #99D5A6 !important;
+  margin-top: 10% !important;
+  margin-bottom: 6% !important;
+}
+
+.container-create {
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+  background-color: #99D5A6 !important;
+  margin-top: 11% !important;
 }
 
 .container, .container-content {
   padding-left: 0%;
   padding-right: 0%;
-  padding-bottom: 60px;
   background-color: #99d5a6;
+  margin-top: 10%;
 }
 
 .header-container {
@@ -272,9 +288,6 @@ button {
 }
 
 .navbar {
-  z-index: 9999 !important;
-}
-.navbar {
   position: relative;
   display: -ms-flexbox;
   display: flex;
@@ -284,8 +297,8 @@ button {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: .5rem 1rem 2rem;
-  margin-bottom: 20px;
+  margin-bottom: 4px;
+  z-index: 9999 !important;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -433,10 +446,42 @@ button {
   border: 10px;
 }
 
+.navbar-content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-bottom: 2px;
+  border: 10px;
+  background-color: #99d5a6;
+  padding-right: 20px;
+  padding-top: 2px;
+  margin-left: 142px;
+  width: 90%;
+}
+
 .align-top {
-  vertical-align: middle;
+  vertical-align: middle !important;
 }
 
 .row {
   padding-top: 95px;
+}
+
+.login {
+  margin-top: 15rem;
+}
+
+.register {
+  padding-left: 0%;
+  padding-right: 0%;
+  background-color: #99d5a6;
+  margin-top: 10%;
 }
