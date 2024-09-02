@@ -3,8 +3,6 @@ body {
   background-color: #28a74578 !important;
 }
 
-
-
 .alert-container {
   margin-top: 20px;
 }
@@ -24,18 +22,12 @@ body {
   margin-bottom: 6% !important;
 }
 
-.container-create {
-  padding-left: 0% !important;
-  padding-right: 0% !important;
-  background-color: #99D5A6 !important;
-  margin-top: 11% !important;
-}
-
 .container, .container-content {
   padding-left: 0%;
   padding-right: 0%;
   background-color: #99d5a6;
   margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .header-container {
