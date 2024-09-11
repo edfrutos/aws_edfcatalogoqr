@@ -21,8 +21,16 @@ import secrets
 from PIL import Image
 from datetime import datetime
 import logging
+import unicodedata
 
 main = Blueprint('main', __name__)
+
+def normalize_name(name):
+    """Normaliza el nombre del contenedor eliminando espacios extra y caracteres especiales."""
+    name = name.strip()
+    name = " ".join(name.split())  # Elimina espacios adicionales entre palabras
+    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')  # Elimina caracteres especiales
+    return name
 
 # Inicializar el cliente de boto3 para S3
 s3 = boto3.client('s3')
@@ -97,23 +105,66 @@ def logout_page():
 @login_required
 def account():
     form = UpdateAccountForm()
+
+    # Procesar el formulario si se están enviando los datos
     if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_profile_picture(form.picture.data)
-            current_user.image_file = picture_file
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        current_user.address = form.address.data
-        current_user.phone = form.phone.data
-        current_user.save()
-        flash('Tu cuenta ha sido actualizada!', 'success')
-        return redirect(url_for('main.account'))
+        try:
+            # Logging del estado antes de la actualización
+            current_app.logger.info(f'Iniciando actualización de cuenta para el usuario: {current_user.username}')
+            current_app.logger.info(f'Información recibida - Username: {form.username.data}, Email: {form.email.data}, '
+                                    f'Address: {form.address.data}, Phone: {form.phone.data}')
+
+            # Manejar la actualización de la foto de perfil
+            if form.picture.data:
+                current_app.logger.info(f'Actualizando foto de perfil para el usuario: {current_user.username}')
+                try:
+                    picture_file = save_profile_picture(form.picture.data)
+                    current_user.image_file = picture_file
+                    current_app.logger.info(f'Foto de perfil actualizada: {picture_file}')
+                except Exception as e:
+                    current_app.logger.error(f'Error al actualizar la foto de perfil para {current_user.username}: {e}')
+                    flash('Error al actualizar la foto de perfil. Intenta nuevamente.', 'danger')
+                    return redirect(url_for('main.account'))
+
+            # Verificar si el nombre de usuario ha cambiado
+            if form.username.data != current_user.username:
+                current_app.logger.info(f'El nombre de usuario ha cambiado de {current_user.username} a {form.username.data}')
+
+            # Actualizar los campos del usuario
+            current_user.username = form.username.data
+            current_user.email = form.email.data
+            current_user.address = form.address.data
+            current_user.phone = form.phone.data
+
+            # Guardar los cambios en la base de datos
+            current_user.save()
+            current_app.logger.info(f'Cuenta actualizada exitosamente para el usuario: {current_user.username}')
+
+            flash('Tu cuenta ha sido actualizada exitosamente!', 'success')
+
+            # Redirigir para evitar el reenvío del formulario al actualizar
+            return redirect(url_for('main.account'))
+
+        except Exception as e:
+            # Capturar y registrar errores si ocurre un problema durante la actualización
+            current_app.logger.error(f'Error actualizando la cuenta para el usuario {current_user.username}: {e}')
+            flash('Ocurrió un error al actualizar la cuenta. Intenta de nuevo.', 'danger')
+
+    # Mostrar los datos actuales si es un GET
     elif request.method == 'GET':
+        # Logging de la carga de los datos del usuario
+        current_app.logger.info(f'Cargando datos del usuario: {current_user.username}')
         form.username.data = current_user.username
         form.email.data = current_user.email
         form.address.data = current_user.address
         form.phone.data = current_user.phone
+
+    # Obtener la imagen de perfil para mostrarla en la vista
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+
+    # Logging de la imagen cargada
+    current_app.logger.info(f'Mostrando imagen de perfil para el usuario {current_user.username}: {current_user.image_file}')
+
     return render_template('account.html', title='Cuenta', image_file=image_file, form=form)
 
 @main.route("/reset_password", methods=['GET', 'POST'])
@@ -161,14 +212,20 @@ def contacto():
         return redirect(url_for('main.home'))
     return render_template('contacto.html', title='Contacto', form=form)
 
-@main.route("/containers/<container_id>", methods=["GET"])
+from flask import abort
+
+@main.route('/container/<container_id>', methods=['GET'])
 @login_required
 def container_detail(container_id):
-    try:
-        container = Container.objects.get(id=container_id)
-        return render_template('container_detail.html', container=container)
-    except Container.DoesNotExist:
+    container = Container.objects(id=container_id).first()
+    
+    if container is None:
+        logger.error(f"Contenedor con ID {container_id} no encontrado.")
         abort(404)
+    
+    return render_template('container_detail.html', container=container)
+
+import re  # Asegúrate de tener importada esta librería para limpiar el nombre del archivo QR
 
 @main.route('/create_container', methods=['GET', 'POST'])
 @login_required
@@ -179,11 +236,8 @@ def create_container():
         pictures = form.pictures.data
         picture_files = []
         
-        logger.info(f"Tipo de datos de pictures: {type(pictures)}")
         for picture in pictures:
-            logger.info(f"Procesando: {picture}, tipo: {type(picture)}, filename: {picture.filename if isinstance(picture, FileStorage) else 'N/A'}")
             if isinstance(picture, FileStorage) and picture.filename != '':
-                logger.info("Archivo recibido correctamente.")
                 try:
                     picture_file = save_container_picture(picture)
                     picture_files.append(picture_file)
@@ -191,20 +245,29 @@ def create_container():
                     logger.error(f"Error al guardar la imagen: {e}")
             else:
                 logger.error("El objeto proporcionado no es un archivo válido")
-                
+
+        # Limpiar el nombre para el código QR
+        safe_name = re.sub(r'[^\w\s-]', '', form.name.data).strip().replace(' ', '_')
+
         # Generar el código QR
         qr_data = f"Contenedor: {form.name.data}\nUbicación: {form.location.data}\nObjetos: {form.items.data}"
-        qr_img = qrcode.make(qr_data)
-        qr_img_path = os.path.join(current_app.root_path, 'static', 'qr_codes', f"{form.name.data}.png")
-        qr_img.save(qr_img_path)
+        qr_img_path = os.path.join(current_app.root_path, 'static', 'qr_codes', f"{safe_name}.png")
         
-        # Guardar el contenedor en la base de datos, incluyendo la referencia al archivo del QR
+        qr_img = qrcode.make(qr_data)
+        try:
+            qr_img.save(qr_img_path)
+        except Exception as e:
+            logger.error(f"Error al guardar el código QR: {e}")
+            flash('Error al generar el código QR', 'danger')
+            return render_template('create_container.html', form=form)
+
+        # Guardar el contenedor en la base de datos
         container = Container(
             name=form.name.data,
             location=form.location.data,
             items=[item.strip() for item in form.items.data.split(",")],
             image_files=picture_files,
-            qr_image=f"{form.name.data}.png",  # Guardar el nombre del archivo QR
+            qr_image=f"{safe_name}.png",  # Guardar el nombre seguro del archivo QR
             user=current_user._get_current_object()
         )
 
@@ -212,7 +275,7 @@ def create_container():
             container.save()
             logger.info(f"Contenedor creado con ID: {container.id}")
             flash('El contenedor se ha creado exitosamente.', 'success')
-            return redirect(url_for('main.container_preview', container_id=container.id))
+            return redirect(url_for('main.container_detail', container_id=container.id))
         except NotUniqueError:
             flash('El nombre del contenedor ya está en uso. Por favor, elige un nombre diferente.', 'danger')
             logger.error("El nombre del contenedor ya está en uso.")
@@ -224,13 +287,6 @@ def create_container():
 def container_preview(container_id):
     try:
         container = Container.objects.get(id=container_id)
-        logger.info(f"Container ID: {container_id}")
-        logger.info(f"Container Name: {container.name}")
-        logger.info(f"Images: {container.image_files}")
-        
-        # Asegúrate de que el QR Code se muestra correctamente
-        logger.info(f"QR Image: {container.qr_image}")
-        
         return render_template('container_preview.html', container=container)
     except Container.DoesNotExist:
         logger.error(f"Contenedor con ID {container_id} no encontrado.")
@@ -242,7 +298,7 @@ def download_qr(container_id):
     container = Container.objects(id=container_id).first()
     if not container:
         abort(404)
-    qr_path = os.path.join(current_app.root_path, 'static/qr_codes', f"{container.name}.png")
+    qr_path = os.path.join(current_app.root_path, 'static/qr_codes', container.qr_image)
     return send_file(qr_path, as_attachment=True)
 
 @main.route("/download_container/<container_id>")
@@ -251,9 +307,9 @@ def download_container(container_id):
     container = Container.objects(id=container_id).first()
     if not container:
         abort(404)
-    qr_path = os.path.join(current_app.root_path, 'static/qr_codes', f'{container.name}.png')
+    qr_path = os.path.join(current_app.root_path, 'static/qr_codes', container.qr_image)
     if os.path.exists(qr_path):
-        return send_file(qr_path, as_attachment=True, download_name=f'{container.name}.png')
+        return send_file(qr_path, as_attachment=True, download_name=container.qr_image)
     else:
         flash('Código QR no encontrado', 'danger')
         return redirect(url_for('main.container_detail', container_id=container_id))
@@ -262,8 +318,8 @@ def download_container(container_id):
 @login_required
 def list_containers():
     form = SearchContainerForm()
-    search_query = request.args.get('search_query', '')  # Obtener la consulta de búsqueda de los parámetros de la URL
-    containers = Container.objects(user=current_user._get_current_object())  # Filtrar solo los contenedores del usuario actual
+    search_query = request.args.get('search_query', '')
+    containers = Container.objects(user=current_user._get_current_object())
     if search_query:
         containers = containers.filter(
             Q(name__icontains=search_query) | Q(location__icontains=search_query) | Q(items__icontains=search_query)
@@ -276,10 +332,27 @@ def edit_container(container_id):
     container = Container.objects(id=container_id).first()
     if not container:
         abort(404)
-    
+
     form = ContainerForm()
 
     if form.validate_on_submit():
+        # Normalizar el nombre ingresado y el nombre original
+        original_name_normalized = normalize_name(container.name)
+        new_name_normalized = normalize_name(form.name.data)
+
+        logger.info(f"Nombre original normalizado: {original_name_normalized}")
+        logger.info(f"Nuevo nombre normalizado: {new_name_normalized}")
+
+        # Verificar si el nombre cambió
+        if new_name_normalized != original_name_normalized:
+            logger.info("El nombre del contenedor ha cambiado, verificando si ya está en uso.")
+            existing_container = Container.objects(name=new_name_normalized).first()
+            if existing_container and existing_container.id != container.id:
+                flash('El nombre del contenedor ya está en uso. Por favor, elige un nombre diferente.', 'danger')
+                return render_template('edit_container.html', form=form, container=container)
+        
+        # Actualizar los campos del contenedor
+        logger.info(f"Imágenes recibidas: {form.pictures.data}")
         if form.pictures.data:
             picture_files = []
             for picture in form.pictures.data:
@@ -287,14 +360,16 @@ def edit_container(container_id):
                     picture_file = save_container_picture(picture)
                     picture_files.append(picture_file)
             container.image_files = picture_files
-        
-        container.name = form.name.data
+
+        container.name = form.name.data  # Usar el nombre original sin normalizar para almacenar
         container.location = form.location.data
         container.items = [item.strip() for item in form.items.data.split(",")]
         container.save()
+
+        logger.info(f"Contenedor {container.id} guardado exitosamente.")
         flash('Contenedor actualizado exitosamente', 'success')
         return redirect(url_for('main.container_detail', container_id=container.id))
-    
+
     elif request.method == 'GET':
         form.name.data = container.name
         form.location.data = container.location
@@ -326,9 +401,9 @@ def print_container(container_id):
     container = Container.objects(id=container_id).first()
     if not container:
         abort(404)
-    qr_path = os.path.join(current_app.root_path, 'static/qr_codes', f"{container.name}.png")
+    qr_path = os.path.join(current_app.root_path, 'static/qr_codes', container.qr_image)
     if os.path.exists(qr_path):
-        return send_file(qr_path, as_attachment=True, download_name=f"{container.name}.png")
+        return send_file(qr_path, as_attachment=True, download_name=container.qr_image)
     else:
         flash('Código QR no encontrado', 'danger')
         return redirect(url_for('main.container_detail', container_id=container.id))

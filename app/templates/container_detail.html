@@ -18,11 +18,13 @@
                     </ul>
                     {% if container.image_files %}
                         <h5>Imágenes:</h5>
-                        <p>Número de imágenes: {{ container.image_files|length }}</p>
-                        {% for image_file in container.image_files %}
-                            <p>Intentando cargar: {{ image_file }}</p>
-                            <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid mb-2">
-                        {% endfor %}
+                        <div class="row">
+                            {% for image_file in container.image_files %}
+                                <div class="col-md-4">
+                                    <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid mb-2">
+                                </div>
+                            {% endfor %}
+                        </div>
                     {% else %}
                         <p>No se encontraron imágenes.</p>
                     {% endif %}

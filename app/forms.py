@@ -7,13 +7,13 @@ from flask_login import current_user
 
 class BaseUserForm(FlaskForm):
     def validate_username(self, username):
-        if username.data != current_user.username:
+        if current_user.is_authenticated and username.data != current_user.username:
             user = User.objects(username=username.data).first()
             if user:
                 raise ValidationError('Ese nombre de usuario está siendo usado. Por favor, elige uno diferente.')
 
     def validate_email(self, email):
-        if email.data != current_user.email:
+        if current_user.is_authenticated and email.data != current_user.email:
             user = User.objects(email=email.data).first()
             if user:
                 raise ValidationError('Ese correo electrónico está tomado. Por favor, elige uno diferente.')
@@ -25,7 +25,6 @@ class RegistrationForm(BaseUserForm):
     confirm_password = PasswordField('Confirmar Password', validators=[DataRequired(), EqualTo('password')])
     picture = FileField('Foto de Perfil', validators=[FileAllowed(['jpeg', 'jpg', 'png'])])
     submit = SubmitField('Registrarse')
-
 
 class LoginForm(FlaskForm):
     email_or_username = StringField('Email o Nombre de Usuario', validators=[DataRequired()])
@@ -41,12 +40,11 @@ class UpdateAccountForm(BaseUserForm):
     phone = StringField('Teléfono')
     submit = SubmitField('Actualizar')
 
-
 class ContainerForm(FlaskForm):
     name = StringField('Nombre del Contenedor', validators=[DataRequired()])
     location = StringField('Situación', validators=[DataRequired()])
     items = TextAreaField('Elementos (separados por comas)', validators=[DataRequired()])
-    pictures = MultipleFileField('Añadir Fotos')
+    pictures = MultipleFileField('Añadir Fotos', validators=[FileAllowed(['jpeg', 'jpg', 'png'], 'Solo se permiten imágenes.')])
     submit = SubmitField('Crear Contenedor')
 
     def validate_name(self, name):

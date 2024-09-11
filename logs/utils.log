@@ -1,8 +1,14 @@
-2024-08-27 17:38:15,257 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/5bb46686fe3cada8.png
-2024-08-27 19:15:35,817 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/0405fee8dc931e2b.png
-2024-08-29 20:05:44,821 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/fa705162a27dc0e5.jpeg
-2024-09-01 18:56:31,851 - app.utils - INFO - Creando el directorio: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/container_pics
-2024-09-01 18:56:31,956 - app.utils - INFO - Imagen del contenedor guardada en: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/container_pics/15a2afe50102f970.jpg
-2024-09-01 20:14:02,260 - app.utils - INFO - Imagen del contenedor guardada en: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/container_pics/d9e37438ea526721.jpg
-2024-09-01 20:17:20,717 - app.utils - INFO - Imagen del contenedor guardada en: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/container_pics/8d6d9f3616f437f0.png
-2024-09-02 18:39:44,629 - app.utils - INFO - Foto de perfil guardada en: /Volumes/APPLE SSD SM0128L Media/000.-AWS_Proyectos/000.-Repositorio AWS y Github/aws_edfcatalogoqr/app/static/profile_pics/b3bb27588f20d583.jpg
+  2024-09-10 10:33:58,454 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/76f45b12f1546508.jpg
+2024-09-10 10:34:45,742 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/40e333968fd178df.jpg
+2024-09-10 11:13:14,837 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/6823a83c33e1a792.jpg
+2024-09-10 11:15:06,020 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/d2f0ed9d90091fc9.jpg
+2024-09-10 11:18:26,869 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/857c9b5a197e8a89.jpg
+2024-09-10 11:22:31,985 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/4d25d77ecaf62ea1.jpg
+2024-09-10 12:31:12,582 - app.utils - INFO - Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/9cecb46f5524c2fe.jpeg
+2024-09-10 12:32:08,152 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/dfd2a3a0eb7c6a13.jpeg
+2024-09-10 12:34:56,150 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/87371de9a20d1e8d.jpeg
+2024-09-10 13:02:06,451 - app.utils - INFO - Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/eec2a55f9652ab6f.jpeg
+2024-09-10 13:30:01,767 - app.utils - INFO - Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/861020f5a6279a3c.jpeg
+2024-09-11 10:47:14,224 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/5e62741f6c132bf7.jpg
+2024-09-11 14:41:16,849 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/5dc9c908f154c439.jpg
+2024-09-11 14:42:50,801 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/490da49e7fadec06.jpg

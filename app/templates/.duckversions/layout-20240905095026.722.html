@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EDF Catalogación QR{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        /* Asegurar que el body ocupe toda la pantalla y use flexbox */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* El header y footer son fijos con altura fija */
+        .navbar-container {
+            background-color: #343a40; /* El color de fondo del navbar */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+       
+
+        /* Botón de "Subir arriba" */
+        #scrollTopBtn {
+            display: none; /* Escondido por defecto */
+            position: fixed;
+            bottom: 80px; /* Posicionado sobre el footer */
+            right: 20px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: #343a40; /* Color del botón */
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #555; /* Color al pasar el ratón */
+        }
+
+        /* Ajustes para pantallas más pequeñas */
+        @media (max-width: 768px) {
+            .container-content {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container-content {
+                padding-left: 2%;
+                padding-right: 2%;
+            }
+
+            #scrollTopBtn {
+                bottom: 70px; /* Ajuste para pantallas más pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar-container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="navbar-content">
+                <a class="navbar-brand" href="{{ url_for('main.home') }}">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" width="50" height="50" class="d-inline-block align-top" alt="EDF Logo">
+                    EDF Catalogación QR
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.home') }}">Inicio</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.account') }}">Cuenta</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.create_container') }}">Crear Contenedor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.list_containers') }}">Mis Contenedores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.about') }}">Acerca de</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.contacto') }}">Contacto</a>
+                        </li>
+                        {% if current_user.is_admin %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                            <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                <a class="dropdown-item" href="{{ url_for('admin.search_user') }}">Buscar y Editar Usuario</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.admin_search_containers') }}">Buscar Contenedores</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.edit_user', user_id=current_user.id) }}">Editar Usuario</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.list_users') }}">Listar Usuarios</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.view_user', user_id=current_user.id) }}">Ver Usuario</a>
+                                <a class="dropdown-item" href="{{ url_for('admin.admin_search_containers') }}">Contenedores</a>
+                            </div>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.logout') }}">Cerrar Sesión</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.login') }}">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.register') }}">Registrarse</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Bloque para mostrar los mensajes flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="container mt-3">
+            <div class="alert-container">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% endwith %}
+    <div class="container-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="text-center">
+        <a href="{{ url_for('main.contacto') }}">Contacto - Eugenio de Frutos</a>
+        <p>&copy; {{ current_year }} EDF Proyectos. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Botón de "Subir arriba" -->
+    <button onclick="scrollToTop()" id="scrollTopBtn" class="btn btn-primary" title="Subir arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        function printDetail(containerId) {
+            window.open('/containers/' + containerId + '/print_detail', '_blank');
+        }
+
+        // Mostrar el botón al hacer scroll
+        window.onscroll = function() {
+            var scrollTopBtn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        // Función para subir al inicio de la página
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

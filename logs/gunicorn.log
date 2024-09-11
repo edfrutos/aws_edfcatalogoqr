@@ -1,0 +1,583 @@
+[2024-09-10 09:46:16 +0000] [810274] [INFO] Handling signal: int
+[2024-09-10 09:46:16 +0000] [810275] [INFO] Worker exiting (pid: 810275)
+[2024-09-10 09:46:17 +0000] [810274] [INFO] Shutting down: Master
+[2024-09-10 09:46:20 +0000] [896251] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 09:46:20 +0000] [896251] [INFO] Listening at: http://0.0.0.0:8000 (896251)
+[2024-09-10 09:46:20 +0000] [896251] [INFO] Using worker: sync
+[2024-09-10 09:46:20 +0000] [896252] [INFO] Booting worker with pid: 896252
+[2024-09-10 09:52:03 +0000] [896251] [INFO] Handling signal: int
+[2024-09-10 09:52:03 +0000] [896252] [INFO] Worker exiting (pid: 896252)
+[2024-09-10 09:52:03 +0000] [896251] [INFO] Shutting down: Master
+[2024-09-10 09:52:06 +0000] [896970] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 09:52:06 +0000] [896970] [INFO] Listening at: http://0.0.0.0:8000 (896970)
+[2024-09-10 09:52:06 +0000] [896970] [INFO] Using worker: sync
+[2024-09-10 09:52:06 +0000] [896971] [INFO] Booting worker with pid: 896971
+[2024-09-10 09:54:55 +0000] [896970] [INFO] Handling signal: int
+[2024-09-10 09:54:55 +0000] [896971] [INFO] Worker exiting (pid: 896971)
+[2024-09-10 09:54:56 +0000] [896970] [INFO] Shutting down: Master
+[2024-09-10 09:54:59 +0000] [897361] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 09:54:59 +0000] [897361] [INFO] Listening at: http://0.0.0.0:8000 (897361)
+[2024-09-10 09:54:59 +0000] [897361] [INFO] Using worker: sync
+[2024-09-10 09:54:59 +0000] [897362] [INFO] Booting worker with pid: 897362
+[2024-09-10 10:28:37 +0000] [897361] [INFO] Handling signal: int
+[2024-09-10 10:28:37 +0000] [897362] [INFO] Worker exiting (pid: 897362)
+[2024-09-10 10:28:37 +0000] [897361] [INFO] Shutting down: Master
+[2024-09-10 10:28:39 +0000] [900890] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 10:28:39 +0000] [900890] [INFO] Listening at: http://0.0.0.0:8000 (900890)
+[2024-09-10 10:28:39 +0000] [900890] [INFO] Using worker: sync
+[2024-09-10 10:28:39 +0000] [900891] [INFO] Booting worker with pid: 900891
+[2024-09-10 10:28:49,578] INFO in routes: Mostrando imagen de perfil para el usuario Alejandro: fb10f125c89b0816.jpg
+[2024-09-10 10:28:58,852] INFO in routes: Mostrando imagen de perfil para el usuario Alejandro: fb10f125c89b0816.jpg
+[2024-09-10 10:29:57,377] INFO in routes: Cargando datos del usuario: Alejandro
+[2024-09-10 10:29:57,377] INFO in routes: Mostrando imagen de perfil para el usuario Alejandro: fb10f125c89b0816.jpg
+[2024-09-10 10:33:40,047] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 10:33:40,047] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: a63b5dd4db266c80.png
+[2024-09-10 10:33:42,902] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-10 10:33:42,902] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-10 10:33:42,946] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-10 10:33:43,197] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 10:33:43,197] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: a63b5dd4db266c80.png
+[2024-09-10 10:33:58,442] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-10 10:33:58,443] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-10 10:33:58,443] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-10 10:33:58,454] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/76f45b12f1546508.jpg
+[2024-09-10 10:33:58,454] INFO in routes: Foto de perfil actualizada: 76f45b12f1546508.jpg
+[2024-09-10 10:33:58,513] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-10 10:33:58,629] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 10:33:58,629] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 76f45b12f1546508.jpg
+[2024-09-10 10:34:45,735] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-10 10:34:45,736] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-10 10:34:45,736] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-10 10:34:45,742] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/40e333968fd178df.jpg
+[2024-09-10 10:34:45,742] INFO in routes: Foto de perfil actualizada: 40e333968fd178df.jpg
+[2024-09-10 10:34:45,801] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-10 10:34:45,916] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 10:34:45,916] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 40e333968fd178df.jpg
+[2024-09-10 10:42:57 +0000] [900890] [INFO] Handling signal: int
+[2024-09-10 10:42:57 +0000] [900891] [INFO] Worker exiting (pid: 900891)
+[2024-09-10 10:42:58 +0000] [900890] [INFO] Shutting down: Master
+[2024-09-10 10:43:00 +0000] [902543] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 10:43:00 +0000] [902543] [INFO] Listening at: http://0.0.0.0:8000 (902543)
+[2024-09-10 10:43:00 +0000] [902543] [INFO] Using worker: sync
+[2024-09-10 10:43:00 +0000] [902544] [INFO] Booting worker with pid: 902544
+[2024-09-10 10:43:07,194] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 10:43:07,194] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 40e333968fd178df.jpg
+[2024-09-10 10:44:21 +0000] [902543] [INFO] Handling signal: int
+[2024-09-10 10:44:21 +0000] [902544] [INFO] Worker exiting (pid: 902544)
+[2024-09-10 10:44:22 +0000] [902543] [INFO] Shutting down: Master
+[2024-09-10 10:44:25 +0000] [902814] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 10:44:25 +0000] [902814] [INFO] Listening at: http://0.0.0.0:8000 (902814)
+[2024-09-10 10:44:25 +0000] [902814] [INFO] Using worker: sync
+[2024-09-10 10:44:25 +0000] [902815] [INFO] Booting worker with pid: 902815
+[2024-09-10 11:12:51,013] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:12:51,014] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 5d1b7cb40a03f8f5.png
+[2024-09-10 11:13:14,827] INFO in routes: Iniciando actualización de cuenta para el usuario: Luisa
+[2024-09-10 11:13:14,827] INFO in routes: Información recibida - Username: Luisa, Email: edefrutos@edefrutos.me, Address: Arándano, 3, Phone: 983246972
+[2024-09-10 11:13:14,827] INFO in routes: Actualizando foto de perfil para el usuario: Luisa
+[2024-09-10 11:13:14,837] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/6823a83c33e1a792.jpg
+[2024-09-10 11:13:14,838] INFO in routes: Foto de perfil actualizada: 6823a83c33e1a792.jpg
+[2024-09-10 11:13:14,904] INFO in routes: Cuenta actualizada exitosamente para el usuario: Luisa
+[2024-09-10 11:13:15,124] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:13:15,125] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 6823a83c33e1a792.jpg
+[2024-09-10 11:14:49,272] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 6823a83c33e1a792.jpg
+[2024-09-10 11:15:06,017] INFO in routes: Iniciando actualización de cuenta para el usuario: Luisa
+[2024-09-10 11:15:06,017] INFO in routes: Información recibida - Username: Luisa, Email: edefrutos@edefrutos.me, Address: Arándano, 3, Phone: 983246972
+[2024-09-10 11:15:06,017] INFO in routes: Actualizando foto de perfil para el usuario: Luisa
+[2024-09-10 11:15:06,020] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/d2f0ed9d90091fc9.jpg
+[2024-09-10 11:15:06,021] INFO in routes: Foto de perfil actualizada: d2f0ed9d90091fc9.jpg
+[2024-09-10 11:15:06,080] INFO in routes: Cuenta actualizada exitosamente para el usuario: Luisa
+[2024-09-10 11:15:06,271] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:15:06,272] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: d2f0ed9d90091fc9.jpg
+[2024-09-10 11:18:26,758] INFO in routes: Iniciando actualización de cuenta para el usuario: Luisa
+[2024-09-10 11:18:26,759] INFO in routes: Información recibida - Username: Luisa, Email: edefrutos@edefrutos.me, Address: Arándano, 3, Phone: 983246972
+[2024-09-10 11:18:26,759] INFO in routes: Actualizando foto de perfil para el usuario: Luisa
+[2024-09-10 11:18:26,869] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/857c9b5a197e8a89.jpg
+[2024-09-10 11:18:26,869] INFO in routes: Foto de perfil actualizada: 857c9b5a197e8a89.jpg
+[2024-09-10 11:18:26,929] INFO in routes: Cuenta actualizada exitosamente para el usuario: Luisa
+[2024-09-10 11:18:27,085] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:18:27,085] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 857c9b5a197e8a89.jpg
+[2024-09-10 11:21:54 +0000] [902814] [INFO] Handling signal: int
+[2024-09-10 11:21:54 +0000] [902815] [INFO] Worker exiting (pid: 902815)
+[2024-09-10 11:21:55 +0000] [902814] [INFO] Shutting down: Master
+[2024-09-10 11:21:58 +0000] [906677] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 11:21:58 +0000] [906677] [INFO] Listening at: http://0.0.0.0:8000 (906677)
+[2024-09-10 11:21:58 +0000] [906677] [INFO] Using worker: sync
+[2024-09-10 11:21:58 +0000] [906678] [INFO] Booting worker with pid: 906678
+[2024-09-10 11:22:11,992] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:22:11,993] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 857c9b5a197e8a89.jpg
+[2024-09-10 11:22:31,966] INFO in routes: Iniciando actualización de cuenta para el usuario: Luisa
+[2024-09-10 11:22:31,967] INFO in routes: Información recibida - Username: Luisa, Email: edefrutos@edefrutos.me, Address: Arándano, 3, Phone: 983246972
+[2024-09-10 11:22:31,967] INFO in routes: Actualizando foto de perfil para el usuario: Luisa
+[2024-09-10 11:22:31,985] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/4d25d77ecaf62ea1.jpg
+[2024-09-10 11:22:31,985] INFO in routes: Foto de perfil actualizada: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:22:32,045] INFO in routes: Cuenta actualizada exitosamente para el usuario: Luisa
+[2024-09-10 11:22:32,146] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:22:32,147] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:26:43 +0000] [906677] [INFO] Handling signal: int
+[2024-09-10 11:26:43 +0000] [906678] [INFO] Worker exiting (pid: 906678)
+[2024-09-10 11:26:43 +0000] [906677] [INFO] Shutting down: Master
+[2024-09-10 11:26:46 +0000] [907266] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 11:26:46 +0000] [907266] [INFO] Listening at: http://0.0.0.0:8000 (907266)
+[2024-09-10 11:26:46 +0000] [907266] [INFO] Using worker: sync
+[2024-09-10 11:26:46 +0000] [907267] [INFO] Booting worker with pid: 907267
+[2024-09-10 11:26:52,221] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:26:52,221] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:30:24,416] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:30:24,416] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:31:05,153] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:31:05,154] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:31:19,831] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:31:19,831] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:34:22,346] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:34:22,346] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:35:31,013] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:35:31,014] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:37:12,846] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:37:12,846] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:37:35,224] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:37:35,225] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:37:56,777] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:37:56,778] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:41:31,235] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:41:31,235] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:43:31,741] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:43:31,741] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 11:47:56,592] INFO in routes: Cargando datos del usuario: Luisa
+[2024-09-10 11:47:56,592] INFO in routes: Mostrando imagen de perfil para el usuario Luisa: 4d25d77ecaf62ea1.jpg
+[2024-09-10 12:15:26 +0000] [907266] [INFO] Handling signal: int
+[2024-09-10 12:15:27 +0000] [907267] [INFO] Worker exiting (pid: 907267)
+[2024-09-10 12:15:27 +0000] [907266] [INFO] Shutting down: Master
+[2024-09-10 12:15:30 +0000] [912370] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 12:15:30 +0000] [912370] [INFO] Listening at: http://0.0.0.0:8000 (912370)
+[2024-09-10 12:15:30 +0000] [912370] [INFO] Using worker: sync
+[2024-09-10 12:15:30 +0000] [912371] [INFO] Booting worker with pid: 912371
+[2024-09-10 12:29:57,658] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 12:29:57,659] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 40e333968fd178df.jpg
+[2024-09-10 12:31:12,501] INFO in routes: Nombre original normalizado: Cajonera bajo encimera
+[2024-09-10 12:31:12,502] INFO in routes: Nuevo nombre normalizado: Cajonera bajo encimera 1
+[2024-09-10 12:31:12,502] INFO in routes: El nombre del contenedor ha cambiado, verificando si ya está en uso.
+[2024-09-10 12:31:12,517] INFO in routes: Imágenes recibidas: [<FileStorage: 'IMG_7170.jpeg' ('image/jpeg')>]
+[2024-09-10 12:31:12,582] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/9cecb46f5524c2fe.jpeg
+[2024-09-10 12:31:12,605] INFO in routes: Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+[2024-09-10 12:32:08,152] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/dfd2a3a0eb7c6a13.jpeg
+[2024-09-10 12:34:56,150] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/87371de9a20d1e8d.jpeg
+[2024-09-10 13:00:30,721] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 13:00:30,721] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 87371de9a20d1e8d.jpeg
+[2024-09-10 13:02:06,360] INFO in routes: Nombre original normalizado: Cajonera bajo encimera 1
+[2024-09-10 13:02:06,360] INFO in routes: Nuevo nombre normalizado: Cajonera bajo encimera
+[2024-09-10 13:02:06,360] INFO in routes: El nombre del contenedor ha cambiado, verificando si ya está en uso.
+[2024-09-10 13:02:06,373] INFO in routes: Imágenes recibidas: [<FileStorage: 'IMG_6066.jpeg' ('image/jpeg')>]
+[2024-09-10 13:02:06,451] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/eec2a55f9652ab6f.jpeg
+[2024-09-10 13:02:06,488] INFO in routes: Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+[2024-09-10 13:04:33,740] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 13:04:33,741] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 87371de9a20d1e8d.jpeg
+[2024-09-10 13:20:16,805] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 13:20:16,806] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 87371de9a20d1e8d.jpeg
+[2024-09-10 13:30:01,709] INFO in routes: Creación de contenedor iniciada.
+[2024-09-10 13:30:01,767] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/861020f5a6279a3c.jpeg
+[2024-09-10 13:30:01,808] INFO in routes: Contenedor creado con ID: 66e049d95e1cfef1fa2dca31
+[2024-09-10 14:59:04 +0000] [912370] [INFO] Handling signal: int
+[2024-09-10 14:59:04 +0000] [912371] [INFO] Worker exiting (pid: 912371)
+[2024-09-10 14:59:05 +0000] [912370] [INFO] Shutting down: Master
+[2024-09-10 14:59:12 +0000] [928732] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 14:59:12 +0000] [928732] [INFO] Listening at: http://0.0.0.0:8000 (928732)
+[2024-09-10 14:59:12 +0000] [928732] [INFO] Using worker: sync
+[2024-09-10 14:59:12 +0000] [928733] [INFO] Booting worker with pid: 928733
+[2024-09-10 15:12:10 +0000] [928732] [INFO] Handling signal: int
+[2024-09-10 15:12:10 +0000] [928733] [INFO] Worker exiting (pid: 928733)
+[2024-09-10 15:12:11 +0000] [928732] [INFO] Shutting down: Master
+[2024-09-10 15:12:13 +0000] [930257] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 15:12:13 +0000] [930257] [INFO] Listening at: http://0.0.0.0:8000 (930257)
+[2024-09-10 15:12:13 +0000] [930257] [INFO] Using worker: sync
+[2024-09-10 15:12:13 +0000] [930258] [INFO] Booting worker with pid: 930258
+[2024-09-10 15:18:28 +0000] [930257] [INFO] Handling signal: int
+[2024-09-10 15:18:28 +0000] [930258] [INFO] Worker exiting (pid: 930258)
+[2024-09-10 15:18:29 +0000] [930257] [INFO] Shutting down: Master
+[2024-09-10 15:18:31 +0000] [931098] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 15:18:31 +0000] [931098] [INFO] Listening at: http://0.0.0.0:8000 (931098)
+[2024-09-10 15:18:31 +0000] [931098] [INFO] Using worker: sync
+[2024-09-10 15:18:31 +0000] [931099] [INFO] Booting worker with pid: 931099
+[2024-09-10 15:34:30,493] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 15:34:30,493] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 87371de9a20d1e8d.jpeg
+[2024-09-10 16:32:26 +0000] [931098] [INFO] Handling signal: int
+[2024-09-10 16:32:26 +0000] [931099] [INFO] Worker exiting (pid: 931099)
+[2024-09-10 16:32:26 +0000] [931098] [INFO] Shutting down: Master
+[2024-09-10 16:32:29 +0000] [938518] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 16:32:29 +0000] [938518] [INFO] Listening at: http://0.0.0.0:8000 (938518)
+[2024-09-10 16:32:29 +0000] [938518] [INFO] Using worker: sync
+[2024-09-10 16:32:29 +0000] [938519] [INFO] Booting worker with pid: 938519
+[2024-09-10 16:41:34 +0000] [938518] [INFO] Handling signal: int
+[2024-09-10 16:41:34 +0000] [938519] [INFO] Worker exiting (pid: 938519)
+[2024-09-10 16:41:34 +0000] [938518] [INFO] Shutting down: Master
+[2024-09-10 16:41:37 +0000] [939598] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 16:41:37 +0000] [939598] [INFO] Listening at: http://0.0.0.0:8000 (939598)
+[2024-09-10 16:41:37 +0000] [939598] [INFO] Using worker: sync
+[2024-09-10 16:41:37 +0000] [939599] [INFO] Booting worker with pid: 939599
+[2024-09-10 17:18:48,483] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 17:18:48,483] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 87371de9a20d1e8d.jpeg
+[2024-09-10 17:31:51 +0000] [939598] [INFO] Handling signal: int
+[2024-09-10 17:31:51 +0000] [939599] [INFO] Worker exiting (pid: 939599)
+[2024-09-10 17:31:52 +0000] [939598] [INFO] Shutting down: Master
+[2024-09-10 17:31:54 +0000] [944742] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:31:54 +0000] [944742] [INFO] Listening at: http://0.0.0.0:8000 (944742)
+[2024-09-10 17:31:54 +0000] [944742] [INFO] Using worker: sync
+[2024-09-10 17:31:54 +0000] [944743] [INFO] Booting worker with pid: 944743
+[2024-09-10 17:32:52 +0000] [944742] [INFO] Handling signal: int
+[2024-09-10 17:32:52 +0000] [944743] [INFO] Worker exiting (pid: 944743)
+[2024-09-10 17:32:52 +0000] [944742] [INFO] Shutting down: Master
+[2024-09-10 17:32:54 +0000] [944954] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:32:54 +0000] [944954] [INFO] Listening at: http://0.0.0.0:8000 (944954)
+[2024-09-10 17:32:54 +0000] [944954] [INFO] Using worker: sync
+[2024-09-10 17:32:54 +0000] [944955] [INFO] Booting worker with pid: 944955
+[2024-09-10 17:33:49 +0000] [944954] [INFO] Handling signal: int
+[2024-09-10 17:33:49 +0000] [944955] [INFO] Worker exiting (pid: 944955)
+[2024-09-10 17:33:50 +0000] [944954] [INFO] Shutting down: Master
+[2024-09-10 17:33:52 +0000] [945207] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:33:52 +0000] [945207] [INFO] Listening at: http://0.0.0.0:8000 (945207)
+[2024-09-10 17:33:52 +0000] [945207] [INFO] Using worker: sync
+[2024-09-10 17:33:52 +0000] [945208] [INFO] Booting worker with pid: 945208
+[2024-09-10 17:35:16 +0000] [945207] [INFO] Handling signal: int
+[2024-09-10 17:35:16 +0000] [945208] [INFO] Worker exiting (pid: 945208)
+[2024-09-10 17:35:17 +0000] [945207] [INFO] Shutting down: Master
+[2024-09-10 17:35:19 +0000] [945496] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:35:19 +0000] [945496] [INFO] Listening at: http://0.0.0.0:8000 (945496)
+[2024-09-10 17:35:19 +0000] [945496] [INFO] Using worker: sync
+[2024-09-10 17:35:19 +0000] [945497] [INFO] Booting worker with pid: 945497
+[2024-09-10 17:36:51 +0000] [945496] [INFO] Handling signal: int
+[2024-09-10 17:36:51 +0000] [945497] [INFO] Worker exiting (pid: 945497)
+[2024-09-10 17:36:52 +0000] [945496] [INFO] Shutting down: Master
+[2024-09-10 17:36:54 +0000] [945743] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:36:54 +0000] [945743] [INFO] Listening at: http://0.0.0.0:8000 (945743)
+[2024-09-10 17:36:54 +0000] [945743] [INFO] Using worker: sync
+[2024-09-10 17:36:54 +0000] [945744] [INFO] Booting worker with pid: 945744
+[2024-09-10 17:41:24 +0000] [945743] [INFO] Handling signal: int
+[2024-09-10 17:41:24 +0000] [945744] [INFO] Worker exiting (pid: 945744)
+[2024-09-10 17:41:24 +0000] [945743] [INFO] Shutting down: Master
+[2024-09-10 17:41:29 +0000] [946375] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:41:29 +0000] [946375] [INFO] Listening at: http://0.0.0.0:8000 (946375)
+[2024-09-10 17:41:29 +0000] [946375] [INFO] Using worker: sync
+[2024-09-10 17:41:29 +0000] [946376] [INFO] Booting worker with pid: 946376
+[2024-09-10 17:41:34,304] ERROR in app: Exception on /about [GET]
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 60, in about
+    return render_template('about.html', title='Acerca de')
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/templating.py", line 148, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 1084, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 1013, in get_template
+    return self._load_template(name, globals)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 972, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/templates/about.html", line 22, in template
+    {% endif %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endif'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+[2024-09-10 17:41:45,585] ERROR in app: Exception on /about [GET]
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 60, in about
+    return render_template('about.html', title='Acerca de')
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/templating.py", line 148, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 1084, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 1013, in get_template
+    return self._load_template(name, globals)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 972, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/templates/about.html", line 22, in template
+    {% endif %}
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endif'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
+[2024-09-10 17:43:54 +0000] [946375] [INFO] Handling signal: int
+[2024-09-10 17:43:54 +0000] [946376] [INFO] Worker exiting (pid: 946376)
+[2024-09-10 17:43:55 +0000] [946375] [INFO] Shutting down: Master
+[2024-09-10 17:43:57 +0000] [946750] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:43:57 +0000] [946750] [INFO] Listening at: http://0.0.0.0:8000 (946750)
+[2024-09-10 17:43:57 +0000] [946750] [INFO] Using worker: sync
+[2024-09-10 17:43:57 +0000] [946751] [INFO] Booting worker with pid: 946751
+[2024-09-10 17:48:32 +0000] [946750] [INFO] Handling signal: int
+[2024-09-10 17:48:32 +0000] [946751] [INFO] Worker exiting (pid: 946751)
+[2024-09-10 17:48:33 +0000] [946750] [INFO] Shutting down: Master
+[2024-09-10 17:48:35 +0000] [947340] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:48:35 +0000] [947340] [INFO] Listening at: http://0.0.0.0:8000 (947340)
+[2024-09-10 17:48:35 +0000] [947340] [INFO] Using worker: sync
+[2024-09-10 17:48:35 +0000] [947341] [INFO] Booting worker with pid: 947341
+[2024-09-10 17:51:00 +0000] [947340] [INFO] Handling signal: int
+[2024-09-10 17:51:00 +0000] [947341] [INFO] Worker exiting (pid: 947341)
+[2024-09-10 17:51:00 +0000] [947340] [INFO] Shutting down: Master
+[2024-09-10 17:51:03 +0000] [947682] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 17:51:03 +0000] [947682] [INFO] Listening at: http://0.0.0.0:8000 (947682)
+[2024-09-10 17:51:03 +0000] [947682] [INFO] Using worker: sync
+[2024-09-10 17:51:03 +0000] [947683] [INFO] Booting worker with pid: 947683
+[2024-09-10 18:06:44 +0000] [947682] [INFO] Handling signal: int
+[2024-09-10 18:06:44 +0000] [947683] [INFO] Worker exiting (pid: 947683)
+[2024-09-10 18:06:44 +0000] [947682] [INFO] Shutting down: Master
+[2024-09-10 18:06:46 +0000] [949387] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 18:06:46 +0000] [949387] [INFO] Listening at: http://0.0.0.0:8000 (949387)
+[2024-09-10 18:06:46 +0000] [949387] [INFO] Using worker: sync
+[2024-09-10 18:06:46 +0000] [949388] [INFO] Booting worker with pid: 949388
+[2024-09-10 18:14:05 +0000] [949387] [INFO] Handling signal: int
+[2024-09-10 18:14:05 +0000] [949388] [INFO] Worker exiting (pid: 949388)
+[2024-09-10 18:14:06 +0000] [949387] [INFO] Shutting down: Master
+[2024-09-10 18:14:08 +0000] [950269] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 18:14:08 +0000] [950269] [INFO] Listening at: http://0.0.0.0:8000 (950269)
+[2024-09-10 18:14:08 +0000] [950269] [INFO] Using worker: sync
+[2024-09-10 18:14:08 +0000] [950270] [INFO] Booting worker with pid: 950270
+[2024-09-10 18:14:52 +0000] [950269] [INFO] Handling signal: int
+[2024-09-10 18:14:52 +0000] [950270] [INFO] Worker exiting (pid: 950270)
+[2024-09-10 18:14:53 +0000] [950269] [INFO] Shutting down: Master
+[2024-09-10 18:14:56 +0000] [950446] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 18:14:56 +0000] [950446] [INFO] Listening at: http://0.0.0.0:8000 (950446)
+[2024-09-10 18:14:56 +0000] [950446] [INFO] Using worker: sync
+[2024-09-10 18:14:56 +0000] [950447] [INFO] Booting worker with pid: 950447
+[2024-09-10 18:15:22 +0000] [950446] [INFO] Handling signal: int
+[2024-09-10 18:15:22 +0000] [950447] [INFO] Worker exiting (pid: 950447)
+[2024-09-10 18:15:23 +0000] [950446] [INFO] Shutting down: Master
+[2024-09-10 18:15:29 +0000] [950666] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 18:15:29 +0000] [950666] [INFO] Listening at: http://0.0.0.0:8000 (950666)
+[2024-09-10 18:15:29 +0000] [950666] [INFO] Using worker: sync
+[2024-09-10 18:15:29 +0000] [950667] [INFO] Booting worker with pid: 950667
+[2024-09-10 18:21:59 +0000] [950666] [INFO] Handling signal: int
+[2024-09-10 18:21:59 +0000] [950667] [INFO] Worker exiting (pid: 950667)
+[2024-09-10 18:22:00 +0000] [950666] [INFO] Shutting down: Master
+[2024-09-10 18:22:08 +0000] [951563] [INFO] Starting gunicorn 20.1.0
+[2024-09-10 18:22:08 +0000] [951563] [INFO] Listening at: http://0.0.0.0:8000 (951563)
+[2024-09-10 18:22:08 +0000] [951563] [INFO] Using worker: sync
+[2024-09-10 18:22:08 +0000] [951564] [INFO] Booting worker with pid: 951564
+[2024-09-10 18:22:47,593] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 18:22:47,593] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 87371de9a20d1e8d.jpeg
+[2024-09-10 20:54:32,754] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-10 20:54:32,755] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 87371de9a20d1e8d.jpeg
+[2024-09-10 20:55:17,859] ERROR in app: Exception on /reset_password [POST]
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 178, in reset_request
+    send_reset_email(user)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/utils.py", line 148, in send_reset_email
+    {url_for('main.reset_token', token=token, _external=True)}
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/werkzeug/routing.py", line 2315, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.reset_token' with values ['token']. Did you mean 'main.reset_request' instead?
+[2024-09-11 08:51:53 +0000] [951563] [INFO] Handling signal: int
+[2024-09-11 08:51:53 +0000] [951564] [INFO] Worker exiting (pid: 951564)
+[2024-09-11 08:51:54 +0000] [951563] [INFO] Shutting down: Master
+[2024-09-11 08:51:56 +0000] [1038325] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 08:51:56 +0000] [1038325] [INFO] Listening at: http://0.0.0.0:8000 (1038325)
+[2024-09-11 08:51:56 +0000] [1038325] [INFO] Using worker: sync
+[2024-09-11 08:51:56 +0000] [1038326] [INFO] Booting worker with pid: 1038326
+[2024-09-11 08:53:09 +0000] [1038325] [INFO] Handling signal: int
+[2024-09-11 08:53:09 +0000] [1038326] [INFO] Worker exiting (pid: 1038326)
+[2024-09-11 08:53:09 +0000] [1038325] [INFO] Shutting down: Master
+[2024-09-11 08:53:12 +0000] [1038554] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 08:53:12 +0000] [1038554] [INFO] Listening at: http://0.0.0.0:8000 (1038554)
+[2024-09-11 08:53:12 +0000] [1038554] [INFO] Using worker: sync
+[2024-09-11 08:53:12 +0000] [1038555] [INFO] Booting worker with pid: 1038555
+[2024-09-11 09:40:09 +0000] [1038554] [INFO] Handling signal: int
+[2024-09-11 09:40:09 +0000] [1038555] [INFO] Worker exiting (pid: 1038555)
+[2024-09-11 09:40:10 +0000] [1038554] [INFO] Shutting down: Master
+[2024-09-11 09:40:12 +0000] [1043340] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 09:40:12 +0000] [1043340] [INFO] Listening at: http://0.0.0.0:8000 (1043340)
+[2024-09-11 09:40:12 +0000] [1043340] [INFO] Using worker: sync
+[2024-09-11 09:40:12 +0000] [1043341] [INFO] Booting worker with pid: 1043341
+[2024-09-11 10:45:41 +0000] [1048615] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 10:45:41 +0000] [1048615] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-11 10:45:41 +0000] [1048615] [ERROR] Retrying in 1 second.
+[2024-09-11 10:45:42 +0000] [1048615] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-11 10:45:42 +0000] [1048615] [ERROR] Retrying in 1 second.
+[2024-09-11 10:45:43 +0000] [1048615] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-11 10:45:43 +0000] [1048615] [ERROR] Retrying in 1 second.
+[2024-09-11 10:45:44 +0000] [1048615] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-11 10:45:44 +0000] [1048615] [ERROR] Retrying in 1 second.
+[2024-09-11 10:45:45 +0000] [1048615] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-11 10:45:45 +0000] [1048615] [ERROR] Retrying in 1 second.
+[2024-09-11 10:45:46 +0000] [1048615] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2024-09-11 10:46:54,922] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 10:46:54,922] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 87371de9a20d1e8d.jpeg
+[2024-09-11 10:47:14,207] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-11 10:47:14,207] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-11 10:47:14,207] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-11 10:47:14,224] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/5e62741f6c132bf7.jpg
+[2024-09-11 10:47:14,225] INFO in routes: Foto de perfil actualizada: 5e62741f6c132bf7.jpg
+[2024-09-11 10:47:14,286] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-11 10:47:14,547] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 10:47:14,548] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 10:51:12 +0000] [1043340] [INFO] Handling signal: term
+[2024-09-11 10:51:12 +0000] [1043341] [INFO] Worker exiting (pid: 1043341)
+[2024-09-11 10:51:12 +0000] [1043340] [INFO] Shutting down: Master
+[2024-09-11 10:51:16 +0000] [1049288] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 10:51:16 +0000] [1049288] [INFO] Listening at: http://0.0.0.0:8000 (1049288)
+[2024-09-11 10:51:16 +0000] [1049288] [INFO] Using worker: sync
+[2024-09-11 10:51:16 +0000] [1049289] [INFO] Booting worker with pid: 1049289
+[2024-09-11 11:02:05 +0000] [1049288] [INFO] Handling signal: int
+[2024-09-11 11:02:05 +0000] [1049289] [INFO] Worker exiting (pid: 1049289)
+[2024-09-11 11:02:06 +0000] [1049288] [INFO] Shutting down: Master
+[2024-09-11 11:02:10 +0000] [1050095] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 11:02:10 +0000] [1050095] [INFO] Listening at: http://0.0.0.0:8000 (1050095)
+[2024-09-11 11:02:10 +0000] [1050095] [INFO] Using worker: sync
+[2024-09-11 11:02:10 +0000] [1050096] [INFO] Booting worker with pid: 1050096
+[2024-09-11 11:03:15 +0000] [1050095] [INFO] Handling signal: int
+[2024-09-11 11:03:15 +0000] [1050096] [INFO] Worker exiting (pid: 1050096)
+[2024-09-11 11:03:15 +0000] [1050095] [INFO] Shutting down: Master
+[2024-09-11 11:03:19 +0000] [1050328] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 11:03:19 +0000] [1050328] [INFO] Listening at: http://0.0.0.0:8000 (1050328)
+[2024-09-11 11:03:19 +0000] [1050328] [INFO] Using worker: sync
+[2024-09-11 11:03:19 +0000] [1050329] [INFO] Booting worker with pid: 1050329
+[2024-09-11 11:12:41 +0000] [1050328] [INFO] Handling signal: int
+[2024-09-11 11:12:41 +0000] [1050329] [INFO] Worker exiting (pid: 1050329)
+[2024-09-11 11:12:41 +0000] [1050328] [INFO] Shutting down: Master
+[2024-09-11 11:12:44 +0000] [1051122] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 11:12:44 +0000] [1051122] [INFO] Listening at: http://0.0.0.0:8000 (1051122)
+[2024-09-11 11:12:44 +0000] [1051122] [INFO] Using worker: sync
+[2024-09-11 11:12:44 +0000] [1051123] [INFO] Booting worker with pid: 1051123
+[2024-09-11 11:29:58,054] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 11:29:58,055] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 11:31:29,890] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 11:31:29,890] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 11:32:22,000] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 11:32:22,001] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 11:34:53,290] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 11:34:53,291] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 11:36:47 +0000] [1051122] [INFO] Handling signal: int
+[2024-09-11 11:36:47 +0000] [1051123] [INFO] Worker exiting (pid: 1051123)
+[2024-09-11 11:36:47 +0000] [1051122] [INFO] Shutting down: Master
+[2024-09-11 11:36:50 +0000] [1052816] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 11:36:50 +0000] [1052816] [INFO] Listening at: http://0.0.0.0:8000 (1052816)
+[2024-09-11 11:36:50 +0000] [1052816] [INFO] Using worker: sync
+[2024-09-11 11:36:50 +0000] [1052817] [INFO] Booting worker with pid: 1052817
+[2024-09-11 11:38:57,134] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 11:38:57,135] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 11:55:02 +0000] [1052816] [INFO] Handling signal: int
+[2024-09-11 11:55:02 +0000] [1052817] [INFO] Worker exiting (pid: 1052817)
+[2024-09-11 11:55:02 +0000] [1052816] [INFO] Shutting down: Master
+[2024-09-11 11:55:05 +0000] [1054122] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 11:55:05 +0000] [1054122] [INFO] Listening at: http://0.0.0.0:8000 (1054122)
+[2024-09-11 11:55:05 +0000] [1054122] [INFO] Using worker: sync
+[2024-09-11 11:55:05 +0000] [1054123] [INFO] Booting worker with pid: 1054123
+[2024-09-11 12:13:05 +0000] [1054122] [INFO] Handling signal: int
+[2024-09-11 12:13:05 +0000] [1054123] [INFO] Worker exiting (pid: 1054123)
+[2024-09-11 12:13:05 +0000] [1054122] [INFO] Shutting down: Master
+[2024-09-11 12:13:09 +0000] [1055435] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 12:13:09 +0000] [1055435] [INFO] Listening at: http://0.0.0.0:8000 (1055435)
+[2024-09-11 12:13:09 +0000] [1055435] [INFO] Using worker: sync
+[2024-09-11 12:13:09 +0000] [1055436] [INFO] Booting worker with pid: 1055436
+[2024-09-11 12:44:20,845] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 12:44:20,845] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 14:41:16,849] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/5dc9c908f154c439.jpg
+[2024-09-11 14:42:22,700] INFO in routes: Cargando datos del usuario: Roberto
+[2024-09-11 14:42:22,701] INFO in routes: Mostrando imagen de perfil para el usuario Roberto: 5dc9c908f154c439.jpg
+[2024-09-11 14:42:50,788] INFO in routes: Iniciando actualización de cuenta para el usuario: Roberto
+[2024-09-11 14:42:50,789] INFO in routes: Información recibida - Username: Roberto, Email: roberto@hotmail.com, Address: , Phone: 
+[2024-09-11 14:42:50,789] INFO in routes: Actualizando foto de perfil para el usuario: Roberto
+[2024-09-11 14:42:50,801] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/490da49e7fadec06.jpg
+[2024-09-11 14:42:50,802] INFO in routes: Foto de perfil actualizada: 490da49e7fadec06.jpg
+[2024-09-11 14:42:50,861] INFO in routes: Cuenta actualizada exitosamente para el usuario: Roberto
+[2024-09-11 14:42:50,941] INFO in routes: Cargando datos del usuario: Roberto
+[2024-09-11 14:42:50,942] INFO in routes: Mostrando imagen de perfil para el usuario Roberto: 490da49e7fadec06.jpg
+[2024-09-11 15:56:18,062] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 15:56:18,063] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 16:16:48 +0000] [1055435] [INFO] Handling signal: int
+[2024-09-11 16:16:48 +0000] [1055436] [INFO] Worker exiting (pid: 1055436)
+[2024-09-11 16:16:49 +0000] [1055435] [INFO] Shutting down: Master
+[2024-09-11 16:16:51 +0000] [1071426] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 16:16:51 +0000] [1071426] [INFO] Listening at: http://0.0.0.0:8000 (1071426)
+[2024-09-11 16:16:51 +0000] [1071426] [INFO] Using worker: sync
+[2024-09-11 16:16:51 +0000] [1071427] [INFO] Booting worker with pid: 1071427
+[2024-09-11 16:28:26 +0000] [1071426] [INFO] Handling signal: int
+[2024-09-11 16:28:26 +0000] [1071427] [INFO] Worker exiting (pid: 1071427)
+[2024-09-11 16:28:26 +0000] [1071426] [INFO] Shutting down: Master
+[2024-09-11 16:28:30 +0000] [1072384] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 16:28:30 +0000] [1072384] [INFO] Listening at: http://0.0.0.0:8000 (1072384)
+[2024-09-11 16:28:30 +0000] [1072384] [INFO] Using worker: sync
+[2024-09-11 16:28:30 +0000] [1072385] [INFO] Booting worker with pid: 1072385
+[2024-09-11 16:53:50 +0000] [1072384] [INFO] Handling signal: int
+[2024-09-11 16:53:50 +0000] [1072385] [INFO] Worker exiting (pid: 1072385)
+[2024-09-11 16:53:50 +0000] [1072384] [INFO] Shutting down: Master
+[2024-09-11 16:53:57 +0000] [1074175] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 16:53:57 +0000] [1074175] [INFO] Listening at: http://0.0.0.0:8000 (1074175)
+[2024-09-11 16:53:57 +0000] [1074175] [INFO] Using worker: sync
+[2024-09-11 16:53:57 +0000] [1074177] [INFO] Booting worker with pid: 1074177
+[2024-09-11 16:55:26 +0000] [1074175] [INFO] Handling signal: int
+[2024-09-11 16:55:26 +0000] [1074177] [INFO] Worker exiting (pid: 1074177)
+[2024-09-11 16:55:26 +0000] [1074175] [INFO] Shutting down: Master
+[2024-09-11 16:55:29 +0000] [1074429] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 16:55:29 +0000] [1074429] [INFO] Listening at: http://0.0.0.0:8000 (1074429)
+[2024-09-11 16:55:29 +0000] [1074429] [INFO] Using worker: sync
+[2024-09-11 16:55:29 +0000] [1074430] [INFO] Booting worker with pid: 1074430
+[2024-09-11 16:58:28 +0000] [1074429] [INFO] Handling signal: int
+[2024-09-11 16:58:28 +0000] [1074430] [INFO] Worker exiting (pid: 1074430)
+[2024-09-11 16:58:29 +0000] [1074429] [INFO] Shutting down: Master
+[2024-09-11 16:58:32 +0000] [1074732] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 16:58:32 +0000] [1074732] [INFO] Listening at: http://0.0.0.0:8000 (1074732)
+[2024-09-11 16:58:32 +0000] [1074732] [INFO] Using worker: sync
+[2024-09-11 16:58:32 +0000] [1074733] [INFO] Booting worker with pid: 1074733
+[2024-09-11 17:00:35 +0000] [1074732] [INFO] Handling signal: int
+[2024-09-11 17:00:35 +0000] [1074733] [INFO] Worker exiting (pid: 1074733)
+[2024-09-11 17:00:36 +0000] [1074732] [INFO] Shutting down: Master
+[2024-09-11 17:00:39 +0000] [1075007] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 17:00:39 +0000] [1075007] [INFO] Listening at: http://0.0.0.0:8000 (1075007)
+[2024-09-11 17:00:39 +0000] [1075007] [INFO] Using worker: sync
+[2024-09-11 17:00:39 +0000] [1075008] [INFO] Booting worker with pid: 1075008
+[2024-09-11 17:06:35 +0000] [1075007] [INFO] Handling signal: int
+[2024-09-11 17:06:35 +0000] [1075008] [INFO] Worker exiting (pid: 1075008)
+[2024-09-11 17:06:36 +0000] [1075007] [INFO] Shutting down: Master
+[2024-09-11 17:06:38 +0000] [1075534] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 17:06:38 +0000] [1075534] [INFO] Listening at: http://0.0.0.0:8000 (1075534)
+[2024-09-11 17:06:38 +0000] [1075534] [INFO] Using worker: sync
+[2024-09-11 17:06:38 +0000] [1075535] [INFO] Booting worker with pid: 1075535
+[2024-09-11 17:08:02 +0000] [1075534] [INFO] Handling signal: int
+[2024-09-11 17:08:02 +0000] [1075535] [INFO] Worker exiting (pid: 1075535)
+[2024-09-11 17:08:03 +0000] [1075534] [INFO] Shutting down: Master
+[2024-09-11 17:08:05 +0000] [1075769] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 17:08:05 +0000] [1075769] [INFO] Listening at: http://0.0.0.0:8000 (1075769)
+[2024-09-11 17:08:05 +0000] [1075769] [INFO] Using worker: sync
+[2024-09-11 17:08:05 +0000] [1075770] [INFO] Booting worker with pid: 1075770
+[2024-09-11 17:41:10,379] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 17:41:10,379] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 18:07:11,316] INFO in routes: Nombre original normalizado: Cajonera bajo encimera
+[2024-09-11 18:07:11,316] INFO in routes: Nuevo nombre normalizado: Cajonera-bajo-encimera
+[2024-09-11 18:07:11,316] INFO in routes: El nombre del contenedor ha cambiado, verificando si ya está en uso.
+[2024-09-11 18:07:11,329] INFO in routes: Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>]
+[2024-09-11 18:07:11,352] INFO in routes: Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+[2024-09-11 18:08:37,631] INFO in routes: Nombre original normalizado: Cajonera-bajo-encimera
+[2024-09-11 18:08:37,631] INFO in routes: Nuevo nombre normalizado: Cajonera bajo encimera
+[2024-09-11 18:08:37,632] INFO in routes: El nombre del contenedor ha cambiado, verificando si ya está en uso.
+[2024-09-11 18:08:37,645] INFO in routes: Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>]
+[2024-09-11 18:08:37,662] INFO in routes: Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.

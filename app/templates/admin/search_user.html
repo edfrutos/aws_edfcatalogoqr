@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<div class="container mt-5">
+<div class="container-search">
     <h2>Buscar Usuario</h2>
     <form method="POST" action="{{ url_for('admin.search_user') }}">
         {{ form.hidden_tag() }}

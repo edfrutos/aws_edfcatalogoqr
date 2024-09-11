@@ -37,8 +37,6 @@
             z-index: 1000;
         }
 
-       
-
         /* Botón de "Subir arriba" */
         #scrollTopBtn {
             display: none; /* Escondido por defecto */
@@ -58,25 +56,6 @@
 
         #scrollTopBtn:hover {
             background-color: #555; /* Color al pasar el ratón */
-        }
-
-        /* Ajustes para pantallas más pequeñas */
-        @media (max-width: 768px) {
-            .container-content {
-                padding-left: 5%;
-                padding-right: 5%;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .container-content {
-                padding-left: 2%;
-                padding-right: 2%;
-            }
-
-            #scrollTopBtn {
-                bottom: 70px; /* Ajuste para pantallas más pequeñas */
-            }
         }
     </style>
 </head>
@@ -141,7 +120,6 @@
             </div>
         </nav>
     </div>
-
     <!-- Bloque para mostrar los mensajes flash -->
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}

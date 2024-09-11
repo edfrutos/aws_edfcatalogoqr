@@ -1,30 +1,18 @@
-2024-08-27 19:15:35,817 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/0405fee8dc931e2b.png
-2024-08-28 09:02:42,209 - app.routes - INFO - Creación de contenedor iniciada.
-2024-08-28 09:02:42,298 - app.routes - INFO - Contenedor creado con ID: 66cee7b21800577efc2e68c3
-2024-08-28 09:02:42,420 - app.routes - INFO - Container ID: 66cee7b21800577efc2e68c3
-2024-08-28 09:02:42,421 - app.routes - INFO - Container Name: Armario Ikea bajo encimera eugenio
-2024-08-28 09:02:42,421 - app.routes - INFO - Images: []
-2024-08-28 15:43:32,953 - app - INFO - Aplicación iniciada
-2024-08-28 15:43:33,091 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
-2024-08-28 15:43:33,139 - app.models - INFO - Conectado a la base de datos.
-2024-08-28 19:27:22,349 - app - INFO - Aplicación iniciada
-2024-08-28 19:27:22,490 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
-2024-08-28 19:27:22,539 - app.models - INFO - Conectado a la base de datos.
-2024-08-29 16:50:34,464 - app - INFO - Aplicación iniciada
-2024-08-29 16:50:34,794 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
-2024-08-29 16:50:34,831 - app.models - INFO - Conectado a la base de datos.
-2024-08-29 17:08:26,243 - app - INFO - Aplicación iniciada
-2024-08-29 17:08:26,324 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
-2024-08-29 17:08:26,363 - app.models - INFO - Conectado a la base de datos.
-2024-08-29 20:05:44,821 - app.utils - INFO - Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/fa705162a27dc0e5.jpeg
-2024-08-30 08:51:17,700 - app.routes - INFO - Creación de contenedor iniciada.
-2024-08-30 08:51:17,751 - app.routes - INFO - Contenedor creado con ID: 66d188053c6f1ee5f0b1a482
-2024-08-30 08:51:17,894 - app.routes - INFO - Container ID: 66d188053c6f1ee5f0b1a482
-2024-08-30 08:51:17,895 - app.routes - INFO - Container Name: Contenedor AWS
-2024-08-30 08:51:17,895 - app.routes - INFO - Images: []
-2024-08-30 11:31:29,767 - app - INFO - Aplicación iniciada
-2024-08-30 11:31:29,845 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
-2024-08-30 11:31:29,883 - app.models - INFO - Conectado a la base de datos.
-2024-08-30 14:17:45,327 - app - INFO - Aplicación iniciada
-2024-08-30 14:17:45,421 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
-2024-08-30 14:17:45,590 - app.models - INFO - Conectado a la base de datos.
+2024-09-11 17:06:39,113 - app - INFO - Aplicación Flask iniciada correctamente [in /home/ec2-user/aws_edfcatalogoqr/app/__init__.py:70]
+2024-09-11 17:06:39,193 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /home/ec2-user/aws_edfcatalogoqr/app/models.py:26]
+2024-09-11 17:06:39,230 - app.models - INFO - Conectado a la base de datos. [in /home/ec2-user/aws_edfcatalogoqr/app/models.py:33]
+2024-09-11 17:08:05,741 - app - INFO - Aplicación Flask iniciada correctamente [in /home/ec2-user/aws_edfcatalogoqr/app/__init__.py:70]
+2024-09-11 17:08:05,819 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /home/ec2-user/aws_edfcatalogoqr/app/models.py:26]
+2024-09-11 17:08:05,857 - app.models - INFO - Conectado a la base de datos. [in /home/ec2-user/aws_edfcatalogoqr/app/models.py:33]
+2024-09-11 17:41:10,379 - app - INFO - Cargando datos del usuario: edefrutos [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:156]
+2024-09-11 17:41:10,379 - app - INFO - Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:166]
+2024-09-11 18:07:11,316 - app.routes - INFO - Nombre original normalizado: Cajonera bajo encimera [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:343]
+2024-09-11 18:07:11,316 - app.routes - INFO - Nuevo nombre normalizado: Cajonera-bajo-encimera [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:344]
+2024-09-11 18:07:11,316 - app.routes - INFO - El nombre del contenedor ha cambiado, verificando si ya está en uso. [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:348]
+2024-09-11 18:07:11,329 - app.routes - INFO - Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>] [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:355]
+2024-09-11 18:07:11,352 - app.routes - INFO - Contenedor 66c38359a27a53bf0572a664 guardado exitosamente. [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:369]
+2024-09-11 18:08:37,631 - app.routes - INFO - Nombre original normalizado: Cajonera-bajo-encimera [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:343]
+2024-09-11 18:08:37,631 - app.routes - INFO - Nuevo nombre normalizado: Cajonera bajo encimera [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:344]
+2024-09-11 18:08:37,632 - app.routes - INFO - El nombre del contenedor ha cambiado, verificando si ya está en uso. [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:348]
+2024-09-11 18:08:37,645 - app.routes - INFO - Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>] [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:355]
+2024-09-11 18:08:37,662 - app.routes - INFO - Contenedor 66c38359a27a53bf0572a664 guardado exitosamente. [in /home/ec2-user/aws_edfcatalogoqr/app/routes.py:369]

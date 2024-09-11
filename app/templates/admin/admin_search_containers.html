@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container mt-5">
+<div class="container-admin-search">
     <h2>Buscar Contenedores</h2>
     <form method="POST" action="{{ url_for('admin.admin_search_containers') }}">
         {{ form.hidden_tag() }}
