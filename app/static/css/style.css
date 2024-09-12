@@ -8,12 +8,7 @@ body {
   margin-left: 6rem;
   margin-right: 6rem;
 }
-    
-
-.alert-container {
-  margin-top: 20px;
-}
-
+ 
 .containers {
   margin-top: 3%;
   margin-bottom: 5%;
@@ -79,6 +74,7 @@ body {
   margin-top: 20rem;
 }
 
+<<<<<<< HEAD
 .container-create {
   /*padding-left: 0% !important;
   padding-right: 0% !important;
@@ -86,12 +82,19 @@ body {
   margin-top: 13% !important;
 }
 
+=======
+>>>>>>> 2734cb0849f4e7dd9abeab09496da804ca472e0f
 .container, .container-content {
   padding-left: 0%;
   padding-right: 0%;
   background-color: #99d5a6;
+<<<<<<< HEAD
   margin-top: 10rem;
   margin-bottom: 5rem;
+=======
+  margin-top: 10%;
+  margin-bottom: 10%;
+>>>>>>> 2734cb0849f4e7dd9abeab09496da804ca472e0f
 }
 
 .header-container {
