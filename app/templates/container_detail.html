@@ -16,20 +16,33 @@
                             <li>{{ item }}</li>
                         {% endfor %}
                     </ul>
+                    
+                    <!-- Mostrar imágenes si existen -->
                     {% if container.image_files %}
-                        <h5>Imágenes:</h5>
+                        <h5>Imágenes del Contenedor:</h5>
                         <div class="row">
                             {% for image_file in container.image_files %}
-                                <div class="col-md-4">
-                                    <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid mb-2">
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid card-img-top">
+                                        <div class="card-body">
+                                            <p class="text-center">{{ image_file }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>
                     {% else %}
                         <p>No se encontraron imágenes.</p>
                     {% endif %}
+                    
+                    <!-- Mostrar código QR si existe -->
                     <h5>Código QR:</h5>
-                    <img src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}" alt="QR Code" class="img-fluid" style="width: 150px; height: 150px;">
+                    {% if container.qr_image %}
+                        <img src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}" alt="Código QR" class="img-fluid" style="width: 150px; height: 150px;">
+                    {% else %}
+                        <p>No se ha generado código QR para este contenedor.</p>
+                    {% endif %}
                 </div>
                 <div class="card-footer text-center">
                     <a href="{{ url_for('main.list_containers') }}" class="btn btn-primary">Listado Contenedores</a>

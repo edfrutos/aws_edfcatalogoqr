@@ -9,20 +9,20 @@ from app.extensions import login_manager, bcrypt
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-handler = logging.FileHandler('logs/models.log')
-handler.setLevel(logging.INFO)
-
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler.setFormatter(formatter)
-
-logger.addHandler(handler)
+# Añadiendo un handler de logging si no existe ya uno
+if not logger.handlers:
+    handler = logging.FileHandler('logs/models.log')
+    handler.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 # URI de conexión a la base de datos
 DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority"
 
 # Desconectar si ya hay una conexión existente
 try:
-    disconnect()
+    disconnect()  # Desconectar la base de datos actual, si está conectada
     logger.info("Desconexión exitosa de la base de datos anterior.")
 except Exception as e:
     logger.warning(f"No se pudo desconectar: {e}")
@@ -59,9 +59,15 @@ class User(Document, UserMixin):
         logger.info(f"Verificando contraseña para el usuario {self.username}")
         return bcrypt.check_password_hash(self.password, password)
 
+    def get_reset_token(self, expires_sec=1800):
+        """Genera un token de reseteo de contraseña válido por expires_sec segundos."""
+        logger.debug(f"Generando token de reseteo de contraseña para el usuario {self.username}")
+        s = Serializer(current_app.config['SECRET_KEY'])
+        return s.dumps({'user_id': str(self.id)}).decode('utf-8')
+
     @staticmethod
     def verify_reset_token(token, expires_sec=1800):
-        """Verifica el token de reseteo de contraseña."""
+        """Verifica el token de reseteo de contraseña y devuelve el usuario si es válido."""
         logger.debug("Verificando token de reseteo de contraseña")
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
@@ -72,12 +78,6 @@ class User(Document, UserMixin):
             return None
         return User.objects(id=user_id).first()
 
-    def get_reset_token(self, expires_sec=1800):
-        """Genera un token de reseteo de contraseña."""
-        logger.debug(f"Generando token de reseteo de contraseña para el usuario {self.username}")
-        s = Serializer(current_app.config['SECRET_KEY'])
-        return s.dumps({'user_id': str(self.id)})
-
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
 
@@ -86,7 +86,7 @@ class Container(Document):
     location = StringField(required=True)
     items = ListField(StringField())
     image_files = ListField(StringField())  # Lista de nombres de archivos de imágenes
-    qr_image = StringField()
+    qr_image = StringField()  # Nombre del archivo QR
     user = ReferenceField(User, required=True, reverse_delete_rule='CASCADE')
 
     def __repr__(self):

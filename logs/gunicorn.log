@@ -581,3 +581,934 @@ werkzeug.routing.BuildError: Could not build url for endpoint 'main.reset_token'
 [2024-09-11 18:08:37,632] INFO in routes: El nombre del contenedor ha cambiado, verificando si ya está en uso.
 [2024-09-11 18:08:37,645] INFO in routes: Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>]
 [2024-09-11 18:08:37,662] INFO in routes: Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+[2024-09-11 18:45:32 +0000] [1075769] [INFO] Handling signal: int
+[2024-09-11 18:45:32 +0000] [1075770] [INFO] Worker exiting (pid: 1075770)
+[2024-09-11 18:45:33 +0000] [1075769] [INFO] Shutting down: Master
+[2024-09-11 18:45:35 +0000] [1087164] [INFO] Starting gunicorn 20.1.0
+[2024-09-11 18:45:35 +0000] [1087164] [INFO] Listening at: http://0.0.0.0:8000 (1087164)
+[2024-09-11 18:45:35 +0000] [1087164] [INFO] Using worker: sync
+[2024-09-11 18:45:35 +0000] [1087165] [INFO] Booting worker with pid: 1087165
+[2024-09-11 20:47:11,027] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 20:47:11,027] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 5e62741f6c132bf7.jpg
+[2024-09-11 20:51:35,258] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-11 20:51:35,258] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-11 20:51:35,258] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-11 20:51:35,443] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/e6467db9295c0804.png
+[2024-09-11 20:51:35,443] INFO in routes: Foto de perfil actualizada: e6467db9295c0804.png
+[2024-09-11 20:51:35,504] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-11 20:51:35,656] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-11 20:51:35,657] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: e6467db9295c0804.png
+[2024-09-12 17:00:29,044] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/dc8a083d08019809.jpg
+[2024-09-12 17:00:56,602] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:00:56,602] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 17:04:57 +0000] [1087164] [INFO] Handling signal: int
+[2024-09-12 17:04:58 +0000] [1087165] [INFO] Worker exiting (pid: 1087165)
+[2024-09-12 17:04:58 +0000] [1087164] [INFO] Shutting down: Master
+[2024-09-12 17:05:01 +0000] [1188368] [INFO] Starting gunicorn 20.1.0
+[2024-09-12 17:05:01 +0000] [1188368] [INFO] Listening at: http://0.0.0.0:8000 (1188368)
+[2024-09-12 17:05:01 +0000] [1188368] [INFO] Using worker: sync
+[2024-09-12 17:05:01 +0000] [1188369] [INFO] Booting worker with pid: 1188369
+[2024-09-12 17:10:13,267] INFO in routes: Creación de contenedor iniciada.
+[2024-09-12 17:10:13,325] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/9e78b87f139b0d24.jpg
+[2024-09-12 17:10:13,366] INFO in routes: Contenedor creado con ID: 66e32075949e0e4855069530
+[2024-09-12 17:19:16 +0000] [1188368] [INFO] Handling signal: int
+[2024-09-12 17:19:16 +0000] [1188369] [INFO] Worker exiting (pid: 1188369)
+[2024-09-12 17:19:17 +0000] [1188368] [INFO] Shutting down: Master
+[2024-09-12 17:19:20 +0000] [1189474] [INFO] Starting gunicorn 20.1.0
+[2024-09-12 17:19:20 +0000] [1189474] [INFO] Listening at: http://0.0.0.0:8000 (1189474)
+[2024-09-12 17:19:20 +0000] [1189474] [INFO] Using worker: sync
+[2024-09-12 17:19:20 +0000] [1189475] [INFO] Booting worker with pid: 1189475
+[2024-09-12 17:21:06 +0000] [1189474] [INFO] Handling signal: int
+[2024-09-12 17:21:06 +0000] [1189475] [INFO] Worker exiting (pid: 1189475)
+[2024-09-12 17:21:07 +0000] [1189474] [INFO] Shutting down: Master
+[2024-09-12 17:21:15 +0000] [1189730] [INFO] Starting gunicorn 20.1.0
+[2024-09-12 17:21:15 +0000] [1189730] [INFO] Listening at: http://0.0.0.0:8000 (1189730)
+[2024-09-12 17:21:15 +0000] [1189730] [INFO] Using worker: sync
+[2024-09-12 17:21:15 +0000] [1189731] [INFO] Booting worker with pid: 1189731
+[2024-09-12 17:41:22,017] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:41:22,017] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 17:45:06,837] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:45:06,837] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 17:48:29,005] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:48:29,005] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 17:50:50,503] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:50:50,504] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 17:55:47,630] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:55:47,630] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 17:55:51,692] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:55:51,693] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 17:56:07,259] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:56:07,260] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 17:57:46,129] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 17:57:46,129] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-12 18:07:33 +0000] [1189730] [INFO] Handling signal: int
+[2024-09-12 18:07:34 +0000] [1189731] [INFO] Worker exiting (pid: 1189731)
+[2024-09-12 18:07:34 +0000] [1189730] [INFO] Shutting down: Master
+[2024-09-12 18:07:37 +0000] [1192849] [INFO] Starting gunicorn 20.1.0
+[2024-09-12 18:07:37 +0000] [1192849] [INFO] Listening at: http://0.0.0.0:8000 (1192849)
+[2024-09-12 18:07:37 +0000] [1192849] [INFO] Using worker: sync
+[2024-09-12 18:07:37 +0000] [1192850] [INFO] Booting worker with pid: 1192850
+[2024-09-12 18:25:08 +0000] [1192849] [INFO] Handling signal: int
+[2024-09-12 18:25:08 +0000] [1192850] [INFO] Worker exiting (pid: 1192850)
+[2024-09-12 18:25:08 +0000] [1192849] [INFO] Shutting down: Master
+[2024-09-12 18:25:11 +0000] [1194078] [INFO] Starting gunicorn 20.1.0
+[2024-09-12 18:25:11 +0000] [1194078] [INFO] Listening at: http://0.0.0.0:8000 (1194078)
+[2024-09-12 18:25:11 +0000] [1194078] [INFO] Using worker: sync
+[2024-09-12 18:25:11 +0000] [1194079] [INFO] Booting worker with pid: 1194079
+[2024-09-12 18:41:48,034] INFO in routes: Cargando datos del usuario: Ricardo
+[2024-09-12 18:41:48,034] INFO in routes: Mostrando imagen de perfil para el usuario Ricardo: dc8a083d08019809.jpg
+[2024-09-13 09:05:12 +0000] [1194078] [INFO] Handling signal: int
+[2024-09-13 09:05:12 +0000] [1194079] [INFO] Worker exiting (pid: 1194079)
+[2024-09-13 09:05:13 +0000] [1194078] [INFO] Shutting down: Master
+[2024-09-13 09:05:18 +0000] [1251374] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:05:18 +0000] [1251374] [INFO] Listening at: http://0.0.0.0:8000 (1251374)
+[2024-09-13 09:05:18 +0000] [1251374] [INFO] Using worker: sync
+[2024-09-13 09:05:18 +0000] [1251375] [INFO] Booting worker with pid: 1251375
+[2024-09-13 09:08:23 +0000] [1251374] [INFO] Handling signal: int
+[2024-09-13 09:08:23 +0000] [1251375] [INFO] Worker exiting (pid: 1251375)
+[2024-09-13 09:08:23 +0000] [1251374] [INFO] Shutting down: Master
+[2024-09-13 09:08:27 +0000] [1251678] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:08:27 +0000] [1251678] [INFO] Listening at: http://0.0.0.0:8000 (1251678)
+[2024-09-13 09:08:27 +0000] [1251678] [INFO] Using worker: sync
+[2024-09-13 09:08:27 +0000] [1251679] [INFO] Booting worker with pid: 1251679
+[2024-09-13 09:10:14 +0000] [1251678] [INFO] Handling signal: int
+[2024-09-13 09:10:14 +0000] [1251679] [INFO] Worker exiting (pid: 1251679)
+[2024-09-13 09:10:15 +0000] [1251678] [INFO] Shutting down: Master
+[2024-09-13 09:10:19 +0000] [1251933] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:10:19 +0000] [1251933] [INFO] Listening at: http://0.0.0.0:8000 (1251933)
+[2024-09-13 09:10:19 +0000] [1251933] [INFO] Using worker: sync
+[2024-09-13 09:10:19 +0000] [1251934] [INFO] Booting worker with pid: 1251934
+[2024-09-13 09:13:39 +0000] [1251933] [INFO] Handling signal: int
+[2024-09-13 09:13:39 +0000] [1251934] [INFO] Worker exiting (pid: 1251934)
+[2024-09-13 09:13:39 +0000] [1251933] [INFO] Shutting down: Master
+[2024-09-13 09:13:42 +0000] [1252296] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:13:42 +0000] [1252296] [INFO] Listening at: http://0.0.0.0:8000 (1252296)
+[2024-09-13 09:13:42 +0000] [1252296] [INFO] Using worker: sync
+[2024-09-13 09:13:42 +0000] [1252297] [INFO] Booting worker with pid: 1252297
+[2024-09-13 09:14:50 +0000] [1252296] [INFO] Handling signal: int
+[2024-09-13 09:14:50 +0000] [1252297] [INFO] Worker exiting (pid: 1252297)
+[2024-09-13 09:14:50 +0000] [1252296] [INFO] Shutting down: Master
+[2024-09-13 09:15:07 +0000] [1252471] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:15:07 +0000] [1252471] [INFO] Listening at: http://0.0.0.0:8000 (1252471)
+[2024-09-13 09:15:07 +0000] [1252471] [INFO] Using worker: sync
+[2024-09-13 09:15:07 +0000] [1252472] [INFO] Booting worker with pid: 1252472
+[2024-09-13 09:21:25 +0000] [1252471] [INFO] Handling signal: int
+[2024-09-13 09:21:25 +0000] [1252472] [INFO] Worker exiting (pid: 1252472)
+[2024-09-13 09:21:26 +0000] [1252471] [INFO] Shutting down: Master
+[2024-09-13 09:21:30 +0000] [1253077] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:21:30 +0000] [1253077] [INFO] Listening at: http://0.0.0.0:8000 (1253077)
+[2024-09-13 09:21:30 +0000] [1253077] [INFO] Using worker: sync
+[2024-09-13 09:21:30 +0000] [1253078] [INFO] Booting worker with pid: 1253078
+[2024-09-13 09:31:05 +0000] [1253077] [INFO] Handling signal: int
+[2024-09-13 09:31:05 +0000] [1253078] [INFO] Worker exiting (pid: 1253078)
+[2024-09-13 09:31:06 +0000] [1253077] [INFO] Shutting down: Master
+[2024-09-13 09:31:10 +0000] [1253789] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:31:10 +0000] [1253789] [INFO] Listening at: http://0.0.0.0:8000 (1253789)
+[2024-09-13 09:31:10 +0000] [1253789] [INFO] Using worker: sync
+[2024-09-13 09:31:10 +0000] [1253790] [INFO] Booting worker with pid: 1253790
+[2024-09-13 09:34:31 +0000] [1253789] [INFO] Handling signal: int
+[2024-09-13 09:34:31 +0000] [1253790] [INFO] Worker exiting (pid: 1253790)
+[2024-09-13 09:34:31 +0000] [1253789] [INFO] Shutting down: Master
+[2024-09-13 09:34:33 +0000] [1254153] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:34:33 +0000] [1254153] [INFO] Listening at: http://0.0.0.0:8000 (1254153)
+[2024-09-13 09:34:33 +0000] [1254153] [INFO] Using worker: sync
+[2024-09-13 09:34:33 +0000] [1254154] [INFO] Booting worker with pid: 1254154
+[2024-09-13 09:36:01 +0000] [1254153] [INFO] Handling signal: int
+[2024-09-13 09:36:01 +0000] [1254154] [INFO] Worker exiting (pid: 1254154)
+[2024-09-13 09:36:02 +0000] [1254153] [INFO] Shutting down: Master
+[2024-09-13 09:36:05 +0000] [1254404] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:36:05 +0000] [1254404] [INFO] Listening at: http://0.0.0.0:8000 (1254404)
+[2024-09-13 09:36:05 +0000] [1254404] [INFO] Using worker: sync
+[2024-09-13 09:36:05 +0000] [1254405] [INFO] Booting worker with pid: 1254405
+[2024-09-13 09:37:47 +0000] [1254404] [INFO] Handling signal: int
+[2024-09-13 09:37:48 +0000] [1254405] [INFO] Worker exiting (pid: 1254405)
+[2024-09-13 09:37:48 +0000] [1254404] [INFO] Shutting down: Master
+[2024-09-13 09:37:57 +0000] [1254656] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:37:57 +0000] [1254656] [INFO] Listening at: http://0.0.0.0:8000 (1254656)
+[2024-09-13 09:37:57 +0000] [1254656] [INFO] Using worker: sync
+[2024-09-13 09:37:57 +0000] [1254657] [INFO] Booting worker with pid: 1254657
+[2024-09-13 09:39:26 +0000] [1254656] [INFO] Handling signal: int
+[2024-09-13 09:39:26 +0000] [1254657] [INFO] Worker exiting (pid: 1254657)
+[2024-09-13 09:39:27 +0000] [1254656] [INFO] Shutting down: Master
+[2024-09-13 09:39:31 +0000] [1254958] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:39:31 +0000] [1254958] [INFO] Listening at: http://0.0.0.0:8000 (1254958)
+[2024-09-13 09:39:31 +0000] [1254958] [INFO] Using worker: sync
+[2024-09-13 09:39:31 +0000] [1254959] [INFO] Booting worker with pid: 1254959
+[2024-09-13 09:50:31 +0000] [1254958] [INFO] Handling signal: int
+[2024-09-13 09:50:31 +0000] [1254959] [INFO] Worker exiting (pid: 1254959)
+[2024-09-13 09:50:31 +0000] [1254958] [INFO] Shutting down: Master
+[2024-09-13 09:50:34 +0000] [1255784] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:50:34 +0000] [1255784] [INFO] Listening at: http://0.0.0.0:8000 (1255784)
+[2024-09-13 09:50:34 +0000] [1255784] [INFO] Using worker: sync
+[2024-09-13 09:50:34 +0000] [1255785] [INFO] Booting worker with pid: 1255785
+[2024-09-13 09:53:26 +0000] [1255784] [INFO] Handling signal: int
+[2024-09-13 09:53:27 +0000] [1255784] [INFO] Shutting down: Master
+[2024-09-13 09:53:30 +0000] [1256179] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 09:53:30 +0000] [1256179] [INFO] Listening at: http://0.0.0.0:8000 (1256179)
+[2024-09-13 09:53:30 +0000] [1256179] [INFO] Using worker: sync
+[2024-09-13 09:53:30 +0000] [1256180] [INFO] Booting worker with pid: 1256180
+[2024-09-13 10:20:11 +0000] [1256179] [INFO] Handling signal: int
+[2024-09-13 10:20:11 +0000] [1256180] [INFO] Worker exiting (pid: 1256180)
+[2024-09-13 10:20:12 +0000] [1256179] [INFO] Shutting down: Master
+[2024-09-13 10:20:15 +0000] [1258020] [INFO] Starting gunicorn 20.1.0
+[2024-09-13 10:20:15 +0000] [1258020] [INFO] Listening at: http://0.0.0.0:8000 (1258020)
+[2024-09-13 10:20:15 +0000] [1258020] [INFO] Using worker: sync
+[2024-09-13 10:20:15 +0000] [1258021] [INFO] Booting worker with pid: 1258021
+[2024-09-13 10:20:31,730] INFO in utils: Correo de restablecimiento de contraseña enviado a edfrutos@gmail.com
+[2024-09-13 11:08:23,395] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 11:08:23,395] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 0446ad9b9b79ad76.jpg
+[2024-09-13 11:09:00,020] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 11:09:00,020] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 0446ad9b9b79ad76.jpg
+[2024-09-13 11:09:05,744] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-13 11:09:05,745] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-13 11:09:05,787] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-13 11:09:05,858] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 11:09:05,859] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 0446ad9b9b79ad76.jpg
+[2024-09-13 11:09:13,926] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-13 11:09:13,926] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-13 11:09:13,926] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-13 11:09:13,958] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/f0de395c22d4046d.jpeg
+[2024-09-13 11:09:13,958] INFO in routes: Foto de perfil actualizada: f0de395c22d4046d.jpeg
+[2024-09-13 11:09:14,022] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-13 11:09:14,093] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 11:09:14,093] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f0de395c22d4046d.jpeg
+[2024-09-13 15:25:38,248] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 15:25:38,248] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f0de395c22d4046d.jpeg
+[2024-09-13 18:53:03,149] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 18:53:03,149] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f0de395c22d4046d.jpeg
+[2024-09-13 19:17:56,888] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 19:17:56,889] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f0de395c22d4046d.jpeg
+[2024-09-13 19:19:41,944] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 19:19:41,945] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f0de395c22d4046d.jpeg
+[2024-09-13 19:23:49,496] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 19:23:49,497] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f0de395c22d4046d.jpeg
+[2024-09-13 19:27:30,928] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-13 19:27:30,929] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f0de395c22d4046d.jpeg
+[2024-09-14 08:35:49 +0000] [1258020] [INFO] Handling signal: hup
+[2024-09-14 08:35:49 +0000] [1258020] [INFO] Hang up: Master
+[2024-09-14 08:35:49 +0000] [1340485] [INFO] Booting worker with pid: 1340485
+[2024-09-14 08:35:49 +0000] [1258020] [WARNING] Worker with pid 1258021 was terminated due to signal 1
+[2024-09-14 09:10:07 +0000] [1342416] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:10:07 +0000] [1342416] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:10:07 +0000] [1342416] [ERROR] Retrying in 1 second.
+[2024-09-14 09:10:08 +0000] [1342416] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:10:08 +0000] [1342416] [ERROR] Retrying in 1 second.
+[2024-09-14 09:10:09 +0000] [1342416] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:10:09 +0000] [1342416] [ERROR] Retrying in 1 second.
+[2024-09-14 09:10:10 +0000] [1342416] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:10:10 +0000] [1342416] [ERROR] Retrying in 1 second.
+[2024-09-14 09:10:11 +0000] [1342416] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:10:11 +0000] [1342416] [ERROR] Retrying in 1 second.
+[2024-09-14 09:10:12 +0000] [1342416] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2024-09-14 09:11:35 +0000] [1343065] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:11:35 +0000] [1343065] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:11:35 +0000] [1343065] [ERROR] Retrying in 1 second.
+[2024-09-14 09:11:36 +0000] [1343065] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:11:36 +0000] [1343065] [ERROR] Retrying in 1 second.
+[2024-09-14 09:11:37 +0000] [1343065] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:11:37 +0000] [1343065] [ERROR] Retrying in 1 second.
+[2024-09-14 09:11:38 +0000] [1343065] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:11:38 +0000] [1343065] [ERROR] Retrying in 1 second.
+[2024-09-14 09:11:39 +0000] [1343065] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2024-09-14 09:11:39 +0000] [1343065] [ERROR] Retrying in 1 second.
+[2024-09-14 09:11:40 +0000] [1343065] [ERROR] Can't connect to ('0.0.0.0', 8000)
+[2024-09-14 09:24:35 +0000] [1258020] [INFO] Handling signal: term
+[2024-09-14 09:24:35 +0000] [1340485] [INFO] Worker exiting (pid: 1340485)
+[2024-09-14 09:24:36 +0000] [1258020] [INFO] Shutting down: Master
+[2024-09-14 09:24:40 +0000] [1344229] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:24:40 +0000] [1344229] [INFO] Listening at: http://0.0.0.0:8000 (1344229)
+[2024-09-14 09:24:40 +0000] [1344229] [INFO] Using worker: sync
+[2024-09-14 09:24:40 +0000] [1344230] [INFO] Booting worker with pid: 1344230
+[2024-09-14 09:24:40 +0000] [1344230] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/ec2-user/aws_edfcatalogoqr/wsgi.py", line 1, in <module>
+    from app import app
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 83, in <module>
+    app = create_app()
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 73, in create_app
+    from app.routes import main as main_blueprint
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 7, in <module>
+    from app.forms import ( RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, UpdateUserForm, SearchContainerForm)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/forms.py", line 5, in <module>
+    from app.models import User, Container
+  File "/home/ec2-user/aws_edfcatalogoqr/app/models.py", line 2, in <module>
+    from itsdangerous import TimedJSONWebSignatureSerializer as Serializer  # Corregido a la clase adecuada
+ImportError: cannot import name 'TimedJSONWebSignatureSerializer' from 'itsdangerous' (/home/ec2-user/.local/lib/python3.9/site-packages/itsdangerous/__init__.py)
+[2024-09-14 09:24:40 +0000] [1344230] [INFO] Worker exiting (pid: 1344230)
+[2024-09-14 09:24:41 +0000] [1344229] [INFO] Shutting down: Master
+[2024-09-14 09:24:41 +0000] [1344229] [INFO] Reason: Worker failed to boot.
+[2024-09-14 09:26:12 +0000] [1344590] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:26:12 +0000] [1344590] [INFO] Listening at: http://0.0.0.0:8000 (1344590)
+[2024-09-14 09:26:12 +0000] [1344590] [INFO] Using worker: sync
+[2024-09-14 09:26:12 +0000] [1344591] [INFO] Booting worker with pid: 1344591
+[2024-09-14 09:26:13 +0000] [1344591] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/ec2-user/aws_edfcatalogoqr/wsgi.py", line 1, in <module>
+    from app import app
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 83, in <module>
+    app = create_app()
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 73, in create_app
+    from app.routes import main as main_blueprint
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 7, in <module>
+    from app.forms import ( RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, UpdateUserForm, SearchContainerForm)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/forms.py", line 5, in <module>
+    from app.models import User, Container
+  File "/home/ec2-user/aws_edfcatalogoqr/app/models.py", line 2, in <module>
+    from itsdangerous import TimedJSONWebSignatureSerializer as Serializer  # Corregido a la clase adecuada
+ImportError: cannot import name 'TimedJSONWebSignatureSerializer' from 'itsdangerous' (/home/ec2-user/.local/lib/python3.9/site-packages/itsdangerous/__init__.py)
+[2024-09-14 09:26:13 +0000] [1344591] [INFO] Worker exiting (pid: 1344591)
+[2024-09-14 09:26:13 +0000] [1344590] [INFO] Shutting down: Master
+[2024-09-14 09:26:13 +0000] [1344590] [INFO] Reason: Worker failed to boot.
+[2024-09-14 09:27:53 +0000] [1345345] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:27:53 +0000] [1345345] [INFO] Listening at: http://0.0.0.0:8000 (1345345)
+[2024-09-14 09:27:53 +0000] [1345345] [INFO] Using worker: sync
+[2024-09-14 09:27:53 +0000] [1345346] [INFO] Booting worker with pid: 1345346
+[2024-09-14 09:27:53 +0000] [1345346] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/ec2-user/aws_edfcatalogoqr/wsgi.py", line 1, in <module>
+    from app import app
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 83, in <module>
+    app = create_app()
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 73, in create_app
+    from app.routes import main as main_blueprint
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 7, in <module>
+    from app.forms import ( RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, UpdateUserForm, SearchContainerForm)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/forms.py", line 5, in <module>
+    from app.models import User, Container
+  File "/home/ec2-user/aws_edfcatalogoqr/app/models.py", line 2, in <module>
+    from itsdangerous import TimedJSONWebSignatureSerializer as Serializer  # Corregido a la clase adecuada
+ImportError: cannot import name 'TimedJSONWebSignatureSerializer' from 'itsdangerous' (/home/ec2-user/.local/lib/python3.9/site-packages/itsdangerous/__init__.py)
+[2024-09-14 09:27:53 +0000] [1345346] [INFO] Worker exiting (pid: 1345346)
+[2024-09-14 09:27:54 +0000] [1345345] [INFO] Shutting down: Master
+[2024-09-14 09:27:54 +0000] [1345345] [INFO] Reason: Worker failed to boot.
+[2024-09-14 09:32:14 +0000] [1346030] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:32:14 +0000] [1346030] [INFO] Listening at: http://0.0.0.0:8000 (1346030)
+[2024-09-14 09:32:14 +0000] [1346030] [INFO] Using worker: sync
+[2024-09-14 09:32:14 +0000] [1346031] [INFO] Booting worker with pid: 1346031
+[2024-09-14 09:38:40 +0000] [1346030] [INFO] Handling signal: int
+[2024-09-14 09:38:40 +0000] [1346031] [INFO] Worker exiting (pid: 1346031)
+[2024-09-14 09:38:41 +0000] [1346030] [INFO] Shutting down: Master
+[2024-09-14 09:44:02 +0000] [1347285] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:44:02 +0000] [1347285] [INFO] Listening at: http://0.0.0.0:8000 (1347285)
+[2024-09-14 09:44:02 +0000] [1347285] [INFO] Using worker: sync
+[2024-09-14 09:44:02 +0000] [1347286] [INFO] Booting worker with pid: 1347286
+[2024-09-14 09:44:24,796] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:44:24,796] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f0de395c22d4046d.jpeg
+[2024-09-14 09:44:55,951] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-14 09:44:55,951] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-14 09:44:55,951] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-14 09:44:55,978] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/6e277f399fa2e198.jpg
+[2024-09-14 09:44:55,978] INFO in routes: Foto de perfil actualizada: 6e277f399fa2e198.jpg
+[2024-09-14 09:44:56,039] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-14 09:44:56,279] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:44:56,279] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 6e277f399fa2e198.jpg
+[2024-09-14 09:45:42 +0000] [1347285] [INFO] Handling signal: int
+[2024-09-14 09:45:42 +0000] [1347286] [INFO] Worker exiting (pid: 1347286)
+[2024-09-14 09:45:43 +0000] [1347285] [INFO] Shutting down: Master
+[2024-09-14 09:45:45 +0000] [1347540] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:45:45 +0000] [1347540] [INFO] Listening at: http://0.0.0.0:8000 (1347540)
+[2024-09-14 09:45:45 +0000] [1347540] [INFO] Using worker: sync
+[2024-09-14 09:45:45 +0000] [1347541] [INFO] Booting worker with pid: 1347541
+[2024-09-14 09:45:52,074] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:45:52,075] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 6e277f399fa2e198.jpg
+[2024-09-14 09:46:05,733] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-14 09:46:05,733] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-14 09:46:05,733] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-14 09:46:05,756] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/255240b86b3c3d97.jpg
+[2024-09-14 09:46:05,757] INFO in routes: Foto de perfil actualizada: 255240b86b3c3d97.jpg
+[2024-09-14 09:46:05,817] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-14 09:46:05,996] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:46:05,997] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 255240b86b3c3d97.jpg
+[2024-09-14 09:48:07,186] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:48:07,186] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 255240b86b3c3d97.jpg
+[2024-09-14 09:49:55,253] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:49:55,253] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 255240b86b3c3d97.jpg
+[2024-09-14 09:53:18,649] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:53:18,650] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 255240b86b3c3d97.jpg
+[2024-09-14 09:53:53,415] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-14 09:53:53,415] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-14 09:53:53,415] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-14 09:53:53,438] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/73e0d896b8193c2b.jpg
+[2024-09-14 09:53:53,438] INFO in routes: Foto de perfil actualizada: 73e0d896b8193c2b.jpg
+[2024-09-14 09:53:53,500] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-14 09:53:53,643] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:53:53,644] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 73e0d896b8193c2b.jpg
+[2024-09-14 09:57:27 +0000] [1347540] [INFO] Handling signal: int
+[2024-09-14 09:57:27 +0000] [1347541] [INFO] Worker exiting (pid: 1347541)
+[2024-09-14 09:57:27 +0000] [1347540] [INFO] Shutting down: Master
+[2024-09-14 09:57:30 +0000] [1348444] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 09:57:30 +0000] [1348444] [INFO] Listening at: http://0.0.0.0:8000 (1348444)
+[2024-09-14 09:57:30 +0000] [1348444] [INFO] Using worker: sync
+[2024-09-14 09:57:30 +0000] [1348445] [INFO] Booting worker with pid: 1348445
+[2024-09-14 09:57:35,118] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:57:35,119] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 73e0d896b8193c2b.jpg
+[2024-09-14 09:57:38,771] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:57:38,771] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 73e0d896b8193c2b.jpg
+[2024-09-14 09:58:21,094] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 09:58:21,095] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 73e0d896b8193c2b.jpg
+[2024-09-14 10:00:03,758] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-14 10:00:03,759] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-14 10:00:03,759] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-14 10:00:03,782] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/7b2f37f460f6adcf.jpg
+[2024-09-14 10:00:03,782] INFO in routes: Foto de perfil actualizada: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:00:03,842] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-14 10:00:04,048] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:00:04,049] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:03:51,876] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:03:51,876] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:04:24,889] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-14 10:04:24,889] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-14 10:04:24,932] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-14 10:04:25,032] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:04:25,032] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:07:54,167] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:07:54,167] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:11:20,238] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:11:20,238] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:14:32,694] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:14:32,694] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:17:22,826] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:17:22,827] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:17:44,890] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:17:44,890] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:19:15,081] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:19:15,082] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:25:10,660] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:25:10,660] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:26:34,951] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:26:34,952] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:27:26,302] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:27:26,303] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:27:39,932] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:27:39,933] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:33:54,353] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:33:54,353] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:35:09,700] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:35:09,700] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:43:30,941] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:43:30,941] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:48:29,782] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:48:29,782] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:51:13,305] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:51:13,305] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:52:13,118] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:52:13,118] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:55:39,241] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:55:39,241] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:55:45,755] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:55:45,756] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 10:58:03,568] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 10:58:03,568] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 11:36:32,304] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 11:36:32,304] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 11:36:38,393] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 11:36:38,393] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 11:45:19,612] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 11:45:19,613] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 11:51:03 +0000] [1348444] [INFO] Handling signal: int
+[2024-09-14 11:51:03 +0000] [1348445] [INFO] Worker exiting (pid: 1348445)
+[2024-09-14 11:51:04 +0000] [1348444] [INFO] Shutting down: Master
+[2024-09-14 11:51:08 +0000] [1355897] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 11:51:08 +0000] [1355897] [INFO] Listening at: http://0.0.0.0:8000 (1355897)
+[2024-09-14 11:51:08 +0000] [1355897] [INFO] Using worker: sync
+[2024-09-14 11:51:08 +0000] [1355898] [INFO] Booting worker with pid: 1355898
+[2024-09-14 11:56:46 +0000] [1355897] [INFO] Handling signal: int
+[2024-09-14 11:56:46 +0000] [1355898] [INFO] Worker exiting (pid: 1355898)
+[2024-09-14 11:56:46 +0000] [1355897] [INFO] Shutting down: Master
+[2024-09-14 11:56:49 +0000] [1356410] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 11:56:49 +0000] [1356410] [INFO] Listening at: http://0.0.0.0:8000 (1356410)
+[2024-09-14 11:56:49 +0000] [1356410] [INFO] Using worker: sync
+[2024-09-14 11:56:49 +0000] [1356411] [INFO] Booting worker with pid: 1356411
+[2024-09-14 15:14:39,783] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 15:14:39,783] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 15:29:16,050] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/ced5eb8f97614288.jpg
+[2024-09-14 15:32:26,831] INFO in routes: Nombre original normalizado: Cajonera bajo encimera
+[2024-09-14 15:32:26,832] INFO in routes: Nuevo nombre normalizado: Cajonera bajo encimera1
+[2024-09-14 15:32:26,832] INFO in routes: El nombre del contenedor ha cambiado, verificando si ya está en uso.
+[2024-09-14 15:32:26,845] INFO in routes: Imágenes recibidas: [<FileStorage: 'Galeria_03.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_04.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_02.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_01.jpg' ('image/jpeg')>]
+[2024-09-14 15:32:26,862] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/fa3f7ef7933e9e91.jpg
+[2024-09-14 15:32:26,875] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/11c7b6473998008c.jpg
+[2024-09-14 15:32:26,894] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/9900636d3cfadd15.jpg
+[2024-09-14 15:32:26,912] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/ae3a473e75c1542e.jpg
+[2024-09-14 15:32:26,940] INFO in routes: Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+[2024-09-14 15:37:47,321] INFO in routes: Nombre original normalizado: Cajonera bajo encimera 2
+[2024-09-14 15:37:47,321] INFO in routes: Nuevo nombre normalizado: Cajonera bajo encimera 2
+[2024-09-14 15:37:47,321] INFO in routes: Imágenes recibidas: [<FileStorage: 'image.jpg' ('image/jpeg')>]
+[2024-09-14 15:37:47,477] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/02cf82fdb659c009.jpg
+[2024-09-14 15:37:47,500] INFO in routes: Contenedor 66c389bb2679ab297f9d7f9b guardado exitosamente.
+[2024-09-14 16:21:12 +0000] [1356410] [INFO] Handling signal: int
+[2024-09-14 16:21:12 +0000] [1356411] [INFO] Worker exiting (pid: 1356411)
+[2024-09-14 16:21:12 +0000] [1356410] [INFO] Shutting down: Master
+[2024-09-14 16:32:30 +0000] [1374466] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 16:32:30 +0000] [1374466] [INFO] Listening at: http://0.0.0.0:8000 (1374466)
+[2024-09-14 16:32:30 +0000] [1374466] [INFO] Using worker: sync
+[2024-09-14 16:32:30 +0000] [1374467] [INFO] Booting worker with pid: 1374467
+[2024-09-14 16:32:30 +0000] [1374467] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/ec2-user/aws_edfcatalogoqr/wsgi.py", line 1, in <module>
+    from app import app
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 83, in <module>
+    app = create_app()
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 73, in create_app
+    from app.routes import main as main_blueprint
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 332
+    @login_required
+IndentationError: unexpected indent
+[2024-09-14 16:32:30 +0000] [1374467] [INFO] Worker exiting (pid: 1374467)
+[2024-09-14 16:32:31 +0000] [1374466] [INFO] Shutting down: Master
+[2024-09-14 16:32:31 +0000] [1374466] [INFO] Reason: Worker failed to boot.
+[2024-09-14 16:33:48 +0000] [1374696] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 16:33:48 +0000] [1374696] [INFO] Listening at: http://0.0.0.0:8000 (1374696)
+[2024-09-14 16:33:48 +0000] [1374696] [INFO] Using worker: sync
+[2024-09-14 16:33:48 +0000] [1374697] [INFO] Booting worker with pid: 1374697
+[2024-09-14 16:33:48 +0000] [1374697] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/ec2-user/aws_edfcatalogoqr/wsgi.py", line 1, in <module>
+    from app import app
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 83, in <module>
+    app = create_app()
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 73, in create_app
+    from app.routes import main as main_blueprint
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 332
+    @login_required
+IndentationError: unexpected indent
+[2024-09-14 16:33:48 +0000] [1374697] [INFO] Worker exiting (pid: 1374697)
+[2024-09-14 16:33:48 +0000] [1374696] [INFO] Shutting down: Master
+[2024-09-14 16:33:48 +0000] [1374696] [INFO] Reason: Worker failed to boot.
+[2024-09-14 16:34:31 +0000] [1375157] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 16:34:31 +0000] [1375157] [INFO] Listening at: http://0.0.0.0:8000 (1375157)
+[2024-09-14 16:34:31 +0000] [1375157] [INFO] Using worker: sync
+[2024-09-14 16:34:31 +0000] [1375158] [INFO] Booting worker with pid: 1375158
+[2024-09-14 16:34:31 +0000] [1375158] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/ec2-user/aws_edfcatalogoqr/wsgi.py", line 1, in <module>
+    from app import app
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 83, in <module>
+    app = create_app()
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 73, in create_app
+    from app.routes import main as main_blueprint
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 332
+    @login_required
+IndentationError: unexpected indent
+[2024-09-14 16:34:31 +0000] [1375158] [INFO] Worker exiting (pid: 1375158)
+[2024-09-14 16:34:32 +0000] [1375157] [INFO] Shutting down: Master
+[2024-09-14 16:34:32 +0000] [1375157] [INFO] Reason: Worker failed to boot.
+[2024-09-14 16:39:24 +0000] [1375813] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 16:39:24 +0000] [1375813] [INFO] Listening at: http://0.0.0.0:8000 (1375813)
+[2024-09-14 16:39:24 +0000] [1375813] [INFO] Using worker: sync
+[2024-09-14 16:39:24 +0000] [1375814] [INFO] Booting worker with pid: 1375814
+[2024-09-14 16:44:01 +0000] [1375813] [INFO] Handling signal: int
+[2024-09-14 16:44:01 +0000] [1375814] [INFO] Worker exiting (pid: 1375814)
+[2024-09-14 16:44:01 +0000] [1375813] [INFO] Shutting down: Master
+[2024-09-14 16:47:08 +0000] [1377083] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 16:47:08 +0000] [1377083] [INFO] Listening at: http://0.0.0.0:8000 (1377083)
+[2024-09-14 16:47:08 +0000] [1377083] [INFO] Using worker: sync
+[2024-09-14 16:47:08 +0000] [1377084] [INFO] Booting worker with pid: 1377084
+[2024-09-14 16:59:28 +0000] [1377083] [INFO] Handling signal: int
+[2024-09-14 16:59:28 +0000] [1377084] [INFO] Worker exiting (pid: 1377084)
+[2024-09-14 16:59:28 +0000] [1377083] [INFO] Shutting down: Master
+[2024-09-14 16:59:35 +0000] [1378079] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 16:59:35 +0000] [1378079] [INFO] Listening at: http://0.0.0.0:8000 (1378079)
+[2024-09-14 16:59:35 +0000] [1378079] [INFO] Using worker: sync
+[2024-09-14 16:59:35 +0000] [1378080] [INFO] Booting worker with pid: 1378080
+[2024-09-14 17:43:10 +0000] [1378079] [INFO] Handling signal: int
+[2024-09-14 17:43:10 +0000] [1378080] [INFO] Worker exiting (pid: 1378080)
+[2024-09-14 17:43:10 +0000] [1378079] [INFO] Shutting down: Master
+[2024-09-14 17:43:49 +0000] [1381076] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 17:43:49 +0000] [1381076] [INFO] Listening at: http://0.0.0.0:8000 (1381076)
+[2024-09-14 17:43:49 +0000] [1381076] [INFO] Using worker: sync
+[2024-09-14 17:43:49 +0000] [1381077] [INFO] Booting worker with pid: 1381077
+[2024-09-14 17:44:09,937] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 17:44:09,937] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 17:46:34,408] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 17:46:34,408] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 17:48:33 +0000] [1381076] [INFO] Handling signal: int
+[2024-09-14 17:48:33 +0000] [1381077] [INFO] Worker exiting (pid: 1381077)
+[2024-09-14 17:48:34 +0000] [1381076] [INFO] Shutting down: Master
+[2024-09-14 17:48:47 +0000] [1381495] [INFO] Starting gunicorn 20.1.0
+[2024-09-14 17:48:47 +0000] [1381495] [INFO] Listening at: http://0.0.0.0:8000 (1381495)
+[2024-09-14 17:48:47 +0000] [1381495] [INFO] Using worker: sync
+[2024-09-14 17:48:47 +0000] [1381496] [INFO] Booting worker with pid: 1381496
+[2024-09-14 17:49:31,906] INFO in routes: Nombre original normalizado: Cajonera bajo encimera 1
+[2024-09-14 17:49:31,906] INFO in routes: Nuevo nombre normalizado: Cajonera bajo encimera1
+[2024-09-14 17:49:31,919] INFO in routes: Imágenes recibidas: [<FileStorage: 'imagen01.jpg' ('image/jpeg')>]
+[2024-09-14 17:49:31,955] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/9e08be0ac3a5b0c0.jpg
+[2024-09-14 17:49:31,975] INFO in routes: Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+[2024-09-14 18:31:17,333] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-14 18:31:17,334] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-14 18:32:27,503] INFO in routes: Nombre original normalizado: Cajonera bajo encimera1
+[2024-09-14 18:32:27,504] INFO in routes: Nuevo nombre normalizado: Cajonera bajo encimera
+[2024-09-14 18:32:27,520] INFO in routes: Imágenes recibidas: [<FileStorage: 'Galeria_02.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_01.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_03.jpg' ('image/jpeg')>]
+[2024-09-14 18:32:27,539] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/1c37ab65c24c1cc9.jpg
+[2024-09-14 18:32:27,557] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/da858055672f2144.jpg
+[2024-09-14 18:32:27,571] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/d22987508829935f.jpg
+[2024-09-14 18:32:27,604] INFO in routes: Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+[2024-09-14 18:36:19,446] INFO in routes: Nombre original normalizado: Contenedor
+[2024-09-14 18:36:19,446] INFO in routes: Nuevo nombre normalizado: Contenedor1
+[2024-09-14 18:36:19,458] INFO in routes: Imágenes recibidas: [<FileStorage: 'Galeria_01.jpg' ('image/jpeg')>]
+[2024-09-14 18:36:19,476] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/2fcb7cbd0951c2c0.jpg
+[2024-09-14 18:36:19,499] INFO in routes: Contenedor 66c39803a151f1c1ea6af546 guardado exitosamente.
+[2024-09-14 18:36:38,229] INFO in routes: Nombre original normalizado: Contenedor1
+[2024-09-14 18:36:38,230] INFO in routes: Nuevo nombre normalizado: Contenedor
+[2024-09-14 18:36:38,242] INFO in routes: Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>]
+[2024-09-14 18:36:38,260] INFO in routes: Contenedor 66c39803a151f1c1ea6af546 guardado exitosamente.
+[2024-09-14 18:37:26,996] INFO in routes: Nombre original normalizado: Nombre
+[2024-09-14 18:37:26,996] INFO in routes: Nuevo nombre normalizado: Nombre
+[2024-09-14 18:37:26,996] INFO in routes: Imágenes recibidas: [<FileStorage: 'Galeria_01.jpg' ('image/jpeg')>]
+[2024-09-14 18:37:27,015] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/f3a71701fda57c07.jpg
+[2024-09-14 18:37:27,033] INFO in routes: Contenedor 66c39b29d723646c81b3f21d guardado exitosamente.
+[2024-09-15 08:58:24,779] ERROR in routes: Contenedor con ID 66c38359a27a53bf0572a664 no encontrado.
+[2024-09-15 09:05:02 +0000] [1381495] [INFO] Handling signal: int
+[2024-09-15 09:05:03 +0000] [1381496] [INFO] Worker exiting (pid: 1381496)
+[2024-09-15 09:05:03 +0000] [1381495] [INFO] Shutting down: Master
+[2024-09-15 09:05:05 +0000] [1443141] [INFO] Starting gunicorn 20.1.0
+[2024-09-15 09:05:05 +0000] [1443141] [INFO] Listening at: http://0.0.0.0:8000 (1443141)
+[2024-09-15 09:05:05 +0000] [1443141] [INFO] Using worker: sync
+[2024-09-15 09:05:05 +0000] [1443142] [INFO] Booting worker with pid: 1443142
+[2024-09-15 09:19:11,423] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 09:19:11,424] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-15 09:19:19,603] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-15 09:19:19,604] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-15 09:19:19,646] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-15 09:19:19,751] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 09:19:19,751] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: 7b2f37f460f6adcf.jpg
+[2024-09-15 09:19:35,463] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-15 09:19:35,463] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-15 09:19:35,463] INFO in routes: Actualizando foto de perfil para el usuario: edefrutos
+[2024-09-15 09:19:35,489] INFO in utils: Foto de perfil guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/profile_pics/f04e2644614b7ed0.jpg
+[2024-09-15 09:19:35,490] INFO in routes: Foto de perfil actualizada: f04e2644614b7ed0.jpg
+[2024-09-15 09:19:35,552] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-15 09:19:35,649] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 09:19:35,649] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 09:20:52,741] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 09:20:52,741] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 09:21:39,364] INFO in routes: Nombre original normalizado: Contenedor - 06
+[2024-09-15 09:21:39,364] INFO in routes: Nuevo nombre normalizado: Contenedor -06
+[2024-09-15 09:21:39,377] INFO in routes: Imágenes recibidas: [<FileStorage: 'imagen01.jpg' ('image/jpeg')>]
+[2024-09-15 09:21:39,408] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/3ee88be4c29e5086.jpg
+[2024-09-15 09:21:39,436] INFO in routes: Contenedor 66c632a9ebcf2e46db544a11 guardado exitosamente.
+[2024-09-15 10:06:44 +0000] [1443141] [INFO] Handling signal: int
+[2024-09-15 10:06:44 +0000] [1443142] [INFO] Worker exiting (pid: 1443142)
+[2024-09-15 10:06:44 +0000] [1443141] [INFO] Shutting down: Master
+[2024-09-15 10:06:47 +0000] [1447303] [INFO] Starting gunicorn 20.1.0
+[2024-09-15 10:06:47 +0000] [1447303] [INFO] Listening at: http://0.0.0.0:8000 (1447303)
+[2024-09-15 10:06:47 +0000] [1447303] [INFO] Using worker: sync
+[2024-09-15 10:06:47 +0000] [1447304] [INFO] Booting worker with pid: 1447304
+[2024-09-15 10:06:47 +0000] [1447304] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/ec2-user/aws_edfcatalogoqr/wsgi.py", line 1, in <module>
+    from app import app
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 83, in <module>
+    app = create_app()
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 73, in create_app
+    from app.routes import main as main_blueprint
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 10, in <module>
+    from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required
+  File "/home/ec2-user/aws_edfcatalogoqr/app/utils.py", line 134, in <module>
+    @main.route("/containers/<container_id>/edit", methods=['GET', 'POST'])
+NameError: name 'main' is not defined
+[2024-09-15 10:06:47 +0000] [1447304] [INFO] Worker exiting (pid: 1447304)
+[2024-09-15 10:06:48 +0000] [1447303] [INFO] Shutting down: Master
+[2024-09-15 10:06:48 +0000] [1447303] [INFO] Reason: Worker failed to boot.
+[2024-09-15 10:09:09 +0000] [1447575] [INFO] Starting gunicorn 20.1.0
+[2024-09-15 10:09:09 +0000] [1447575] [INFO] Listening at: http://0.0.0.0:8000 (1447575)
+[2024-09-15 10:09:09 +0000] [1447575] [INFO] Using worker: sync
+[2024-09-15 10:09:09 +0000] [1447576] [INFO] Booting worker with pid: 1447576
+[2024-09-15 10:09:09 +0000] [1447576] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib64/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/ec2-user/aws_edfcatalogoqr/wsgi.py", line 1, in <module>
+    from app import app
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 83, in <module>
+    app = create_app()
+  File "/home/ec2-user/aws_edfcatalogoqr/app/__init__.py", line 73, in create_app
+    from app.routes import main as main_blueprint
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 10, in <module>
+    from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required
+ImportError: cannot import name 'save_qr_image' from 'app.utils' (/home/ec2-user/aws_edfcatalogoqr/app/utils.py)
+[2024-09-15 10:09:09 +0000] [1447576] [INFO] Worker exiting (pid: 1447576)
+[2024-09-15 10:09:10 +0000] [1447575] [INFO] Shutting down: Master
+[2024-09-15 10:09:10 +0000] [1447575] [INFO] Reason: Worker failed to boot.
+[2024-09-15 10:11:06 +0000] [1447834] [INFO] Starting gunicorn 20.1.0
+[2024-09-15 10:11:06 +0000] [1447834] [INFO] Listening at: http://0.0.0.0:8000 (1447834)
+[2024-09-15 10:11:06 +0000] [1447834] [INFO] Using worker: sync
+[2024-09-15 10:11:06 +0000] [1447835] [INFO] Booting worker with pid: 1447835
+[2024-09-15 10:11:11 +0000] [1447834] [INFO] Handling signal: int
+[2024-09-15 10:11:12 +0000] [1447835] [INFO] Worker exiting (pid: 1447835)
+[2024-09-15 10:11:12 +0000] [1447834] [INFO] Shutting down: Master
+[2024-09-15 10:16:42 +0000] [1448346] [INFO] Starting gunicorn 20.1.0
+[2024-09-15 10:16:42 +0000] [1448346] [INFO] Listening at: http://0.0.0.0:8000 (1448346)
+[2024-09-15 10:16:42 +0000] [1448346] [INFO] Using worker: sync
+[2024-09-15 10:16:42 +0000] [1448347] [INFO] Booting worker with pid: 1448347
+[2024-09-15 10:17:29,870] INFO in routes: Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>]
+[2024-09-15 10:19:03,895] INFO in routes: Creación de contenedor iniciada.
+[2024-09-15 10:19:03,934] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/38087a76e31c74ff.jpg
+[2024-09-15 10:19:03,984] INFO in routes: Contenedor creado con ID: 66e6b49742d6bfc73c87b354
+[2024-09-15 10:21:29,228] INFO in routes: Imágenes recibidas: [<FileStorage: 'Miguel Angel y yo de niños.jpg' ('image/jpeg')>]
+[2024-09-15 10:21:29,257] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/f4764b97482bcad5.jpg
+[2024-09-15 10:47:21 +0000] [1448346] [INFO] Handling signal: int
+[2024-09-15 10:47:21 +0000] [1448347] [INFO] Worker exiting (pid: 1448347)
+[2024-09-15 10:47:21 +0000] [1448346] [INFO] Shutting down: Master
+[2024-09-15 11:45:48 +0000] [1454288] [INFO] Starting gunicorn 20.1.0
+[2024-09-15 11:45:48 +0000] [1454288] [INFO] Listening at: http://0.0.0.0:8000 (1454288)
+[2024-09-15 11:45:48 +0000] [1454288] [INFO] Using worker: sync
+[2024-09-15 11:45:48 +0000] [1454289] [INFO] Booting worker with pid: 1454289
+[2024-09-15 12:30:44,524] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 12:30:44,525] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 12:32:22,368] INFO in routes: Imágenes recibidas: [<FileStorage: 'Galeria_01.jpg' ('image/jpeg')>]
+[2024-09-15 12:32:22,395] INFO in utils: Imagen del contenedor guardada en: /home/ec2-user/aws_edfcatalogoqr/app/static/container_pics/8d6d386392642edd.jpg
+[2024-09-15 12:32:52,215] ERROR in app: Exception on /containers/66c632a9ebcf2e46db544a11/download_qr [GET]
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 303, in download_qr
+    qr_path = os.path.join(current_app.root_path, 'static/qr_codes', container.qr_image)
+  File "/usr/lib64/python3.9/posixpath.py", line 90, in join
+    genericpath._check_arg_types('join', a, *p)
+  File "/usr/lib64/python3.9/genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+[2024-09-15 12:33:02,037] ERROR in app: Exception on /containers/66c632a9ebcf2e46db544a11/print_detail [GET]
+Traceback (most recent call last):
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/routes.py", line 382, in print_detail
+    return render_template('print_detail.html', title='Imprimir Detalle', container=container)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/home/ec2-user/.local/lib/python3.9/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ec2-user/aws_edfcatalogoqr/app/templates/print_detail.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+  File "/home/ec2-user/aws_edfcatalogoqr/app/templates/layout.html", line 141, in top-level template code
+    {% block content %}{% endblock %}
+  File "/home/ec2-user/aws_edfcatalogoqr/app/templates/print_detail.html", line 8, in block 'content'
+    <img src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}" alt="QR Code">
+TypeError: can only concatenate str (not "NoneType") to str
+[2024-09-15 17:20:08 +0000] [1454288] [INFO] Handling signal: int
+[2024-09-15 17:20:08 +0000] [1454289] [INFO] Worker exiting (pid: 1454289)
+[2024-09-15 17:20:09 +0000] [1454288] [INFO] Shutting down: Master
+[2024-09-15 17:20:11 +0000] [1476214] [INFO] Starting gunicorn 20.1.0
+[2024-09-15 17:20:11 +0000] [1476214] [INFO] Listening at: http://0.0.0.0:8000 (1476214)
+[2024-09-15 17:20:11 +0000] [1476214] [INFO] Using worker: sync
+[2024-09-15 17:20:11 +0000] [1476215] [INFO] Booting worker with pid: 1476215
+[2024-09-15 18:07:40,340] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:07:40,340] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 18:08:11,434] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:08:11,435] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 18:16:46,356] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:16:46,356] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 18:35:46,414] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:35:46,415] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 18:35:53,822] INFO in routes: Iniciando actualización de cuenta para el usuario: edefrutos
+[2024-09-15 18:35:53,822] INFO in routes: Información recibida - Username: edefrutos, Email: edfrutos@gmail.com, Address: Calle Mango, 3, Phone: 983246972
+[2024-09-15 18:35:53,864] INFO in routes: Cuenta actualizada exitosamente para el usuario: edefrutos
+[2024-09-15 18:35:53,968] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:35:53,968] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 18:38:18,218] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:38:18,219] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 18:39:52,945] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:39:52,946] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 18:43:03,701] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:43:03,701] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 18:45:10,675] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 18:45:10,676] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-15 21:26:24,996] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-15 21:26:24,996] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg
+[2024-09-16 18:33:38,205] INFO in routes: Cargando datos del usuario: edefrutos
+[2024-09-16 18:33:38,205] INFO in routes: Mostrando imagen de perfil para el usuario edefrutos: f04e2644614b7ed0.jpg

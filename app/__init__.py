@@ -38,7 +38,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
-    # Limitar el tamaño de archivos que se pueden subir, ejemplo 16 MB
+    # Limitar el tamaño de archivos que se pueden subir, aquí lo configuramos a 16 MB
     app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
     # Inicializar las extensiones con la aplicación Flask

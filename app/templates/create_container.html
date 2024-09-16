@@ -1,26 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<!-- Bloque para mostrar los mensajes flash -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-    <div class="container mt-3">
-        <div class="alert-container">
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
-{% endif %}
-{% endwith %}
-<div class="container-create">
-</div>
-<!-- Fin Bloque para mostrar los mensajes flash -->
 <div class="container mt-5">
     <h2 class="text-center">Crear Contenedor</h2>
     <form method="POST" action="{{ url_for('main.create_container') }}" enctype="multipart/form-data">
@@ -47,7 +27,7 @@
             {{ form.pictures(class="form-control-file", multiple=True) }}
         </div>
         <button type="submit" class="btn btn-primary">Crear Contenedor</button>
-        <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary mt-3">Volver a la Lista</a>
+        <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary">Volver a la Lista</a>
     </form>
     <div class="card-footer text-center">
         <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary">Volver a Opciones</a>

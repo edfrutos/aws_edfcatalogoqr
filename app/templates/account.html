@@ -1,26 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
-<!-- Bloque para mostrar los mensajes flash -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-    
-        <div class="alert-container">
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endfor %}
-        </div>
-  
-{% endif %}
-{% endwith %}
-<!-- Fin Bloque para mostrar los mensajes flash -->
-
 <div class="container-account">
     <h1>Cuenta de {{ current_user.username }}</h1>
     <div class="row">
@@ -76,10 +56,6 @@
             <img src="{{ image_file }}" alt="Foto de Perfil" class="img-thumbnail">
             <div class="mt-4">
                 <a href="{{ url_for('main.change_password') }}" class="btn btn-outline-warning">Cambiar Contraseña</a>
-            </div>
-            
-            <!-- Botón para eliminar la cuenta -->
-            <div class="mt-4">
                 <form action="{{ url_for('main.delete_account') }}" method="POST" class="d-inline">
                     {{ form.csrf_token }}
                     <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">

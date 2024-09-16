@@ -56,9 +56,9 @@ class RequestResetForm(FlaskForm):
     submit = SubmitField('Recuperación de Contraseña')
 
 class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirmar Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Restablecer Password')
+    password = PasswordField('Nueva Contraseña', validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField('Confirmar Nueva Contraseña', validators=[DataRequired(), EqualTo('password', message='Las contraseñas deben coincidir.')])
+    submit = SubmitField('Restablecer Contraseña')
 
 class DeleteAccountForm(FlaskForm):
     confirm = BooleanField('Confirmo que quiero eliminar mi cuenta.', validators=[DataRequired()])

@@ -20,3 +20,44 @@
 2024-09-11 18:08:37,632 - app.routes - INFO - El nombre del contenedor ha cambiado, verificando si ya está en uso.
 2024-09-11 18:08:37,645 - app.routes - INFO - Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>]
 2024-09-11 18:08:37,662 - app.routes - INFO - Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+2024-09-12 17:10:13,267 - app.routes - INFO - Creación de contenedor iniciada.
+2024-09-12 17:10:13,366 - app.routes - INFO - Contenedor creado con ID: 66e32075949e0e4855069530
+2024-09-14 15:32:26,831 - app.routes - INFO - Nombre original normalizado: Cajonera bajo encimera
+2024-09-14 15:32:26,832 - app.routes - INFO - Nuevo nombre normalizado: Cajonera bajo encimera1
+2024-09-14 15:32:26,832 - app.routes - INFO - El nombre del contenedor ha cambiado, verificando si ya está en uso.
+2024-09-14 15:32:26,845 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'Galeria_03.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_04.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_02.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_01.jpg' ('image/jpeg')>]
+2024-09-14 15:32:26,940 - app.routes - INFO - Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+2024-09-14 15:37:47,321 - app.routes - INFO - Nombre original normalizado: Cajonera bajo encimera 2
+2024-09-14 15:37:47,321 - app.routes - INFO - Nuevo nombre normalizado: Cajonera bajo encimera 2
+2024-09-14 15:37:47,321 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'image.jpg' ('image/jpeg')>]
+2024-09-14 15:37:47,500 - app.routes - INFO - Contenedor 66c389bb2679ab297f9d7f9b guardado exitosamente.
+2024-09-14 17:49:31,906 - app.routes - INFO - Nombre original normalizado: Cajonera bajo encimera 1
+2024-09-14 17:49:31,906 - app.routes - INFO - Nuevo nombre normalizado: Cajonera bajo encimera1
+2024-09-14 17:49:31,919 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'imagen01.jpg' ('image/jpeg')>]
+2024-09-14 17:49:31,975 - app.routes - INFO - Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+2024-09-14 18:32:27,503 - app.routes - INFO - Nombre original normalizado: Cajonera bajo encimera1
+2024-09-14 18:32:27,504 - app.routes - INFO - Nuevo nombre normalizado: Cajonera bajo encimera
+2024-09-14 18:32:27,520 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'Galeria_02.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_01.jpg' ('image/jpeg')>, <FileStorage: 'Galeria_03.jpg' ('image/jpeg')>]
+2024-09-14 18:32:27,604 - app.routes - INFO - Contenedor 66c38359a27a53bf0572a664 guardado exitosamente.
+2024-09-14 18:36:19,446 - app.routes - INFO - Nombre original normalizado: Contenedor
+2024-09-14 18:36:19,446 - app.routes - INFO - Nuevo nombre normalizado: Contenedor1
+2024-09-14 18:36:19,458 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'Galeria_01.jpg' ('image/jpeg')>]
+2024-09-14 18:36:19,499 - app.routes - INFO - Contenedor 66c39803a151f1c1ea6af546 guardado exitosamente.
+2024-09-14 18:36:38,229 - app.routes - INFO - Nombre original normalizado: Contenedor1
+2024-09-14 18:36:38,230 - app.routes - INFO - Nuevo nombre normalizado: Contenedor
+2024-09-14 18:36:38,242 - app.routes - INFO - Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>]
+2024-09-14 18:36:38,260 - app.routes - INFO - Contenedor 66c39803a151f1c1ea6af546 guardado exitosamente.
+2024-09-14 18:37:26,996 - app.routes - INFO - Nombre original normalizado: Nombre
+2024-09-14 18:37:26,996 - app.routes - INFO - Nuevo nombre normalizado: Nombre
+2024-09-14 18:37:26,996 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'Galeria_01.jpg' ('image/jpeg')>]
+2024-09-14 18:37:27,033 - app.routes - INFO - Contenedor 66c39b29d723646c81b3f21d guardado exitosamente.
+2024-09-15 08:58:24,779 - app.routes - ERROR - Contenedor con ID 66c38359a27a53bf0572a664 no encontrado.
+2024-09-15 09:21:39,364 - app.routes - INFO - Nombre original normalizado: Contenedor - 06
+2024-09-15 09:21:39,364 - app.routes - INFO - Nuevo nombre normalizado: Contenedor -06
+2024-09-15 09:21:39,377 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'imagen01.jpg' ('image/jpeg')>]
+2024-09-15 09:21:39,436 - app.routes - INFO - Contenedor 66c632a9ebcf2e46db544a11 guardado exitosamente.
+2024-09-15 10:17:29,870 - app.routes - INFO - Imágenes recibidas: [<FileStorage: '' ('application/octet-stream')>]
+2024-09-15 10:19:03,895 - app.routes - INFO - Creación de contenedor iniciada.
+2024-09-15 10:19:03,984 - app.routes - INFO - Contenedor creado con ID: 66e6b49742d6bfc73c87b354
+2024-09-15 10:21:29,228 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'Miguel Angel y yo de niños.jpg' ('image/jpeg')>]
+2024-09-15 12:32:22,368 - app.routes - INFO - Imágenes recibidas: [<FileStorage: 'Galeria_01.jpg' ('image/jpeg')>]

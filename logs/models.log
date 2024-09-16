@@ -90,3 +90,81 @@
 2024-09-11 17:06:39,230 - app.models - INFO - Conectado a la base de datos.
 2024-09-11 17:08:05,819 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
 2024-09-11 17:08:05,857 - app.models - INFO - Conectado a la base de datos.
+2024-09-11 18:45:36,022 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-11 18:45:36,061 - app.models - INFO - Conectado a la base de datos.
+2024-09-12 17:05:01,597 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-12 17:05:01,634 - app.models - INFO - Conectado a la base de datos.
+2024-09-12 17:19:20,490 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-12 17:19:20,527 - app.models - INFO - Conectado a la base de datos.
+2024-09-12 17:21:16,181 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-12 17:21:16,220 - app.models - INFO - Conectado a la base de datos.
+2024-09-12 18:07:37,328 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-12 18:07:37,366 - app.models - INFO - Conectado a la base de datos.
+2024-09-12 18:25:12,074 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-12 18:25:12,112 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:05:18,626 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:05:18,664 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:08:27,806 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:08:27,842 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:10:19,825 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:10:19,870 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:13:42,375 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:13:42,410 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:15:07,726 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:15:07,764 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:21:30,600 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:21:30,637 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:31:11,013 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:31:11,049 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:34:34,073 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:34:34,118 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:36:06,125 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:36:06,164 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:37:57,381 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:37:57,417 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:39:31,985 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:39:32,025 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:50:34,879 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:50:34,917 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 09:53:31,236 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 09:53:31,272 - app.models - INFO - Conectado a la base de datos.
+2024-09-13 10:20:15,375 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-13 10:20:15,417 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 08:35:49,456 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 08:35:49,493 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 09:32:14,635 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 09:32:14,672 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 09:44:02,693 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 09:44:02,730 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 09:45:45,721 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 09:45:45,757 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 09:57:30,908 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 09:57:30,945 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 11:51:08,318 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 11:51:08,356 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 11:56:49,603 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 11:56:49,645 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 16:39:24,457 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 16:39:24,495 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 16:47:08,985 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 16:47:09,028 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 16:59:35,506 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 16:59:35,547 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 17:43:49,669 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 17:43:49,706 - app.models - INFO - Conectado a la base de datos.
+2024-09-14 17:48:47,345 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-14 17:48:47,381 - app.models - INFO - Conectado a la base de datos.
+2024-09-15 09:05:06,182 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-15 09:05:06,221 - app.models - INFO - Conectado a la base de datos.
+2024-09-15 10:06:47,916 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-15 10:06:47,954 - app.models - INFO - Conectado a la base de datos.
+2024-09-15 10:09:09,895 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-15 10:09:09,932 - app.models - INFO - Conectado a la base de datos.
+2024-09-15 10:11:07,194 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-15 10:11:07,231 - app.models - INFO - Conectado a la base de datos.
+2024-09-15 10:16:42,920 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-15 10:16:42,957 - app.models - INFO - Conectado a la base de datos.
+2024-09-15 11:45:49,063 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-15 11:45:49,100 - app.models - INFO - Conectado a la base de datos.
+2024-09-15 17:20:12,245 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-09-15 17:20:12,282 - app.models - INFO - Conectado a la base de datos.

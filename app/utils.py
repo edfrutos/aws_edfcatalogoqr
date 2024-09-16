@@ -10,6 +10,7 @@ from functools import wraps
 from flask_login import current_user
 import logging
 import re
+import unicodedata
 
 # Configuración de Logging
 logger = logging.getLogger(__name__)
@@ -32,6 +33,16 @@ def admin_required(func):
             abort(403)
         return func(*args, **kwargs)
     return decorated_view
+
+# Función para normalizar nombres
+def normalize_name(name):
+    """
+    Normaliza el nombre eliminando acentos, convirtiendo a minúsculas
+    y reemplazando espacios múltiples por uno solo.
+    """
+    name_normalized = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode('utf-8').lower()
+    name_normalized = re.sub(r'[^a-z0-9]+', ' ', name_normalized).strip()
+    return name_normalized
 
 # Función para guardar la imagen de perfil
 def save_profile_picture(form_picture, folder='profile_pics', output_size=(300, 300), quality=90):
@@ -60,7 +71,7 @@ def save_profile_picture(form_picture, folder='profile_pics', output_size=(300, 
     try:
         # Abrir y redimensionar la imagen manteniendo la relación de aspecto
         i = Image.open(form_picture)
-        i.thumbnail(output_size, Image.ANTIALIAS)  # Redimensionar con alta calidad de filtro
+        i.thumbnail(output_size, Image.LANCZOS)  # Redimensionar con alta calidad de filtro
 
         # Guardar la imagen con la calidad definida y optimización
         i.save(picture_path, quality=quality, optimize=True)
@@ -73,7 +84,7 @@ def save_profile_picture(form_picture, folder='profile_pics', output_size=(300, 
     return picture_fn
 
 # Función para guardar la imagen de un contenedor
-def save_container_picture(form_picture, folder='container_pics', output_size=(800, 800)):
+def save_container_picture(form_picture, folder='container_pics', output_size=(800, 800), quality=85):
     """Guarda una imagen del contenedor redimensionada."""
     if not isinstance(form_picture, FileStorage):
         logger.error("El objeto proporcionado no es un archivo válido")
@@ -92,8 +103,8 @@ def save_container_picture(form_picture, folder='container_pics', output_size=(8
     # Redimensionar y guardar la imagen
     try:
         i = Image.open(form_picture)
-        i.thumbnail(output_size)
-        i.save(picture_path)
+        i.thumbnail(output_size, Image.LANCZOS)
+        i.save(picture_path, quality=quality, optimize=True)
         logger.info(f"Imagen del contenedor guardada en: {picture_path}")
     except Exception as e:
         logger.error(f"Error al guardar la imagen del contenedor: {e}")
@@ -141,10 +152,9 @@ def save_qr_image(data, container_name):
 
 # Función para enviar un correo de restablecimiento de contraseña
 def send_reset_email(user):
-    """Envía un correo electrónico para restablecer la contraseña del usuario."""
     token = user.get_reset_token()
-    msg = Message('Solicitud de restablecimiento de contraseña', sender='noreply@demo.com', recipients=[user.email])
-    msg.body = f'''Para restablecer tu contraseña, visita el siguiente enlace:
+    msg = Message('Solicitud de Restablecimiento de Contraseña', sender='admin@edefrutos.me', recipients=[user.email])
+    msg.body = f'''Para restablecer tu contraseña, haz clic en el siguiente enlace:
 {url_for('main.reset_token', token=token, _external=True)}
 
 Si no solicitaste este cambio, simplemente ignora este mensaje.
