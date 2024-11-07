@@ -9,7 +9,7 @@ mail = Mail(app)
 @app.route('/send-email')
 def send_email():
     try:
-        msg = Message('Prueba de correo', sender=app.config['MAIL_USERNAME'], recipients=['destinatario@example.com'])
+        msg = Message('Prueba de correo', sender=app.config['MAIL_USERNAME'], recipients=['edfrutos@gmail.com'])
         msg.body = 'Este es un correo de prueba.'
         mail.send(msg)
         return 'Correo enviado exitosamente!'

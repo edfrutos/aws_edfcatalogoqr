@@ -2,15 +2,15 @@ import logging
 from itsdangerous import TimedSerializer as Serializer
 from flask_login import UserMixin
 from flask import current_app
-from mongoengine import Document, StringField, ListField, BooleanField, ReferenceField, connect, disconnect
-from app.extensions import login_manager, bcrypt
+from mongoengine import Document, StringField, ListField, BooleanField, ReferenceField, connect, disconnect, CASCADE
+from app.extensions import login_manager, bcrypt, db
 
 # Configuración de Logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 if not logger.handlers:
-    handler = logging.FileHandler('logs/models.log')
+    handler = logging.FileHandler('logs/app.log')
     handler.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     handler.setFormatter(formatter)
@@ -87,3 +87,11 @@ class Container(Document):
 
     def __repr__(self):
         return f"Container('{self.name}', '{self.location}')"
+    
+    def remove_image(self, image_name):
+        """Elimina una imagen del contenedor."""
+        if image_name in self.image_files:
+            self.image_files.remove(image_name)
+            self.save()
+            return True
+        return False

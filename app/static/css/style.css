@@ -4,7 +4,7 @@ body {
 }
 
 .alert-container {
-  margin-top: 3.5rem;
+  margin-top: 7.5rem;
 }
 
 .container {
@@ -49,6 +49,7 @@ body {
   margin-left: 8rem;
   margin-right: 0rem;
   width: 86%;
+  margin-bottom: 8rem;
 }
 
 .content-section {
@@ -130,16 +131,19 @@ body {
 }
 
 .container-admin-user {
-  margin-top: 3rem;
-  margin-left: 20rem;
-  margin-right: 15rem;
-  width: 75%;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  margin-right: 0rem;
+  width: 92%;
+  margin-bottom: 4rem;
 }
 
 .container-admin-list {
-  margin-top: 0rem;
-  margin-left: 15rem;
-  padding-bottom: 8rem;
+  margin-top: 10rem;
+  margin-left: 16rem !important;
+  padding-right: 1rem;
+  margin-bottom: 5rem;
+  width: 75%;
 }
 
 .reset-password {
@@ -967,21 +971,6 @@ footer {
   margin-top: 6rem;
   margin-left: 1rem;
   margin-right: 1rem;
-}
-
-.container-admin-user {
-  margin-top: 5rem;
-  margin-left: 0rem;
-  margin-right: 0rem;
-  width: 100%;
-  padding-bottom: 4rem;
-}
-
-.container-admin-list {
-  margin-top: 10rem;
-  margin-left: 0rem !important;
-  padding-right: 1rem;
-  padding-bottom: 5rem;
 }
 
 .m-5 {

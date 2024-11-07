@@ -4,33 +4,18 @@ from flask import flash, current_app, render_template, url_for, redirect, reques
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 from flask_login import login_user, current_user, logout_user, login_required
-from app.forms import (
-    RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, 
-    RequestResetForm, ResetPasswordForm, DeleteAccountForm, 
-    ContactForm, ChangePasswordForm, UpdateUserForm, SearchContainerForm
-)
+from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, SearchContainerForm, EditContainerForm, DeleteImageForm
 from app.models import User, Container
-from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required
+from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required, normalize_name
 from app.extensions import db, bcrypt, mail
 from flask_mail import Message
 import qrcode
-from io import BytesIO
 from mongoengine.queryset.visitor import Q
 from mongoengine.errors import NotUniqueError
-import secrets
-from PIL import Image
 from datetime import datetime
 import logging
-import unicodedata
 
 main = Blueprint('main', __name__)
-
-def normalize_name(name):
-    """Normaliza el nombre del contenedor eliminando espacios extra y caracteres especiales."""
-    name = name.strip()
-    name = " ".join(name.split())  # Elimina espacios adicionales entre palabras
-    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')  # Elimina caracteres especiales
-    return name
 
 # Inicializar el cliente de boto3 para S3
 s3 = boto3.client('s3')
@@ -198,29 +183,35 @@ def reset_token(token):
 def contacto():
     form = ContactForm()
     if form.validate_on_submit():
-        msg = Message(form.name.data + ' ha enviado un mensaje', sender=current_app.config['MAIL_USERNAME'], recipients=[current_app.config['MAIL_USERNAME']])
+        msg = Message(
+            subject=f"{form.name.data} ha enviado un mensaje",
+            sender=current_app.config['MAIL_USERNAME'],
+            recipients=['admin@efjdefrutos.com'],
+            reply_to=form.email.data  # Dirección del usuario como respuesta
+        )
         msg.body = f'''
         Nombre: {form.name.data}
-        Email: {form.email.data}
+        Email de contacto: {form.email.data}
         Mensaje: {form.message.data}
         '''
-        mail.send(msg)
+        
+        with current_app.app_context():
+            mail.send(msg)
+        
         flash('Tu mensaje ha sido enviado!', 'success')
         return redirect(url_for('main.home'))
+    
     return render_template('contacto.html', title='Contacto', form=form)
 
 from flask import abort
-
-@main.route('/container/<container_id>', methods=['GET'])
+@main.route('/container/<container_id>')
 @login_required
 def container_detail(container_id):
-    container = Container.objects(id=container_id).first()
-    
-    if container is None:
-        logger.error(f"Contenedor con ID {container_id} no encontrado.")
-        abort(404)
-    
-    return render_template('container_detail.html', container=container)
+        container = Container.objects(id=container_id).first()
+        if not container:
+            abort(404)
+        image_size = {'width': 200, 'height': 'auto'}  # Define el tamaño aquí
+        return render_template('container_detail.html', container=container, image_size=image_size)
 
 import re  # Asegúrate de tener importada esta librería para limpiar el nombre del archivo QR
 
@@ -232,7 +223,7 @@ def create_container():
         logger.info("Creación de contenedor iniciada.")
         pictures = form.pictures.data
         picture_files = []
-        
+
         for picture in pictures:
             if isinstance(picture, FileStorage) and picture.filename != '':
                 try:
@@ -240,8 +231,12 @@ def create_container():
                     picture_files.append(picture_file)
                 except Exception as e:
                     logger.error(f"Error al guardar la imagen: {e}")
+                    flash('Error al guardar una de las imágenes.', 'danger')
+                    return render_template('create_container.html', form=form)
             else:
                 logger.error("El objeto proporcionado no es un archivo válido")
+                flash('Uno de los archivos proporcionados no es válido.', 'danger')
+                return render_template('create_container.html', form=form)
 
         # Limpiar el nombre para el código QR
         safe_name = re.sub(r'[^\w\s-]', '', form.name.data).strip().replace(' ', '_')
@@ -249,9 +244,9 @@ def create_container():
         # Generar el código QR
         qr_data = f"Contenedor: {form.name.data}\nUbicación: {form.location.data}\nObjetos: {form.items.data}"
         qr_img_path = os.path.join(current_app.root_path, 'static', 'qr_codes', f"{safe_name}.png")
-        
-        qr_img = qrcode.make(qr_data)
+
         try:
+            qr_img = qrcode.make(qr_data)
             qr_img.save(qr_img_path)
         except Exception as e:
             logger.error(f"Error al guardar el código QR: {e}")
@@ -264,7 +259,7 @@ def create_container():
             location=form.location.data,
             items=[item.strip() for item in form.items.data.split(",")],
             image_files=picture_files,
-            qr_image=f"{safe_name}.png",  # Guardar el nombre seguro del archivo QR
+            qr_image=f"{safe_name}.png",
             user=current_user._get_current_object()
         )
 
@@ -323,56 +318,66 @@ def list_containers():
         )
     return render_template('list_containers.html', title='Mis Contenedores', containers=containers, form=form)
 
-@main.route("/containers/<container_id>/edit", methods=['GET', 'POST'])
+@main.route("/containers/<container_id>/edit", methods=["GET", "POST"])
 @login_required
 def edit_container(container_id):
     container = Container.objects(id=container_id).first()
     if not container:
-        abort(404)
+        abort(404, description="Contenedor no encontrado")
 
-    form = ContainerForm()
+    # Crear formularios
+    form = EditContainerForm(obj=container)
+    delete_form = DeleteImageForm()
 
+    # Procesar formulario de eliminación de imagen
+    if request.method == "POST" and request.form.get("delete_image_id"):
+        image_name = request.form.get("delete_image_id")
+        if image_name in container.image_files:
+            try:
+                container.image_files.remove(image_name)
+                container.save()
+
+                # Eliminar archivo físico de la carpeta estática
+                image_path = os.path.join(current_app.root_path, 'static/container_pics', image_name)
+                if os.path.exists(image_path):
+                    os.remove(image_path)
+
+                flash("Imagen eliminada correctamente", "success")
+            except Exception as e:
+                logging.error(f"Error al eliminar la imagen: {e}")
+                flash("Error al eliminar la imagen", "danger")
+        return redirect(url_for("main.edit_container", container_id=container.id))
+
+    # Procesar formulario de actualización del contenedor
     if form.validate_on_submit():
-        # Normalizar el nombre ingresado y el nombre original
-        original_name_normalized = normalize_name(container.name)
-        new_name_normalized = normalize_name(form.name.data)
-
-        logger.info(f"Nombre original normalizado: {original_name_normalized}")
-        logger.info(f"Nuevo nombre normalizado: {new_name_normalized}")
-
-        # Verificar si el nombre cambió
-        if new_name_normalized != original_name_normalized:
-            logger.info("El nombre del contenedor ha cambiado, verificando si ya está en uso.")
-            existing_container = Container.objects(name=new_name_normalized).first()
-            if existing_container and existing_container.id != container.id:
-                flash('El nombre del contenedor ya está en uso. Por favor, elige un nombre diferente.', 'danger')
-                return render_template('edit_container.html', form=form, container=container)
-        
-        # Actualizar los campos del contenedor
-        logger.info(f"Imágenes recibidas: {form.pictures.data}")
-        if form.pictures.data:
-            picture_files = []
-            for picture in form.pictures.data:
-                if isinstance(picture, FileStorage) and picture.filename != '':
-                    picture_file = save_container_picture(picture)
-                    picture_files.append(picture_file)
-            container.image_files = picture_files
-
-        container.name = form.name.data  # Usar el nombre original sin normalizar para almacenar
+        # Actualizar campos básicos
+        container.name = form.name.data
         container.location = form.location.data
-        container.items = [item.strip() for item in form.items.data.split(",")]
+        
+        # Si `form.items.data` es una cadena separada por comas, conviértelo en una lista
+        if isinstance(form.items.data, str):
+            container.items = [normalize_name(item.strip()) for item in form.items.data.split(",")]
+        else:
+            container.items = [normalize_name(item.strip()) for item in form.items.data]
+
+        # Manejar la subida de nuevas imágenes
+        if form.pictures.data:
+            for picture in form.pictures.data:
+                if picture.filename != '':
+                    try:
+                        filename = save_container_picture(picture)
+                        container.image_files.append(filename)
+                    except Exception as e:
+                        logging.error(f"Error guardando la imagen: {e}")
+                        flash("Error al guardar una de las imágenes.", "danger")
+                        return render_template("edit_container.html", container=container, form=form, delete_form=delete_form)
+
+        # Guarda el contenedor actualizado en la base de datos
         container.save()
+        flash("Contenedor actualizado correctamente", "success")
+        return redirect(url_for("main.container_detail", container_id=container.id))
 
-        logger.info(f"Contenedor {container.id} guardado exitosamente.")
-        flash('Contenedor actualizado exitosamente', 'success')
-        return redirect(url_for('main.container_detail', container_id=container.id))
-
-    elif request.method == 'GET':
-        form.name.data = container.name
-        form.location.data = container.location
-        form.items.data = ", ".join(container.items)
-
-    return render_template('edit_container.html', title='Editar Contenedor', form=form, container=container)
+    return render_template("edit_container.html", container=container, form=form, delete_form=delete_form)
 
 @main.route("/containers/<container_id>/print_detail")
 @login_required

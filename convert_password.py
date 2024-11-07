@@ -1,5 +1,5 @@
 import bcrypt
-from mongoengine import connect, disconnect
+from mongoengine import disconnect
 from app import create_app
 from app.models import User
 

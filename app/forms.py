@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, FileField, SubmitField, PasswordField, BooleanField, MultipleFileField
+from wtforms import StringField, TextAreaField, FileField, SubmitField, HiddenField, PasswordField, BooleanField, MultipleFileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileAllowed
 from app.models import User, Container
@@ -50,6 +50,13 @@ class ContainerForm(FlaskForm):
     def validate_name(self, name):
         if Container.objects(name=name.data).first():
             raise ValidationError('El nombre del contenedor ya está en uso. Por favor, elige un nombre diferente.')
+
+class EditContainerForm(FlaskForm):
+    name = StringField('Nombre del Contenedor', validators=[DataRequired()])
+    location = StringField('Situación', validators=[DataRequired()])
+    items = TextAreaField('Elementos (separados por comas)', validators=[DataRequired()])
+    pictures = MultipleFileField('Añadir Fotos', validators=[FileAllowed(['jpeg', 'jpg', 'png'], 'Solo se permiten imágenes.')])
+    submit = SubmitField('Guardar Cambios')
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -109,3 +116,8 @@ class SearchContainerForm(FlaskForm):
 class SearchUserForm(FlaskForm):
     search = StringField('Buscar Usuario (por nombre de usuario o email)', validators=[DataRequired()])
     submit = SubmitField('Buscar')
+
+#Crea un formulario para manejar la eliminación de imágenes.
+class DeleteImageForm(FlaskForm):
+    delete_image_id = HiddenField()
+    submit = SubmitField('Eliminar')

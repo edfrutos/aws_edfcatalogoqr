@@ -3,6 +3,7 @@ import secrets
 from PIL import Image
 from flask import current_app, url_for, abort
 from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
 import qrcode
 from flask_mail import Message
 from app.extensions import mail
@@ -36,10 +37,10 @@ def admin_required(func):
 
 # Función para normalizar nombres
 def normalize_name(name):
-    """
-    Normaliza el nombre eliminando acentos, convirtiendo a minúsculas
-    y reemplazando espacios múltiples por uno solo.
-    """
+    """Normaliza el nombre eliminando acentos, convirtiendo a minúsculas,
+    eliminando caracteres especiales y reemplazando espacios múltiples por uno solo."""
+    name = name.strip()
+    name = " ".join(name.split())  # Elimina espacios adicionales entre palabras
     name_normalized = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode('utf-8').lower()
     name_normalized = re.sub(r'[^a-z0-9]+', ' ', name_normalized).strip()
     return name_normalized
@@ -111,6 +112,13 @@ def save_container_picture(form_picture, folder='container_pics', output_size=(8
         raise
 
     return picture_fn
+
+def save_image_file(image_file, path):
+    """Guarda una imagen en una ruta especificada."""
+    filename = secure_filename(image_file.filename)
+    image_path = os.path.join(path, filename)
+    image_file.save(image_path)
+    return filename
 
 # Función para generar un código QR
 def generate_qr(data, filename, output_size=(300, 300)):

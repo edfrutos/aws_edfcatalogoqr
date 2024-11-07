@@ -1,13 +1,13 @@
 {
-    "CodeGPT.apiKey": "CodeGPT Plus Beta",
-    "prettier.htmlWhitespaceSensitivity": "ignore",
-    "[django-html]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "files.associations": {
-      "*.html": "django-html"
-    },
-    "git.ignoreLimitWarning": true,
-    "pieces.cloudCapabilities": "Blended",
-    "pieces.telemetry": true
-  }
+  "CodeGPT.apiKey": "CodeGPT Plus Beta",
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "[django-html]": {
+    "editor.defaultFormatter": "junstyle.vscode-django-support"
+  },
+  "files.associations": {
+    "*.html": "django-html"
+  },
+  "git.ignoreLimitWarning": true,
+  "pieces.cloudCapabilities": "Blended",
+  "pieces.telemetry": true
+}

@@ -1,70 +1,156 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 
-<div class="edit-container">
-  <h2 class="text-center">Editar Contenedor</h2>
-  
-  <form method="POST" action="{{ url_for('main.edit_container', container_id=container.id) }}" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
-    
-    <!-- Campo de nombre del contenedor -->
-    <div class="form-group">
-      {{ form.name.label(class="form-control-label") }}
-      {{ form.name(class="form-control") }}
-      {% for error in form.name.errors %}
-        <div class="text-danger">{{ error }}</div>
-      {% endfor %}
-    </div>
-    
-    <!-- Campo de ubicación del contenedor -->
-    <div class="form-group">
-      {{ form.location.label(class="form-control-label") }}
-      {{ form.location(class="form-control") }}
-      {% for error in form.location.errors %}
-        <div class="text-danger">{{ error }}</div>
-      {% endfor %}
-    </div>
-    
-    <!-- Campo de objetos del contenedor -->
-    <div class="form-group">
-      {{ form.items.label(class="form-control-label") }}
-      {{ form.items(class="form-control") }}
-      {% for error in form.items.errors %}
-        <div class="text-danger">{{ error }}</div>
-      {% endfor %}
-    </div>
-    
-    <!-- Campo para cargar nuevas imágenes -->
-    <div class="form-group">
-      {{ form.pictures.label(class="form-control-label btn btn-secondary") }}
-      {{ form.pictures(class="form-control-file btn btn-secondary", multiple=True) }}
-      {% for error in form.pictures.errors %}
-        <div class="text-danger">{{ error }}</div>
-      {% endfor %}
-    </div>
-    
-    <!-- Mostrar imágenes actuales -->
-    {% if container.image_files %}
-    <div class="form-group">
-      <h5>Imágenes actuales:</h5>
-      <div class="row">
-        {% for image_file in container.image_files %}
-        <div class="col-md-4">
-          <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid mb-2" style="max-width: 150px; height: auto;">
-          <p>{{ image_file }}</p>
-        </div>
+  <div class="edit-container">
+    <h2 class="text-center">Editar Contenedor</h2>
+
+    <!-- Formulario para guardar cambios -->
+    <form method="POST" action="{{ url_for('main.edit_container', container_id=container.id) }}" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+      <!-- Campo de nombre del contenedor -->
+      <div class="form-group">
+        {{ form.name.label(class='form-control-label') }}
+        {{ form.name(class='form-control') }}
+        {% for error in form.name.errors %}
+          <div class="text-danger">{{ error }}</div>
         {% endfor %}
       </div>
+
+      <!-- Campo de ubicación del contenedor -->
+      <div class="form-group">
+        {{ form.location.label(class='form-control-label') }}
+        {{ form.location(class='form-control') }}
+        {% for error in form.location.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <!-- Campo de objetos del contenedor -->
+      <div class="form-group">
+        {{ form.items.label(class='form-control-label') }}
+        {{ form.items(class='form-control') }}
+        {% for error in form.items.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <!-- Campo para cargar nuevas imágenes -->
+      <div class="form-group">
+        {{ form.pictures.label(class='form-control-label btn btn-secondary') }}
+        {{ form.pictures(class='form-control-file btn btn-secondary', multiple=True) }}
+        {% for error in form.pictures.errors %}
+          <div class="text-danger">{{ error }}</div>
+        {% endfor %}
+      </div>
+
+      <!-- Mostrar imágenes actuales con opción de vista previa y eliminación -->
+      {% if container.image_files %}
+        <div class="form-group">
+          <h5>Imágenes actuales:</h5>
+          <div class="row">
+            {% for image_file in container.image_files %}
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid card-img-top" style="cursor: pointer" onclick="showPreview('{{ url_for('static', filename='container_pics/' ~ image_file) }}')" />
+                  <div class="card-body text-center">
+                    <form method="POST" action="{{ url_for('main.edit_container', container_id=container.id) }}" style="display: inline;">
+                      {{ delete_form.hidden_tag() }}
+                      <input type="hidden" name="delete_image_id" value="{{ image_file }}" />
+                      <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      <!-- Botón de Guardar Cambios -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary">Volver a la Lista</a>
+        <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary">Volver a Opciones</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal para vista previa de imagen -->
+  <div id="previewModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closePreview()">&times;</span>
+      <img id="previewImage" src="" alt="Vista Previa" style="width: 100%; height: auto;" />
     </div>
-    {% endif %}
+  </div>
+
+  <style>
+    /* Estilos para el modal */
+    .modal {
+      display: none; /* Oculto por defecto */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+      align-items: center;
+      justify-content: center;
+    }
     
-    <!-- Botones de acción -->
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-      <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary">Volver a la Lista</a>
-      <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary">Volver a Opciones</a>
-    </div>
-  </form>
-</div>
+    .modal-content {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+    }
+    
+    /* Ajuste para dispositivos móviles */
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 90%;
+      }
+      .close {
+        font-size: 24px;
+      }
+    }
+  </style>
+
+  <script>
+    function showPreview(imageUrl) {
+      if (imageUrl) {
+        document.getElementById('previewImage').src = imageUrl
+        document.getElementById('previewModal').style.display = 'flex'
+      }
+    }
+    
+    function closePreview() {
+      document.getElementById('previewModal').style.display = 'none'
+      document.getElementById('previewImage').src = ''
+    }
+    
+    window.onclick = function (event) {
+      const modal = document.getElementById('previewModal')
+      if (event.target === modal) {
+        closePreview()
+      }
+    }
+  </script>
 {% endblock %}
