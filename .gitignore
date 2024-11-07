@@ -10,3 +10,6 @@ venv/
 
 # Ignorar archivos del sistema de macOS
 _DS_Store
+
+# Ignora archvos de Cyberduck
+**/.duckversions/

@@ -6,6 +6,7 @@ load_dotenv()
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'your_default_secret_key')
+    SECURITY_PASSWORD_SALT = os.getenv('SECURITY_PASSWORD_SALT', 'your_default_salt')  # Agregado
     MONGODB_SETTINGS = {
         'db': os.getenv('MONGO_DB', 'app-qr-catalogacion'),
         'host': os.getenv('MONGO_URI', 'mongodb://localhost:27017/app-qr-catalogacion')

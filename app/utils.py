@@ -150,7 +150,7 @@ def save_qr_image(data, container_name):
     
     return qr_path
 
-# Función para enviar un correo de restablecimiento de contraseña
+
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message('Solicitud de Restablecimiento de Contraseña', sender='admin@edefrutos.me', recipients=[user.email])
