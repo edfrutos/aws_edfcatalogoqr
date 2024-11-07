@@ -17,8 +17,7 @@ import unicodedata
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-handler = logging.FileHandler('logs/utils.log')
-handler.setLevel(logging.INFO)
+handler = logging.FileHandler('logs/app.log')
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)

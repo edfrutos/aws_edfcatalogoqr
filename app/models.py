@@ -83,7 +83,7 @@ class Container(Document):
     items = ListField(StringField())
     image_files = ListField(StringField())  # Lista de nombres de archivos de imágenes
     qr_image = StringField()  # Nombre del archivo QR
-    user = ReferenceField(User, required=True, reverse_delete_rule='CASCADE')
+    user = ReferenceField('User', required=True)
 
     def __repr__(self):
         return f"Container('{self.name}', '{self.location}')"

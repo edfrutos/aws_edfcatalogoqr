@@ -491,6 +491,10 @@ button {
   margin-bottom: 1.5rem;
 }
 
+.mt-5, .my-5 {
+  margin-top: 0rem !important;
+}
+
 .h-100 {
   height: 100%;
 }

@@ -1,1 +1,18 @@
-2024-11-07 10:37:50,892 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-07 19:30:41,495 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
+2024-11-07 19:30:41,668 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]
+2024-11-07 19:30:42,930 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-07 19:30:42,930 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-07 19:38:50,025 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-07 19:38:50,164 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-11-07 19:38:50,164 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
+2024-11-07 19:38:50,410 - app.models - INFO - Conectado a la base de datos.
+2024-11-07 19:38:50,410 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]
+2024-11-07 19:38:51,117 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-07 19:38:51,117 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-07 19:50:02,564 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-07 19:50:02,577 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-11-07 19:50:02,577 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
+2024-11-07 19:50:03,212 - app.models - INFO - Conectado a la base de datos.
+2024-11-07 19:50:03,212 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]
+2024-11-07 19:50:04,771 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-07 19:50:04,771 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]

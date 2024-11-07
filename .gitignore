@@ -4,12 +4,14 @@ __pycache__/
 
 # Ignorar logs
 logs/*.log*.pyc
+*.logs
 
 # Ignorar directorios de entornos virtuales
 venv/
 
 # Ignorar archivos del sistema de macOS
 _DS_Store
+.DS_Store
 
 # Ignora archvos de Cyberduck
 **/.duckversions/
