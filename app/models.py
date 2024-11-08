@@ -80,7 +80,7 @@ class User(Document, UserMixin):
 class Container(Document):
     name = StringField(required=True)
     location = StringField(required=True)
-    items = ListField(StringField())
+    items = ListField(StringField())  # Almacena elementos como lista de cadenas
     image_files = ListField(StringField())  # Lista de nombres de archivos de imágenes
     qr_image = StringField()  # Nombre del archivo QR
     user = ReferenceField('User', required=True)

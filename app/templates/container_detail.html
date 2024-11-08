@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
-  <div class="container mt-5">
-    <div class="row justify-content-center">
+  <div class="container-detail">
+    <div class="row-detail">
       <div class="col-md-8">
         <div class="card">
           <div class="card-header text-center">
@@ -10,6 +10,8 @@
           <div class="card-body">
             <h4>Nombre: {{ container.name }}</h4>
             <h5>Ubicación: {{ container.location }}</h5>
+
+            <!-- Mostrar los objetos en una lista, un objeto por línea -->
             <h5>Objetos:</h5>
             <ul>
               {% for item in container.items %}
@@ -17,6 +19,7 @@
               {% endfor %}
             </ul>
 
+            <!-- Mostrar imágenes si existen -->
             {% if container.image_files %}
               <h5>Imágenes del Contenedor:</h5>
               <div class="row">
@@ -24,9 +27,6 @@
                   <div class="col-md-4 mb-3">
                     <div class="card">
                       <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid card-img-top" style="cursor: pointer" onclick="showPreview('{{ url_for('static', filename='container_pics/' ~ image_file) }}')" />
-                      <div class="card-body">
-                        <p class="text-center">{{ image_file }}</p>
-                      </div>
                     </div>
                   </div>
                 {% endfor %}
@@ -35,6 +35,7 @@
               <p>No se encontraron imágenes.</p>
             {% endif %}
 
+            <!-- Mostrar código QR si existe -->
             <h5>Código QR:</h5>
             {% if container.qr_image %}
               <img src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}" alt="Código QR" class="img-fluid" style="width: 150px; height: 150px" />
@@ -52,63 +53,18 @@
     </div>
   </div>
 
-  <div id="previewModal" class="modal">
-    <span class="close" onclick="closePreview()">&times;</span>
-    <div class="modal-content">
+  <!-- Modal para vista previa -->
+  <div id="previewModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
+    <div style="position: relative; width: 75%; max-width: 75%; background-color: #fff; border-radius: 8px; padding: 20px;">
+      <span onclick="closePreview()" style="cursor: pointer; color: black; font-size: 2em; position: absolute; top: 10px; right: 20px;">&times;</span>
       <img id="previewImage" src="" alt="Vista Previa" style="width: 100%; height: auto;" />
     </div>
   </div>
 
-  <style>
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .modal-content {
-      position: relative;
-      width: 80%;
-      max-width: 800px;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 30px;
-      font-weight: bold;
-      color: #333;
-      cursor: pointer;
-    }
-    
-    @media (max-width: 768px) {
-      .modal-content {
-        width: 90%;
-      }
-      .close {
-        font-size: 24px;
-      }
-    }
-  </style>
-
   <script>
     function showPreview(imageUrl) {
-      if (imageUrl) {
-        document.getElementById('previewImage').src = imageUrl
-        document.getElementById('previewModal').style.display = 'flex'
-      }
+      document.getElementById('previewImage').src = imageUrl
+      document.getElementById('previewModal').style.display = 'flex'
     }
     
     function closePreview() {

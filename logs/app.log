@@ -1,18 +1,73 @@
-2024-11-07 19:30:41,495 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
-2024-11-07 19:30:41,668 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]
-2024-11-07 19:30:42,930 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
-2024-11-07 19:30:42,930 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
-2024-11-07 19:38:50,025 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
-2024-11-07 19:38:50,164 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
-2024-11-07 19:38:50,164 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
-2024-11-07 19:38:50,410 - app.models - INFO - Conectado a la base de datos.
-2024-11-07 19:38:50,410 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]
-2024-11-07 19:38:51,117 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
-2024-11-07 19:38:51,117 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
-2024-11-07 19:50:02,564 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
-2024-11-07 19:50:02,577 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
-2024-11-07 19:50:02,577 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
-2024-11-07 19:50:03,212 - app.models - INFO - Conectado a la base de datos.
-2024-11-07 19:50:03,212 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]
-2024-11-07 19:50:04,771 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
-2024-11-07 19:50:04,771 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-08 21:32:30,236 - app - ERROR - Exception on /containers/6726013bbe87afa8b08bde43/edit [GET] [in /Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/routes.py", line 366, in edit_container
+    delete_form=delete_form
+                ^^^^^^^^^^^
+NameError: name 'delete_form' is not defined
+2024-11-08 21:32:57,498 - app - ERROR - Exception on /containers/6726013bbe87afa8b08bde43/edit [GET] [in /Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/routes.py", line 366, in edit_container
+    delete_form=delete_form
+                ^^^^^^^^^^^
+NameError: name 'delete_form' is not defined
+2024-11-08 21:33:59,348 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-08 21:33:59,353 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-11-08 21:33:59,353 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
+2024-11-08 21:33:59,911 - app.models - INFO - Conectado a la base de datos.
+2024-11-08 21:33:59,911 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]
+2024-11-08 21:34:23,963 - app - ERROR - Exception on /containers/6726013bbe87afa8b08bde43/edit [GET] [in /Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/routes.py", line 366, in edit_container
+    delete_form=delete_form
+                ^^^^^^^^^^^
+NameError: name 'delete_form' is not defined
+2024-11-08 21:37:49,443 - app - INFO - Aplicación Flask iniciada correctamente [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/__init__.py:57]
+2024-11-08 21:37:49,462 - app.models - INFO - Desconexión exitosa de la base de datos anterior.
+2024-11-08 21:37:49,462 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
+2024-11-08 21:37:50,153 - app.models - INFO - Conectado a la base de datos.
+2024-11-08 21:37:50,153 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]

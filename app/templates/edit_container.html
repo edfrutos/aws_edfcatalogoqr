@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-  <style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+<style>
     .edit-container {
         max-width: 1200px;
         margin: 0 auto;
@@ -26,20 +26,20 @@
             opacity: 1;
         }
     }
-    </style>
+</style>
 
-  <div class="edit-container">
+<div class="edit-container">
     <h2 class="text-center mb-4">Editar Contenedor</h2>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
-      {% endif %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
     {% endwith %}
 
     <!-- Formulario para guardar cambios -->
@@ -47,201 +47,180 @@
           action="{{ url_for('main.edit_container', container_id=container.id) }}" 
           enctype="multipart/form-data"
           id="editContainerForm">
-      {{ form.hidden_tag() }}
+        {{ form.hidden_tag() }}
 
-      <!-- Campo de nombre del contenedor -->
-      <div class="form-group mb-3">
-        {{ form.name.label(class='form-control-label') }}
-        {{ form.name(class='form-control' + (' is-invalid' if form.name.errors else '')) }}
-        {% for error in form.name.errors %}
-          <div class="invalid-feedback">{{ error }}</div>
-        {% endfor %}
-      </div>
-
-      <!-- Campo de ubicación del contenedor -->
-      <div class="form-group mb-3">
-        {{ form.location.label(class='form-control-label') }}
-        {{ form.location(class='form-control' + (' is-invalid' if form.location.errors else '')) }}
-        {% for error in form.location.errors %}
-          <div class="invalid-feedback">{{ error }}</div>
-        {% endfor %}
-      </div>
-
-      <!-- Campo de objetos del contenedor -->
-      <div class="form-group mb-3">
-        {{ form.items.label(class='form-control-label') }}
-        {{ form.items(class='form-control' + (' is-invalid' if form.items.errors else '')) }}
-        <small class="form-text text-muted">Separa los objetos con comas</small>
-        {% for error in form.items.errors %}
-          <div class="invalid-feedback">{{ error }}</div>
-        {% endfor %}
-      </div>
-
-      <!-- Campo para cargar nuevas imágenes -->
-      <div class="form-group mb-4">
-        {{ form.pictures.label(class='form-label') }}
-        {{ form.pictures(class='form-control', multiple=True, accept='image/*') }}
-        <div id="imagePreview" class="row mt-2"></div>
-        {% for error in form.pictures.errors %}
-          <div class="text-danger">{{ error }}</div>
-        {% endfor %}
-      </div>
-
-      <!-- Mostrar imágenes actuales -->
-      {% if container.image_files %}
-        <div class="form-group mb-4">
-          <h5>Imágenes actuales:</h5>
-          <div class="row" id="existingImages">
-            {% for image_file in container.image_files %}
-              <div class="col-md-4 mb-3" id="image-container-{{ image_file }}">
-                <div class="card h-100">
-                  <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" 
-                       alt="Imagen del Objeto" 
-                       class="card-img-top"
-                       style="height: 200px; object-fit: cover; cursor: pointer"
-                       onclick="showPreview('{{ url_for('static', filename='container_pics/' ~ image_file) }}')" />
-                  <div class="card-body">
-                    <button type="button" 
-                            class="btn btn-danger btn-sm w-100"
-                            onclick="deleteImage('{{ container.id }}', '{{ image_file }}')">
-                      <i class="fas fa-trash-alt"></i> Eliminar
-                    </button>
-                  </div>
-                </div>
-              </div>
+        <!-- Campo de nombre del contenedor -->
+        <div class="form-group mb-3">
+            {{ form.name.label(class='form-control-label') }}
+            {{ form.name(class='form-control' + (' is-invalid' if form.name.errors else '')) }}
+            {% for error in form.name.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
             {% endfor %}
-          </div>
         </div>
-      {% endif %}
 
-      <!-- Botones de acción -->
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">
-          <i class="fas fa-save"></i> Guardar Cambios
-        </button>
-        <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary">
-          <i class="fas fa-list"></i> Volver a la Lista
-        </a>
-      </div>
+        <!-- Campo de ubicación del contenedor -->
+        <div class="form-group mb-3">
+            {{ form.location.label(class='form-control-label') }}
+            {{ form.location(class='form-control' + (' is-invalid' if form.location.errors else '')) }}
+            {% for error in form.location.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Campo de objetos del contenedor -->
+        <div class="form-group mb-3">
+            {{ form.items.label(class='form-control-label') }}
+            {{ form.items(class='form-control' + (' is-invalid' if form.items.errors else '')) }}
+            <small class="form-text text-muted">Separa los objetos con comas</small>
+            {% for error in form.items.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Campo para cargar nuevas imágenes -->
+        <div class="form-group mb-4">
+            {{ form.pictures.label(class='form-label') }}
+            {{ form.pictures(class='form-control', multiple=True, accept='image/*') }}
+            <div id="imagePreview" class="row mt-2"></div>
+            {% for error in form.pictures.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Mostrar imágenes actuales -->
+        {% if container.image_files %}
+            <div class="form-group mb-4">
+                <h5>Imágenes actuales:</h5>
+                <div class="row" id="existingImages">
+                    {% for image_file in container.image_files %}
+                    <div class="col-md-4 mb-3" id="image-container-{{ image_file }}">
+                        <div class="card h-100">
+                            <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" 
+                                 alt="Imagen del Objeto" 
+                                 class="card-img-top"
+                                 style="height: 200px; object-fit: cover; cursor: pointer"
+                                 onclick="showPreview('{{ url_for('static', filename='container_pics/' ~ image_file) }}')" />
+                            <div class="card-body">
+                                <button type="button" 
+                                        class="btn btn-danger btn-sm w-100"
+                                        onclick="deleteImage('{{ container.id }}', '{{ image_file }}')">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- Botones de acción -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Guardar Cambios
+            </button>
+            <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary">
+                <i class="fas fa-list"></i> Volver a la Lista
+            </a>
+        </div>
     </form>
-  </div>
+</div>
 
-  <!-- Modal para vista previa -->
-  <div class="modal fade" id="imagePreviewModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Vista Previa</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <img id="modalImage" src="" alt="Vista Previa" class="img-fluid">
-        </div>
-      </div>
+<!-- Modal para vista previa -->
+<div id="previewModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center;">
+    <div style="position: relative; width: 60%; max-width: 60%; background-color: #fff; border-radius: 8px; padding: 20px;">
+        <button onclick="closePreview()" style="cursor: pointer; color: black; font-size: 1.5em; position: absolute; top: 10px; right: 20px; background: none; border: none;">&times;</button>
+        <img id="previewImage" src="" alt="Vista Previa" style="width: 100%; height: auto;" />
     </div>
-  </div>
+</div>
 
 <script>
-// Función para eliminar imagen
-function deleteImage(containerId, imageName) {
-    if (!confirm('¿Estás seguro de que deseas eliminar esta imagen?')) {
-        return;
+    // Función para mostrar vista previa de la imagen seleccionada
+    function showPreview(imageUrl) {
+        document.getElementById("previewImage").src = imageUrl;
+        document.getElementById("previewModal").style.display = "flex";
     }
 
-    fetch(`/containers/${containerId}/delete_image/${imageName}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': '{{ csrf_token() }}'
+    function closePreview() {
+        document.getElementById("previewModal").style.display = "none";
+        document.getElementById("previewImage").src = "";
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById("previewModal");
+        if (event.target === modal) {
+            closePreview();
         }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById(`image-container-${imageName}`).remove();
-            showAlert('Imagen eliminada correctamente', 'success');
-        } else {
-            showAlert(data.error || 'Error al eliminar la imagen', 'danger');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showAlert('Error al eliminar la imagen', 'danger');
-    });
-}
+    }
 
-// Función para mostrar alertas
-function showAlert(message, type) {
-    const alertDiv = document.createElement('div');
-    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
-    alertDiv.innerHTML = `
-        ${message}
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    `;
-    document.querySelector('.edit-container').insertBefore(alertDiv, document.querySelector('form'));
-    
-    setTimeout(() => alertDiv.remove(), 3000);
-}
+    // Función para eliminar imagen
+    function deleteImage(containerId, imageName) {
+        fetch(`/containers/${containerId}/delete_image/${imageName}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById(`image-container-${imageName}`).remove();
+                showAlert('Imagen eliminada correctamente', 'success');
+            } else {
+                showAlert(data.error || 'Error al eliminar la imagen', 'danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showAlert('Error al eliminar la imagen', 'danger');
+        });
+    }
 
-// Vista previa de imagen
-function showPreview(imageUrl) {
-    const modalImage = document.getElementById('modalImage');
-    modalImage.src = imageUrl;
-    new bootstrap.Modal(document.getElementById('imagePreviewModal')).show();
-}
+    // Función para mostrar alertas
+    function showAlert(message, type) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+        alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.querySelector('.edit-container').insertBefore(alertDiv, document.querySelector('form'));
+        
+        setTimeout(() => alertDiv.remove(), 3000);
+    }
 
-// Vista previa de nuevas imágenes
-document.querySelector('input[type="file"]').addEventListener('change', function(event) {
-    const preview = document.getElementById('imagePreview');
-    preview.innerHTML = '';
-    
-    Array.from(event.target.files).forEach(file => {
-        if (!file.type.startsWith('image/')) {
-            showAlert('Por favor, selecciona solo archivos de imagen', 'warning');
-            return;
-        }
+    // Vista previa de nuevas imágenes seleccionadas
+    document.querySelector('input[type="file"]').addEventListener('change', function(event) {
+        const preview = document.getElementById('imagePreview');
+        preview.innerHTML = '';
+        
+        Array.from(event.target.files).forEach(file => {
+            if (!file.type.startsWith('image/')) {
+                showAlert('Por favor, selecciona solo archivos de imagen', 'warning');
+                return;
+            }
 
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const col = document.createElement('div');
-            col.className = 'col-md-4 mb-3';
-            col.innerHTML = `
-                <div class="card">
-                    <img src="${e.target.result}" 
-                         class="card-img-top" 
-                         style="height: 200px; object-fit: cover"
-                         alt="Vista previa">
-                    <div class="card-body">
-                        <p class="card-text small">${file.name}</p>
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const col = document.createElement('div');
+                col.className = 'col-md-4 mb-3';
+                col.innerHTML = `
+                    <div class="card">
+                        <img src="${e.target.result}" 
+                             class="card-img-top" 
+                             style="height: 200px; object-fit: cover"
+                             alt="Vista previa">
+                        <div class="card-body">
+                            <p class="card-text small">${file.name}</p>
+                        </div>
                     </div>
-                </div>
-            `;
-            preview.appendChild(col);
-        }
-        reader.readAsDataURL(file);
-    });
-});
-
-// Validación del formulario
-document.getElementById('editContainerForm').addEventListener('submit', function(e) {
-    const requiredFields = ['name', 'location'];
-    let isValid = true;
-
-    requiredFields.forEach(field => {
-        const input = this.querySelector(`#${field}`);
-        if (!input.value.trim()) {
-            isValid = false;
-            input.classList.add('is-invalid');
-            showAlert(`El campo ${field} es obligatorio`, 'danger');
-        } else {
-            input.classList.remove('is-invalid');
-        }
+                `;
+                preview.appendChild(col);
+            }
+            reader.readAsDataURL(file);
+        });
     });
 
-    if (!isValid) {
-        e.preventDefault();
-    }
-});
 </script>
-
-    {% endblock %}
+{% endblock %}
