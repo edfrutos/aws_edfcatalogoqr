@@ -52,9 +52,9 @@
         <!-- Campo de nombre del contenedor -->
         <div class="form-group mb-3">
             {{ form.name.label(class='form-control-label') }}
-            {{ form.name(class='form-control' + (' is-invalid' if form.name.errors else '')) }}
+            {{ form.name(class="form-control" + (" is-invalid" if form.name.errors else "")) }}
             {% for error in form.name.errors %}
-                <div class="invalid-feedback">{{ error }}</div>
+            <div class="invalid-feedback">{{ error }}</div>
             {% endfor %}
         </div>
 

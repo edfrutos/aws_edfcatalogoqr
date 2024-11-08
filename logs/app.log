@@ -71,3 +71,5 @@ NameError: name 'delete_form' is not defined
 2024-11-08 21:37:49,462 - app.models - INFO - Desconexión exitosa de la base de datos anterior. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:23]
 2024-11-08 21:37:50,153 - app.models - INFO - Conectado a la base de datos.
 2024-11-08 21:37:50,153 - app.models - INFO - Conectado a la base de datos. [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/models.py:29]
+2024-11-08 21:45:09,393 - app.utils - INFO - Imagen del contenedor guardada en: /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/static/container_pics/375f1b1b10866e0a.jpg
+2024-11-08 21:45:09,393 - app.utils - INFO - Imagen del contenedor guardada en: /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/static/container_pics/375f1b1b10866e0a.jpg [in /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/utils.py:108]
