@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="reset-request">
     <h1>Restablecer Contraseña</h1>
     <form method="POST" action="{{ url_for('main.reset_request') }}">
         {{ form.hidden_tag() }}
@@ -16,4 +17,5 @@
         </div>
     </form>
     <a href="{{ url_for('main.home') }}" class="btn btn-primary">Volver a Inicio</a>
+</div>
 {% endblock %}

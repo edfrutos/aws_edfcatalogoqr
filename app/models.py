@@ -9,7 +9,6 @@ from app.extensions import login_manager, bcrypt
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-# Añadiendo un handler de logging si no existe ya uno
 if not logger.handlers:
     handler = logging.FileHandler('logs/models.log')
     handler.setLevel(logging.INFO)
@@ -17,17 +16,14 @@ if not logger.handlers:
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
-# URI de conexión a la base de datos
 DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority"
 
-# Desconectar si ya hay una conexión existente
 try:
-    disconnect()  # Desconectar la base de datos actual, si está conectada
+    disconnect()
     logger.info("Desconexión exitosa de la base de datos anterior.")
 except Exception as e:
     logger.warning(f"No se pudo desconectar: {e}")
 
-# Conectar a la base de datos
 try:
     connect(host=DB_URI)
     logger.info("Conectado a la base de datos.")
@@ -63,7 +59,7 @@ class User(Document, UserMixin):
         """Genera un token de reseteo de contraseña válido por expires_sec segundos."""
         logger.debug(f"Generando token de reseteo de contraseña para el usuario {self.username}")
         s = Serializer(current_app.config['SECRET_KEY'])
-        return s.dumps({'user_id': str(self.id)}).decode('utf-8')
+        return s.dumps({'user_id': str(self.id)}, salt=current_app.config['SECURITY_PASSWORD_SALT'])
 
     @staticmethod
     def verify_reset_token(token, expires_sec=1800):
@@ -71,7 +67,7 @@ class User(Document, UserMixin):
         logger.debug("Verificando token de reseteo de contraseña")
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
-            user_id = s.loads(token, max_age=expires_sec)['user_id']
+            user_id = s.loads(token, salt=current_app.config['SECURITY_PASSWORD_SALT'], max_age=expires_sec)['user_id']
             logger.info(f"Token válido para el usuario ID: {user_id}")
         except Exception as e:
             logger.error(f"Error verificando el token: {e}")

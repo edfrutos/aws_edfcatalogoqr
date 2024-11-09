@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 <div class="container-home">
 <div id="modal" class="modal-home">
   <div class="modal-content-home">
@@ -8,8 +9,10 @@
       a <br>
       EDF Catalogación QR</h1>
     <h5>Aplicación con la que sabrás en cualquier momento donde están todos tus objetos guardados en los diferentes contenedores que tu registres en esta misma aplicación.<br><br> De esta forma, puedes obtener información de en qué contenedor se encuentra, dónde está localizado dicho contenedor e inclusive adjuntar información gráfica (fotos) de los objetos buscados.<br><br> Todo ello mediante la lectura del QR que se genera al crear el registro con la identificación del objeto       buscado.</h5>
+    <div class="btn-modal-home">
     <button onclick="location.href='{{ url_for('main.contacto') }}'">Contacto</button>
     <button onclick="location.href='{{ url_for('main.welcome') }}'">Cerrar</button>
+    </div>
   </div>
 </div>
 <div id="landscape" class="landscape-home">
@@ -20,7 +23,6 @@
       <button onclick="location.href='{{ url_for('main.register') }}'">Registro</button>
       <button onclick="location.href='{{ url_for('main.reset_request') }}'">Recuperación de Contraseña</button>
       <button onclick="location.href='{{ url_for('main.contacto') }}'">Contacto</button>
-    </div>
   </div>
 </div>
 </div>

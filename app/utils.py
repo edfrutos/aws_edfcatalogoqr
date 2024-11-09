@@ -36,10 +36,10 @@ def admin_required(func):
 
 # Función para normalizar nombres
 def normalize_name(name):
-    """
-    Normaliza el nombre eliminando acentos, convirtiendo a minúsculas
-    y reemplazando espacios múltiples por uno solo.
-    """
+    """Normaliza el nombre eliminando acentos, convirtiendo a minúsculas,
+    eliminando caracteres especiales y reemplazando espacios múltiples por uno solo."""
+    name = name.strip()
+    name = " ".join(name.split())  # Elimina espacios adicionales entre palabras
     name_normalized = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode('utf-8').lower()
     name_normalized = re.sub(r'[^a-z0-9]+', ' ', name_normalized).strip()
     return name_normalized
@@ -150,7 +150,7 @@ def save_qr_image(data, container_name):
     
     return qr_path
 
-# Función para enviar un correo de restablecimiento de contraseña
+
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message('Solicitud de Restablecimiento de Contraseña', sender='admin@edefrutos.me', recipients=[user.email])
