@@ -1,14 +1,32 @@
+import os
 import mongoengine as db
+import bcrypt
+import certifi
+from app.models import User
+from mongoengine.connection import disconnect
+from dotenv import load_dotenv
 from flask_bcrypt import Bcrypt
 
+<<<<<<< HEAD
 DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/edf_catalogacion_qr?retryWrites=true&w=majority"
 from mongoengine.connection import disconnect
+=======
+# Cargar variables de entorno desde un archivo .env
+load_dotenv()
+>>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 
-# Desconectar si ya hay una conexión existente
-disconnect()
+# Configurar la conexión a la base de datos
+DB_URI = os.getenv("MONGO_URI")
+if not DB_URI:
+    raise ValueError("La URI de la base de datos no está configurada.")
 
-# Conectar a la base de datos
-db.connect(host=DB_URI)
+try:
+    disconnect()  # Desconectar si ya hay una conexión existente
+    db.connect(host=DB_URI, tlsCAFile=certifi.where())
+    print("Conexión a la base de datos establecida.")
+except Exception as e:
+    print(f"Error al conectar a la base de datos: {e}")
+    exit(1)
 bcrypt = Bcrypt()
 
 class User(db.Document):

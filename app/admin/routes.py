@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, url_for, flash, redirect, request, abort
-from flask_login import login_required, current_user
+from flask_login import login_required
 from app.forms import UpdateUserForm, SearchUserForm, SearchContainerForm, ContainerForm, DeleteAccountForm
-from app.models import User, Container
+from app.models import User
+from app.models import Container
 from app.utils import admin_required, save_profile_picture, save_container_picture
 from werkzeug.datastructures import FileStorage
 from mongoengine.queryset.visitor import Q

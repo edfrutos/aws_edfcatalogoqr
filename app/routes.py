@@ -1,24 +1,32 @@
-import os
-import boto3
 from flask import flash, current_app, render_template, url_for, redirect, request, Blueprint, abort, send_file, session, jsonify
-from werkzeug.utils import secure_filename
-from werkzeug.datastructures import FileStorage
 from flask_login import login_user, current_user, logout_user, login_required
+<<<<<<< HEAD
 from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, UpdateUserForm, SearchContainerForm, EditContainerForm
 from app.models import User, Container
 from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required, normalize_name
+=======
+from app.models import User, Container
+from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, SearchContainerForm, EditContainerForm, DeleteImageForm
+from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required, normalize_name
+import os
+import logging
+import boto3
+from werkzeug.datastructures import FileStorage
+>>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 from app.extensions import db, bcrypt, mail
 from flask_mail import Message
 import qrcode
-from io import BytesIO
 from mongoengine.queryset.visitor import Q
 from mongoengine.errors import NotUniqueError
-import secrets
-from PIL import Image
 from datetime import datetime
+<<<<<<< HEAD
 import logging
 import unicodedata
 
+=======
+
+
+>>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 main = Blueprint('main', __name__)
 
 # Inicializar el cliente de boto3 para S3
@@ -27,7 +35,7 @@ s3 = boto3.client('s3')
 # Configuración de logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler('logs/routes.log')
+handler = logging.FileHandler('logs/app.log')
 handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
@@ -187,26 +195,54 @@ def reset_token(token):
 def contacto():
     form = ContactForm()
     if form.validate_on_submit():
-        msg = Message(form.name.data + ' ha enviado un mensaje', sender=current_app.config['MAIL_USERNAME'], recipients=[current_app.config['MAIL_USERNAME']])
+        msg = Message(
+            subject=f"{form.name.data} ha enviado un mensaje",
+            sender=current_app.config['MAIL_USERNAME'],
+            recipients=['admin@efjdefrutos.com'],
+            reply_to=form.email.data  # Dirección del usuario como respuesta
+        )
         msg.body = f'''
         Nombre: {form.name.data}
-        Email: {form.email.data}
+        Email de contacto: {form.email.data}
         Mensaje: {form.message.data}
         '''
-        mail.send(msg)
+        
+        with current_app.app_context():
+            mail.send(msg)
+        
         flash('Tu mensaje ha sido enviado!', 'success')
         return redirect(url_for('main.home'))
+    
     return render_template('contacto.html', title='Contacto', form=form)
 
 from flask import abort
 @main.route('/container/<container_id>')
 @login_required
 def container_detail(container_id):
+<<<<<<< HEAD
         container = Container.objects(id=container_id).first()
         if not container:
             abort(404)
         image_size = {'width': 200, 'height': 'auto'}  # Define el tamaño aquí
         return render_template('container_detail.html', container=container, image_size=image_size)
+=======
+    container = Container.objects(id=container_id).first()
+    if not container:
+        abort(404)
+
+    # Convertir `items` a una sola línea de texto con comas
+    items_text = ", ".join([item.strip() for item in container.items]) if container.items else ""
+
+    # Definir el tamaño de la imagen
+    image_size = {'width': 200, 'height': 'auto'}
+
+    return render_template(
+        'container_detail.html',
+        container=container,
+        items_text=items_text,
+        image_size=image_size
+    )
+>>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 
 import re  # Asegúrate de tener importada esta librería para limpiar el nombre del archivo QR
 
@@ -317,6 +353,7 @@ def list_containers():
 @login_required
 def edit_container(container_id):
     container = Container.objects(id=container_id).first()
+<<<<<<< HEAD
     form = EditContainerForm(obj=container)
 
     if not container:
@@ -356,6 +393,71 @@ def edit_container(container_id):
         return redirect(url_for('main.container_detail', container_id=container.id))
 
     return render_template('edit_container.html', container=container, form=form)
+=======
+    if not container:
+        abort(404, description="Contenedor no encontrado")
+
+    # Verificar que el usuario actual es el propietario del contenedor
+    if str(container.user.id) != str(current_user.id):
+        abort(403)
+
+    # Crear el formulario de edición y el formulario de eliminación
+    form = EditContainerForm(obj=container)
+    delete_form = DeleteImageForm()  # Definir delete_form aquí
+
+    if request.method == "GET":
+        # Mostrar los objetos como una cadena separada por comas
+        form.items.data = ", ".join(container.items) if container.items else ""
+
+    if form.validate_on_submit():
+        # Convertir `items` en una lista y asignarla al contenedor
+        items_list = [item.strip() for item in form.items.data.split(",") if item.strip()]
+        container.items = items_list
+
+        # Procesar y agregar nuevas imágenes
+        new_images = []
+        if form.pictures.data:
+            for picture in form.pictures.data:
+                if picture.filename != '':
+                    filename = save_container_picture(picture)
+                    new_images.append(filename)
+        if new_images:
+            container.image_files.extend(new_images)
+
+        # Guardar el contenedor con los cambios
+        container.save()
+        flash("Contenedor actualizado correctamente", "success")
+        return redirect(url_for("main.container_detail", container_id=container.id))
+
+    return render_template(
+        "edit_container.html",
+        container=container,
+        form=form,
+        delete_form=delete_form  # Pasar delete_form al render_template
+    )
+
+@main.route("/containers/<container_id>/delete_image/<image_name>", methods=["POST"])
+@login_required
+def delete_container_image(container_id, image_name):
+    try:
+        container = Container.objects(id=container_id).first()
+        if not container:
+            return jsonify({"success": False, "error": "Contenedor no encontrado"}), 404
+            
+        # Eliminar archivo físico
+        image_path = os.path.join(current_app.root_path, 'static/container_pics', image_name)
+        if os.path.exists(image_path):
+            os.remove(image_path)
+            
+        # Actualizar la base de datos
+        container.update(pull__image_files=image_name)
+        container.reload()
+        
+        return jsonify({"success": True})
+    except Exception as e:
+        logger.error(f"Error eliminando imagen: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500
+>>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 
 @main.route("/containers/<container_id>/print_detail")
 @login_required

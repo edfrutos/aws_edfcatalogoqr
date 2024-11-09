@@ -2,7 +2,7 @@ import os
 from flask import Flask, url_for
 from flask_mail import Message
 from app.models import User
-from app.extensions import mail, bcrypt
+from app.extensions import mail
 from app.config import Config
 from dotenv import load_dotenv
 from mongoengine import connect, disconnect

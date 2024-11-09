@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # Conectar a la base de datos
-DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/edf_catalogacion_qr?retryWrites=true&w=majority"
+DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority"
 disconnect()
 connect(host=DB_URI)
 

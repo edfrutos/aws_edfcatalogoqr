@@ -3,6 +3,7 @@ import secrets
 from PIL import Image
 from flask import current_app, url_for, abort
 from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
 import qrcode
 from flask_mail import Message
 from app.extensions import mail
@@ -16,8 +17,7 @@ import unicodedata
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-handler = logging.FileHandler('logs/utils.log')
-handler.setLevel(logging.INFO)
+handler = logging.FileHandler('logs/app.log')
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
@@ -111,6 +111,13 @@ def save_container_picture(form_picture, folder='container_pics', output_size=(8
         raise
 
     return picture_fn
+
+def save_image_file(image_file, path):
+    """Guarda una imagen en una ruta especificada."""
+    filename = secure_filename(image_file.filename)
+    image_path = os.path.join(path, filename)
+    image_file.save(image_path)
+    return filename
 
 # Función para generar un código QR
 def generate_qr(data, filename, output_size=(300, 300)):

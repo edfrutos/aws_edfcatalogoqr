@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-# Crear una nueva cuenta de administrador
-from app.models import User
-admin = User(username='administrador', email='admin@example.com')
-admin.set_password('34Maf15si')
-admin.is_admin = True
-admin.save()
-=======
 import os
 import mongoengine as db
 import bcrypt
+from mongoengine.connection import disconnect
 from dotenv import load_dotenv
-import certifi
 
 # Cargar variables de entorno desde un archivo .env
 load_dotenv()
@@ -21,8 +13,8 @@ if not DB_URI:
     raise ValueError("La URI de la base de datos no está configurada.")
 
 try:
-    db.connect(host=DB_URI, tlsCAFile=certifi.where())
-    print("Conexión a la base de datos establecida.")
+    disconnect()  # Desconectar si ya hay una conexión existente
+    db.connect(host=DB_URI)
 except Exception as e:
     print(f"Error al conectar a la base de datos: {e}")
     exit(1)
@@ -44,28 +36,23 @@ class User(db.Document):
     def check_password(self, password):
         # Verificar la contraseña
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
-    
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+
+# Solicitar el nombre de usuario y la nueva contraseña
+nombre_usuario = input("Introduce el nombre de usuario: ")
+nueva_contrasena = input("Introduce la nueva contraseña: ")
 
 try:
-    # Verificar si el usuario 'edfcatalogo' ya existe
-    existing_user = User.objects(username="edfcatalogo").first()
+    # Buscar el usuario en la base de datos
+    usuario = User.objects(username=nombre_usuario).first()
 
-    if existing_user:
-        print("El usuario 'edfcatalogo' ya existe. No se puede crear un duplicado.")
+    if usuario:
+        # Regenerar el hash de la contraseña usando bcrypt
+        usuario.set_password(nueva_contrasena)
+        usuario.save()
+        print(f"Contraseña para el usuario '{nombre_usuario}' actualizada exitosamente.")
     else:
-        # Crear el usuario si no existe
-        new_user = User(
-            username="edfcatalogo",
-            email="catalogo@edfadmin.com",
-            is_admin=False
-        )
-        new_user.set_password("34Maf15si")  # Asegúrate de reemplazar con la contraseña deseada
-        new_user.save()
-        print("Usuario 'edfcatalogo' creado exitosamente.")
+        print(f"El usuario '{nombre_usuario}' no existe.")
 except Exception as e:
-    print(f"Error al crear el usuario: {e}")
+    print(f"Error al actualizar la contraseña: {e}")
 finally:
-    db.disconnect()  # Desconectar de la base de datos
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
+    disconnect()  # Desconectar de la base de datos

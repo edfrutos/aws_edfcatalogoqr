@@ -1,5 +1,5 @@
 from mongoengine import connect, disconnect
-from app.models import User  # Asegúrate de que tu modelo User esté importado correctamente
+from app.models import User
 
 # Conectar a la base de datos
 DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority"

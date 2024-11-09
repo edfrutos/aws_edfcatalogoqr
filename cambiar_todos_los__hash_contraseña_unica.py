@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-# Crear una nueva cuenta de administrador
-from app.models import User
-admin = User(username='administrador', email='admin@example.com')
-admin.set_password('34Maf15si')
-admin.is_admin = True
-admin.save()
-=======
 import os
 import mongoengine as db
 import bcrypt
+from werkzeug.security import check_password_hash
 from dotenv import load_dotenv
-import certifi
 
 # Cargar variables de entorno desde un archivo .env
 load_dotenv()
@@ -21,7 +13,8 @@ if not DB_URI:
     raise ValueError("La URI de la base de datos no está configurada.")
 
 try:
-    db.connect(host=DB_URI, tlsCAFile=certifi.where())
+    db.disconnect()  # Desconectar si ya hay una conexión existente
+    db.connect(host=DB_URI)
     print("Conexión a la base de datos establecida.")
 except Exception as e:
     print(f"Error al conectar a la base de datos: {e}")
@@ -35,7 +28,7 @@ class User(db.Document):
     address = db.StringField()
     phone = db.StringField()
     is_admin = db.BooleanField(default=False)
-    
+
     def set_password(self, password):
         # Generar un salt y crear el hash de la contraseña
         salt = bcrypt.gensalt()
@@ -44,28 +37,25 @@ class User(db.Document):
     def check_password(self, password):
         # Verificar la contraseña
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
-    
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
 
-try:
-    # Verificar si el usuario 'edfcatalogo' ya existe
-    existing_user = User.objects(username="edfcatalogo").first()
+def update_passwords_with_unique_password(unique_password):
+    try:
+        # Iterar sobre todos los usuarios
+        for usuario in User.objects:
+            if usuario.password.startswith('pbkdf2:sha256:'):
+                # Verificar la contraseña actual
+                if check_password_hash(usuario.password, unique_password):
+                    # Regenerar el hash de la contraseña con bcrypt
+                    usuario.set_password(unique_password)
+                    usuario.save()
+                    print(f"Contraseña para el usuario '{usuario.username}' actualizada a bcrypt.")
+                else:
+                    print(f"Error al verificar la contraseña para el usuario '{usuario.username}'.")
+    except Exception as e:
+        print(f"Error al actualizar las contraseñas: {e}")
+    finally:
+        db.disconnect()  # Desconectar de la base de datos
 
-    if existing_user:
-        print("El usuario 'edfcatalogo' ya existe. No se puede crear un duplicado.")
-    else:
-        # Crear el usuario si no existe
-        new_user = User(
-            username="edfcatalogo",
-            email="catalogo@edfadmin.com",
-            is_admin=False
-        )
-        new_user.set_password("34Maf15si")  # Asegúrate de reemplazar con la contraseña deseada
-        new_user.save()
-        print("Usuario 'edfcatalogo' creado exitosamente.")
-except Exception as e:
-    print(f"Error al crear el usuario: {e}")
-finally:
-    db.disconnect()  # Desconectar de la base de datos
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
+if __name__ == "__main__":
+    unique_password = input("Introduce la contraseña única para actualizar los hashes: ")
+    update_passwords_with_unique_password(unique_password)

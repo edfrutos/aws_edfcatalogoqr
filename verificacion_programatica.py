@@ -1,6 +1,5 @@
-from app import create_app, db
+from app import create_app
 from app.models import User
-from werkzeug.security import check_password_hash
 import re
 import mongoengine
 
