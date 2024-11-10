@@ -76,10 +76,6 @@ body {
   display: grid;
 }
 
-.container-contacto {
-  margin-top: 20rem;
-}
-
 .container-create {
   margin-top: 13% !important;
 }
@@ -118,6 +114,14 @@ body {
   border-radius: 10px;
 }
 
+.container-contacto {
+  background-color: #99d5a6;
+  margin-top: 16rem !important;
+  margin-bottom: 5rem !important;
+  width: 60%;
+  margin: 0 auto;
+}
+
 .container-item h3 {
   margin-top: 0;
 }
@@ -134,25 +138,19 @@ body {
 }
 
 .container-admin-user {
-  margin-top: 3rem;
-  margin-left: 20rem;
-  margin-right: 15rem;
-  width: 75%;
-  margin-bottom: 10rem;
   margin-top: 5rem;
-  margin-left: 5rem;
+  margin-left: 12rem;
   margin-right: 0rem;
-  width: 92%;
-  margin-bottom: 4rem;
+  width: 80%;
+  margin-bottom: 8rem;
 }
 
 .container-admin-list {
-  margin-top: 10rem;
-  margin-left: 16rem !important;
-  padding-right: 1rem;
-  padding-bottom: 5rem;
-  margin-bottom: 5rem;
-  width: 75%;
+  margin-top: 10rem !important;
+  margin-bottom: 10rem !important;
+  margin-left: 25rem !important;
+  margin: 0 auto;
+  width: 60%;
 }
 
 .reset-password {
@@ -501,15 +499,13 @@ button {
 .fal,
 .far,
 .fas {
-  -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
   line-height: 1;
-  margin-right: .5rem;
-  margin-top: .2rem;
+  margin: 0 auto;
 }
 
 .mt-3 {
@@ -1027,10 +1023,6 @@ footer {
   margin-right: auto;
 }
 
-.container-contacto {
-  margin-top: 9rem;
-}
-
 .container-search {
   margin-left: 16rem;
   margin-right: 3rem;
@@ -1084,8 +1076,13 @@ footer {
 }
 
 .img-thumbnail {
-  padding: 1.68rem !important;
-  margin-left: 2.5px !important;
+  padding: .25rem !important;
+  background-color: #fff !important;
+  border: 1px solid #dee2e6 !important;
+  border-radius: .25rem !important;
+  max-width: 50% !important;
+  height: auto !important;
+  margin: 0 auto;
 }
 
 footer {

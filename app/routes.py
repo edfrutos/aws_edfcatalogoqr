@@ -1,10 +1,5 @@
 from flask import flash, current_app, render_template, url_for, redirect, request, Blueprint, abort, send_file, session, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
-<<<<<<< HEAD
-from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, UpdateUserForm, SearchContainerForm, EditContainerForm
-from app.models import User, Container
-from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required, normalize_name
-=======
 from app.models import User, Container
 from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, SearchContainerForm, EditContainerForm, DeleteImageForm
 from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required, normalize_name
@@ -12,21 +7,14 @@ import os
 import logging
 import boto3
 from werkzeug.datastructures import FileStorage
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 from app.extensions import db, bcrypt, mail
 from flask_mail import Message
 import qrcode
 from mongoengine.queryset.visitor import Q
 from mongoengine.errors import NotUniqueError
 from datetime import datetime
-<<<<<<< HEAD
-import logging
-import unicodedata
-
-=======
 
 
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 main = Blueprint('main', __name__)
 
 # Inicializar el cliente de boto3 para S3
@@ -219,30 +207,11 @@ from flask import abort
 @main.route('/container/<container_id>')
 @login_required
 def container_detail(container_id):
-<<<<<<< HEAD
         container = Container.objects(id=container_id).first()
         if not container:
             abort(404)
         image_size = {'width': 200, 'height': 'auto'}  # Define el tamaño aquí
         return render_template('container_detail.html', container=container, image_size=image_size)
-=======
-    container = Container.objects(id=container_id).first()
-    if not container:
-        abort(404)
-
-    # Convertir `items` a una sola línea de texto con comas
-    items_text = ", ".join([item.strip() for item in container.items]) if container.items else ""
-
-    # Definir el tamaño de la imagen
-    image_size = {'width': 200, 'height': 'auto'}
-
-    return render_template(
-        'container_detail.html',
-        container=container,
-        items_text=items_text,
-        image_size=image_size
-    )
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 
 import re  # Asegúrate de tener importada esta librería para limpiar el nombre del archivo QR
 
@@ -352,89 +321,104 @@ def list_containers():
 @main.route("/containers/<container_id>/edit", methods=["GET", "POST"])
 @login_required
 def edit_container(container_id):
-    container = Container.objects(id=container_id).first()
-<<<<<<< HEAD
-    form = EditContainerForm(obj=container)
+    logger.debug("Entrando a la función edit_container")
+    
+    try:
+        # Obtener el contenedor
+        container = Container.objects(id=container_id).first()
+        if not container:
+            logger.error(f"Contenedor con id {container_id} no encontrado.")
+            abort(404, description="Contenedor no encontrado")
 
-    if not container:
-        abort(404, description="Contenedor no encontrado")
+        # Verificar que el usuario actual es el propietario
+        if str(container.user.id) != str(current_user.id):
+            logger.warning(f"Usuario {current_user.id} intentó editar contenedor {container_id} que no le pertenece")
+            abort(403)
 
-    if form.validate_on_submit():
-        # Manejar la subida de imágenes
-        if form.pictures.data:
-            logging.debug("Intentando guardar imágenes del contenedor...")
-            picture_files = container.image_files[:]  # Copiar las imágenes existentes
-            for picture in form.pictures.data:
-                if isinstance(picture, FileStorage) and picture.filename != '':
-                    try:
-                        picture_file = save_container_picture(picture)
-                        logging.debug(f"Imagen guardada: {picture_file}")
-                        picture_files.append(picture_file)
-                    except Exception as e:
-                        logging.error(f"Error guardando la imagen: {e}")
-                        flash('Error al guardar una de las imágenes.', 'danger')
-                        return render_template('edit_container.html', container=container, form=form)
-            container.image_files = picture_files
+        form = EditContainerForm(obj=container)
+        delete_form = DeleteImageForm()
 
-        # Limpiar y actualizar los campos editables
-        container.location = form.location.data
-        container.items = [normalize_name(item.strip()) for item in form.items.data.split(",")]
+        if request.method == "GET":
+            # Para GET, mostrar los items como una lista separada por comas
+            form.items.data = ", ".join(container.items) if container.items else ""
+            return render_template(
+                "edit_container.html",
+                container=container,
+                form=form,
+                delete_form=delete_form
+            )
 
-        # Guardar los cambios en la base de datos
-        try:
-            container.save()
-            logging.info(f"Contenedor {container.name} actualizado y guardado exitosamente.")
-            flash("Contenedor actualizado exitosamente", 'success')
-        except Exception as e:
-            logging.error(f"Error al actualizar el contenedor: {str(e)}")
-            flash(f"Error al actualizar el contenedor: {str(e)}", "error")
-            return redirect(url_for('main.edit_container', container_id=container_id))
+        if form.validate_on_submit():
+            try:
+                # Procesar la lista de objetos, manteniendo mayúsculas y minúsculas
+                items_list = [item.strip() for item in form.items.data.split(',') if item.strip()]
+                
+                # Preparar las actualizaciones
+                updates = {
+                    "set__name": form.name.data,
+                    "set__location": form.location.data,
+                    "set__items": items_list
+                }
 
-        return redirect(url_for('main.container_detail', container_id=container.id))
+                # Procesar nuevas imágenes
+                new_images = []
+                if form.pictures.data:
+                    for picture in form.pictures.data:
+                        if hasattr(picture, 'filename') and picture.filename:
+                            try:
+                                filename = save_container_picture(picture)
+                                if filename:
+                                    new_images.append(filename)
+                            except Exception as e:
+                                logger.error(f"Error guardando imagen {picture.filename}: {e}")
+                                continue
 
-    return render_template('edit_container.html', container=container, form=form)
-=======
-    if not container:
-        abort(404, description="Contenedor no encontrado")
+                if new_images:
+                    updates["push_all__image_files"] = new_images
 
-    # Verificar que el usuario actual es el propietario del contenedor
-    if str(container.user.id) != str(current_user.id):
-        abort(403)
+                # Actualizar el contenedor
+                container.update(**updates)
+                container.reload()
 
-    # Crear el formulario de edición y el formulario de eliminación
-    form = EditContainerForm(obj=container)
-    delete_form = DeleteImageForm()  # Definir delete_form aquí
+                flash("Contenedor actualizado correctamente", "success")
+                
+                # Si es una petición AJAX, devolver JSON
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return jsonify({
+                        "success": True,
+                        "redirect": url_for("main.container_detail", container_id=container.id)
+                    })
+                
+                # Si es una petición normal, redirigir
+                return redirect(url_for("main.container_detail", container_id=container.id))
 
-    if request.method == "GET":
-        # Mostrar los objetos como una cadena separada por comas
-        form.items.data = ", ".join(container.items) if container.items else ""
+            except Exception as e:
+                logger.error(f"Error actualizando contenedor: {e}")
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return jsonify({"success": False, "error": str(e)}), 500
+                flash("Error al actualizar el contenedor", "danger")
+                return redirect(url_for("main.edit_container", container_id=container_id))
 
-    if form.validate_on_submit():
-        # Convertir `items` en una lista y asignarla al contenedor
-        items_list = [item.strip() for item in form.items.data.split(",") if item.strip()]
-        container.items = items_list
+        # Si el formulario no es válido
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return jsonify({
+                "success": False,
+                "errors": form.errors
+            }), 400
 
-        # Procesar y agregar nuevas imágenes
-        new_images = []
-        if form.pictures.data:
-            for picture in form.pictures.data:
-                if picture.filename != '':
-                    filename = save_container_picture(picture)
-                    new_images.append(filename)
-        if new_images:
-            container.image_files.extend(new_images)
+        return render_template(
+            "edit_container.html",
+            container=container,
+            form=form,
+            delete_form=delete_form
+        )
 
-        # Guardar el contenedor con los cambios
-        container.save()
-        flash("Contenedor actualizado correctamente", "success")
-        return redirect(url_for("main.container_detail", container_id=container.id))
-
-    return render_template(
-        "edit_container.html",
-        container=container,
-        form=form,
-        delete_form=delete_form  # Pasar delete_form al render_template
-    )
+    except Exception as e:
+        logger.error(f"Error inesperado en edit_container: {e}")
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return jsonify({"success": False, "error": str(e)}), 500
+        flash("Ha ocurrido un error inesperado", "danger")
+        return redirect(url_for("main.list_containers"))
 
 @main.route("/containers/<container_id>/delete_image/<image_name>", methods=["POST"])
 @login_required
@@ -457,7 +441,6 @@ def delete_container_image(container_id, image_name):
     except Exception as e:
         logger.error(f"Error eliminando imagen: {e}")
         return jsonify({"success": False, "error": str(e)}), 500
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 
 @main.route("/containers/<container_id>/print_detail")
 @login_required

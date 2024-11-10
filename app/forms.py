@@ -52,17 +52,10 @@ class ContainerForm(FlaskForm):
             raise ValidationError('El nombre del contenedor ya está en uso. Por favor, elige un nombre diferente.')
 
 class EditContainerForm(FlaskForm):
-<<<<<<< HEAD
-    name = StringField('Nombre del Contenedor', validators=[DataRequired()])
-    location = StringField('Situación', validators=[DataRequired()])
-    items = TextAreaField('Elementos (separados por comas)', validators=[DataRequired()])
-    pictures = MultipleFileField('Añadir Fotos', validators=[FileAllowed(['jpeg', 'jpg', 'png'], 'Solo se permiten imágenes.')])
-=======
     name = StringField('Nombre del Contenedor', validators=[DataRequired(), Length(min=2, max=50)])
     location = StringField('Ubicación', validators=[DataRequired(), Length(min=2, max=100)])
     items = TextAreaField('Elementos (separados por comas)', validators=[DataRequired()])
     pictures = MultipleFileField('Añadir Imágenes', validators=[FileAllowed(['jpg', 'jpeg', 'png'], 'Solo se permiten imágenes')])
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
     submit = SubmitField('Guardar Cambios')
 
 class RequestResetForm(FlaskForm):
