@@ -4,11 +4,7 @@ body {
 }
 
 .alert-container {
-<<<<<<< HEAD
   margin-top: 6.5rem;
-=======
-  margin-top: 7.5rem;
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 }
 
 .container {
@@ -52,13 +48,10 @@ body {
   margin-top: 8rem !important;
   margin-left: 8rem;
   margin-right: 0rem;
-<<<<<<< HEAD
   margin-bottom: 8rem;
   width: 86%;
-=======
   width: 86%;
   margin-bottom: 8rem;
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 }
 
 .content-section {
@@ -91,7 +84,8 @@ body {
   margin-top: 13% !important;
 }
 
-.container, .container-content {
+.container,
+.container-content {
   padding-left: 0%;
   padding-right: 0%;
   background-color: #99d5a6;
@@ -140,30 +134,24 @@ body {
 }
 
 .container-admin-user {
-<<<<<<< HEAD
   margin-top: 3rem;
   margin-left: 20rem;
   margin-right: 15rem;
   width: 75%;
   margin-bottom: 10rem;
-=======
   margin-top: 5rem;
   margin-left: 5rem;
   margin-right: 0rem;
   width: 92%;
   margin-bottom: 4rem;
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 }
 
 .container-admin-list {
   margin-top: 10rem;
   margin-left: 16rem !important;
   padding-right: 1rem;
-<<<<<<< HEAD
   padding-bottom: 5rem;
-=======
   margin-bottom: 5rem;
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
   width: 75%;
 }
 
@@ -507,7 +495,12 @@ button {
   color: #000;
 }
 
-.fa, .fab, .fad, .fal, .far, .fas {
+.fa,
+.fab,
+.fad,
+.fal,
+.far,
+.fas {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -521,7 +514,6 @@ button {
 
 .mt-3 {
   margin-top: -.5rem !important;
-<<<<<<< HEAD
 }
 
 /* 
@@ -529,17 +521,17 @@ button {
   .mt-5: establece el margen superior en 0rem con! Importante para anular otros estilos.
   .my-5: establece el margen vertical (superior e inferior) en 0rem con !important para anular otros estilos.
 */
-.mt-5, .my-5 {
+.mt-5,
+.my-5 {
   margin-top: 0rem !important;
-=======
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 }
 
 .mb-4 {
   margin-bottom: 1.5rem;
 }
 
-.mt-5, .my-5 {
+.mt-5,
+.my-5 {
   margin-top: 0rem !important;
 }
 
@@ -568,13 +560,10 @@ button {
   margin-left: 1px;
 }
 
-<<<<<<< HEAD
-=======
 .input-group-append {
   padding: 5px;
 }
 
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 .reset-request {
   margin-top: 5rem !important;
   margin-left: 5rem !important;
@@ -603,7 +592,6 @@ button {
   border: 1px solid #093d74;
 }
 
-<<<<<<< HEAD
 .print-detail {
   margin-top: 5rem;
   margin-left: 5rem;
@@ -613,10 +601,10 @@ button {
   justify-content: center;
   margin-top: 5rem;
   display: -ms-flexbox;
-=======
+}
+
 .row-detail {
   margin-top: 6rem;
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
   display: flex;
   justify-content: center;
   -ms-flex-wrap: wrap;
@@ -638,7 +626,12 @@ button {
   display: contents !important;
 }
 
-.navbar .container, .navbar .container-fluid, .navbar .container-lg, .navbar .container-md, .navbar .container-sm, .navbar .container-xl {
+.navbar .container,
+.navbar .container-fluid,
+.navbar .container-lg,
+.navbar .container-md,
+.navbar .container-sm,
+.navbar .container-xl {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -747,7 +740,8 @@ footer {
     display: grid;
   }
 
-  .container, .container-content {
+  .container,
+  .container-content {
     margin-top: 5rem;
   }
 
@@ -781,7 +775,12 @@ footer {
     margin-top: 10rem !important;
   }
 
-  .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+  .container,
+  .container-fluid,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
@@ -810,8 +809,6 @@ footer {
     margin-bottom: 0% !important;
     width: 71% !important;
     margin-left: 8rem !important;
-<<<<<<< HEAD
-=======
   }
 
   .container-detail {
@@ -819,7 +816,6 @@ footer {
     margin-bottom: 0% !important;
     width: 71% !important;
     margin-left: 8rem !important;
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
   }
 
   .container-search {
@@ -1003,7 +999,8 @@ footer {
     margin-bottom: 0rem !important;
   }
 
-  .container, .container-content {
+  .container,
+  .container-content {
     padding-left: 0%;
     padding-right: 0%;
     margin-top: 1rem;
@@ -1011,7 +1008,9 @@ footer {
     margin-left: 0rem;
   }
 
-  .container, .container-md, .container-sm {
+  .container,
+  .container-md,
+  .container-sm {
     max-width: 100% !important;
     margin-top: 8rem !important;
     padding-bottom: 6rem;
@@ -1054,10 +1053,7 @@ footer {
   margin-top: 6rem;
   margin-left: 15rem;
   margin-right: 1rem;
-<<<<<<< HEAD
   width: 75%;
-=======
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4
 }
 
 .m-5 {
