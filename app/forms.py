@@ -72,9 +72,9 @@ class DeleteAccountForm(FlaskForm):
     submit = SubmitField('Borrar cuenta')
 
 class ContactForm(FlaskForm):
-    name = StringField('Nombre', validators=[DataRequired()])
+    name = StringField('Nombre', validators=[DataRequired(), Length(min=2, max=50)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    message = TextAreaField('Mensaje', validators=[DataRequired()])
+    message = TextAreaField('Mensaje', validators=[DataRequired(), Length(min=10, max=1000)])
     submit = SubmitField('Enviar Mensaje')
 
 class ChangePasswordForm(FlaskForm):

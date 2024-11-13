@@ -1,40 +1,111 @@
-from flask import flash, current_app, render_template, url_for, redirect, request, Blueprint, abort, send_file, session, jsonify
+# Primero las importaciones necesarias
+from flask import Blueprint,flash, current_app, render_template, url_for, redirect, request, abort, send_file, session, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
-from app.models import User, Container
-from app.forms import RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, ChangePasswordForm, SearchContainerForm, EditContainerForm, DeleteImageForm
-from app.utils import save_profile_picture, save_container_picture, send_reset_email, save_qr_image, admin_required, normalize_name
+from functools import wraps
 import os
 import logging
 import boto3
 from werkzeug.datastructures import FileStorage
-from app.extensions import db, bcrypt, mail
-from flask_mail import Message
-import qrcode
 from mongoengine.queryset.visitor import Q
 from mongoengine.errors import NotUniqueError
 from datetime import datetime
+import qrcode
 
+# Importaciones locales
+from app.models import User, Container
+from app.forms import (
+    RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, 
+    RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, 
+    ChangePasswordForm, SearchContainerForm, EditContainerForm, DeleteImageForm
+)
+from app.utils import (
+    save_profile_picture, save_container_picture, send_reset_email, 
+    save_qr_image, admin_required, normalize_name
+)
+from app.extensions import db, bcrypt, mail
+from flask_mail import Message
 
+# Configuración del Blueprint
 main = Blueprint('main', __name__)
 
-# Inicializar el cliente de boto3 para S3
-s3 = boto3.client('s3')
+# Definir el Blueprint
+users_bp = Blueprint('users', __name__)
 
-# Configuración de logging
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-handler = logging.FileHandler('logs/app.log')
-handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+# Configuración mejorada del logger
+def setup_logger():
+    logger = logging.getLogger(__name__)
+    
+    # Evitar duplicación de handlers
+    if not logger.handlers:
+        logger.setLevel(logging.INFO)
+        
+        # Crear el directorio de logs si no existe
+        os.makedirs('logs', exist_ok=True)
+        
+        # Configurar el RotatingFileHandler
+        file_handler = logging.handlers.RotatingFileHandler(
+            'logs/routes.log',
+            maxBytes=1024 * 1024,  # 1MB
+            backupCount=10,
+            encoding='utf-8'
+        )
+        
+        # Configurar el formato
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        )
+        file_handler.setFormatter(formatter)
+        
+        # Añadir el handler al logger
+        logger.addHandler(file_handler)
+    
+    return logger
+
+# Inicializar el logger
+logger = setup_logger()
+
+# Inicializar el cliente de S3
+try:
+    s3 = boto3.client('s3')
+except Exception as e:
+    logger.error(f"Error al inicializar el cliente S3: {e}")
+    s3 = None
+    
+# Decorador para manejo de errores
+def handle_errors(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except Exception as e:
+            logger.error(f"Error en {f.__name__}: {str(e)}", exc_info=True)
+            flash("Ha ocurrido un error inesperado", "danger")
+            return redirect(url_for('main.home'))
+    return decorated_function
 
 @main.route("/")
 @main.route("/home")
+@handle_errors
 def home():
-    session.pop('show_welcome_modal', None)  # Limpiar la sesión de modal de bienvenida
-    current_year = datetime.now().year
-    return render_template('home.html', title='Inicio', current_year=current_year)
+    try:
+        session.pop('show_welcome_modal', None)
+        current_year = datetime.now().year
+        return render_template('home.html', title='Inicio', current_year=current_year)
+    except Exception as e:
+        logger.error(f"Error en la ruta home: {e}")
+        raise
+
+# Función auxiliar para verificar imágenes
+def verify_container_images(container):
+    """Verifica y retorna solo las imágenes válidas de un contenedor."""
+    valid_images = []
+    for image in container.image_files:
+        image_path = os.path.join(current_app.root_path, 'static', 'container_pics', image)
+        if os.path.exists(image_path):
+            valid_images.append(image)
+        else:
+            logger.warning(f"Imagen no encontrada: {image_path}")
+    return valid_images
 
 @main.route('/test')
 def test():
@@ -57,30 +128,36 @@ def register():
             user.image_file = picture_file
         user.save()
         flash('Tu cuenta ha sido creada! Ahora puedes iniciar sesión', 'success')
-        return redirect(url_for('main.login'))
+        return redirect(url_for('users.login'))
     return render_template('register.html', title='Registro', form=form)
 
-@main.route("/login", methods=['GET', 'POST'])
+from flask import Blueprint, render_template, url_for, flash, redirect, request
+from flask_login import login_user, current_user, logout_user, login_required
+from app.forms import LoginForm
+from app.models import User
+
+users_bp = Blueprint('users', __name__)
+
+@users_bp.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.objects(email=form.email_or_username.data).first() or User.objects(username=form.email_or_username.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        user = User.query.filter_by(email=form.email_or_username.data).first()
+        if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember.data)
-            session['show_welcome_modal'] = True
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.welcome'))
-        else:
-            flash('Inicio de sesión no exitoso. Por favor verifica tu correo/usuario y contraseña.', 'danger')
-    return render_template('login.html', title='Login', form=form)
+            return redirect(next_page) if next_page else redirect(url_for('main.home'))
+        flash('Email o contraseña incorrectos', 'danger')
+    return render_template('login.html', title='Iniciar Sesión', form=form)
+
 
 @main.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.logout_page'))
+    return redirect(url_for('users.logout_page'))
 
 @main.route("/logout_page")
 def logout_page():
@@ -109,7 +186,7 @@ def account():
                 except Exception as e:
                     current_app.logger.error(f'Error al actualizar la foto de perfil para {current_user.username}: {e}')
                     flash('Error al actualizar la foto de perfil. Intenta nuevamente.', 'danger')
-                    return redirect(url_for('main.account'))
+                    return redirect(url_for('users.account'))
 
             # Verificar si el nombre de usuario ha cambiado
             if form.username.data != current_user.username:
@@ -128,7 +205,7 @@ def account():
             flash('Tu cuenta ha sido actualizada exitosamente!', 'success')
 
             # Redirigir para evitar el reenvío del formulario al actualizar
-            return redirect(url_for('main.account'))
+            return redirect(url_for('users.account'))
 
         except Exception as e:
             # Capturar y registrar errores si ocurre un problema durante la actualización
@@ -170,48 +247,145 @@ def reset_token(token):
     user = User.verify_reset_token(token)
     if user is None:
         flash('Ese es un token no válido o caducado', 'advertencia')
-        return redirect(url_for('main.reset_request'))
+        return redirect(url_for('users.reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
         user.set_password(form.password.data)
         user.save()  # Asegúrate de que el usuario se guarda en la base de datos
         flash('¡Su contraseña ha sido actualizada!', 'éxito')
-        return redirect(url_for('main.login'))
+        return redirect(url_for('users.login'))
     return render_template('reset_password.html', form=form)
 
 @main.route("/contacto", methods=['GET', 'POST'])
 def contacto():
     form = ContactForm()
     if form.validate_on_submit():
-        msg = Message(
-            subject=f"{form.name.data} ha enviado un mensaje",
-            sender=current_app.config['MAIL_USERNAME'],
-            recipients=['admin@efjdefrutos.com'],
-            reply_to=form.email.data  # Dirección del usuario como respuesta
-        )
-        msg.body = f'''
-        Nombre: {form.name.data}
-        Email de contacto: {form.email.data}
-        Mensaje: {form.message.data}
-        '''
-        
-        with current_app.app_context():
+        try:
+            msg = Message(
+                subject=f"Nuevo mensaje de contacto de {form.name.data}",
+                sender=current_app.config['MAIL_USERNAME'],
+                recipients=[current_app.config['MAIL_DEFAULT_SENDER']],
+                reply_to=form.email.data
+            )
+            msg.body = f'''
+            Nombre: {form.name.data}
+            Email: {form.email.data}
+            Mensaje:
+            {form.message.data}
+            '''
+
             mail.send(msg)
-        
-        flash('Tu mensaje ha sido enviado!', 'success')
-        return redirect(url_for('main.home'))
-    
+            flash('Tu mensaje ha sido enviado correctamente!', 'success')
+            return redirect(url_for('main.home'))
+        except Exception as e:
+            current_app.logger.error(f"Error enviando email: {str(e)}")
+            flash('Hubo un error al enviar el mensaje. Por favor, intenta más tarde.', 'danger')
     return render_template('contacto.html', title='Contacto', form=form)
 
 from flask import abort
+# Primero las importaciones necesarias
+from flask import flash, current_app, render_template, url_for, redirect, request, Blueprint, abort, send_file, session, jsonify
+from flask_login import login_user, current_user, logout_user, login_required
+import os
+import logging
+import boto3
+from werkzeug.datastructures import FileStorage
+from mongoengine.queryset.visitor import Q
+from mongoengine.errors import NotUniqueError
+from datetime import datetime
+import qrcode
+
+# Importaciones locales
+from app.models import User, Container
+from app.forms import (
+    RegistrationForm, LoginForm, UpdateAccountForm, ContainerForm, 
+    RequestResetForm, ResetPasswordForm, DeleteAccountForm, ContactForm, 
+    ChangePasswordForm, SearchContainerForm, EditContainerForm, DeleteImageForm
+)
+from app.utils import (
+    save_profile_picture, save_container_picture, send_reset_email, 
+    save_qr_image, admin_required, normalize_name
+)
+from app.extensions import db, bcrypt, mail
+from flask_mail import Message
+
+# Configuración del Blueprint
+main = Blueprint('main', __name__)
+
+
+
+# Inicializar el cliente de S3
+try:
+    s3 = boto3.client('s3')
+except Exception as e:
+    logger.error(f"Error al inicializar el cliente S3: {e}")
+    s3 = None
+
+# Decorador para manejo de errores
+def handle_errors(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except Exception as e:
+            logger.error(f"Error en {f.__name__}: {str(e)}", exc_info=True)
+            flash("Ha ocurrido un error inesperado", "danger")
+            return redirect(url_for('main.home'))
+    return decorated_function
+
+# Ejemplo de una ruta con el nuevo manejo de errores
+@main.route("/")
+@main.route("/home")
+@handle_errors
+def home():
+    try:
+        session.pop('show_welcome_modal', None)
+        current_year = datetime.now().year
+        return render_template('home.html', title='Inicio', current_year=current_year)
+    except Exception as e:
+        logger.error(f"Error en la ruta home: {e}")
+        raise
+
+# Función auxiliar para verificar imágenes
+def verify_container_images(container):
+    """Verifica y retorna solo las imágenes válidas de un contenedor."""
+    valid_images = []
+    for image in container.image_files:
+        image_path = os.path.join(current_app.root_path, 'static', 'container_pics', image)
+        if os.path.exists(image_path):
+            valid_images.append(image)
+        else:
+            logger.warning(f"Imagen no encontrada: {image_path}")
+    return valid_images
+
+# Ejemplo de una ruta mejorada con el nuevo sistema de logging
 @main.route('/container/<container_id>')
 @login_required
+@handle_errors
 def container_detail(container_id):
+    logger.info(f"Accediendo a los detalles del contenedor: {container_id}")
+    
+    try:
         container = Container.objects(id=container_id).first()
         if not container:
+            logger.warning(f"Contenedor no encontrado: {container_id}")
             abort(404)
-        image_size = {'width': 200, 'height': 'auto'}  # Define el tamaño aquí
-        return render_template('container_detail.html', container=container, image_size=image_size)
+        
+        # Verificar imágenes válidas
+        valid_images = verify_container_images(container)
+        container.image_files = valid_images
+        
+        logger.info(f"Contenedor {container_id} cargado exitosamente")
+        return render_template('container_detail.html', 
+                             container=container,
+                             image_size={'width': 200, 'height': 'auto'})
+                             
+    except Exception as e:
+        logger.error(f"Error al cargar el contenedor {container_id}: {e}")
+        flash("Error al cargar los detalles del contenedor", "danger")
+        return redirect(url_for('main.list_containers'))
+
+
 
 import re  # Asegúrate de tener importada esta librería para limpiar el nombre del archivo QR
 
@@ -311,12 +485,11 @@ def download_container(container_id):
 def list_containers():
     form = SearchContainerForm()
     search_query = request.args.get('search_query', '')
-    containers = Container.objects(user=current_user._get_current_object())
-    if search_query:
-        containers = containers.filter(
-            Q(name__icontains=search_query) | Q(location__icontains=search_query) | Q(items__icontains=search_query)
-        )
-    return render_template('list_containers.html', title='Mis Contenedores', containers=containers, form=form)
+    containers = current_user.get_containers(search_query)
+    return render_template('list_containers.html', 
+                         title='Mis Contenedores', 
+                         containers=containers, 
+                         form=form)
 
 @main.route("/containers/<container_id>/edit", methods=["GET", "POST"])
 @login_required
@@ -445,10 +618,36 @@ def delete_container_image(container_id, image_name):
 @main.route("/containers/<container_id>/print_detail")
 @login_required
 def print_detail(container_id):
-    container = Container.objects(id=container_id).first()
-    if not container:
-        abort(404)
-    return render_template('print_detail.html', title='Imprimir Detalle', container=container)
+    try:
+        container = Container.objects(id=container_id).first()
+        if not container:
+            abort(404)
+        
+        # Verificar que las imágenes existen
+        valid_images = []
+        for image in container.image_files:
+            image_path = os.path.join(current_app.root_path, 'static', 'container_pics', image)
+            if os.path.exists(image_path):
+                valid_images.append(image)
+            else:
+                logger.warning(f"Imagen no encontrada: {image_path}")
+        
+        # Crear una copia del contenedor con solo las imágenes válidas
+        container_data = {
+            'name': container.name,
+            'location': container.location,
+            'items': container.items,
+            'image_files': valid_images,
+            'qr_image': container.qr_image
+        }
+        
+        return render_template('print_detail.html', 
+                             title='Imprimir Detalle',
+                             container=container_data)
+    except Exception as e:
+        logger.error(f"Error en print_detail: {str(e)}")
+        flash("Error al preparar la vista de impresión", "danger")
+        return redirect(url_for('main.container_detail', container_id=container_id))
 
 @main.route("/containers/<container_id>/delete", methods=["POST"])
 @login_required
@@ -483,7 +682,7 @@ def change_password():
             current_user.password = hashed_password
             current_user.save()
             flash('Tu contraseña ha sido actualizada!', 'success')
-            return redirect(url_for('main.account'))
+            return redirect(url_for('users.account'))
         else:
             flash('Contraseña actual incorrecta', 'danger')
     return render_template('change_password.html', title='Cambiar Contraseña', form=form)
@@ -508,13 +707,11 @@ def delete_account():
 def search_container():
     form = SearchContainerForm()
     search_query = request.args.get('search', '')
-    if search_query:
-        containers = Container.objects(
-            (Q(name__icontains=search_query) | Q(location__icontains=search_query) | Q(items__icontains=search_query)) & Q(user=current_user._get_current_object())
-        )
-    else:
-        containers = Container.objects(user=current_user._get_current_object())
-    return render_template('search_container.html', title='Buscar Contenedor', containers=containers, form=form)
+    containers = current_user.get_containers(search_query) if search_query else []
+    return render_template('search_container.html', 
+                         title='Buscar Contenedor', 
+                         containers=containers, 
+                         form=form)
 
 @main.route("/welcome")
 @login_required

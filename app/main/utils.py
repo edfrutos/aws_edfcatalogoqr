@@ -3,6 +3,9 @@ import secrets
 from PIL import Image,UnidentifiedImageError
 from flask import current_app, url_for
 from flask_mail import Message
+from functools import wraps
+from flask import abort
+from flask_login import current_user
 from app import mail
 import qrcode
 

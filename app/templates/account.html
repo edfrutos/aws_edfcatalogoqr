@@ -1,69 +1,91 @@
-{% extends "layout.html" %}
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% extends "layout.html" %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/style.css') }}"
+/>
 <div class="container-account">
-    <h1>Cuenta de {{ current_user.username }}</h1>
-    <div class="row">
-        <!-- Formulario para actualizar datos de cuenta -->
-        <div class="col-md-6">
-            <form method="POST" enctype="multipart/form-data" action="{{ url_for('main.account') }}">
-                {{ form.hidden_tag() }} <!-- CSRF incluido automáticamente -->
-                <div class="form-group">
-                    {{ form.username.label(class="form-label") }}
-                    {{ form.username(class="form-control") }}
-                    {% for error in form.username.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <div class="form-group">
-                    {{ form.email.label(class="form-label") }}
-                    {{ form.email(class="form-control") }}
-                    {% for error in form.email.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <div class="form-group">
-                    {{ form.address.label(class="form-label") }}
-                    {{ form.address(class="form-control") }}
-                    {% for error in form.address.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <div class="form-group">
-                    {{ form.phone.label(class="form-label") }}
-                    {{ form.phone(class="form-control") }}
-                    {% for error in form.phone.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <div class="form-group">
-                    {{ form.picture.label(class="form-label") }}
-                    {{ form.picture(class="form-control-file") }}
-                    {% for error in form.picture.errors %}
-                    <div class="text-danger">{{ error }}</div>
-                    {% endfor %}
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
-                    <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary">Volver a Opciones</a>
-                </div>
-            </form>
+  <h1>Cuenta de {{ current_user.username }}</h1>
+  <div class="row">
+    <!-- Formulario para actualizar datos de cuenta -->
+    <div class="col-md-6">
+      <form
+        method="POST"
+        enctype="multipart/form-data"
+        action="{{ url_for('users.account') }}"
+      >
+        {{ form.hidden_tag() }}
+        <!-- CSRF incluido automáticamente -->
+        <div class="form-group">
+          {{ form.username.label(class="form-label") }} {{
+          form.username(class="form-control") }} {% for error in
+          form.username.errors %}
+          <div class="text-danger">{{ error }}</div>
+          {% endfor %}
         </div>
-        
-        <!-- Sección de la imagen de perfil y opciones adicionales -->
-        <div class="col-md-6">
-            <h2>Foto de Perfil</h2>
-            <img src="{{ image_file }}" alt="Foto de Perfil" class="img-thumbnail">
-            <div class="mt-4">
-                <a href="{{ url_for('main.change_password') }}" class="btn btn-outline-warning">Cambiar Contraseña</a>
-                <form action="{{ url_for('main.delete_account') }}" method="POST" class="d-inline">
-                    {{ form.csrf_token }}
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');">
-                        Eliminar Cuenta
-                    </button>
-                </form>
-            </div>
+        <div class="form-group">
+          {{ form.email.label(class="form-label") }} {{
+          form.email(class="form-control") }} {% for error in form.email.errors
+          %}
+          <div class="text-danger">{{ error }}</div>
+          {% endfor %}
         </div>
+        <div class="form-group">
+          {{ form.address.label(class="form-label") }} {{
+          form.address(class="form-control") }} {% for error in
+          form.address.errors %}
+          <div class="text-danger">{{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.phone.label(class="form-label") }} {{
+          form.phone(class="form-control") }} {% for error in form.phone.errors
+          %}
+          <div class="text-danger">{{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.picture.label(class="form-label") }} {{
+          form.picture(class="form-control-file") }} {% for error in
+          form.picture.errors %}
+          <div class="text-danger">{{ error }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Actualizar</button>
+          <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary">
+            Volver a Opciones
+          </a>
+        </div>
+      </form>
     </div>
+
+    <!-- Sección de la imagen de perfil y opciones adicionales -->
+    <div class="col-md-6">
+      <h2>Foto de Perfil</h2>
+      <img src="{{ image_file }}" alt="Foto de Perfil" class="img-thumbnail" />
+      <div class="mt-4">
+        <a
+          href="{{ url_for('main.change_password') }}"
+          class="btn btn-outline-warning"
+        >
+          Cambiar Contraseña
+        </a>
+        <form
+          action="{{ url_for('main.delete_account') }}"
+          method="POST"
+          class="d-inline"
+        >
+          {{ form.csrf_token }}
+          <button
+            type="submit"
+            class="btn btn-danger"
+            onclick="return confirm('¿Estás seguro de que deseas eliminar tu cuenta?');"
+          >
+            Eliminar Cuenta
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

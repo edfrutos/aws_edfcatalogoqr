@@ -2,7 +2,7 @@
   "CodeGPT.apiKey": "CodeGPT Plus Beta",
   "prettier.htmlWhitespaceSensitivity": "ignore",
   "[django-html]": {
-    "editor.defaultFormatter": "junstyle.vscode-django-support"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.associations": {
     "*.html": "django-html"

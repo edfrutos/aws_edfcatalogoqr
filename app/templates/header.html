@@ -1,22 +1,27 @@
 <header>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('main.home') }}">Inicio</a></li>
-            <li><a href="{{ url_for('main.about') }}">Acerca de</a></li>
-            <li><a href="{{ url_for('main.contacto') }}">Contacto</a></li>
-            {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('main.account') }}">Cuenta</a></li>
-                <li><a href="{{ url_for('main.logout') }}">Cerrar Sesión</a></li>
-                <li><a href="{{ url_for('main.create_container') }}">Crear Contenedor</a></li>
-                <li><a href="{{ url_for('main.list_containers') }}">Mis Contenedores</a></li>
-                {% if current_user.is_admin %}
-                    <li><a href="{{ url_for('admin.list_users') }}">Usuarios</a></li>
-                    <li><a href="{{ url_for('admin.search_container') }}">Buscar Contenedor</a></li>
-                {% endif %}
-            {% else %}
-                <li><a href="{{ url_for('main.login') }}">Iniciar Sesión</a></li>
-                <li><a href="{{ url_for('main.register') }}">Registrarse</a></li>
-            {% endif %}
-        </ul>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('main.home') }}">Inicio</a></li>
+      <li><a href="{{ url_for('main.about') }}">Acerca de</a></li>
+      <li><a href="{{ url_for('main.contacto') }}">Contacto</a></li>
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('users.account') }}">Cuenta</a></li>
+      <li><a href="{{ url_for('users.logout') }}">Cerrar Sesión</a></li>
+      <li>
+        <a href="{{ url_for('main.create_container') }}">Crear Contenedor</a>
+      </li>
+      <li>
+        <a href="{{ url_for('main.list_containers') }}">Mis Contenedores</a>
+      </li>
+      {% if current_user.is_admin %}
+      <li><a href="{{ url_for('admin.list_users') }}">Usuarios</a></li>
+      <li>
+        <a href="{{ url_for('admin.search_container') }}">Buscar Contenedor</a>
+      </li>
+      {% endif %} {% else %}
+      <li><a href="{{ url_for('users.login') }}">Iniciar Sesión</a></li>
+      <li><a href="{{ url_for('users.register') }}">Registrarse</a></li>
+      {% endif %}
+    </ul>
+  </nav>
 </header>

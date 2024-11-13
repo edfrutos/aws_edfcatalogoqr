@@ -2,11 +2,126 @@
 {% block content %}
 <h2>Detalles del Contenedor</h2>
 <div id="printDetail">
+    <!-- Información de Debug -->
+    <div style="display: none;">
+        Debug información:
+        <p>Número de items: {{ container.items|length }}</p>
+    </div>
+
+    <!-- Información del Contenedor -->
     <p><strong>Nombre:</strong> {{ container.name }}</p>
     <p><strong>Ubicación:</strong> {{ container.location }}</p>
-    <p><strong>Objetos:</strong> {{ container.items | join(', ') }}</p>
-    <img src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}" alt="QR Code">
+    
+    <!-- Sección de Objetos -->
+    <p><strong>Objetos:</strong></p>
+    <div class="items-grid">
+        {% for item in container.items %}
+        <div class="item-card">
+            <small style="display: none;">Ruta de imagen: {{ item.image }}</small>
+            
+            <img src="{{ url_for('static', filename='container_pics/' + item.image) }}" 
+                 alt="Imagen de {{ item }}"
+                 class="item-image"
+                 onerror="this.onerror=null; this.src='{{ url_for('static', filename='container_pics/default.png') }}'; console.log('Error cargando imagen: {{ item.image }}');">
+            <p class="item-name">{{ item }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Código QR -->
+    <div class="qr-section">
+        <img src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}" 
+             alt="QR Code"
+             class="qr-code">
+    </div>
 </div>
+
+<!-- Estilos CSS -->
+<style>
+    /* Estilos para la cuadrícula de items */
+    .items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    /* Estilos para las tarjetas de items */
+    .item-card {
+        min-height: 250px;
+        min-width: 200px;
+        border: 1px solid #ddd;
+        padding: 1rem;
+        text-align: center;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-radius: 8px;
+    }
+
+    /* Estilos para las imágenes */
+    .item-image {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        background-color: #f8f8f8;
+    }
+
+    /* Estilos para los nombres de items */
+    .item-name {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Estilos para el código QR */
+    .qr-code {
+        max-width: 200px;
+        margin: 1rem auto;
+        display: block;
+    }
+
+    /* Estilos específicos para impresión */
+    @media print {
+        .btn {
+            display: none;
+        }
+        
+        .items-grid {
+            page-break-inside: avoid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+
+        .item-card {
+            break-inside: avoid;
+            box-shadow: none;
+            border: 1px solid #000;
+        }
+
+        .item-image {
+            height: 150px;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #printDetail {
+            width: 100%;
+            margin: 0;
+            padding: 10px;
+        }
+    }
+</style>
+
+<!-- Botones de acción -->
 <button class="btn btn-primary" onclick="window.print()">Imprimir Detalle</button>
 <a class="btn btn-secondary" href="{{ url_for('main.list_containers') }}">Volver a la lista</a>
 {% endblock %}
