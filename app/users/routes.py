@@ -13,14 +13,23 @@ users_bp = Blueprint('users', __name__)
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
+
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.objects(email=form.email_or_username.data).first()
-        if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home'))
-        flash('Email o contraseña incorrectos', 'danger')
+        # Buscar usuario por email o nombre de usuario
+        user = User.objects(email=form.email_or_username.data).first() or \
+               User.objects(username=form.email_or_username.data).first()
+        
+        if user:
+            # Verificar contraseña
+            if bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user, remember=form.remember.data)
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('main.home'))
+            else:
+                flash('Contraseña incorrecta', 'danger')
+        else:
+            flash('Email o nombre de usuario incorrecto', 'danger')
     return render_template('login.html', title='Iniciar Sesión', form=form)
 
 @users_bp.route("/register", methods=['GET', 'POST'])
@@ -46,6 +55,11 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for('users.logout_page'))
+
+@users_bp.route("/logout_page")
+def logout_page():
+    # Renderiza una página de confirmación de cierre de sesión
+    return render_template('logout.html')
 
 @users_bp.route("/account", methods=['GET', 'POST'])
 @login_required

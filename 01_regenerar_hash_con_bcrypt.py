@@ -2,7 +2,7 @@ import bcrypt
 from mongoengine import connect, Document, StringField
 
 # Conectar a la base de datos
-connect('edf_catalogacion_qr')
+connect('app-qr-catalogacion')
 
 class User(Document):
     username = StringField(max_length=50, unique=True, required=True)

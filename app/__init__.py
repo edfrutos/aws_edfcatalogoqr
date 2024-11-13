@@ -7,11 +7,16 @@ from flask_mongoengine import MongoEngine
 from datetime import datetime
 import logging
 from logging.handlers import RotatingFileHandler
+import certifi
 import os
 import boto3
 from botocore.exceptions import ClientError
 from dotenv import load_dotenv
 from mongoengine import disconnect
+
+
+# Establece la ruta del certificado SSL para evitar errores de verificación de MongoDB
+os.environ['SSL_CERT_FILE'] = certifi.where()
 
 # Cargar variables de entorno
 load_dotenv()
@@ -37,8 +42,8 @@ def create_app():
     # Configuración básica
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'default-secret-key')
     app.config['MONGODB_SETTINGS'] = {
-        'host': os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/edfcatalogoqr'),
-        'connect': False
+        'host': os.environ.get('MONGO_URI', 'mongodb://localhost:27017/edfcatalogoqr'),
+        'connect': False  # MongoEngine se conectará automáticamente a través de init_app
     }
 
     # Configuración de AWS S3
@@ -55,7 +60,7 @@ def create_app():
     app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
 
     # Inicialización de extensiones con la app
-    db.init_app(app)
+    db.init_app(app)  # Deja que flask_mongoengine maneje la conexión automáticamente
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
@@ -79,7 +84,7 @@ def create_app():
     from app.users.routes import users_bp
     from app.admin.routes import admin_bp
     from app.errors.handlers import errors
-
+    
     app.register_blueprint(main_bp)
     app.register_blueprint(users_bp, url_prefix='/users')
     app.register_blueprint(admin_bp, url_prefix='/admin')
@@ -117,7 +122,12 @@ def create_app():
 def load_user(user_id):
     try:
         from app.models import User
-        return User.objects(id=user_id).first()
+        user = User.objects(id=user_id).first()
+        if user:
+            logging.info(f"Usuario cargado: {user.username}")
+        else:
+            logging.warning("No se encontró el usuario en la base de datos.")
+        return user
     except Exception as e:
         logging.error(f"Error al cargar el usuario: {str(e)}")
         return None

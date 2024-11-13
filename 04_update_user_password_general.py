@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from flask_bcrypt import Bcrypt
 
 <<<<<<< HEAD
-DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/edf_catalogacion_qr?retryWrites=true&w=majority"
+DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority"
 from mongoengine.connection import disconnect
 =======
 # Cargar variables de entorno desde un archivo .env

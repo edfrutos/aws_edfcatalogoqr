@@ -1,326 +1,192 @@
-from flask import (
-    Blueprint, render_template, url_for, flash, redirect, request, 
-    current_app, abort, jsonify
-)
-from flask_login import current_user, login_required
+
+from flask import Blueprint, render_template, url_for, flash, redirect, request, abort
+from flask_login import login_required
+from app.forms import UpdateUserForm, SearchUserForm, SearchContainerForm, ContainerForm, DeleteAccountForm
 from app.models import User, Container
-from app.utils import admin_required
-from datetime import datetime
-from mongoengine.errors import ValidationError, DoesNotExist
+from app.utils import admin_required, save_profile_picture, save_container_picture
+from werkzeug.datastructures import FileStorage
 from mongoengine.queryset.visitor import Q
-from bson import ObjectId
-import logging.handlers
+import unidecode
+import logging
 
-# Configurar logger específico para admin
-logger = logging.getLogger('admin')
-logger.setLevel(logging.INFO)
-handler = logging.handlers.RotatingFileHandler(
-    'logs/admin.log', 
-    maxBytes=10000, 
-    backupCount=5
-)
-formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-
-# Crear el Blueprint
 admin_bp = Blueprint('admin', __name__)
 
-def is_valid_objectid(id_str):
-    """Validar si una cadena es un ObjectId válido."""
-    try:
-        ObjectId(id_str)
-        return True
-    except:
-        return False
-
-@admin_bp.route("/dashboard")
+@admin_bp.route("/admin/users", methods=['GET', 'POST'])
 @login_required
 @admin_required
-def admin_dashboard():
-    """Vista del panel de administración principal."""
-    try:
-        total_users = User.objects.count()
-        total_containers = Container.objects.count()
-        recent_users = User.objects.order_by('-date_joined')[:5]
-        recent_containers = Container.objects.order_by('-date_created')[:5]
-        
-        stats = {
-            'total_users': total_users,
-            'total_containers': total_containers,
-            'active_users': User.objects(is_active=True).count(),
-            'inactive_users': User.objects(is_active=False).count()
-        }
-        
-        return render_template(
-            'admin/dashboard.html',
-            stats=stats,
-            recent_users=recent_users,
-            recent_containers=recent_containers,
-            title='Panel de Administración'
-        )
-    except Exception as e:
-        logger.error(f"Error en el dashboard de administración: {str(e)}")
-        flash('Error al cargar el dashboard', 'danger')
-        return redirect(url_for('main.home'))
+def list_users():
+    form = SearchUserForm()
+    users = User.objects.all()
+    return render_template('admin/list_users.html', title='Listar Usuarios', users=users, form=form)
 
-@admin_bp.route("/users")
+@admin_bp.route("/admin/user/<user_id>/edit", methods=['GET', 'POST'])
 @login_required
 @admin_required
-def user_list():
-    """Lista de usuarios para administración."""
-    try:
-        page = request.args.get('page', 1, type=int)
-        per_page = 10
-        offset = (page - 1) * per_page
-        
-        # Filtros
-        search_query = request.args.get('search', '')
-        status_filter = request.args.get('status')
-        
-        # Construir query base
-        users_query = User.objects
-        
-        # Aplicar filtros
-        if search_query:
-            users_query = users_query.filter(
-                Q(username__icontains=search_query) | 
-                Q(email__icontains=search_query)
-            )
-        
-        if status_filter:
-            users_query = users_query.filter(is_active=status_filter == 'active')
-        
-        # Obtener total y usuarios paginados
-        total_users = users_query.count()
-        users = users_query.order_by('-date_joined').skip(offset).limit(per_page)
-        
-        return render_template(
-            'admin/user_list.html',
-            users=users,
-            total_users=total_users,
-            page=page,
-            per_page=per_page,
-            total_pages=(total_users + per_page - 1) // per_page,
-            title='Administración de Usuarios'
-        )
-    except Exception as e:
-        logger.error(f"Error en la lista de usuarios: {str(e)}")
-        flash('Error al cargar la lista de usuarios', 'danger')
-        return redirect(url_for('admin.admin_dashboard'))
-
-@admin_bp.route("/users/<user_id>", methods=['GET', 'POST'])
-@login_required
-@admin_required
-def user_detail(user_id):
-    """Vista detallada y edición de usuario."""
-    if not is_valid_objectid(user_id):
-        flash('ID de usuario inválido', 'danger')
-        return redirect(url_for('admin.user_list'))
+def edit_user(user_id):
+    user = User.objects(id=user_id).first()
+    if not user:
+        logging.warning(f"Usuario con ID {user_id} no encontrado.")
+        abort(404)
     
-    try:
-        user = User.objects.get(id=user_id)
+    form = UpdateUserForm(original_username=user.username, original_email=user.email)
+    
+    if form.validate_on_submit():
+        logging.debug(f"Actualizando usuario {user.username}")
         
-        if request.method == 'POST':
-            user.username = request.form.get('username', user.username)
-            user.email = request.form.get('email', user.email)
-            user.is_active = 'is_active' in request.form
-            user.is_admin = 'is_admin' in request.form
-            
-            try:
-                user.save()
-                flash('Usuario actualizado exitosamente', 'success')
-            except ValidationError as e:
-                flash(f'Error de validación: {str(e)}', 'danger')
-            
-            return redirect(url_for('admin.user_detail', user_id=user_id))
-        
-        # Obtener contenedores del usuario
-        user_containers = Container.objects(user=user).order_by('-date_created')
-        
-        return render_template(
-            'admin/user_detail.html',
-            user=user,
-            containers=user_containers,
-            title=f'Usuario: {user.username}'
-        )
-    except DoesNotExist:
-        flash('Usuario no encontrado', 'danger')
-        return redirect(url_for('admin.user_list'))
-    except Exception as e:
-        logger.error(f"Error en detalles de usuario: {str(e)}")
-        flash('Error al procesar la solicitud', 'danger')
-        return redirect(url_for('admin.user_list'))
+        if form.picture.data:
+            picture_file = save_profile_picture(form.picture.data)
+            user.image_file = picture_file
+            logging.info(f"Imagen de perfil actualizada para el usuario {user.username}")
 
-@admin_bp.route("/users/<user_id>/delete", methods=['POST'])
+        user.username = form.username.data
+        user.email = form.email.data
+        user.address = form.address.data
+        user.phone = form.phone.data
+        user.is_admin = form.is_admin.data
+        user.save()
+        
+        flash('Usuario actualizado exitosamente', 'success')
+        logging.info(f"Usuario {user.username} actualizado exitosamente.")
+        return redirect(url_for('admin.list_users'))
+
+    elif request.method == 'GET':
+        form.username.data = user.username
+        form.email.data = user.email
+        form.address.data = user.address
+        form.phone.data = user.phone
+        form.is_admin.data = user.is_admin
+    
+    image_file = url_for('static', filename='profile_pics/' + user.image_file)
+    return render_template('admin/edit_user.html', title='Editar Usuario', form=form, image_file=image_file, user=user)
+
+@admin_bp.route("/user/<user_id>/delete", methods=['GET', 'POST'])
 @login_required
 @admin_required
 def delete_user(user_id):
-    """Eliminar usuario."""
-    if not is_valid_objectid(user_id):
-        return jsonify({'success': False, 'error': 'ID de usuario inválido'}), 400
+    user = User.objects(id=user_id).first()
+    if not user:
+        logging.warning(f"Intento de eliminar usuario no existente con ID {user_id}")
+        abort(404)
     
-    try:
-        user = User.objects.get(id=user_id)
-        
-        # Evitar auto-eliminación
-        if str(user.id) == str(current_user.id):
-            return jsonify({
-                'success': False, 
-                'error': 'No puedes eliminar tu propio usuario'
-            }), 400
-        
-        # Eliminar contenedores asociados
-        Container.objects(user=user).delete()
-        
-        # Eliminar usuario
+    form = DeleteAccountForm()
+    if form.validate_on_submit():
         user.delete()
-        
-        return jsonify({'success': True})
-    except DoesNotExist:
-        return jsonify({'success': False, 'error': 'Usuario no encontrado'}), 404
-    except Exception as e:
-        logger.error(f"Error eliminando usuario: {str(e)}")
-        return jsonify({'success': False, 'error': 'Error interno del servidor'}), 500
+        flash('Usuario eliminado exitosamente', 'success')
+        logging.info(f"Usuario con ID {user_id} eliminado exitosamente.")
+        return redirect(url_for('admin.list_users'))
 
-@admin_bp.route("/containers")
+    return render_template('admin/delete_user.html', user=user, form=form)
+
+@admin_bp.route("/admin/user/search", methods=['GET', 'POST'])
 @login_required
 @admin_required
-def container_list():
-    """Lista de contenedores para administración."""
-    try:
-        page = request.args.get('page', 1, type=int)
-        per_page = 10
-        offset = (page - 1) * per_page
+def search_user():
+    form = SearchUserForm()
+    user = None
+    if form.validate_on_submit():
+        search_query = form.search.data
+        normalized_query = unidecode.unidecode(search_query).lower()
+        user = User.objects(Q(username__iexact=normalized_query) | Q(email__iexact=normalized_query)).first()
         
-        # Filtros
-        search_query = request.args.get('search', '')
-        user_filter = request.args.get('user')
-        
-        # Construir query base
-        containers_query = Container.objects
-        
-        # Aplicar filtros
-        if search_query:
-            containers_query = containers_query.filter(
-                Q(name__icontains=search_query) |
-                Q(location__icontains=search_query)
-            )
-        
-        if user_filter and is_valid_objectid(user_filter):
-            containers_query = containers_query.filter(user=user_filter)
-        
-        # Obtener total y contenedores paginados
-        total_containers = containers_query.count()
-        containers = containers_query.order_by('-date_created').skip(offset).limit(per_page)
-        
-        # Obtener lista de usuarios para el filtro
-        users = User.objects.all()
-        
-        return render_template(
-            'admin/container_list.html',
-            containers=containers,
-            users=users,
-            total_containers=total_containers,
-            page=page,
-            per_page=per_page,
-            total_pages=(total_containers + per_page - 1) // per_page,
-            current_user_filter=user_filter,
-            title='Administración de Contenedores'
-        )
-    except Exception as e:
-        logger.error(f"Error en la lista de contenedores: {str(e)}")
-        flash('Error al cargar la lista de contenedores', 'danger')
-        return redirect(url_for('admin.admin_dashboard'))
-
-@admin_bp.route("/containers/<container_id>", methods=['GET', 'POST'])
-@login_required
-@admin_required
-def container_detail(container_id):
-    """Vista detallada y edición de contenedor."""
-    if not is_valid_objectid(container_id):
-        flash('ID de contenedor inválido', 'danger')
-        return redirect(url_for('admin.container_list'))
+        if user:
+            logging.info(f"Usuario encontrado: {user.username} con ID {user.id}")
+            return redirect(url_for('admin.edit_user', user_id=user.id))
+        else:
+            flash('Usuario no encontrado', 'danger')
+            logging.warning(f"No se encontró ningún usuario con el término de búsqueda: {search_query}")
     
-    try:
-        container = Container.objects.get(id=container_id)
-        
-        if request.method == 'POST':
-            container.name = request.form.get('name', container.name)
-            container.location = request.form.get('location', container.location)
-            container.items = [item.strip() for item in request.form.get('items', '').split(',')]
-            
-            try:
-                container.save()
-                flash('Contenedor actualizado exitosamente', 'success')
-            except ValidationError as e:
-                flash(f'Error de validación: {str(e)}', 'danger')
-            
-            return redirect(url_for('admin.container_detail', container_id=container_id))
-        
-        return render_template(
-            'admin/container_detail.html',
-            container=container,
-            title=f'Contenedor: {container.name}'
-        )
-    except DoesNotExist:
-        flash('Contenedor no encontrado', 'danger')
-        return redirect(url_for('admin.container_list'))
-    except Exception as e:
-        logger.error(f"Error en detalles de contenedor: {str(e)}")
-        flash('Error al procesar la solicitud', 'danger')
-        return redirect(url_for('admin.container_list'))
+    return render_template('admin/search_user.html', title='Buscar Usuario', form=form, user=user)
 
-@admin_bp.route("/containers/<container_id>/delete", methods=['POST'])
+@admin_bp.route("/admin/user/<user_id>/view", methods=['GET'])
 @login_required
 @admin_required
-def delete_container(container_id):
-    """Eliminar contenedor."""
-    if not is_valid_objectid(container_id):
-        return jsonify({'success': False, 'error': 'ID de contenedor inválido'}), 400
+def view_user(user_id):
+    user = User.objects(id=user_id).first()
+    if not user:
+        logging.warning(f"Usuario con ID {user_id} no encontrado para vista.")
+        abort(404)
     
-    try:
-        container = Container.objects.get(id=container_id)
-        container.delete()
-        return jsonify({'success': True})
-    except DoesNotExist:
-        return jsonify({'success': False, 'error': 'Contenedor no encontrado'}), 404
-    except Exception as e:
-        logger.error(f"Error eliminando contenedor: {str(e)}")
-        return jsonify({'success': False, 'error': 'Error interno del servidor'}), 500
+    return render_template('admin/view_user.html', title='Ver Usuario', user=user)
 
-@admin_bp.route("/stats")
+@admin_bp.route("/admin/containers", methods=['GET', 'POST'])
 @login_required
 @admin_required
-def admin_stats():
-    """Estadísticas del sistema."""
-    try:
-        today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
-        
-        stats = {
-            'total_users': User.objects.count(),
-            'active_users': User.objects(is_active=True).count(),
-            'total_containers': Container.objects.count(),
-            'containers_today': Container.objects(date_created__gte=today).count(),
-        }
-        
-        # Estadísticas mensuales
-        monthly_stats = {
-            'users': [],
-            'containers': []
-        }
-        
-        # Implementar lógica para estadísticas mensuales aquí
-        
-        return render_template(
-            'admin/stats.html',
-            stats=stats,
-            monthly_stats=monthly_stats,
-            title='Estadísticas del Sistema'
+def admin_search_containers():
+    form = SearchContainerForm()
+    containers = []
+    
+    if form.validate_on_submit():
+        search_query = form.search_query.data
+        normalized_query = unidecode.unidecode(search_query).lower()
+
+        # Realizar la búsqueda ignorando mayúsculas, minúsculas y acentos
+        containers = Container.objects(
+            Q(name__icontains=normalized_query) |
+            Q(location__icontains=normalized_query) |
+            Q(items__icontains=normalized_query)
         )
-    except Exception as e:
-        logger.error(f"Error al cargar estadísticas: {str(e)}")
-        flash('Error al cargar las estadísticas', 'danger')
-        return redirect(url_for('admin.admin_dashboard'))
+        
+        if not containers:
+            flash('No se encontraron contenedores', 'info')
+            logging.info(f"No se encontraron contenedores con la búsqueda: {search_query}")
+    
+    return render_template('admin/admin_search_containers.html', title='Buscar Contenedores', form=form, containers=containers)
+
+@admin_bp.route("/admin/containers/<container_id>/edit", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def admin_edit_container(container_id):
+    logging.debug(f"Entrando en admin_edit_container con container_id={container_id}")
+    
+    container = Container.objects(id=container_id).first()
+    if not container:
+        logging.warning(f"Contenedor con ID {container_id} no encontrado.")
+        abort(404)
+    
+    form = ContainerForm()
+    if form.validate_on_submit():
+        logging.debug(f"Formulario validado exitosamente para el contenedor {container.name}")
+
+        container.name = form.name.data
+        container.location = form.location.data
+        container.items = [item.strip() for item in form.items.data.split(",")]
+
+        if form.pictures.data:
+            logging.debug("Intentando guardar imágenes del contenedor...")
+            picture_files = []
+            for picture in form.pictures.data:
+                if isinstance(picture, FileStorage) and picture.filename != '':
+                    try:
+                        picture_file = save_container_picture(picture)
+                        logging.debug(f"Imagen guardada: {picture_file}")
+                        picture_files.append(picture_file)
+                    except Exception as e:
+                        logging.error(f"Error guardando la imagen: {e}")
+            container.image_files = picture_files
+        
+        container.save()
+        logging.info(f"Contenedor {container.name} actualizado y guardado exitosamente.")
+        flash("Contenedor actualizado exitosamente", 'success')
+        return redirect(url_for('admin.admin_search_containers'))
+    
+    elif request.method == 'GET':
+        logging.debug("GET request recibido, llenando el formulario con datos del contenedor.")
+        form.name.data = container.name
+        form.location.data = container.location
+        form.items.data = ", ".join(container.items)
+    
+    return render_template('admin/edit_container.html', title='Editar Contenedor', form=form, container=container)
+
+@admin_bp.route("/admin/containers/<container_id>/delete", methods=['POST'])
+@login_required
+@admin_required
+def admin_delete_container(container_id):
+    container = Container.objects(id=container_id).first()
+    if not container:
+        logging.warning(f"Intento de eliminar contenedor no existente con ID {container_id}")
+        abort(404)
+    
+    container.delete()
+    flash("Contenedor eliminado correctamente", 'success')
+    logging.info(f"Contenedor con ID {container_id} eliminado exitosamente.")
+    return redirect(url_for('admin.admin_search_containers'))

@@ -572,6 +572,12 @@ button {
   margin-left: 0.5rem !important;
 }
 
+.form-check-login {
+  position: absolute !important;
+  margin-top: 0.3rem !important;
+  margin-left: 6rem !important;
+}
+
 .form-label {
   width: 200px;
   /* Ajusta este valor según tus necesidades */

@@ -25,7 +25,7 @@ Path('logs').mkdir(exist_ok=True)
 
 # Configurar RotatingFileHandler para mejor manejo de logs
 handler = logging.handlers.RotatingFileHandler(
-    'logs/utils.log',
+    'logs/app.log',
     maxBytes=1024 * 1024,  # 1MB
     backupCount=5,
     encoding='utf-8'

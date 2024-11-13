@@ -1,7 +1,7 @@
 import mongoengine as db
 from werkzeug.security import generate_password_hash, check_password_hash
 
-DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/edf_catalogacion_qr?retryWrites=true&w=majority"
+DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority"
 from mongoengine.connection import disconnect
 
 # Disconnect if already connected

@@ -44,7 +44,7 @@ def setup_logger():
         
         # Configurar el RotatingFileHandler
         file_handler = logging.handlers.RotatingFileHandler(
-            'logs/routes.log',
+            'logs/app.log',
             maxBytes=1024 * 1024,  # 1MB
             backupCount=10,
             encoding='utf-8'
@@ -137,21 +137,6 @@ from app.forms import LoginForm
 from app.models import User
 
 users_bp = Blueprint('users', __name__)
-
-@users_bp.route("/login", methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email_or_username.data).first()
-        if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home'))
-        flash('Email o contraseña incorrectos', 'danger')
-    return render_template('login.html', title='Iniciar Sesión', form=form)
-
 
 @main.route("/logout")
 @login_required

@@ -29,20 +29,20 @@ if not logger.handlers:
     logger.addHandler(handler)
 
 # Configuración de la base de datos
-DB_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority"
+# MONGO_URI = "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w3=majority"
 
-def init_db():
-    """Inicializa la conexión a la base de datos."""
-    try:
-        disconnect()
-        logger.info("Desconexión exitosa de la base de datos anterior.")
-        connect(host=DB_URI)
-        logger.info("Conectado exitosamente a la base de datos.")
-    except Exception as e:
-        logger.error(f"Error en la conexión a la base de datos: {e}")
-        raise
+#def init_db():
+#    """Inicializa la conexión a la base de datos."""
+#    try:3
+#        disconnect()
+#        logger.info("Desconexión exitosa de la base de datos anterior.")
+#        connect(host=MONGO_URI)
+#        logger.info("Conectado exitosamente a la base de datos.")
+#    except Exception as e:
+#        logger.error(f"Error en la conexión a la base de datos: {e}")
+#        raise
 
-init_db()
+#init_db()
 
 @login_manager.user_loader
 def load_user(user_id):
