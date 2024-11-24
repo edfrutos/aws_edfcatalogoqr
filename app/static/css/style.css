@@ -8,17 +8,28 @@ body {
 }
 
 .container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  background-color: #99d5a6;
+  margin-top: 2rem !important;
+  margin-bottom: 10rem;
 }
 
 .container-home {
   justify-content: center;
   align-items: normal;
   display: flex;
+}
+
+.container-footer {
+  width: 85%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0%;
+  padding-right: 0%;
+  background-color: #99d5a6;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 /*.container-login {
@@ -39,9 +50,14 @@ body {
   margin-left: 21rem !important;
 }
 
-.container-containers {
-  margin-top: 5% !important;
-  margin-bottom: 8% !important;
+.container-list {
+  max-width: 1000px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  margin-bottom: 10rem;
 }
 
 .edit-container {
@@ -80,31 +96,12 @@ body {
   margin-top: 13% !important;
 }
 
-.container,
-.container-content {
-  padding-left: 0%;
-  padding-right: 0%;
-  background-color: #99d5a6;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 90%;
   margin: 0 auto;
-}
-
-.container-list {
-  padding-top: 100px;
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .container-item {
@@ -243,6 +240,19 @@ img {
   margin: 4px;
 }
 
+ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
 button {
   margin: 5px 0;
 }
@@ -280,12 +290,12 @@ button {
   align-items: center !important;
 }
 
-.modal-content {
+.modal-content-edit {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: 3px solid #888;
+  width: 100%;
 }
 
 .modal-content-home {
@@ -333,12 +343,19 @@ button {
 }
 
 .modal-dialog {
-  max-width: 450px;
+  max-width: 800px;
+  margin: 1.75rem auto;
+}
+
+.modal-dialog-edit {
+  max-width: 900px;
   margin-top: 20rem;
+  margin-left: 33rem;
 }
 
 .modal-body img {
-  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 .modal-welcome {
@@ -350,7 +367,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #99D5A6;
+  background: #99d5a6;
 }
 
 .modal-content-welcome {
@@ -403,7 +420,7 @@ button {
   justify-content: space-between;
   margin-bottom: 4px;
   z-index: 9999 !important;
-  background-color: #093D74;
+  background-color: #093d74;
 }
 
 /* Estilos agregados por chatGPT */
@@ -413,7 +430,21 @@ button {
   background-color: #ffffff;
   border: 1px solid #ced4da;
   border-radius: 10px;
-  padding-right: .4rem;
+  padding-right: 0.4rem;
+}
+
+.card-edit {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 35%;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
 
 .card-img-top {
@@ -444,11 +475,51 @@ button {
 }
 
 .close {
-  color: #aaa;
-  float: right;
-  cursor: pointer;
-  font-size: 28px;
+  position: absolute;
+  top: 357px !important;
+  right: 611px !important;
+  font-size: 30px;
   font-weight: bold;
+  color: #020c17;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.close-alert {
+  position: absolute;
+  top: -1px !important;
+  right: -1px !important;
+  font-size: 30px;
+  font-weight: bold;
+  color: #020c17;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.close-detail {
+  position: absolute;
+  top: 382px !important;
+  right: 611px !important;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  float: right;
+  line-height: 1;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
+  z-index: 99;
+}
+
+.close-preview-modal-edit {
+  position: absolute;
+  top: 357px !important;
+  right: 611px !important;
+  font-size: 30px;
+  font-weight: bold;
+  color: #020c17;
+  cursor: pointer;
+  z-index: 99;
 }
 
 .close:hover,
@@ -493,6 +564,7 @@ button {
   color: #000;
 }
 
+/*Icono de flecha hacia arriba */
 .fa,
 .fab,
 .fad,
@@ -505,14 +577,17 @@ button {
   font-variant: normal;
   text-rendering: auto;
   line-height: 1;
-  margin: 0 auto;
+  margin-left: 0rem;
+  margin-top: 0.2rem;
+  margin-right: .5rem;
 }
+
 
 .mt-3 {
-  margin-top: -.5rem !important;
+  margin-top: -0.5rem !important;
 }
 
-/* 
+/*
   Clases de utilidad para el espaciado de márgenes.
   .mt-5: establece el margen superior en 0rem con! Importante para anular otros estilos.
   .my-5: establece el margen vertical (superior e inferior) en 0rem con !important para anular otros estilos.
@@ -529,6 +604,18 @@ button {
 .mt-5,
 .my-5 {
   margin-top: 0rem !important;
+}
+
+.h4-detail {
+  font-size: 1.5rem !important;
+  display: flex;
+  justify-content: center;
+}
+
+.h5-detail {
+  font-size: 1.5rem !important;
+  display: flex;
+  justify-content: center;
 }
 
 .h-100 {
@@ -554,6 +641,17 @@ button {
 .input-group>.input-group-append>.btn {
   margin-top: 1px;
   margin-left: 1px;
+}
+
+.input-group-list {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: 100%;
 }
 
 .input-group-append {
@@ -600,9 +698,13 @@ button {
 }
 
 .row {
-  justify-content: center;
-  margin-top: 5rem;
-  display: -ms-flexbox;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-wrap: wrap !important;
+  flex-wrap: wrap !important;
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  justify-content: center !important;
 }
 
 .row-detail {
@@ -621,7 +723,15 @@ button {
   position: relative;
   display: grid;
   justify-content: center;
-  align-content: center
+  align-content: center;
+}
+
+.col-md-detail {
+  position: relative;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 10rem;
 }
 
 .list-group-item {
@@ -634,18 +744,18 @@ button {
 .navbar .container-md,
 .navbar .container-sm,
 .navbar .container-xl {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-wrap: wrap !important;
+  flex-wrap: wrap !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  -ms-flex-pack: justify !important;
+  justify-content: space-between !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
   border: 10px;
 }
 
@@ -688,7 +798,6 @@ button {
   vertical-align: middle !important;
 }
 
-
 .login {
   margin-top: 6rem;
 }
@@ -708,6 +817,12 @@ button {
 footer {
   background-color: #093d74 !important;
   color: white;
+  padding-top: 0rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 133px;
 }
 
 @media (max-width: 1370px) {
@@ -742,13 +857,8 @@ footer {
     display: grid;
   }
 
-  .container,
-  .container-content {
-    margin-top: 5rem;
-  }
-
   .btn-primary {
-    margin-left: .3rem;
+    margin-left: 0.3rem;
     justify-content: center;
   }
 
@@ -768,13 +878,6 @@ footer {
 @media (max-width: 1024px) {
   .login {
     margin-top: 0rem;
-  }
-
-  .container {
-    padding-left: 1%;
-    padding-right: 1%;
-    margin-bottom: 0rem;
-    margin-top: 10rem !important;
   }
 
   .container,
@@ -814,10 +917,10 @@ footer {
   }
 
   .container-detail {
-    margin-top: 2rem !important;
-    margin-bottom: 0% !important;
-    width: 71% !important;
-    margin-left: 8rem !important;
+    margin-top: 0rem;
+    margin-bottom: 5rem;
+    width: 71%;
+    margin-left: 8rem;
   }
 
   .container-search {
@@ -844,11 +947,6 @@ footer {
     padding-bottom: 5rem;
   }
 
-  .img-fluid {
-    max-width: 100% !important;
-    height: auto !important;
-  }
-
   .container-admin-user {
     margin-top: 0rem;
     margin-left: 1rem;
@@ -858,22 +956,10 @@ footer {
   }
 }
 
-.img-fluid {
-  height: auto;
-  max-width: 100% !important;
-}
-
 @media (min-width: 844px) {
   .col-md-4 {
     flex: 100;
     max-width: 80% !important;
-  }
-
-  .container {
-    padding-left: 1%;
-    padding-right: 1%;
-    margin-bottom: 5rem;
-    margin-top: 3rem !important;
   }
 
   .container-account {
@@ -914,7 +1000,7 @@ footer {
   }
 
   .btn-primary {
-    margin-left: .3rem;
+    margin-left: 0.3rem;
     justify-content: center;
   }
 
@@ -930,7 +1016,7 @@ footer {
   }
 
   .navbar {
-    padding: .5rem !important;
+    padding: 0.5rem !important;
   }
 
   .navbar-content {
@@ -1002,15 +1088,6 @@ footer {
   }
 
   .container,
-  .container-content {
-    padding-left: 0%;
-    padding-right: 0%;
-    margin-top: 1rem;
-    margin-bottom: 5rem;
-    margin-left: 0rem;
-  }
-
-  .container,
   .container-md,
   .container-sm {
     max-width: 100% !important;
@@ -1024,9 +1101,21 @@ footer {
 }
 
 #scrollTopBtn {
-  bottom: 110px !important;
-  background-color: #0056B3;
-  margin-right: auto;
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: #343a40;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 18px;
+  transition: background-color 0.3s;
+  bottom: 126px !important;
 }
 
 .container-search {
@@ -1082,21 +1171,40 @@ footer {
 }
 
 .img-thumbnail {
-  padding: .25rem !important;
+  padding: 0.25rem !important;
   background-color: #fff !important;
   border: 1px solid #dee2e6 !important;
-  border-radius: .25rem !important;
+  border-radius: 0.25rem !important;
   max-width: 50% !important;
   height: auto !important;
   margin: 0 auto;
 }
 
-footer {
-  padding: 0;
-  background-color: #093D74 !important;
-}
-
 #scrollTopBtn {
   bottom: 70px;
-  /* Ajuste para pantallas más pequeñas */
+}
+
+/* Añade estos estilos a tu archivo CSS */
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+  max-width: 800px;
+  margin: 1.75rem auto;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  border-radius: 0.3rem;
+}
+
+.btn-close {
+  opacity: 1;
+}
+
+.modal-body img {
+  max-width: 100%;
+  height: auto;
 }
