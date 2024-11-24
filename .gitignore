@@ -14,5 +14,5 @@ venv/
 _DS_Store
 .DS_Store
 
-# Ignora archvos de Cyberduck
+# Ignora archivos de Cyberduck
 **/.duckversions/
