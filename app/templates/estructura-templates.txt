@@ -1,0 +1,47 @@
+templates/
+├── about.html
+├── account.html
+├── admin
+│   ├── admin_search_containers.html
+│   ├── admin_user.html
+│   ├── admin_users.html
+│   ├── containers.html
+│   ├── edit_user.html
+│   ├── estructura-de-admin.txt
+│   ├── home.html
+│   ├── list_users.html
+│   ├── search_container.html
+│   ├── user
+│   ├── users.html
+│   └── view_user.html
+├── admin_dashboard.html
+├── base.html
+├── contacto.html
+├── container.html
+├── container_detail.html
+├── container_preview.html
+├── containers.html
+├── create_container.html
+├── change_password.html
+├── change_password2.html
+├── delete_account.html
+├── edit_container.html
+├── edit_user.html
+├── estructura-de-templates.txt
+├── estructura-templates.txt
+├── footer.html
+├── header.html
+├── home.html
+├── index.html
+├── layout.html
+├── list_containers.html
+├── list_users.html
+├── login.html
+├── print_container.html
+├── register.html
+├── reset_password.html
+├── reset_request.html
+├── reset_token.html
+├── search_container.html
+├── view_user.html
+└── welcome.html
