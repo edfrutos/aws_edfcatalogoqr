@@ -8,7 +8,7 @@ logs/*.log*.pyc
 
 # Ignorar directorios de entornos virtuales
 venv/
-
+.env
 # Ignorar archivos del sistema de macOS
 _DS_Store
 .DS_Store
