@@ -9,9 +9,13 @@ logs/*.log*.pyc
 # Ignorar directorios de entornos virtuales
 venv/
 .env
+<<<<<<< HEAD
+
+=======
+>>>>>>> 9a0df352c6f95132be41f80892787c2c09a5869e
 # Ignorar archivos del sistema de macOS
 _DS_Store
 .DS_Store
 
-# Ignora archvos de Cyberduck
+# Ignora archivos de Cyberduck
 **/.duckversions/
