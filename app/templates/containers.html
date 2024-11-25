@@ -1,8 +1,5 @@
 {% extends "layout.html" %} {% block content %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/style.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 <div class="container">
   <h2 class="text-center">Mis Contenedores</h2>
   <div class="list-group">
@@ -28,28 +25,12 @@
       {% else %}
       <p>No se encontraron imágenes.</p>
       {% endif %}
-      <a
-        href="{{ url_for('main.container_detail', container_id=container.id) }}"
-        class="btn btn-primary"
-      >
+      <a href="{{ url_for('main.container_detail', container_id=container.id) }}" class="btn btn-primary">
         Ver Detalles
       </a>
-      <a
-        href="{{ url_for('main.edit_container', container_id=container.id) }}"
-        class="btn btn-secondary"
-      >
-        Editar
-      </a>
-      <a
-        href="{{ url_for('main.print_container', container_id=container.id) }}"
-        class="btn btn-info"
-      >
-        Imprimir
-      </a>
-      <a
-        href="{{ url_for('main.download_container', container_id=container.id) }}"
-        class="btn btn-success"
-      >
+      <a href="{{ url_for('main.edit_container', container_id=container.id) }}" class="btn btn-secondary">Editar</a>
+      <a href="{{ url_for('main.print_container', container_id=container.id) }}" class="btn btn-info">Imprimir</a>
+      <a href="{{ url_for('main.download_container', container_id=container.id) }}" class="btn btn-success">
         Descargar
       </a>
       <form
@@ -58,15 +39,8 @@
         style="display: inline"
       >
         {{ form.hidden_tag() }}
-        <input
-          type="checkbox"
-          id="confirmDelete{{ container.id }}"
-          name="confirmDelete"
-          required
-        />
-        <label for="confirmDelete{{ container.id }}">
-          Confirmar eliminación
-        </label>
+        <input type="checkbox" id="confirmDelete{{ container.id }}" name="confirmDelete" required />
+        <label for="confirmDelete{{ container.id }}">Confirmar eliminación</label>
         <button
           type="submit"
           class="btn btn-danger"
