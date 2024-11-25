@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="reset-request">
+    <h1>Restablecer Contraseña</h1>
+    <form method="POST" action="{{ url_for('main.reset_request') }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.email.label }}<br>
+            {{ form.email(class="form-control", size=32) }}<br>
+            {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span><br>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+    <a href="{{ url_for('main.home') }}" class="btn btn-primary">Volver a Inicio</a>
+</div>
+{% endblock %}

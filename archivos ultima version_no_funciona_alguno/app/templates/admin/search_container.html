@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Contenedores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends "layout.html" %}
+    {% block content %}
+    <div class="container">
+        <h2 class="text-center">Buscar Contenedores</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.search.label(class="form-control-label") }}
+                {{ form.search(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary btn-lg btn-block") }}
+            </div>
+        </form>
+        <ul>
+            {% for container in containers %}
+            <li>{{ container.name }} - {{ container.location }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endblock %}
+</body>
+</html>

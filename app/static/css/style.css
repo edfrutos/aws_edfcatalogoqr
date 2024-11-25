@@ -487,7 +487,7 @@ button {
 
 .close-alert {
   position: absolute;
-  top: -1px !important;
+  top: -6px !important;
   right: -1px !important;
   font-size: 30px;
   font-weight: bold;

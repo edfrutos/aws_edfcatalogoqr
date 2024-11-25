@@ -74,3 +74,12 @@
 2024-11-13 19:48:22,016 - app - ERROR - Error en la ruta home: Could not build url for endpoint 'admin.search_user'. Did you mean 'admin.delete_user' instead?
 2024-11-13 19:51:32,599 - app - INFO - Aplicación Flask iniciada correctamente
 2024-11-13 19:55:36,188 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 13:16:59,818 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 13:18:29,103 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 13:18:32,166 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 18:41:50,843 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 18:41:55,267 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 18:55:15,630 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 19:04:13,759 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 19:16:40,693 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-25 19:22:15,622 - app - INFO - Aplicación Flask iniciada correctamente
