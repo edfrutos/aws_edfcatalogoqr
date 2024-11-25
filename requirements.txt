@@ -37,7 +37,7 @@ mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
 pdfkit==1.0.0
-Pillow==8.4.0
+Pillow
 platformdirs==4.3.3
 pluggy==1.5.0
 psycopg2-binary==2.9.3

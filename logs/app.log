@@ -1,0 +1,52 @@
+2024-11-24 20:42:43,811 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-24 20:42:47,408 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-24 20:43:42,633 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+Traceback (most recent call last):
+  File "/Volumes/APPLE SSD SM0128L Media/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/main/routes.py", line 311, in print_detail
+    return render_template('print_detail.html', title='Imprimir Detalle', container=container_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+           ^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Volumes/APPLE SSD SM0128L Media/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/APPLE SSD SM0128L Media/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/layout.html", line 215, in top-level template code
+    <div class="container-content">{% block content %}{% endblock %}</div>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/APPLE SSD SM0128L Media/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 8, in block 'content'
+    <p>Número de items: {{ container.items|length }}</p>
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object of type 'builtin_function_or_method' has no len()
+2024-11-24 20:43:42,633 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+Traceback (most recent call last):
+  File "/Volumes/APPLE SSD SM0128L Media/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/main/routes.py", line 311, in print_detail
+    return render_template('print_detail.html', title='Imprimir Detalle', container=container_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+           ^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Volumes/APPLE SSD SM0128L Media/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/APPLE SSD SM0128L Media/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/layout.html", line 215, in top-level template code
+    <div class="container-content">{% block content %}{% endblock %}</div>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/APPLE SSD SM0128L Media/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 8, in block 'content'
+    <p>Número de items: {{ container.items|length }}</p>
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: object of type 'builtin_function_or_method' has no len()
