@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<div class="container mt-5">
+    <h2 class="text-center">{{ container.name }}</h2>
+    <div class="row">
+        <div class="col-md-8">
+            {% if container.image_files %}
+                <h5>Imágenes:</h5>
+                <p>Número de imágenes: {{ container.image_files|length }}</p>
+                {% for image_file in container.image_files %}
+                    <p>Intentando cargar: {{ image_file }}</p>
+                    <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid mb-2">
+                {% endfor %}
+            {% else %}
+                <p>No se encontraron imágenes.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <h3>Detalles</h3>
+            <p><strong>Ubicación:</strong> {{ container.location }}</p>
+            <p><strong>Objetos:</strong></p>
+            <ul>
+                {% for item in container.items %}
+                    <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Código QR</h3>
+            <img src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}" alt="QR Code" class="img-fluid" style="width: 150px; height: 150px;">
+        </div>
+    </div>
+    <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary mt-3">Volver al Listado</a>
+</div>
+{% endblock %}

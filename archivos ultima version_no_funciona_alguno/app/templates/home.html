@@ -1,0 +1,84 @@
+{% extends "layout.html" %} {% block content %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/style.css') }}"
+/>
+
+<div class="container-home">
+  <div id="modal" class="modal-home">
+    <div class="modal-content-home">
+      <h1>
+        Bienvenid@
+        <br />
+        a
+        <br />
+        EDF Catalogación QR
+      </h1>
+      <h5>
+        Aplicación con la que sabrás en cualquier momento donde están todos tus
+        objetos guardados en los diferentes contenedores que tu registres en
+        esta misma aplicación.
+        <br />
+        <br />
+        De esta forma, puedes obtener información de en qué contenedor se
+        encuentra, dónde está localizado dicho contenedor e inclusive adjuntar
+        información gráfica (fotos) de los objetos buscados.
+        <br />
+        <br />
+        Todo ello mediante la lectura del QR que se genera al crear el registro
+        con la identificación del objeto buscado.
+      </h5>
+      <div class="btn-modal-home">
+        <button onclick="location.href='{{ url_for('main.contacto') }}'">
+          Contacto
+        </button>
+        <button onclick="location.href='{{ url_for('main.welcome') }}'">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="landscape" class="landscape-home">
+    <div class="content">
+      <h2>Catalogación de Objetos Diversos</h2>
+      <div class="buttons">
+        <button onclick="location.href='{{ url_for('main.home') }}'">
+          Inicio
+        </button>
+        <button onclick="location.href='{{ url_for('users.register') }}'">
+          Registro
+        </button>
+        <button onclick="location.href='{{ url_for('users.reset_request') }}'">
+          Recuperación de Contraseña
+        </button>
+        <button onclick="location.href='{{ url_for('main.contacto') }}'">
+          Contacto
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function mostrarMensaje(id) {
+      var mensaje = document.getElementById(id);
+      if (mensaje) {
+        mensaje.style.display = "block";
+      }
+    }
+
+    function cerrarMensaje(id) {
+      var mensaje = document.getElementById(id);
+      if (mensaje) {
+        mensaje.style.display = "none";
+      }
+    }
+
+    // Mostrar el mensaje de bienvenida al cargar la página
+    window.onload = function () {
+      mostrarMensaje("mensaje-bienvenida");
+      setTimeout(function () {
+        mostrarMensaje("mensaje-hasta-pronto");
+      }, 5000); // Muestra "Hasta pronto" después de 5 segundos
+    };
+  </script>
+  {% endblock %}
+</div>
