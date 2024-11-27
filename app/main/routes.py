@@ -264,10 +264,12 @@ def print_detail(container_id):
             else:
                 logger.warning(f"Imagen no encontrada: {image_path}")
 
-        # Asegurarse de que items sea una lista
+        # Asegúrate de que items sea una lista
         items_list = []
         if container.items:
-            if isinstance(container.items, (list, tuple)):
+            if callable(container.items):
+                items_list = container.items()  # Llama al método si es necesario
+            elif isinstance(container.items, (list, tuple)):
                 items_list = container.items
             elif isinstance(container.items, str):
                 items_list = [item.strip() for item in container.items.split(',') if item.strip()]
@@ -281,7 +283,7 @@ def print_detail(container_id):
             'image_files': valid_images,
             'qr_image': container.qr_image,
             'created_at': container.created_at
-        }
+}
 
         logger.debug(f"Container data prepared: {container_data}")
 

@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block content %}
 <div class="print-container">
-  <!-- Encabezado -->
+  <!-- Header -->
   <div class="container-header">
     <h2 class="container-title">{{ container.name|default('Sin nombre', true) }}</h2>
     <div class="container-info">
@@ -18,17 +18,17 @@
     </div>
   </div>
 
-  <!-- Contenido Principal -->
+  <!-- Main Content -->
   <div class="main-content">
-    <!-- Sección de Objetos -->
+    <!-- Items Section -->
     <div class="items-section">
       <h3>
         <i class="fas fa-box"></i>
         Contenido del Contenedor
       </h3>
-      {% if container.items() and container.items()|length %}
+      {% if container.items and container.items()|length %}
       <div class="items-grid">
-        {% for item in container.items %}
+        {% for item in container.items() %}
         <div class="item-card">
           <div class="item-image-container">
             {% if container.image_files and loop.index0 < container.image_files|length %}
@@ -59,7 +59,7 @@
       {% endif %}
     </div>
 
-    <!-- Sección del Código QR -->
+    <!-- QR Code Section -->
     {% if container.qr_image %}
     <div class="qr-section">
       <h3>
@@ -78,7 +78,7 @@
     {% endif %}
   </div>
 
-  <!-- Botones de Acción -->
+  <!-- Action Buttons -->
   <div class="action-buttons no-print">
     <button class="btn btn-primary" onclick="handlePrint()">
       <i class="fas fa-print"></i>
@@ -92,7 +92,7 @@
 </div>
 
 <style>
-  /* Estilos Generales */
+  /* General Styles */
   .print-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -101,7 +101,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
-  /* Estilos del Encabezado */
+  /* Header Styles */
   .container-header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
@@ -127,7 +127,7 @@
     color: #3498db;
   }
 
-  /* Estilos de la Cuadrícula de Items */
+  /* Items Grid Styles */
   .items-section {
     margin: 2rem 0;
   }
@@ -175,7 +175,7 @@
     text-align: center;
   }
 
-  /* Estilos del Código QR */
+  /* QR Code Styles */
   .qr-section {
     margin: 2rem 0;
     text-align: center;
@@ -194,7 +194,7 @@
     height: auto;
   }
 
-  /* Botones y Mensajes */
+  /* Buttons and Messages */
   .action-buttons {
     margin-top: 2rem;
     display: flex;
@@ -225,7 +225,7 @@
     color: #6c757d;
   }
 
-  /* Estilos para Impresión */
+  /* Print Styles */
   @media print {
     @page {
       size: A4;
@@ -273,7 +273,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Manejar errores de carga de imágenes
+    // Handle image load errors
     const images = document.querySelectorAll('.item-image');
     images.forEach((img) => {
       img.addEventListener('error', function () {
@@ -285,14 +285,14 @@
     });
   });
 
-  // Función mejorada para manejar la impresión
+  // Enhanced print handling function
   function handlePrint() {
-    // Preparar para imprimir
+    // Prepare for printing
     document.querySelectorAll('.item-card').forEach((card) => {
       card.style.pageBreakInside = 'avoid';
     });
 
-    // Imprimir
+    // Print
     window.print();
   }
 </script>
