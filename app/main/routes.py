@@ -160,18 +160,20 @@ def list_containers():
 @main_bp.route("/containers/<container_id>/edit", methods=["GET", "POST"])
 @login_required
 def edit_container(container_id):
-    logger.debug("Entrando a la función edit_container")
+    logger.debug(f"Iniciando edición del contenedor {container_id}")
 
     try:
-        # Obtener el contenedor y verificar permisos
         container = Container.objects(id=container_id).first()
         if not container:
-            logger.error(f"Contenedor con id {container_id} no encontrado.")
-            abort(404, description="Contenedor no encontrado")
+            logger.error(f"Contenedor {container_id} no encontrado")
+            flash("Contenedor no encontrado", "danger")
+            return redirect(url_for("main.list_containers"))
 
+        # Verificar propiedad del contenedor
         if str(container.user.id) != str(current_user.id):
-            logger.warning(f"Usuario {current_user.id} intentó editar contenedor {container_id} que no le pertenece")
-            abort(403)
+            logger.warning(f"Acceso denegado: Usuario {current_user.id} intentó editar contenedor {container_id}")
+            flash("No tienes permiso para editar este contenedor", "danger")
+            return redirect(url_for("main.list_containers"))
 
         form = EditContainerForm(obj=container)
         delete_form = DeleteImageForm()
@@ -189,12 +191,27 @@ def edit_container(container_id):
         # Manejo de solicitud POST
         if form.validate_on_submit():
             try:
-                # Procesar datos del formulario
+                # Preparar actualizaciones
                 updates = {
-                    "name": form.name.data,
-                    "location": form.location.data,
+                    "name": form.name.data.strip(),
+                    "location": form.location.data.strip(),
                     "items": [item.strip() for item in form.items.data.split(',') if item.strip()]
                 }
+
+                # Verificar si existe otro contenedor con el mismo nombre
+                existing_container = Container.objects(
+                    name=updates["name"], 
+                    id__ne=container_id
+                ).first()
+                
+                if existing_container:
+                    flash("Ya existe un contenedor con ese nombre", "danger")
+                    return render_template(
+                        "edit_container.html",
+                        container=container,
+                        form=form,
+                        delete_form=delete_form
+                    )
 
                 # Procesar nuevas imágenes
                 new_images = []
@@ -206,25 +223,26 @@ def edit_container(container_id):
                                 if filename:
                                     new_images.append(filename)
                             except Exception as e:
-                                logger.error(f"Error guardando imagen {picture.filename}: {e}")
-                                continue
+                                logger.error(f"Error al guardar imagen {picture.filename}: {str(e)}")
+                                flash(f"Error al guardar imagen {picture.filename}", "warning")
 
                 # Actualizar el contenedor
+                update_data = {
+                    "set__name": updates["name"],
+                    "set__location": updates["location"],
+                    "set__items": updates["items"]
+                }
+
                 if new_images:
-                    container.image_files.extend(new_images)
+                    all_images = container.image_files + new_images
+                    update_data["set__image_files"] = all_images
 
-                # Aplicar todas las actualizaciones
-                container.update(
-                    set__name=updates["name"],
-                    set__location=updates["location"],
-                    set__items=updates["items"],
-                    set__image_files=container.image_files
-                )
-
+                container.update(**update_data)
                 container.reload()
-                flash("Contenedor actualizado correctamente", "success")
 
-                # Manejar respuesta según tipo de solicitud
+                flash("Contenedor actualizado correctamente", "success")
+                
+                # Manejar respuesta AJAX
                 if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                     return jsonify({
                         "success": True,
@@ -234,11 +252,17 @@ def edit_container(container_id):
                 return redirect(url_for("main.container_detail", container_id=container.id))
 
             except Exception as e:
-                logger.error(f"Error actualizando contenedor: {e}", exc_info=True)
+                logger.error(f"Error en la actualización del contenedor: {str(e)}", exc_info=True)
                 if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                    return jsonify({"success": False, "error": str(e)}), 500
+                    return jsonify({"success": False, "error": "Error al actualizar el contenedor"}), 500
+                
                 flash("Error al actualizar el contenedor", "danger")
-                return redirect(url_for("main.edit_container", container_id=container_id))
+                return render_template(
+                    "edit_container.html",
+                    container=container,
+                    form=form,
+                    delete_form=delete_form
+                )
 
         # Manejo de formulario inválido
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -255,11 +279,13 @@ def edit_container(container_id):
         )
 
     except Exception as e:
-        logger.error(f"Error inesperado en edit_container: {e}", exc_info=True)
+        logger.error(f"Error inesperado en edit_container: {str(e)}", exc_info=True)
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return jsonify({"success": False, "error": str(e)}), 500
+            return jsonify({"success": False, "error": "Error inesperado"}), 500
+        
         flash("Ha ocurrido un error inesperado", "danger")
         return redirect(url_for("main.list_containers"))
+
 
 @main_bp.route("/containers/<container_id>/delete", methods=['POST'])
 @login_required
@@ -275,13 +301,17 @@ def delete_container(container_id):
 @login_required
 def print_detail(container_id):
     try:
-        # Obtener el contenedor por ID
+        # Obtener el contenedor
         container = Container.objects(id=container_id).first()
         if not container:
             logger.warning(f"Contenedor con ID {container_id} no encontrado.")
             abort(404)
 
-        # Verificar que las imágenes existen
+        # Verificar permisos
+        if container.user.id != current_user.id:
+            abort(403)
+
+        # Verificar imágenes válidas
         valid_images = []
         for image in container.image_files:
             image_path = os.path.join(current_app.root_path, 'static', 'container_pics', image)
@@ -290,25 +320,40 @@ def print_detail(container_id):
             else:
                 logger.warning(f"Imagen no encontrada: {image_path}")
 
-        # Asegurarse de que container.items sea un iterable
-        items = container.items() if callable(container.items) else container.items
-        if isinstance(items, (list, tuple)):
-            items = items
-        elif hasattr(items, '__iter__'):
-            items = list(items)
-        else:
+        # Asegurarse de que los items sean una lista
+        try:
+            # Si items es una lista, usarla directamente
+            items = container.items if isinstance(container.items, (list, tuple)) else []
+            
+            # Si es un string, convertirlo a lista
+            if isinstance(container.items, str):
+                items = [item.strip() for item in container.items.split(',')]
+                
+        except Exception as e:
+            logger.error(f"Error procesando items: {str(e)}")
             items = []
 
-        # Crear una copia del contenedor con solo las imágenes válidas
+        # Crear el diccionario con los datos del contenedor
         container_data = {
+            'id': str(container.id),
             'name': container.name,
             'location': container.location,
             'items': items,
             'image_files': valid_images,
-            'qr_image': container.qr_image
+            'qr_image': container.qr_image,
+            'created_at': container.created_at if hasattr(container, 'created_at') else None
         }
 
-        return render_template('print_detail.html', title='Imprimir Detalle', container=container_data)
+        # Logging para debug
+        logger.debug(f"Container data prepared: {container_data}")
+        logger.debug(f"Items type: {type(items)}")
+        logger.debug(f"Items content: {items}")
+
+        return render_template(
+            'print_detail.html', 
+            title='Imprimir Detalle', 
+            container=container_data
+        )
     except Exception as e:
         logger.error(f"Error en print_detail: {str(e)}", exc_info=True)
         flash("Error al preparar la vista de impresión", "danger")

@@ -19,3 +19,46 @@ class Config:
     MAIL_DEFAULT_SENDER = os.getenv('MAIL_DEFAULT_SENDER')
     WTF_CSRF_ENABLED = True
     UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'profile_pics')
+    
+    # Configuración de logging
+    LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
+    
+    @staticmethod
+    def init_app(app):
+        pass
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    
+class ProductionConfig(Config):
+    DEBUG = False
+
+class TestingConfig(Config):
+    TESTING = True
+    WTF_CSRF_ENABLED = False
+
+config = {
+    'development': DevelopmentConfig,
+    'production': ProductionConfig,
+    'testing': TestingConfig,
+    'default': DevelopmentConfig
+}
+
+# Asegurarse de que las variables críticas estén definidas
+def validate_config():
+    required_vars = [
+        'SECRET_KEY',
+        'SECURITY_PASSWORD_SALT',
+        'MONGO_URI',
+        'MAIL_SERVER',
+        'MAIL_USERNAME',
+        'MAIL_PASSWORD'
+    ]
+    
+    missing_vars = [var for var in required_vars if not os.environ.get(var)]
+    
+    if missing_vars:
+        raise ValueError(f"Faltan las siguientes variables de entorno: {', '.join(missing_vars)}")
+
+# Validar la configuración al importar
+validate_config()

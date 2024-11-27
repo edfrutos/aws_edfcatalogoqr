@@ -1,2 +1,62 @@
-2024-11-25 19:57:55,719 - app - INFO - Aplicación Flask iniciada correctamente
-2024-11-25 19:58:10,073 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 18:58:00,115 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 19:07:57,337 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 19:08:47,359 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 19:10:54,028 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:17:07,644 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:17:10,790 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:21:54,307 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:27:51,239 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:28:20,911 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:28:23,972 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:29:04,295 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:36:48,841 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:38:40,819 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:39:06,464 - app.main.routes - ERROR - Error inesperado en edit_container: 'super' object has no attribute 'validate_name'
+Traceback (most recent call last):
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/main/routes.py", line 192, in edit_container
+    if form.validate_on_submit():
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask_wtf/form.py", line 86, in validate_on_submit
+    return self.is_submitted() and self.validate(extra_validators=extra_validators)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/wtforms/form.py", line 329, in validate
+    return super().validate(extra)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/wtforms/form.py", line 146, in validate
+    if not field.validate(self, extra):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/wtforms/fields/core.py", line 246, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/wtforms/fields/core.py", line 266, in _run_validation_chain
+    validator(form, self)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/forms.py", line 130, in validate_name
+    super(EditContainerForm, self).validate_name(name)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'super' object has no attribute 'validate_name'
+2024-11-26 20:39:06,464 - app.main.routes - ERROR - Error inesperado en edit_container: 'super' object has no attribute 'validate_name'
+Traceback (most recent call last):
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/main/routes.py", line 192, in edit_container
+    if form.validate_on_submit():
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/flask_wtf/form.py", line 86, in validate_on_submit
+    return self.is_submitted() and self.validate(extra_validators=extra_validators)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/wtforms/form.py", line 329, in validate
+    return super().validate(extra)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/wtforms/form.py", line 146, in validate
+    if not field.validate(self, extra):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/wtforms/fields/core.py", line 246, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/edefrutos/Library/Python/3.12/lib/python/site-packages/wtforms/fields/core.py", line 266, in _run_validation_chain
+    validator(form, self)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/forms.py", line 130, in validate_name
+    super(EditContainerForm, self).validate_name(name)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'super' object has no attribute 'validate_name'
+2024-11-26 20:42:15,050 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:43:04,144 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-26 20:47:06,391 - app - INFO - Aplicación Flask iniciada correctamente

@@ -180,21 +180,30 @@ class User(Document, UserMixin):
         return f"User('{self.username}', '{self.email}')"
 
 class Container(Document):
-    """Modelo de Contenedor."""
     name = StringField(required=True)
     location = StringField(required=True)
     items = ListField(StringField())
     image_files = ListField(StringField())
     qr_image = StringField()
-    user = ReferenceField('User', reverse_delete_rule=CASCADE, required=True)
+    user = ReferenceField('User', required=True)
     created_at = DateTimeField(default=datetime.utcnow)
     updated_at = DateTimeField(default=datetime.utcnow)
 
     meta = {
         'collection': 'containers',
-        'indexes': ['name', 'user'],
-        'ordering': ['-created_at']
+        'ordering': ['-created_at'],
+        'indexes': [
+            {
+                'fields': ['user', 'name'],
+                'unique': True,
+                'sparse': True,
+                'name': 'unique_name_index'  # Nombre específico para el índice
+            }
+        ]
     }
+
+    def __str__(self):
+        return f"Container(name={self.name})"
 
     def save(self, *args, **kwargs):
         """Sobrescribe el método save para actualizar updated_at."""
