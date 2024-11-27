@@ -185,20 +185,14 @@ class Container(Document):
     items = ListField(StringField())
     image_files = ListField(StringField())
     qr_image = StringField()
-    user = ReferenceField('User', required=True)
+    user = ReferenceField('User', required=True, reverse_delete_rule=CASCADE)
     created_at = DateTimeField(default=datetime.utcnow)
     updated_at = DateTimeField(default=datetime.utcnow)
 
     meta = {
-        'collection': 'containers',
-        'ordering': ['-created_at'],
         'indexes': [
-            {
-                'fields': ['user', 'name'],
-                'unique': True,
-                'sparse': True,
-                'name': 'unique_name_index'  # Nombre específico para el índice
-            }
+            {'fields': ['name'], 'unique': True, 'sparse': True, 'name': 'name_index'},
+            {'fields': ['user', 'name'], 'unique': True, 'sparse': True, 'name': 'user_name_index'}
         ]
     }
 

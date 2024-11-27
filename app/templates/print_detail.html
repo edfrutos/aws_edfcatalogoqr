@@ -2,12 +2,12 @@
 <div class="print-container">
   <!-- Encabezado -->
   <div class="container-header">
-    <h2 class="container-title">{{ container.name|default('Sin nombre') }}</h2>
+    <h2 class="container-title">{{ container.name|default('Sin nombre', true) }}</h2>
     <div class="container-info">
       <p>
         <i class="fas fa-map-marker-alt"></i>
         <strong>Ubicación:</strong>
-        {{ container.location|default('No especificada') }}
+        {{ container.location|default('No especificada', true) }}
       </p>
       <p>
         <i class="fas fa-calendar-alt"></i>
@@ -26,15 +26,14 @@
         <i class="fas fa-box"></i>
         Contenido del Contenedor
       </h3>
-      {% if container.items and container.items|length > 0 %}
+      {% if container.items and container.items|length %}
       <div class="items-grid">
         {% for item in container.items %}
         <div class="item-card">
           <div class="item-image-container">
-            {% set image_index = loop.index0 %} {% if container.image_files and image_index <
-            container.image_files|length %}
+            {% if container.image_files and loop.index0 < container.image_files|length %}
             <img
-              src="{{ url_for('static', filename='container_pics/' + container.image_files[image_index]) }}"
+              src="{{ url_for('static', filename='container_pics/' + container.image_files[loop.index0]) }}"
               alt="Imagen de {{ item }}"
               class="item-image"
               loading="lazy"
@@ -45,7 +44,7 @@
             {% endif %}
           </div>
           <div class="item-details">
-            <p class="item-name">{{ item|truncate(50) }}</p>
+            <p class="item-name">{{ item|truncate(50, true, '...') }}</p>
           </div>
         </div>
         {% endfor %}
@@ -72,15 +71,16 @@
           src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}"
           alt="Código QR del contenedor"
           class="qr-code"
+          loading="lazy"
         />
       </div>
     </div>
     {% endif %}
   </div>
 
-  <!-- Botones de Acción (solo visibles en pantalla) -->
+  <!-- Botones de Acción -->
   <div class="action-buttons no-print">
-    <button class="btn btn-primary" onclick="window.print()">
+    <button class="btn btn-primary" onclick="handlePrint()">
       <i class="fas fa-print"></i>
       Imprimir
     </button>
@@ -132,11 +132,6 @@
     margin: 2rem 0;
   }
 
-  .items-section h3 {
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-  }
-
   .items-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -149,7 +144,7 @@
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   .item-image-container {
@@ -165,7 +160,6 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    transition: transform 0.3s ease;
   }
 
   .item-details {
@@ -200,7 +194,7 @@
     height: auto;
   }
 
-  /* Botones de Acción */
+  /* Botones y Mensajes */
   .action-buttons {
     margin-top: 2rem;
     display: flex;
@@ -215,25 +209,20 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease;
   }
 
   .btn:hover {
     transform: translateY(-2px);
   }
 
-  /* Mensaje cuando no hay items */
   .no-items-message {
     text-align: center;
     padding: 2rem;
     background: #f8f9fa;
     border-radius: 8px;
     color: #6c757d;
-  }
-
-  .no-items-message i {
-    font-size: 1.5rem;
-    margin-right: 0.5rem;
   }
 
   /* Estilos para Impresión */
@@ -264,30 +253,19 @@
     .items-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
-      page-break-inside: avoid;
     }
 
-    .item-card {
-      break-inside: avoid;
-      box-shadow: none;
-      border: 1px solid #ddd;
-    }
-
-    .item-image-container {
-      height: 150px;
-    }
-
+    .item-card,
     .qr-container {
-      box-shadow: none;
-      border: 1px solid #ddd;
+      break-inside: avoid;
       page-break-inside: avoid;
+      border: 1px solid #ddd;
+      box-shadow: none;
     }
 
-    .container-header {
-      page-break-after: avoid;
-    }
-
+    .container-header,
     .items-section h3 {
+      break-after: avoid;
       page-break-after: avoid;
     }
   }
@@ -295,21 +273,27 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Mejorar la carga de imágenes
+    // Manejar errores de carga de imágenes
     const images = document.querySelectorAll('.item-image');
     images.forEach((img) => {
       img.addEventListener('error', function () {
-        this.src = "{{ url_for('static', filename='default.png') }}";
-        this.classList.add('error-image');
-      });
-    });
-
-    // Optimizar la impresión
-    window.addEventListener('beforeprint', function () {
-      document.querySelectorAll('.item-card').forEach((card) => {
-        card.style.pageBreakInside = 'avoid';
+        if (!this.classList.contains('error-handled')) {
+          this.src = "{{ url_for('static', filename='default.png') }}";
+          this.classList.add('error-handled');
+        }
       });
     });
   });
+
+  // Función mejorada para manejar la impresión
+  function handlePrint() {
+    // Preparar para imprimir
+    document.querySelectorAll('.item-card').forEach((card) => {
+      card.style.pageBreakInside = 'avoid';
+    });
+
+    // Imprimir
+    window.print();
+  }
 </script>
 {% endblock %}

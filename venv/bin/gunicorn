@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/Users/edefrutos/000.-AWS Proyectos/edfcatalogacionqr/venv/bin/python3.12" "$0" "$@"
-' '''
+#!/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/bin/python3.10
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -21,7 +21,7 @@ Flask-PyMongo==2.3.0
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==1.2.1
-greenlet==2.0.2
+greenlet==3.0.3
 gunicorn==20.1.0
 idna==3.7
 iniconfig==2.0.0
@@ -37,10 +37,10 @@ mypy-extensions==1.0.0
 packaging==24.1
 pathspec==0.12.1
 pdfkit==1.0.0
-Pillow==11.0.0
+Pillow
 platformdirs==4.3.3
 pluggy==1.5.0
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.3
 pycodestyle==2.12.1
 pyflakes==3.2.0
 pymongo==3.11.0
