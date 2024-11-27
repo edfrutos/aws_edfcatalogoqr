@@ -1,18 +1,90 @@
-2024-11-27 11:08:43,897 - app - INFO - Aplicación Flask iniciada correctamente
-2024-11-27 11:08:46,912 - app - INFO - Aplicación Flask iniciada correctamente
-2024-11-27 11:08:55,029 - app.main.routes - ERROR - Error en list_containers: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, unique: true, key: { user: 1, name: 1 }, name: "unique_name_index", background: false, sparse: true }, existing index: { v: 2, unique: true, key: { name: 1 }, name: "unique_name_index", background: false, sparse: true }, full error: {'ok': 0.0, 'errmsg': 'An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, unique: true, key: { user: 1, name: 1 }, name: "unique_name_index", background: false, sparse: true }, existing index: { v: 2, unique: true, key: { name: 1 }, name: "unique_name_index", background: false, sparse: true }', 'code': 86, 'codeName': 'IndexKeySpecsConflict', '$clusterTime': {'clusterTime': Timestamp(1732702134, 5), 'signature': {'hash': b'\xb9\x9b\xb0\xb9\xa0\xc1\x9f\xcc\x13#G\xe5\xeeA1\xa9Z\xf0q\xcb', 'keyId': 7377441126493454338}}, 'operationTime': Timestamp(1732702134, 5)}
-2024-11-27 11:08:55,029 - app.main.routes - ERROR - Error en list_containers: An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, unique: true, key: { user: 1, name: 1 }, name: "unique_name_index", background: false, sparse: true }, existing index: { v: 2, unique: true, key: { name: 1 }, name: "unique_name_index", background: false, sparse: true }, full error: {'ok': 0.0, 'errmsg': 'An existing index has the same name as the requested index. When index names are not specified, they are auto generated and can cause conflicts. Please refer to our documentation. Requested index: { v: 2, unique: true, key: { user: 1, name: 1 }, name: "unique_name_index", background: false, sparse: true }, existing index: { v: 2, unique: true, key: { name: 1 }, name: "unique_name_index", background: false, sparse: true }', 'code': 86, 'codeName': 'IndexKeySpecsConflict', '$clusterTime': {'clusterTime': Timestamp(1732702134, 5), 'signature': {'hash': b'\xb9\x9b\xb0\xb9\xa0\xc1\x9f\xcc\x13#G\xe5\xeeA1\xa9Z\xf0q\xcb', 'keyId': 7377441126493454338}}, 'operationTime': Timestamp(1732702134, 5)}
-2024-11-27 11:09:21,562 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/static/container_pics/cbcb3bb96a1b3105.jpg
-2024-11-27 11:09:21,562 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/static/container_pics/cbcb3bb96a1b3105.jpg
-2024-11-27 11:09:28,439 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2024-11-27 11:09:28,439 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2024-11-27 11:11:54,788 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2024-11-27 11:11:54,788 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2024-11-27 11:21:20,704 - app - INFO - Aplicación Flask iniciada correctamente
-2024-11-27 11:22:30,293 - app - INFO - Aplicación Flask iniciada correctamente
-2024-11-27 11:23:20,961 - app.main.routes - ERROR - Contenedor 6726013bbe87afa8b08bde43 no encontrado
-2024-11-27 11:23:20,961 - app.main.routes - ERROR - Contenedor 6726013bbe87afa8b08bde43 no encontrado
-2024-11-27 11:43:53,177 - app - INFO - Aplicación Flask iniciada correctamente
-2024-11-27 11:53:15,814 - app - INFO - Aplicación Flask iniciada correctamente
-2024-11-27 11:53:30,376 - app - INFO - Aplicación Flask iniciada correctamente
-2024-11-27 11:53:33,311 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-27 12:17:18,802 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-27 12:17:22,206 - app - INFO - Aplicación Flask iniciada correctamente
+2024-11-27 12:19:10,090 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/static/container_pics/889357302b7bba89.jpg
+2024-11-27 12:19:10,090 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/static/container_pics/889357302b7bba89.jpg
+2024-11-27 12:19:30,811 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/static/container_pics/19fa4cb5c5801510.jpg
+2024-11-27 12:19:30,811 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/static/container_pics/19fa4cb5c5801510.jpg
+2024-11-27 12:19:37,557 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+Traceback (most recent call last):
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/main/routes.py", line 288, in print_detail
+    return render_template(
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 1, in top-level template code
+    {% extends "layout.html" %} {% block content %}
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/layout.html", line 215, in top-level template code
+    <div class="container-content">{% block content %}{% endblock %}</div>
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 29, in block 'content'
+    {% if container.items and container.items|length %}
+TypeError: object of type 'builtin_function_or_method' has no len()
+2024-11-27 12:19:37,557 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+Traceback (most recent call last):
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/main/routes.py", line 288, in print_detail
+    return render_template(
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 1, in top-level template code
+    {% extends "layout.html" %} {% block content %}
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/layout.html", line 215, in top-level template code
+    <div class="container-content">{% block content %}{% endblock %}</div>
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 29, in block 'content'
+    {% if container.items and container.items|length %}
+TypeError: object of type 'builtin_function_or_method' has no len()
+2024-11-27 12:33:06,902 - app.main.routes - ERROR - Error en print_detail: 'builtin_function_or_method' object is not iterable
+Traceback (most recent call last):
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/main/routes.py", line 288, in print_detail
+    return render_template(
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 1, in top-level template code
+    {% extends "layout.html" %} {% block content %}
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/layout.html", line 215, in top-level template code
+    <div class="container-content">{% block content %}{% endblock %}</div>
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 31, in block 'content'
+    {% for item in container.items %}
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/runtime.py", line 422, in __init__
+    self._iterator = self._to_iterator(iterable)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/runtime.py", line 430, in _to_iterator
+    return iter(iterable)
+TypeError: 'builtin_function_or_method' object is not iterable
+2024-11-27 12:33:06,902 - app.main.routes - ERROR - Error en print_detail: 'builtin_function_or_method' object is not iterable
+Traceback (most recent call last):
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/main/routes.py", line 288, in print_detail
+    return render_template(
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 1, in top-level template code
+    {% extends "layout.html" %} {% block content %}
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/layout.html", line 215, in top-level template code
+    <div class="container-content">{% block content %}{% endblock %}</div>
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 31, in block 'content'
+    {% for item in container.items %}
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/runtime.py", line 422, in __init__
+    self._iterator = self._to_iterator(iterable)
+  File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/lib/python3.10/site-packages/jinja2/runtime.py", line 430, in _to_iterator
+    return iter(iterable)
+TypeError: 'builtin_function_or_method' object is not iterable
