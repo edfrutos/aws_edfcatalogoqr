@@ -1,4 +1,4 @@
-#!/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/bin/python3.10
+#!/project/workspace/venv/bin/python
 
 # priweavepng
 # Weave selected channels from input PNG files into

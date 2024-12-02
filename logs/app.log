@@ -38,3 +38,5 @@ Traceback (most recent call last):
   File "/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/app/templates/print_detail.html", line 29, in block 'content'
     {% if container.items and container.items|length %}
 TypeError: object of type 'builtin_function_or_method' has no len()
+2024-12-02 21:04:57,699 - app - INFO - Aplicación Flask iniciada correctamente
+2024-12-02 21:04:58,545 - app - INFO - Aplicación Flask iniciada correctamente

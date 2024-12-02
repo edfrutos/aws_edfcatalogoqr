@@ -1,4 +1,4 @@
-#!/Users/edefrutos/AWS_Instancia_NO_BORRAR/aws_edfcatalogoqr/venv/bin/python3.10
+#!/project/workspace/venv/bin/python
 
 # http://www.python.org/doc/2.4.4/lib/module-itertools.html
 import itertools
