@@ -1,13 +1,31 @@
-from flask import Blueprint, render_template, url_for, flash, redirect, request
+from flask import Blueprint, render_template, url_for, flash, redirect, request, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from app.models import User
-from app.forms import (LoginForm, RegistrationForm, UpdateAccountForm,
-                      RequestResetForm, ResetPasswordForm, ChangePasswordForm,
-                      DeleteAccountForm)
+from app.forms import (LoginForm, RegistrationForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm, ChangePasswordForm, DeleteAccountForm)
 from app.utils import save_profile_picture, send_reset_email
 from app.extensions import bcrypt
+import logging
+from pathlib import Path  # Asegúrate de importar Path desde pathlib
 
 users_bp = Blueprint('users', __name__)
+
+# Configuración del logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Asegurar que el directorio de logs existe
+Path('logs').mkdir(exist_ok=True)
+
+# Configurar RotatingFileHandler para mejor manejo de logs
+handler = logging.handlers.RotatingFileHandler(
+    'logs/app.log',
+    maxBytes=1024 * 1024,  # 1MB
+    backupCount=5,
+    encoding='utf-8'
+)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 @users_bp.route("/login", methods=['GET', 'POST'])
 def login():
@@ -18,16 +36,20 @@ def login():
     if form.validate_on_submit():
         # Buscar usuario por email o nombre de usuario
         user = User.objects(email=form.email_or_username.data).first() or \
-               User.objects(username=form.email_or_username.data).first()
-        
+        User.objects(username=form.email_or_username.data).first()
+
         if user:
-            # Verificar contraseña
-            if bcrypt.check_password_hash(user.password, form.password.data):
-                login_user(user, remember=form.remember.data)
-                next_page = request.args.get('next')
-                return redirect(next_page) if next_page else redirect(url_for('main.home'))
-            else:
-                flash('Contraseña incorrecta', 'danger')
+            try:
+                # Verificar contraseña
+                if bcrypt.check_password_hash(user.password, form.password.data):
+                    login_user(user, remember=form.remember.data)
+                    next_page = request.args.get('next')
+                    return redirect(next_page) if next_page else redirect(url_for('main.home'))
+                else:
+                    flash('Contraseña incorrecta', 'danger')
+            except ValueError as e:
+                flash('Error al verificar la contraseña. Por favor, intenta restablecer tu contraseña.', 'danger')
+                logger.error(f"Error al verificar la contraseña para el usuario {user.username}: {e}")
         else:
             flash('Email o nombre de usuario incorrecto', 'danger')
     return render_template('login.html', title='Iniciar Sesión', form=form)
@@ -40,11 +62,11 @@ def register():
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, 
-                   email=form.email.data, 
-                   password=hashed_password)
-        if form.picture.data:
-            picture_file = save_profile_picture(form.picture.data)
-            user.image_file = picture_file
+        email=form.email.data, 
+        password=hashed_password)
+    if form.picture.data:
+        picture_file = save_profile_picture(form.picture.data)
+        user.image_file = picture_file
         user.save()
         flash('Tu cuenta ha sido creada! Ahora puedes iniciar sesión', 'success')
         return redirect(url_for('users.login'))
@@ -81,10 +103,9 @@ def account():
         form.email.data = current_user.email
         form.address.data = current_user.address
         form.phone.data = current_user.phone
-    image_file = url_for('static', 
-                        filename='profile_pics/' + current_user.image_file)
-    return render_template('account.html', title='Account', 
-                         image_file=image_file, form=form)
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+
+    return render_template('account.html', title='Account', image_file=image_file, form=form)
 
 @users_bp.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
@@ -121,7 +142,7 @@ def reset_token(token):
 def change_password():
     form = ChangePasswordForm()
     if form.validate_on_submit():
-        if current_user.check_password(form.current_password.data):
+        if bcrypt.check_password_hash(current_user.password, form.current_password.data):
             hashed_password = bcrypt.generate_password_hash(form.new_password.data).decode('utf-8')
             current_user.password = hashed_password
             current_user.save()

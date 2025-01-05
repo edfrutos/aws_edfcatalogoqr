@@ -8,8 +8,27 @@ from werkzeug.datastructures import FileStorage
 from mongoengine.queryset.visitor import Q
 import unidecode
 import logging
+from pathlib import Path
 
 admin_bp = Blueprint('admin', __name__)
+
+# Configuración del logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Asegurar que el directorio de logs existe
+Path('logs').mkdir(exist_ok=True)
+
+# Configurar RotatingFileHandler para mejor manejo de logs
+handler = logging.handlers.RotatingFileHandler(
+    'logs/app.log',
+    maxBytes=1024 * 1024,  # 1MB
+    backupCount=5,
+    encoding='utf-8'
+)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 @admin_bp.route("/admin/users", methods=['GET', 'POST'])
 @login_required
@@ -25,18 +44,18 @@ def list_users():
 def edit_user(user_id):
     user = User.objects(id=user_id).first()
     if not user:
-        logging.warning(f"Usuario con ID {user_id} no encontrado.")
+        logger.warning(f"Usuario con ID {user_id} no encontrado.")
         abort(404)
     
     form = UpdateUserForm(original_username=user.username, original_email=user.email)
     
     if form.validate_on_submit():
-        logging.debug(f"Actualizando usuario {user.username}")
+        logger.debug(f"Actualizando usuario {user.username}")
         
         if form.picture.data:
             picture_file = save_profile_picture(form.picture.data)
             user.image_file = picture_file
-            logging.info(f"Imagen de perfil actualizada para el usuario {user.username}")
+            logger.info(f"Imagen de perfil actualizada para el usuario {user.username}")
 
         user.username = form.username.data
         user.email = form.email.data
@@ -46,7 +65,7 @@ def edit_user(user_id):
         user.save()
         
         flash('Usuario actualizado exitosamente', 'success')
-        logging.info(f"Usuario {user.username} actualizado exitosamente.")
+        logger.info(f"Usuario {user.username} actualizado exitosamente.")
         return redirect(url_for('admin.list_users'))
 
     elif request.method == 'GET':
@@ -84,16 +103,16 @@ def search_user():
     form = SearchUserForm()
     user = None
     if form.validate_on_submit():
-        search_query = form.search.data
+        search_query = form.search_query.data.strip()
         normalized_query = unidecode.unidecode(search_query).lower()
         user = User.objects(Q(username__iexact=normalized_query) | Q(email__iexact=normalized_query)).first()
         
         if user:
-            logging.info(f"Usuario encontrado: {user.username} con ID {user.id}")
+            logger.info(f"Usuario encontrado: {user.username} con ID {user.id}")
             return redirect(url_for('admin.edit_user', user_id=user.id))
         else:
             flash('Usuario no encontrado', 'danger')
-            logging.warning(f"No se encontró ningún usuario con el término de búsqueda: {search_query}")
+            logger.warning(f"No se encontró ningún usuario con el término de búsqueda: {search_query}")
     
     return render_template('admin/search_user.html', title='Buscar Usuario', form=form, user=user)
 
@@ -162,7 +181,7 @@ def admin_edit_container(container_id):
                         picture_files.append(picture_file)
                     except Exception as e:
                         logging.error(f"Error guardando la imagen: {e}")
-            container.image_files = picture_files
+            container.image_file = picture_files
         
         container.save()
         logging.info(f"Contenedor {container.name} actualizado y guardado exitosamente.")

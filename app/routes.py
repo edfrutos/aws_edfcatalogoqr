@@ -1,5 +1,5 @@
 # Primero las importaciones necesarias
-from flask import Blueprint,flash, current_app, render_template, url_for, redirect, request, abort, send_file, session, jsonify
+from flask import Blueprint, flash, current_app, render_template, url_for, redirect, request, abort, send_file, session, jsonify
 from flask_login import login_user, current_user, logout_user, login_required
 from functools import wraps
 import os
@@ -27,9 +27,6 @@ from flask_mail import Message
 
 # Configuración del Blueprint
 main = Blueprint('main', __name__)
-
-# Definir el Blueprint
-users_bp = Blueprint('users', __name__)
 
 # Configuración mejorada del logger
 def setup_logger():
@@ -131,13 +128,6 @@ def register():
         return redirect(url_for('users.login'))
     return render_template('register.html', title='Registro', form=form)
 
-from flask import Blueprint, render_template, url_for, flash, redirect, request
-from flask_login import login_user, current_user, logout_user, login_required
-from app.forms import LoginForm
-from app.models import User
-
-users_bp = Blueprint('users', __name__)
-
 @main.route("/logout")
 @login_required
 def logout():
@@ -223,7 +213,7 @@ def reset_request():
             send_reset_email(user)
             flash('Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña.', 'info')
         else:
-            flash('No hay ninguna cuenta con ese correo electrónico. Primero debes registrarte.', 'advertencia')
+            flash('No hay ninguna cuenta con ese correo electrónico. Primero debes registrarte.', 'warning')
         return redirect(url_for('main.home'))
     return render_template('reset_request.html', form=form)
 
@@ -231,13 +221,13 @@ def reset_request():
 def reset_token(token):
     user = User.verify_reset_token(token)
     if user is None:
-        flash('Ese es un token no válido o caducado', 'advertencia')
-        return redirect(url_for('users.reset_request'))
+        flash('Ese es un token no válido o caducado', 'warning')
+        return redirect(url_for('main.reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
         user.set_password(form.password.data)
         user.save()  # Asegúrate de que el usuario se guarda en la base de datos
-        flash('¡Su contraseña ha sido actualizada!', 'éxito')
+        flash('¡Su contraseña ha sido actualizada!', 'success')
         return redirect(url_for('users.login'))
     return render_template('reset_password.html', form=form)
 

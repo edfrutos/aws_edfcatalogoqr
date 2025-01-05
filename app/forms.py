@@ -215,8 +215,8 @@ class SearchContainerForm(SearchForm):
 
 class SearchUserForm(SearchForm):
     """Formulario para buscar usuarios."""
-    search_query = StringField('Buscar Usuario (por nombre de usuario o email)', 
-                             validators=[DataRequired()])
+    search_query = StringField('Buscar Usuario (por nombre de usuario o email)', validators=[DataRequired()])
+    submit = SubmitField('Buscar')
 
 class DeleteImageForm(FlaskForm):
     """Formulario para eliminar imágenes."""

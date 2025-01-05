@@ -17,3 +17,5 @@ _DS_Store
 # Ignora archivos de Cyberduck
 **/.duckversions/
 
+
+.codegpt

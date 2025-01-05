@@ -1,4 +1,6 @@
-#!/project/workspace/venv/bin/python
+#!/bin/sh
+'''exec' "/Users/edefrutos/_Repositorios en GitHub/aws_edfcatalogoqr/venv/bin/python3.13" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

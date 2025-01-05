@@ -41,6 +41,7 @@ def setup_logger():
             '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
         )
         file_handler.setFormatter(formatter)
+        
         logger.addHandler(file_handler)
     return logger
 
@@ -283,7 +284,7 @@ def print_detail(container_id):
             'image_files': valid_images,
             'qr_image': container.qr_image,
             'created_at': container.created_at
-}
+        }
 
         logger.debug(f"Container data prepared: {container_data}")
 
@@ -297,13 +298,14 @@ def print_detail(container_id):
         flash("Error al preparar la vista de impresión", "danger")
         return redirect(url_for('main.container_detail', container_id=container_id))
 
-
 # Rutas de manipulación de contenedores
 @main_bp.route("/containers/<container_id>/delete", methods=['POST'])
 @login_required
 def delete_container(container_id):
     try:
-        container = Container.objects(id=container_id).first_or_404()
+        container = Container.objects(id=container_id).first()
+        if not container:
+            abort(404, description="Contenedor no encontrado")
         
         if container.user.id != current_user.id:
             logger.warning(f"Intento de eliminación no autorizado del contenedor {container_id}")
@@ -447,7 +449,6 @@ def container_preview(container_id):
         flash("Error al cargar la vista previa", "danger")
         return redirect(url_for('main.list_containers'))
 
-
 # Manejadores de error
 @main_bp.errorhandler(404)
 def not_found_error(error):
@@ -460,4 +461,3 @@ def forbidden_error(error):
 @main_bp.errorhandler(500)
 def internal_error(error):
     return render_template('errors/500.html'), 500
-

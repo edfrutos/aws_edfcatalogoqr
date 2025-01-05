@@ -1,9 +1,8 @@
 import os
 import secrets
 from PIL import Image, ImageDraw
-from flask import current_app, url_for, abort, redirect, request, flash
+from flask import current_app, url_for, flash, redirect, request, abort
 from werkzeug.datastructures import FileStorage
-from werkzeug.utils import secure_filename
 import qrcode
 from flask_mail import Message
 from app.extensions import mail
@@ -341,4 +340,3 @@ def is_allowed_file(filename: str, allowed_extensions: set) -> bool:
 # Constantes útiles
 ALLOWED_IMAGE_EXTENSIONS = {'.jpg', '.jpeg', '.png', '.gif'}
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB
-

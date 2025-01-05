@@ -9,5 +9,28 @@
   },
   "git.ignoreLimitWarning": true,
   "pieces.cloudCapabilities": "Blended",
-  "pieces.telemetry": true
+  "pieces.telemetry": true,
+  "cSpell.words": [
+    "brevo",
+    "catalogacion",
+    "Desconexión",
+    "dotenv",
+    "edefrutos",
+    "edfcatalogoqr",
+    "edfrutos",
+    "enctype",
+    "endfor",
+    "errorhandler",
+    "Inicialización",
+    "jsonify",
+    "levelname",
+    "Manejadores",
+    "mongodb",
+    "mongoengine",
+    "onclick",
+    "reqs",
+    "resetear",
+    "reseteo",
+    "stylesheet"
+  ]
 }

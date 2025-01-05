@@ -1,20 +1,20 @@
 {% extends "layout.html" %}
+
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<div class="container-search">
-    <h2>Buscar Usuario</h2>
+    <h1>{{ title }}</h1>
     <form method="POST" action="{{ url_for('admin.search_user') }}">
         {{ form.hidden_tag() }}
         <div class="form-group">
-            {{ form.search.label(class="form-label") }}
-            {{ form.search(class="form-control") }}
-            {% for error in form.search.errors %}
-            <div class="text-danger">{{ error }}</div>
-            {% endfor %}
+            {{ form.search_query.label(class="form-label") }}
+            {{ form.search_query(class="form-control") }}
         </div>
         <div class="form-group">
             {{ form.submit(class="btn btn-primary") }}
         </div>
     </form>
-</div>
+    {% if user %}
+        <h2>Resultados de la búsqueda:</h2>
+        <p>Nombre de usuario: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+    {% endif %}
 {% endblock %}
