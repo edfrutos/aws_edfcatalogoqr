@@ -58,7 +58,7 @@ def generate_qr_code(container_data, safe_name):
         )
         qr_img_path = os.path.join(
             current_app.root_path, 'static', 'qr_codes', f"{safe_name}.png"
-        )
+                )
         qr_img = qrcode.make(qr_data)
         qr_img.save(qr_img_path)
         return f"{safe_name}.png"

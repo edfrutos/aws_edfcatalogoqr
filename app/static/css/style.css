@@ -476,8 +476,8 @@ button {
 
 .close {
   position: absolute;
-  top: 357px !important;
-  right: 611px !important;
+  top: 7px !important;
+  right: 6px !important;
   font-size: 30px;
   font-weight: bold;
   color: #020c17;
