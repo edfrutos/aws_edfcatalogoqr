@@ -13,6 +13,7 @@
   "cSpell.words": [
     "brevo",
     "catalogacion",
+    "csrf",
     "Desconexión",
     "dotenv",
     "edefrutos",
@@ -23,6 +24,7 @@
     "errorhandler",
     "Inicialización",
     "jsonify",
+    "labelledby",
     "levelname",
     "Manejadores",
     "mongodb",
@@ -31,6 +33,7 @@
     "reqs",
     "resetear",
     "reseteo",
-    "stylesheet"
+    "stylesheet",
+    "tabindex"
   ]
 }

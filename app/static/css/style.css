@@ -229,6 +229,11 @@ body {
   display: grid;
 }
 
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+  align-items: center;
+}
+
 h2 {
   margin-bottom: 20px;
 }
@@ -427,10 +432,10 @@ button {
 
 .card {
   max-width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #ced4da;
+  background-color: #ffffff !important;
+  border: 1px solid #ced4da !important;
   border-radius: 10px;
-  padding-right: 0.4rem;
+  padding-right: 0rem;
 }
 
 .card-edit {
@@ -463,6 +468,7 @@ button {
 .card-text {
   font-size: 1rem;
   margin-bottom: 15px;
+  margin-left: 5rem;
 }
 
 .navbar-brand {
@@ -577,9 +583,6 @@ button {
   font-variant: normal;
   text-rendering: auto;
   line-height: 1;
-  margin-left: 0rem;
-  margin-top: 0.2rem;
-  margin-right: .5rem;
 }
 
 
@@ -643,6 +646,17 @@ button {
   margin-left: 1px;
 }
 
+.input-group-append {
+  padding: 5px;
+}
+
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: 0px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  align-items: stretch;
+}
+
 .input-group-list {
   position: relative;
   display: -ms-flexbox;
@@ -652,10 +666,6 @@ button {
   -ms-flex-align: stretch;
   align-items: stretch;
   width: 100%;
-}
-
-.input-group-append {
-  padding: 5px;
 }
 
 .reset-request {

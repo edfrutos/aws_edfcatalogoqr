@@ -1,26 +1,3 @@
-2025-01-06 13:08:30,940 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/_Repositorios en GitHub/aws_edfcatalogoqr/app/static/container_pics/02fa538f9f497362.jpg
-2025-01-06 13:08:30,940 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/_Repositorios en GitHub/aws_edfcatalogoqr/app/static/container_pics/02fa538f9f497362.jpg
-2025-01-06 13:18:37,660 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 13:18:40,199 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 13:31:15,311 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 13:34:41,958 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 13:44:27,028 - app.main.routes - ERROR - Usuario no encontrado para el contenedor 66bc78e732db31131c8252c5
-2025-01-06 13:44:27,028 - app.main.routes - ERROR - Usuario no encontrado para el contenedor 66bc78e732db31131c8252c5
-2025-01-06 13:44:51,283 - app.admin.routes - INFO - Usuario Alberto actualizado exitosamente.
-2025-01-06 13:44:51,283 - app.admin.routes - INFO - Usuario Alberto actualizado exitosamente.
-2025-01-06 13:44:56,741 - app.admin.routes - INFO - Usuario Alberto actualizado exitosamente.
-2025-01-06 13:44:56,741 - app.admin.routes - INFO - Usuario Alberto actualizado exitosamente.
-2025-01-06 13:45:03,560 - app.admin.routes - INFO - Usuario Antonio actualizado exitosamente.
-2025-01-06 13:45:03,560 - app.admin.routes - INFO - Usuario Antonio actualizado exitosamente.
-2025-01-06 13:57:01,515 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 13:57:05,645 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 13:57:43,383 - app.admin.routes - WARNING - No se encontró ningún usuario con el término de búsqueda: Antonio
-2025-01-06 13:57:43,383 - app.admin.routes - WARNING - No se encontró ningún usuario con el término de búsqueda: Antonio
-2025-01-06 13:57:46,997 - app.admin.routes - WARNING - No se encontró ningún usuario con el término de búsqueda: Antonio
-2025-01-06 13:57:46,997 - app.admin.routes - WARNING - No se encontró ningún usuario con el término de búsqueda: Antonio
-2025-01-06 13:57:59,664 - app.admin.routes - INFO - Usuario encontrado: Alberto con ID 67348cefe5e3a1f011f9534a
-2025-01-06 13:57:59,664 - app.admin.routes - INFO - Usuario encontrado: Alberto con ID 67348cefe5e3a1f011f9534a
-2025-01-06 13:58:11,151 - app.admin.routes - WARNING - No se encontró ningún usuario con el término de búsqueda: Antonio
-2025-01-06 13:58:11,151 - app.admin.routes - WARNING - No se encontró ningún usuario con el término de búsqueda: Antonio
-2025-01-06 14:03:17,560 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/_Repositorios en GitHub/aws_edfcatalogoqr/app/static/profile_pics/395f2854896a6a0a.jpg
-2025-01-06 14:03:17,560 - app.utils - INFO - Imagen guardada exitosamente en: /Users/edefrutos/_Repositorios en GitHub/aws_edfcatalogoqr/app/static/profile_pics/395f2854896a6a0a.jpg
+2025-01-06 18:12:21,207 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 18:13:37,078 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 18:14:29,031 - app - INFO - Aplicación Flask iniciada correctamente

@@ -14,6 +14,10 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    image_file: {  // Nuevo campo para la foto de perfil
+        type: String,
+        default: ''  // Valor por defecto vacío
     }
 }, { timestamps: true });
 
