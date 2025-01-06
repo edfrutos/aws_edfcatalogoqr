@@ -24,6 +24,7 @@
     "errorhandler",
     "Inicialización",
     "jsonify",
+    "jspdf",
     "labelledby",
     "levelname",
     "Manejadores",

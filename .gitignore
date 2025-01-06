@@ -5,6 +5,7 @@ __pycache__/
 # Ignorar logs
 logs/*.log*.pyc
 *.logs
+app.log
 
 # Ignorar directorios de entornos virtuales
 venv/
