@@ -10,6 +10,28 @@
             <p class="card-text"><strong>Dirección:</strong> {{ user.address }}</p>
             <p class="card-text"><strong>Teléfono:</strong> {{ user.phone }}</p>
 <p class="card-text"><strong>Foto de Perfil:</strong> <img src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}" alt="Foto de Perfil" /></p>
+<div class="button-group">
+    <button onclick="printCard()" class="btn btn-primary">Imprimir</button>
+    <button onclick="downloadCard()" class="btn btn-secondary">Descargar</button>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    function printCard() {
+        window.print();
+    }
+
+    function downloadCard() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.text("Detalles del Usuario", 10, 10);
+        doc.text("Nombre: {{ user.username }}", 10, 20);
+        doc.text("Email: {{ user.email }}", 10, 30);
+        doc.text("Dirección: {{ user.address }}", 10, 40);
+        doc.text("Teléfono: {{ user.phone }}", 10, 50);
+        doc.addImage("{{ url_for('static', filename='profile_pics/' + user.image_file) }}", 'JPEG', 10, 60, 50, 50);
+        doc.save("usuario.pdf");
+    }
+</script>
         </div>
     </div>
 </div>
