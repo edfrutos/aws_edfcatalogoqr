@@ -1,4 +1,3 @@
-
 from flask import Blueprint, render_template, url_for, flash, redirect, request, abort
 from flask_login import login_required
 from app.forms import UpdateUserForm, SearchUserForm, SearchContainerForm, ContainerForm, DeleteAccountForm
@@ -8,6 +7,7 @@ from werkzeug.datastructures import FileStorage
 from mongoengine.queryset.visitor import Q
 import unidecode
 import logging
+import mongoengine
 from pathlib import Path
 
 admin_bp = Blueprint('admin', __name__)
@@ -196,6 +196,31 @@ def admin_edit_container(container_id):
     
     return render_template('admin/edit_container.html', title='Editar Contenedor', form=form, container=container)
 
+@admin_bp.route('/admin_search_containers', methods=['GET', 'POST'], endpoint='admin_search_containers_view')
+@login_required
+def admin_search_containers_view():
+    form = SearchContainerForm()
+    containers = []
+    if form.validate_on_submit():
+        search_query = form.search_query.data.strip()
+        try:
+            containers = Container.objects(name__icontains=search_query)
+        except mongoengine.errors.DoesNotExist:
+            flash('No se encontraron contenedores.', 'danger')
+        except Exception as e:
+            flash(f'Error al buscar contenedores: {str(e)}', 'danger')
+    
+    # Verificar la existencia de los usuarios
+    valid_containers = []
+    for container in containers:
+        try:
+            container.user.username  # Intentar acceder al usuario
+            valid_containers.append(container)
+        except mongoengine.errors.DoesNotExist:
+            flash(f'Contenedor {container.name} tiene un usuario no válido.', 'warning')
+    
+    return render_template('admin/admin_search_containers.html', title='Buscar Contenedores', form=form, containers=valid_containers)
+
 @admin_bp.route("/admin/containers/<container_id>/delete", methods=['POST'])
 @login_required
 @admin_required
@@ -208,4 +233,4 @@ def admin_delete_container(container_id):
     container.delete()
     flash("Contenedor eliminado correctamente", 'success')
     logging.info(f"Contenedor con ID {container_id} eliminado exitosamente.")
-    return redirect(url_for('admin.admin_search_containers'))
+    return redirect(url_for('admin.admin_search_containers_view'))

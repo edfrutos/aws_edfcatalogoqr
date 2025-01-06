@@ -35,6 +35,8 @@
     "resetear",
     "reseteo",
     "stylesheet",
-    "tabindex"
+    "tabindex",
+    "tbody",
+    "thead"
   ]
 }

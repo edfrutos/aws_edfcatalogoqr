@@ -1,16 +1,12 @@
-2025-01-06 19:28:28,192 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 19:28:31,342 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 19:40:21,993 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
-2025-01-06 19:40:21,993 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
-2025-01-06 19:43:46,867 - app.admin.routes - INFO - Usuario Aurelio actualizado exitosamente.
-2025-01-06 19:43:46,867 - app.admin.routes - INFO - Usuario Aurelio actualizado exitosamente.
-2025-01-06 19:44:51,681 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 19:44:54,851 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 19:49:30,319 - app.admin.routes - INFO - Usuario Alberto actualizado exitosamente.
-2025-01-06 19:49:30,319 - app.admin.routes - INFO - Usuario Alberto actualizado exitosamente.
-2025-01-06 19:57:57,598 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 19:58:01,711 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 20:47:21,533 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 20:47:24,874 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-06 20:54:50,490 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
-2025-01-06 20:54:50,490 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
+2025-01-06 21:37:22,232 - app.admin.routes - WARNING - No se encontró ningún usuario con el término de búsqueda: Alfonso
+2025-01-06 21:37:22,232 - app.admin.routes - WARNING - No se encontró ningún usuario con el término de búsqueda: Alfonso
+2025-01-06 21:40:36,965 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:40:40,391 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:44:59,342 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:45:49,289 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:46:02,140 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:48:24,636 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:51:20,881 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:51:24,047 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:59:19,318 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-06 21:59:22,524 - app - INFO - Aplicación Flask iniciada correctamente
