@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  <h2>Contenedores de {{ user.username }}</h2>
+  {% if containers %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+        <th>Items</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for container in containers %}
+      <tr>
+        <td>{{ container.id }}</td>
+        <td>{{ container.name }}</td>
+        <td>{{ container.location }}</td>
+        <td>{{ container.items | join(', ') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="alert alert-info">No tienes contenedores creados.</div>
+  {% endif %}
+  <a href="{{ url_for('admin.list_users') }}" class="btn btn-primary">Volver a la lista de usuarios</a>
+</div>
+{% endblock %}

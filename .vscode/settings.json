@@ -1,42 +1,5 @@
 {
-  "CodeGPT.apiKey": "CodeGPT Plus Beta",
-  "prettier.htmlWhitespaceSensitivity": "ignore",
-  "[django-html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "files.associations": {
-    "*.html": "django-html"
-  },
-  "git.ignoreLimitWarning": true,
-  "pieces.cloudCapabilities": "Blended",
-  "pieces.telemetry": true,
-  "cSpell.words": [
-    "brevo",
-    "catalogacion",
-    "csrf",
-    "Desconexión",
-    "dotenv",
-    "edefrutos",
-    "edfcatalogoqr",
-    "edfrutos",
-    "enctype",
-    "endfor",
-    "errorhandler",
-    "Inicialización",
-    "jsonify",
-    "jspdf",
-    "labelledby",
-    "levelname",
-    "Manejadores",
-    "mongodb",
-    "mongoengine",
-    "onclick",
-    "reqs",
-    "resetear",
-    "reseteo",
-    "stylesheet",
-    "tabindex",
-    "tbody",
-    "thead"
-  ]
+  "code-runner.executorMap": {
+    "python": ".venv\\Scripts\\python.exe -u"
+  }
 }

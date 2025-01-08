@@ -164,7 +164,7 @@ body {
 
 .btn {
   display: flex !important;
-  margin: 10px 10px;
+  margin: 10px 10px !important;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -223,6 +223,16 @@ body {
 .btn-warning,
 .btn-danger {
   margin-top: 10px;
+}
+
+.btn-warning {
+  color: #212529 !important;
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.btn-warning:hover {
+  background-color: #d39e00;
 }
 
 .btn-modal-home {

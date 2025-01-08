@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-# Crear una nueva cuenta de administrador
-from app.models import User
-admin = User(username='administrador', email='admin@example.com')
-admin.set_password('34Maf15si')
-admin.is_admin = True
-admin.save()
-=======
 import os
 import mongoengine as db
 import bcrypt
@@ -35,6 +27,7 @@ class User(db.Document):
     address = db.StringField()
     phone = db.StringField()
     is_admin = db.BooleanField(default=False)
+    is_pro = db.BooleanField(default=False)  # Nuevo campo para usuarios Pro
     
     def set_password(self, password):
         # Generar un salt y crear el hash de la contraseña
@@ -59,7 +52,8 @@ try:
         new_user = User(
             username="edfcatalogo",
             email="catalogo@edfadmin.com",
-            is_admin=False
+            is_admin=False,
+            is_pro=True  # Establecer como usuario Pro
         )
         new_user.set_password("34Maf15si")  # Asegúrate de reemplazar con la contraseña deseada
         new_user.save()
@@ -68,4 +62,3 @@ except Exception as e:
     print(f"Error al crear el usuario: {e}")
 finally:
     db.disconnect()  # Desconectar de la base de datos
->>>>>>> 595b5232ad9e12d7ef34de63e6e54e828cd9dbf4

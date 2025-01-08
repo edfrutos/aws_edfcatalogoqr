@@ -127,6 +127,18 @@ def view_user(user_id):
     
     return render_template('admin/view_user.html', title='Ver Usuario', user=user)
 
+@admin_bp.route("/admin/user/<user_id>/containers", methods=['GET'])
+@login_required
+@admin_required
+def list_user_containers(user_id):
+    user = User.objects(id=user_id).first()
+    if not user:
+        logger.warning(f"Usuario con ID {user_id} no encontrado.")
+        abort(404)
+    
+    containers = Container.objects(user=user)
+    return render_template('admin/list_user_containers.html', title='Contenedores de Usuario', user=user, containers=containers)
+
 @admin_bp.route("/admin/containers", methods=['GET', 'POST'])
 @login_required
 @admin_required
