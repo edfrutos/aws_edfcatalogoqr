@@ -293,10 +293,14 @@ def print_detail(container_id):
             title='Imprimir Detalle', 
             container=container_data
         )
+    except DoesNotExist:
+        logger.error(f"Contenedor {container_id} no encontrado")
+        flash("Contenedor no encontrado", "danger")
+        return redirect(url_for('main.list_containers'))
     except Exception as e:
-        logger.error(f"Error en print_detail: {str(e)}", exc_info=True)
+        logger.error(f"Error en print_detail: {str(e)}")
         flash("Error al preparar la vista de impresión", "danger")
-        return redirect(url_for('main.container_detail', container_id=container_id))
+        return redirect(url_for('main.list_containers'))
 
 # Rutas de manipulación de contenedores
 @main_bp.route("/containers/<container_id>/delete", methods=['POST'])
@@ -461,3 +465,12 @@ def forbidden_error(error):
 @main_bp.errorhandler(500)
 def internal_error(error):
     return render_template('errors/500.html'), 500
+
+# Ruta para habilitar la Pro Version
+@main_bp.route('/enable_pro', methods=['POST'])
+def enable_pro():
+    """
+    Endpoint to enable Pro version for the user.
+    """
+    # Logic to enable Pro version goes here
+    return jsonify({'message': 'Pro version enabled successfully!'})

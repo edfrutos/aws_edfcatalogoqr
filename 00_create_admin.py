@@ -43,20 +43,20 @@ class User(db.Document):
 
 try:
     # Verificar si el usuario admin ya existe
-    existing_admin = User.objects(username="efjdefrutos").first()
+    existing_admin = User.objects(username=input("Ingrese el nombre de usuario del administrador: ")).first()
 
     if existing_admin:
-        print("El usuario 'efjdefrutos' ya existe.")
+        print("El usuario ya existe.")
     else:
         # Crear el usuario admin
         admin_user = User(
-            username="efjdefrutos",
-            email="admin@efjdefrutos.com",
+            username=input("Ingrese el nombre de usuario del administrador: "),
+            email=input("Ingrese el correo electrónico del administrador: "),
             is_admin=True
         )
-        admin_user.set_password("adminpassword")
+        admin_user.set_password(input("Ingrese la contraseña del administrador: "))
         admin_user.save()
-        print("Usuario 'efjdefrutos' creado exitosamente.")
+        print("Usuario creado exitosamente.")
 except Exception as e:
     print(f"Error al crear el usuario efjdefrutos: {e}")
 finally:
