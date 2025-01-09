@@ -25,3 +25,8 @@
 2025-01-09 18:49:35,322 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
 2025-01-09 18:54:13,129 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
 2025-01-09 18:54:13,129 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 19:02:02,095 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-09 19:03:41,263 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fd3dab5a0cfc0f5eec2ac
+2025-01-09 19:03:41,263 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fd3dab5a0cfc0f5eec2ac
+2025-01-09 19:03:46,750 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 19:03:46,750 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
