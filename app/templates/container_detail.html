@@ -28,10 +28,8 @@
                   class="img-fluid card-img-top"
                   style="cursor: pointer"
                   onclick="showPreview('{{ url_for('static', filename='container_pics/' ~ image_file) }}')"
+                  onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}';"
                 />
-                <!-- Aquí se agrega el nombre de la imagen <div class="card-body">
-                  <p class="text-center">{{ image_file }}</p>
-                </div> -->
               </div>
             </div>
             {% endfor %}

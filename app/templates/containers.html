@@ -18,6 +18,7 @@
             src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
             alt="Imagen del Objeto"
             class="img-fluid"
+            onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}';"
           />
         </div>
         {% endfor %}

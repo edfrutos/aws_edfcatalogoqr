@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Imprimir Contenedor</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
     <div class="container">
-        <h2 class="text-center">Detalles del Contenedor</h2>
-        <p><strong>Nombre:</strong> {{ container.name }}</p>
-        <p><strong>Localización:</strong> {{ container.location }}</p>
-        <p><strong>Objetos:</strong> {{ ', '.join(container.items) }}</p>
-        {% if container.image_files %}
-            <h5>Imágenes:</h5>
-            <p>Número de imágenes: {{ container.image_files|length }}</p>
-            {% for image_file in container.image_files %}
-                <p>Intentando cargar: {{ image_file }}</p>
-                <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}" alt="Imagen del Objeto" class="img-fluid mb-2">
-            {% endfor %}
+      <h2 class="text-center">Detalles del Contenedor</h2>
+      <p><strong>Nombre:</strong> {{ container.name }}</p>
+      <p><strong>Localización:</strong> {{ container.location }}</p>
+      <p><strong>Objetos:</strong> {{ ', '.join(container.items) }}</p>
+      {% if container.image_files %}
+      <h5>Imágenes:</h5>
+      <p>Número de imágenes: {{ container.image_files|length }}</p>
+      {% for image_file in container.image_files %}
+      <p>Intentando cargar: {{ image_file }}</p>
+      <img
+        src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
+        alt="Imagen del Objeto"
+        class="img-fluid mb-2"
+        onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}';"
+      />
+      {% endfor %} {% else %}
+      <p>No se encontraron imágenes.</p>
+      {% endif %}
+      <div class="text-center">
+        <h3>Código QR:</h3>
+        {% if container.qr_image %}
+        <img
+          src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}"
+          alt="QR Code"
+          class="img-fluid"
+          style="width: 150px; height: 150px"
+        />
         {% else %}
-            <p>No se encontraron imágenes.</p>
+        <p>No se ha generado código QR para este contenedor.</p>
         {% endif %}
-        <div class="text-center">
-            <h3>Código QR:</h3>
-            <img src="data:image/png;base64,{{ img_str }}" alt="QR Code">
-        </div>
-        <button onclick="window.print()">Imprimir</button>
-        <a href="{{ url_for('main.list_containers') }}">Volver</a>
+      </div>
+      <button onclick="window.print()">Imprimir</button>
+      <a href="{{ url_for('main.list_containers') }}">Volver</a>
     </div>
-</body>
+  </body>
 </html>

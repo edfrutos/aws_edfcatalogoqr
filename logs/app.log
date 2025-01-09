@@ -16,3 +16,12 @@
 2025-01-09 14:49:14,001 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\508e9a892abff725.jpeg
 2025-01-09 18:02:04,524 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fbb972c6eb2b120ea7a0d
 2025-01-09 18:02:04,524 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fbb972c6eb2b120ea7a0d
+2025-01-09 18:46:51,912 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-09 18:47:49,780 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 18:47:49,780 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 18:47:55,039 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 18:47:55,039 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 18:49:35,322 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 18:49:35,322 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 18:54:13,129 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-09 18:54:13,129 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
