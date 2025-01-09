@@ -128,14 +128,8 @@ body {
   gap: 10px;
 }
 
-.container-admin-search {
-  margin-top: 0rem;
-  margin-left: 20rem;
-  margin-right: 20rem;
-}
-
 .container-admin-user {
-  margin-top: 5rem;
+  margin-top: 0rem;
   margin-left: 12rem;
   margin-right: 0rem;
   width: 80%;
@@ -1166,7 +1160,7 @@ footer {
 }
 
 .container-admin-search {
-  margin-top: 6rem;
+  margin-top: 1rem;
   margin-left: 15rem;
   margin-right: 1rem;
   width: 75%;

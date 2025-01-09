@@ -1,11 +1,18 @@
-
-2025-01-08 21:29:45,879 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-08 21:29:51,375 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-08 21:30:18,616 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-08 21:35:37,340 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-08 21:35:40,780 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-08 21:36:52,501 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
-2025-01-08 21:36:52,501 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
-2025-01-08 22:02:15,005 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-08 22:05:53,556 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-08 22:09:44,046 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-09 13:01:58,397 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-09 13:02:49,332 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
+2025-01-09 13:02:49,332 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
+2025-01-09 13:03:48,568 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
+2025-01-09 13:03:48,568 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
+2025-01-09 13:04:12,034 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
+2025-01-09 13:04:12,034 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
+2025-01-09 13:05:43,288 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\a03ff92afda00d6f.jpg
+2025-01-09 13:05:43,288 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\a03ff92afda00d6f.jpg
+2025-01-09 14:16:12,784 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-09 14:16:59,738 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
+2025-01-09 14:16:59,738 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
+2025-01-09 14:37:15,499 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
+2025-01-09 14:37:15,499 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
+2025-01-09 14:49:14,001 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\508e9a892abff725.jpeg
+2025-01-09 14:49:14,001 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\508e9a892abff725.jpeg
+2025-01-09 18:02:04,524 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fbb972c6eb2b120ea7a0d
+2025-01-09 18:02:04,524 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fbb972c6eb2b120ea7a0d

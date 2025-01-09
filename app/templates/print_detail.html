@@ -26,9 +26,9 @@
         <i class="fas fa-box"></i>
         Contenido del Contenedor
       </h3>
-      {% if container.items and container.items()|length %}
+      {% if container.items and container.items|length %}
       <div class="items-grid">
-        {% for item in container.items() %}
+        {% for item in container.items %}
         <div class="item-card">
           <div class="item-image-container">
             {% if container.image_files and loop.index0 < container.image_files|length %}
@@ -44,7 +44,7 @@
             {% endif %}
           </div>
           <div class="item-details">
-            <p class="item-name">{{ item|truncate(50, true, '...') }}</p>
+            <p class="item-name">{{ item }}</p>
           </div>
         </div>
         {% endfor %}

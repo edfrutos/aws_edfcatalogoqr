@@ -136,7 +136,7 @@ def list_user_containers(user_id):
         logger.warning(f"Usuario con ID {user_id} no encontrado.")
         abort(404)
     
-    containers = Container.objects(user=user)
+    containers = Container.objects(user=user, is_deleted=False)  # Filtrar contenedores eliminados
     return render_template('admin/list_user_containers.html', title='Contenedores de Usuario', user=user, containers=containers)
 
 @admin_bp.route("/admin/containers", methods=['GET', 'POST'])
@@ -147,15 +147,19 @@ def admin_search_containers():
     containers = []
     
     if form.validate_on_submit():
-        search_query = form.search_query.data
+        search_query = form.search_query.data.strip()
         normalized_query = unidecode.unidecode(search_query).lower()
 
         # Realizar la búsqueda ignorando mayúsculas, minúsculas y acentos
         containers = Container.objects(
             Q(name__icontains=normalized_query) |
             Q(location__icontains=normalized_query) |
-            Q(items__icontains=normalized_query)
+            Q(items__icontains=normalized_query),
+            is_deleted=False  # Filtrar contenedores eliminados
         )
+        
+        # Filtrar contenedores cuyos usuarios no existen
+        containers = [container for container in containers if container.user is not None]
         
         if not containers:
             flash('No se encontraron contenedores', 'info')
@@ -193,7 +197,7 @@ def admin_edit_container(container_id):
                         picture_files.append(picture_file)
                     except Exception as e:
                         logging.error(f"Error guardando la imagen: {e}")
-            container.image_file = picture_files
+            container.image_files = picture_files
         
         container.save()
         logging.info(f"Contenedor {container.name} actualizado y guardado exitosamente.")
@@ -216,7 +220,7 @@ def admin_search_containers_view():
     if form.validate_on_submit():
         search_query = form.search_query.data.strip()
         try:
-            containers = Container.objects(name__icontains=search_query)
+            containers = Container.objects(name__icontains=search_query, is_deleted=False)  # Filtrar contenedores eliminados
         except mongoengine.errors.DoesNotExist:
             flash('No se encontraron contenedores.', 'danger')
         except Exception as e:
@@ -242,7 +246,9 @@ def admin_delete_container(container_id):
         logging.warning(f"Intento de eliminar contenedor no existente con ID {container_id}")
         abort(404)
     
-    container.delete()
+    container.is_deleted = True  # Marcar el contenedor como eliminado
+    container.save()
+    
     flash("Contenedor eliminado correctamente", 'success')
     logging.info(f"Contenedor con ID {container_id} eliminado exitosamente.")
     return redirect(url_for('admin.admin_search_containers_view'))

@@ -119,6 +119,7 @@ class Container(Document):
     user = ReferenceField('User', required=True, reverse_delete_rule=CASCADE)
     created_at = DateTimeField(default=datetime.utcnow)
     updated_at = DateTimeField(default=datetime.utcnow)
+    is_deleted = BooleanField(default=False)  # Campo para marcar contenedores eliminados
 
     meta = {
         'indexes': [
