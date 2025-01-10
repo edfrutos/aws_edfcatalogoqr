@@ -185,6 +185,7 @@ def admin_edit_container(container_id):
         container.name = form.name.data
         container.location = form.location.data
         container.items = [item.strip() for item in form.items.data.split(",")]
+        container.items = "\n".join(container.items)
 
         if form.pictures.data:
             logging.debug("Intentando guardar imágenes del contenedor...")

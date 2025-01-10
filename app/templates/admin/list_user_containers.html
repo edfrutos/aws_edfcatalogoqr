@@ -48,7 +48,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="containerModalLabel">Detalles del Contenedor</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          onclick="$('#containerModal').modal('hide');"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -57,7 +63,7 @@
         <p><strong>Nombre:</strong> <span id="modal-container-name"></span></p>
         <p><strong>Ubicación:</strong> <span id="modal-container-location"></span></p>
         <p><strong>Items:</strong> <span id="modal-container-items"></span></p>
-        <div id="modal-container-images"></div>
+        <p><strong>Objetos:</strong> <span id="modal-container-images"></span></p>
       </div>
     </div>
   </div>
@@ -82,7 +88,7 @@
       if (images.length > 0 && images[0] !== '') {
         images.forEach((image) => {
           const imgElement = document.createElement('img');
-          imgElement.src = image; // Asegúrate de que la ruta de la imagen sea correcta
+          imgElement.src = '{{ url_for('static', filename='container_pics/') }}' + image.trim(); // Asegúrate de que la ruta de la imagen sea correcta
           imgElement.alt = 'Imagen del contenedor';
           imgElement.style.width = '100px'; // Ajustar el tamaño según sea necesario
           imgElement.style.margin = '5px';

@@ -215,7 +215,7 @@ def container_detail(container_id):
             logger.warning(f"Contenedor {container_id} no encontrado")
             abort(404)
         
-        if container.user.id != current_user.id and not current_user.is_admin:
+        if container.user.id != current_user.id:
             logger.warning(f"Acceso no autorizado al contenedor {container_id}")
             abort(403)
             
@@ -242,18 +242,18 @@ def list_containers():
         flash("Error al cargar la lista de contenedores", "danger")
         return redirect(url_for('main.home'))
 
-@main_bp.route("/containers/<container_id>/print_detail", methods=['GET'])
+@main_bp.route("/containers/<container_id>/print_detail")
 @login_required
 def print_detail(container_id):
     try:
-        container = Container.objects(id=container_id, is_deleted=False).first()
+        # Obtener el contenedor
+        container = Container.objects(id=container_id).first()
         if not container:
-            logging.warning(f"Intento de acceder a un contenedor no existente con ID {container_id}")
+            logger.warning(f"Contenedor con ID {container_id} no encontrado.")
             abort(404)
 
-        # Verificar permisos: permitir acceso si el usuario es el propietario o es administrador
-        if container.user.id != current_user.id and not current_user.is_admin:
-            logging.warning(f"Acceso no autorizado al contenedor {container_id} por el usuario {current_user.id}")
+        # Verificar permisos
+        if container.user.id != current_user.id:
             abort(403)
 
         # Verificar imágenes válidas
@@ -263,7 +263,7 @@ def print_detail(container_id):
             if os.path.exists(image_path):
                 valid_images.append(image)
             else:
-                logging.warning(f"Imagen no encontrada: {image_path}")
+                logger.warning(f"Imagen no encontrada: {image_path}")
 
         # Asegúrate de que items sea una lista
         items_list = []
@@ -286,15 +286,19 @@ def print_detail(container_id):
             'created_at': container.created_at
         }
 
-        logging.debug(f"Container data prepared: {container_data}")
+        logger.debug(f"Container data prepared: {container_data}")
 
         return render_template(
             'print_detail.html', 
             title='Imprimir Detalle', 
             container=container_data
         )
+    except DoesNotExist:
+        logger.error(f"Contenedor {container_id} no encontrado")
+        flash("Contenedor no encontrado", "danger")
+        return redirect(url_for('main.list_containers'))
     except Exception as e:
-        logging.error(f"Error en print_detail: {str(e)}")
+        logger.error(f"Error en print_detail: {str(e)}")
         flash("Error al preparar la vista de impresión", "danger")
         return redirect(url_for('main.list_containers'))
 
@@ -307,7 +311,7 @@ def delete_container(container_id):
         if not container:
             abort(404, description="Contenedor no encontrado")
         
-        if container.user.id != current_user.id and not current_user.is_admin:
+        if container.user.id != current_user.id:
             logger.warning(f"Intento de eliminación no autorizado del contenedor {container_id}")
             abort(403)
 
@@ -345,7 +349,7 @@ def delete_container_image(container_id, image_name):
         if not container:
             return jsonify({"success": False, "error": "Contenedor no encontrado"}), 404
 
-        if container.user.id != current_user.id and not current_user.is_admin:
+        if container.user.id != current_user.id:
             return jsonify({"success": False, "error": "No autorizado"}), 403
 
         # Eliminar archivo físico
@@ -372,7 +376,7 @@ def download_qr(container_id):
             logger.warning(f"Contenedor {container_id} no encontrado")
             abort(404)
 
-        if container.user.id != current_user.id and not current_user.is_admin:
+        if container.user.id != current_user.id:
             logger.warning(f"Acceso no autorizado al QR del contenedor {container_id}")
             abort(403)
 
@@ -429,7 +433,7 @@ def container_preview(container_id):
         
         # Verificar si el usuario tiene acceso
         try:
-            if str(container.user.id) != str(current_user.id) and not current_user.is_admin:
+            if str(container.user.id) != str(current_user.id):
                 logger.warning(f"Acceso no autorizado al contenedor {container_id}")
                 flash("No tienes permiso para ver este contenedor", "danger")
                 return redirect(url_for('main.list_containers'))

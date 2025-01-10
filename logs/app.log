@@ -1,7 +1,8 @@
-2025-01-10 00:10:08,761 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 00:10:13,058 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 00:26:28,346 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 00:32:17,032 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 00:34:39,047 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 00:39:06,314 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 10:47:49,728 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 17:57:59,038 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 17:58:04,184 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 18:07:28,015 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 18:07:31,866 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 18:20:19,085 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 18:20:22,421 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 18:25:23,457 - app.main.routes - WARNING - Acceso no autorizado al contenedor 67803594da6ec4f3afa8f4d7
+2025-01-10 18:25:23,457 - app.main.routes - WARNING - Acceso no autorizado al contenedor 67803594da6ec4f3afa8f4d7
