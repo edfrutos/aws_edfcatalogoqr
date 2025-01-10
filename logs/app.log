@@ -1,32 +1,7 @@
-2025-01-09 13:01:58,397 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-09 13:02:49,332 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
-2025-01-09 13:02:49,332 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
-2025-01-09 13:03:48,568 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
-2025-01-09 13:03:48,568 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
-2025-01-09 13:04:12,034 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
-2025-01-09 13:04:12,034 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
-2025-01-09 13:05:43,288 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\a03ff92afda00d6f.jpg
-2025-01-09 13:05:43,288 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\a03ff92afda00d6f.jpg
-2025-01-09 14:16:12,784 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-09 14:16:59,738 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
-2025-01-09 14:16:59,738 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677bc7beff824512e37c7ca6
-2025-01-09 14:37:15,499 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
-2025-01-09 14:37:15,499 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
-2025-01-09 14:49:14,001 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\508e9a892abff725.jpeg
-2025-01-09 14:49:14,001 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\508e9a892abff725.jpeg
-2025-01-09 18:02:04,524 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fbb972c6eb2b120ea7a0d
-2025-01-09 18:02:04,524 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fbb972c6eb2b120ea7a0d
-2025-01-09 18:46:51,912 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-09 18:47:49,780 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 18:47:49,780 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 18:47:55,039 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 18:47:55,039 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 18:49:35,322 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 18:49:35,322 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 18:54:13,129 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 18:54:13,129 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 19:02:02,095 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-09 19:03:41,263 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fd3dab5a0cfc0f5eec2ac
-2025-01-09 19:03:41,263 - app.main.routes - WARNING - Acceso no autorizado al contenedor 677fd3dab5a0cfc0f5eec2ac
-2025-01-09 19:03:46,750 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-09 19:03:46,750 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
+2025-01-10 00:10:08,761 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 00:10:13,058 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 00:26:28,346 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 00:32:17,032 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 00:34:39,047 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 00:39:06,314 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-10 10:47:49,728 - app - INFO - Aplicación Flask iniciada correctamente

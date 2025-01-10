@@ -10,7 +10,7 @@
           <h4 class="h4-detail">Nombre: {{ container.name }}</h4>
           <h5 class="h5-detail">Ubicación: {{ container.location }}</h5>
           <h5 class="h5-detail">Objetos:</h5>
-          <ul>
+          <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 10px">
             {% for item in container.items %}
             <li>{{ item }}</li>
             {% endfor %}
