@@ -34,7 +34,7 @@ body {
 
 .text-center {
   text-align: center !important;
-  width: 100vw;
+  margin-left: -1.3rem;
 }
 
 /*.container-login {
