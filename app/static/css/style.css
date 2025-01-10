@@ -32,6 +32,11 @@ body {
   padding-bottom: 0.5rem;
 }
 
+.text-center {
+  text-align: center !important;
+  width: 100vw;
+}
+
 /*.container-login {
   margin-top: 10% !important;
   margin-bottom: 5% !important;
