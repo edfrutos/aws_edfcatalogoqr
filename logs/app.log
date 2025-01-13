@@ -1,36 +1,4 @@
-2025-01-10 17:57:59,038 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 17:58:04,184 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 18:07:28,015 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 18:07:31,866 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 18:20:19,085 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 18:20:22,421 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 18:25:23,457 - app.main.routes - WARNING - Acceso no autorizado al contenedor 67803594da6ec4f3afa8f4d7
-2025-01-10 18:25:23,457 - app.main.routes - WARNING - Acceso no autorizado al contenedor 67803594da6ec4f3afa8f4d7
-2025-01-10 18:58:09,528 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 18:58:12,806 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 19:19:10,900 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 19:19:14,163 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-10 19:52:55,325 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\362d102c8b37a4b5.jpg
-2025-01-10 19:52:55,325 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\362d102c8b37a4b5.jpg
-2025-01-10 19:52:55,341 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\c55def408996bd61.jpg
-2025-01-10 19:52:55,341 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\c55def408996bd61.jpg
-2025-01-10 20:14:34,987 - app.admin.routes - INFO - Usuario Aurelio actualizado exitosamente.
-2025-01-10 20:14:34,987 - app.admin.routes - INFO - Usuario Aurelio actualizado exitosamente.
-2025-01-10 20:14:59,219 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:14:59,219 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:29:00,823 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:29:00,823 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:33:00,438 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:33:00,438 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:35:08,466 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:35:08,466 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:42:52,051 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:42:52,051 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:44:39,540 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-10 20:44:39,540 - app.main.routes - ERROR - Error en print_detail: object of type 'builtin_function_or_method' has no len()
-2025-01-11 10:07:36,124 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-11 10:07:41,789 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-11 10:27:20,476 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-11 10:27:24,060 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-11 10:49:55,510 - app - INFO - Aplicación Flask iniciada correctamente
-2025-01-11 10:49:58,848 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-13 18:20:47,242 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-13 18:21:22,326 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-13 18:24:13,690 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
+2025-01-13 18:24:13,690 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688

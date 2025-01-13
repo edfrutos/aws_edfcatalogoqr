@@ -254,6 +254,9 @@ def send_reset_email(user) -> None:
         Exception: Si hay error al enviar el correo
     """
     try:
+        salt = current_app.config.get('SECURITY_PASSWORD_SALT')
+        if not salt:
+            raise ValueError("SECURITY_PASSWORD_SALT no está definido")
         token = user.get_reset_token()
         msg = Message(
             'Solicitud de Restablecimiento de Contraseña',
@@ -270,6 +273,9 @@ Este enlace expirará en 30 minutos.
         mail.send(msg)
         logger.info(f"Correo de restablecimiento enviado a {user.email}")
         
+    except KeyError as e:
+        logger.error(f"Error al enviar correo de restablecimiento: {e}")
+        raise
     except Exception as e:
         logger.error(f"Error al enviar correo de restablecimiento: {e}")
         raise

@@ -2,5 +2,5 @@
   "code-runner.executorMap": {
     "python": ".venv\\Scripts\\python.exe -u"
   },
-  "cSpell.words": ["endwith", "levellevel", "minmax", "onscroll", "rgba", "stylesheet"]
+  "cSpell.words": ["describedby", "endwith", "levellevel", "minmax", "onscroll", "rgba", "stylesheet"]
 }

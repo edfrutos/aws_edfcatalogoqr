@@ -1,10 +1,21 @@
+/* body {
+  font-family: Arial, sans-serif;
+  background-color: #28a74578 !important;
+} */
+
 body {
   font-family: Arial, sans-serif;
   background-color: #28a74578 !important;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5vh;
 }
 
 .alert-container {
-  margin-top: 6.5rem;
+  margin-bottom: 0rem !important;
+  margin-top: -3px !important;
 }
 
 .container {
@@ -23,20 +34,15 @@ body {
 
 .container-footer {
   width: 85%;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 0%;
-  padding-right: 0%;
-  background-color: #99d5a6;
-  margin-top: 2rem;
+  margin: 0 auto;
+  background-color: #093d74;
+  color: white;
+  margin-top: 1rem;
   margin-bottom: 2rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 
 .text-center {
   text-align: center !important;
-  margin-left: -1.3rem;
 }
 
 /*.container-login {
@@ -90,10 +96,9 @@ body {
 }
 
 .container-account {
-  margin-top: 4rem;
-  margin-bottom: 8rem !important;
-  margin-left: 15rem !important;
-  width: 82% !important;
+  padding-top: 0rem !important;
+  padding-bottom: 10% !important;
+  margin-left: 15vw !important;
 }
 
 .container-about {
@@ -134,9 +139,9 @@ body {
 
 .container-contacto {
   background-color: #99d5a6;
-  margin-top: 16rem !important;
-  margin-bottom: 5rem !important;
-  width: 60%;
+  /* margin-top: 1rem !important; */
+  margin-bottom: 8rem !important;
+  width: 60vw;
   margin: 0 auto;
 }
 
@@ -149,11 +154,7 @@ body {
   gap: 10px;
 }
 
-.container-admin-search {
-  margin-top: 0rem;
-  margin-left: 20rem;
-  margin-right: 20rem;
-}
+
 
 .container-admin-user {
   margin-top: 0rem;
@@ -164,9 +165,10 @@ body {
 }
 
 .container-admin-list {
-  margin-top: 10rem !important;
-  margin-bottom: 10rem !important;
-  margin-left: 25rem !important;
+  display: block;
+  margin-top: 0rem;
+  justify-content: center;
+  align-items: center;
   margin: 0 auto;
   width: 60%;
 }
@@ -263,7 +265,9 @@ body {
 .btn:not(:disabled):not(.disabled) {
   cursor: pointer;
   align-items: center;
+  margin: 10px auto !important;
 }
+
 
 h2 {
   margin-bottom: 20px;
@@ -486,12 +490,13 @@ span#mod .landscape-home {
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
-  width: 35%;
+  width: 15vw;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid rgb(0 123 255);
   border-radius: 0.25rem;
+  margin: 0 auto;
 }
 
 .card-img-top {
@@ -613,7 +618,17 @@ span#mod .landscape-home {
   color: #000;
 }
 
-/*Icono de flecha hacia arriba */
+/* 
+  Estilos para las clases de iconos de Font Awesome (.fa, .fab, .fad, .fal, .far, .fas).
+  
+  - -webkit-font-smoothing: Habilita el renderizado de fuentes antialiased para una mejor calidad visual en navegadores WebKit.
+  - display: inline-block; Permite que el elemento se trate como un elemento en línea mientras mantiene propiedades de bloque.
+  - font-style: normal; Establece el estilo de la fuente como normal, sobrescribiendo cualquier estilo en cursiva u oblicuo.
+  - font-variant: normal; Asegura que la variante de la fuente esté configurada como normal, evitando cualquier variación como las pequeñas mayúsculas.
+  - text-rendering: auto; Permite que el navegador decida la mejor manera de renderizar el texto.
+  - line-height: 1; Establece la altura de la línea en 1, asegurando que la altura de la línea sea igual al tamaño de la fuente.
+  - margin-right: 0.5rem; Añade un margen derecho de 0.5rem para el espaciado entre iconos o elementos de texto.
+*/
 .fa,
 .fab,
 .fad,
@@ -626,8 +641,13 @@ span#mod .landscape-home {
   font-variant: normal;
   text-rendering: auto;
   line-height: 1;
+  margin-right: 0.5rem;
 }
 
+.fa-arrow-up:before {
+  content: "\f062";
+  margin-left: 5px;
+}
 
 .mt-3 {
   margin-top: -0.5rem !important;
@@ -730,7 +750,6 @@ span#mod .landscape-home {
 }
 
 .form-label {
-  width: 200px;
   /* Ajusta este valor según tus necesidades */
   height: auto;
   /* Mantener la proporción de la imagen */
@@ -742,7 +761,12 @@ span#mod .landscape-home {
 
 .form-control {
   background-color: rgb(204, 234, 211);
-  border: 1px solid #093d74;
+  border: 1px solid #093d74 !important;
+  margin: 0 auto !important;
+}
+
+.form-control-file-picture {
+  margin-top: 10px;
 }
 
 .print-detail {
@@ -879,12 +903,10 @@ span#mod .landscape-home {
 footer {
   background-color: #093d74 !important;
   color: white;
-  padding-top: 0rem;
   position: fixed;
-  bottom: 0;
   width: 100%;
   z-index: 1000;
-  height: 133px;
+  height: 10vh;
 }
 
 @media (max-width: 1370px) {
@@ -1027,8 +1049,7 @@ footer {
   .container-account {
     padding-top: 0rem !important;
     padding-bottom: 10% !important;
-    margin-left: 1.8rem !important;
-    width: 96% !important;
+    margin-left: 15vw !important;
   }
 
   .container-home {
@@ -1170,7 +1191,7 @@ footer {
   z-index: 99;
   border: none;
   outline: none;
-  background-color: #343a40;
+  background-color: #007bff;
   color: white;
   cursor: pointer;
   padding: 10px;

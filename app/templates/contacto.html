@@ -1,5 +1,5 @@
 {% extends 'layout.html' %} {% block content %}
-<div class="container mt-5">
+<div class="container-contacto">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow">
@@ -7,40 +7,31 @@
           <h2 class="mb-0">Contacto</h2>
         </div>
         <div class="card-body">
-          <form
-            method="POST"
-            action="{{ url_for('main.contacto') }}"
-            class="needs-validation"
-            novalidate
-          >
+          <form method="POST" action="{{ url_for('main.contacto') }}" class="needs-validation" novalidate>
             {{ form.hidden_tag() }}
 
             <!-- Nombre -->
             <div class="form-group mb-3">
-              {{ form.name.label(class='form-label') }} {{
-              form.name(class='form-control' + (' is-invalid' if
-              form.name.errors else ''), placeholder='Ingrese su nombre') }} {%
-              for error in form.name.errors %}
+              {{ form.name.label(class='form-label') }} {{ form.name(class='form-control' + (' is-invalid' if
+              form.name.errors else ''), placeholder='Ingrese su nombre') }} {% for error in form.name.errors %}
               <div class="invalid-feedback">{{ error }}</div>
               {% endfor %}
             </div>
 
             <!-- Email -->
             <div class="form-group mb-3">
-              {{ form.email.label(class='form-label') }} {{
-              form.email(class='form-control' + (' is-invalid' if
-              form.email.errors else ''), placeholder='ejemplo@email.com',
-              type='email') }} {% for error in form.email.errors %}
+              {{ form.email.label(class='form-label') }} {{ form.email(class='form-control' + (' is-invalid' if
+              form.email.errors else ''), placeholder='ejemplo@email.com', type='email') }} {% for error in
+              form.email.errors %}
               <div class="invalid-feedback">{{ error }}</div>
               {% endfor %}
             </div>
 
             <!-- Mensaje -->
             <div class="form-group mb-4">
-              {{ form.message.label(class='form-label') }} {{
-              form.message(class='form-control' + (' is-invalid' if
-              form.message.errors else ''), rows='5', placeholder='Escriba su
-              mensaje aquí...') }} {% for error in form.message.errors %}
+              {{ form.message.label(class='form-label') }} {{ form.message(class='form-control' + (' is-invalid' if
+              form.message.errors else ''), rows='5', placeholder='Escriba su mensaje aquí...') }} {% for error in
+              form.message.errors %}
               <div class="invalid-feedback">{{ error }}</div>
               {% endfor %}
             </div>
@@ -125,21 +116,21 @@
 <!-- Script para validación del formulario -->
 <script>
   (function () {
-    "use strict";
+    'use strict';
 
     // Fetch all forms we want to apply custom validation styles to
-    var forms = document.querySelectorAll(".needs-validation");
+    var forms = document.querySelectorAll('.needs-validation');
 
     // Loop over them and prevent submission
     Array.prototype.slice.call(forms).forEach(function (form) {
       form.addEventListener(
-        "submit",
+        'submit',
         function (event) {
           if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
           }
-          form.classList.add("was-validated");
+          form.classList.add('was-validated');
         },
         false
       );
