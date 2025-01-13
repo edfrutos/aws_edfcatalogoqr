@@ -2,3 +2,19 @@
 2025-01-13 18:21:22,326 - app - INFO - Aplicación Flask iniciada correctamente
 2025-01-13 18:24:13,690 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
 2025-01-13 18:24:13,690 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
+2025-01-13 19:49:44,499 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
+2025-01-13 19:49:44,499 - app.admin.routes - INFO - Usuario encontrado: edefrutos con ID 67349459647ce9d63aef10cf
+2025-01-13 20:31:53,586 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
+2025-01-13 20:31:53,586 - app.admin.routes - INFO - Usuario encontrado: Aurelio con ID 677bd495879c78792cbc6688
+2025-01-13 20:41:36,538 - app.admin.routes - INFO - Usuario Aurelio actualizado exitosamente.
+2025-01-13 20:41:36,538 - app.admin.routes - INFO - Usuario Aurelio actualizado exitosamente.
+2025-01-13 20:41:36,660 - app.utils - WARNING - Intento de acceso no autorizado a list_users
+2025-01-13 20:41:36,660 - app.utils - WARNING - Intento de acceso no autorizado a list_users
+2025-01-13 20:46:33,528 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\profile_pics\8e0d810619ad8e74.jpg
+2025-01-13 20:46:33,528 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\profile_pics\8e0d810619ad8e74.jpg
+2025-01-13 20:50:46,218 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\profile_pics\78db5fe3890ea129.jpg
+2025-01-13 20:50:46,218 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\profile_pics\78db5fe3890ea129.jpg
+2025-01-13 21:01:11,320 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\cd0af28e259130b5.jpg
+2025-01-13 21:01:11,320 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\cd0af28e259130b5.jpg
+2025-01-13 21:01:11,342 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\78f015504a52074b.jpg
+2025-01-13 21:01:11,342 - app.utils - INFO - Imagen guardada exitosamente en: C:\Users\edfru\Repositorios\aws_edfcatalogoqr\app\static\container_pics\78f015504a52074b.jpg
