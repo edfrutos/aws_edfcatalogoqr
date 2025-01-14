@@ -42,3 +42,7 @@
 2025-01-14 21:09:15,387 - app - INFO - Aplicación Flask iniciada correctamente
 2025-01-14 21:13:33,631 - app - INFO - Aplicación Flask iniciada correctamente
 2025-01-14 21:14:43,345 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-14 21:15:29,497 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-14 21:15:35,538 - app - INFO - Aplicación Flask iniciada correctamente
+2025-01-14 21:21:38,985 - app.utils - ERROR - Error al enviar correo de restablecimiento: SECURITY_PASSWORD_SALT no estÃ¡ definido
+2025-01-14 21:21:38,985 - app.utils - ERROR - Error al enviar correo de restablecimiento: SECURITY_PASSWORD_SALT no está definido
