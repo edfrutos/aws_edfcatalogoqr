@@ -240,6 +240,7 @@ def list_containers():
 @login_required
 def print_detail(container_id):
     try:
+        # Obtener el contenedor
         container = Container.objects(id=container_id, is_deleted=False).first()
         if not container:
             logging.warning(f"Intento de acceder a un contenedor no existente con ID {container_id}")
@@ -265,42 +266,33 @@ def print_detail(container_id):
             if callable(container.items):
                 items_list = container.items()  # Llama al método si es necesario
             elif isinstance(container.items, (list, tuple)):
-                items_list = container.items
+                items_list = list(container.items)  # Convertir a lista si es necesario
             elif isinstance(container.items, str):
                 items_list = [item.strip() for item in container.items.split(',') if item.strip()]
 
         # Crear el diccionario con los datos del contenedor
         container_data = {
             'id': str(container.id),
-            'name': container.name,
-            'location': container.location,
+            'name': getattr(container, 'name', 'Sin nombre'),
+            'location': getattr(container, 'location', 'No especificada'),
             'items': items_list,
             'image_files': valid_images,
-            'qr_image': container.qr_image,
-            'created_at': container.created_at
+            'qr_image': getattr(container, 'qr_image', None),
+            'created_at': container.created_at.strftime('%d/%m/%Y') if container.created_at else None  # Formato de fecha
         }
 
         logging.debug(f"Container data prepared: {container_data}")
 
-        return render_template(
-            'print_detail.html', 
-            title='Imprimir Detalle', 
-            container=container_data
-        )
-    except Exception as e:
+        return render_template('print_detail.html', title='Imprimir Detalle', container=container_data)
+
+    except (ValueError, TypeError) as e:
         logging.error(f"Error en print_detail: {str(e)}")
         flash("Error al preparar la vista de impresión", "danger")
         return redirect(url_for('main.list_containers'))
-
-def print_detail(detail):
-    try:
-        # Asegúrate de que 'detail' es un objeto que tiene longitud
-        if isinstance(detail, (list, str)):
-            print(len(detail))
-        else:
-            print("El objeto no tiene longitud")
     except Exception as e:
-        app.logger.error(f"Error en print_detail: {e}")
+        logging.error(f"Error inesperado en print_detail: {str(e)}")
+        flash("Error inesperado al preparar la vista de impresión", "danger")
+        return redirect(url_for('main.list_containers'))
 
 # Rutas de manipulación de contenedores
 @main_bp.route("/containers/<container_id>/delete", methods=['POST'])
@@ -432,14 +424,9 @@ def container_preview(container_id):
             return redirect(url_for('main.list_containers'))
         
         # Verificar si el usuario tiene acceso
-        try:
-            if str(container.user.id) != str(current_user.id) and not current_user.is_admin:
-                logger.warning(f"Acceso no autorizado al contenedor {container_id}")
-                flash("No tienes permiso para ver este contenedor", "danger")
-                return redirect(url_for('main.list_containers'))
-        except DoesNotExist:
-            logger.error(f"Usuario no encontrado para el contenedor {container_id}")
-            flash("Error al verificar permisos", "danger")
+        if str(container.user.id) != str(current_user.id) and not current_user.is_admin:
+            logger.warning(f"Acceso no autorizado al contenedor {container_id}")
+            flash("No tienes permiso para ver este contenedor", "danger")
             return redirect(url_for('main.list_containers'))
         
         return render_template('container_preview.html', container=container)

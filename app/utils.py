@@ -248,15 +248,17 @@ def send_reset_email(user) -> None:
     Envía un correo electrónico para restablecer la contraseña.
     
     Args:
-        user: Usuario que solicita el reset
+        user: Usuario que solicita el restablecimiento de contraseña.
     
     Raises:
-        Exception: Si hay error al enviar el correo
+        ValueError: Si SECURITY_PASSWORD_SALT no está definido.
+        Exception: Si hay error al enviar el correo.
     """
     try:
         salt = current_app.config.get('SECURITY_PASSWORD_SALT')
         if not salt:
             raise ValueError("SECURITY_PASSWORD_SALT no está definido")
+
         token = user.get_reset_token()
         msg = Message(
             'Solicitud de Restablecimiento de Contraseña',
@@ -265,14 +267,12 @@ def send_reset_email(user) -> None:
         )
         msg.body = f'''Para restablecer tu contraseña, haz clic en el siguiente enlace:
 {url_for('users.reset_token', token=token, _external=True)}
-
 Si no solicitaste este cambio, simplemente ignora este mensaje.
-
 Este enlace expirará en 30 minutos.
 '''
         mail.send(msg)
         logger.info(f"Correo de restablecimiento enviado a {user.email}")
-        
+
     except KeyError as e:
         logger.error(f"Error al enviar correo de restablecimiento: {e}")
         raise

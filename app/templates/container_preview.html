@@ -42,5 +42,8 @@
     </div>
   </div>
   <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary mt-3">Volver al Listado</a>
+  <a href="{{ url_for('main.print_detail', container_id=container.id) }}" class="btn btn-primary mt-3">
+    Imprimir Detalle
+  </a>
 </div>
 {% endblock %}

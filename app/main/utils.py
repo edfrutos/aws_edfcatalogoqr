@@ -8,6 +8,9 @@ from flask import abort
 from flask_login import current_user
 from app import mail
 import qrcode
+import logging
+
+logger = logging.getLogger(__name__)
 
 def save_picture(form_picture):
     try:
@@ -35,16 +38,32 @@ def save_picture(form_picture):
         raise RuntimeError(f"Error al guardar la imagen: {e}")
 
 def send_reset_email(user):
-    token = user.get_reset_token()
-    msg = Message('Solicitud de restablecimiento de contraseña',
-                  sender='admin@edefrutos.me',
-                  recipients=[user.email])
-    msg.body = f'''Para restablecer tu contraseña, visita el siguiente enlace:
-{url_for('main.change_pass', token=token, _external=True)}
+    """
+    Envía un correo electrónico para restablecer la contraseña del usuario.
 
+    Args:
+        user: El usuario que solicita el restablecimiento de contraseña.
+    
+    Raises:
+        Exception: Si hay un error al enviar el correo.
+    """
+    try:
+        token = user.get_reset_token()
+        msg = Message(
+            subject='Solicitud de restablecimiento de contraseña',
+            sender=current_app.config['MAIL_DEFAULT_SENDER'],  # Usar la configuración del remitente
+            recipients=[user.email]
+        )
+        msg.body = f'''Para restablecer tu contraseña, visita el siguiente enlace:
+{url_for('main.change_pass', token=token, _external=True)}
 Si no solicitaste este cambio, simplemente ignora este mensaje y no se realizará ningún cambio.
 '''
-    mail.send(msg)
+        mail.send(msg)
+        logger.info(f"Correo de restablecimiento enviado a {user.email}")
+
+    except Exception as e:
+        logger.error(f"Error al enviar el correo de restablecimiento: {e}")
+        raise  # Vuelve a lanzar la excepción para que pueda ser manejada más arriba
 
 def save_qr_image(data, container_name):
     qr = qrcode.QRCode(
