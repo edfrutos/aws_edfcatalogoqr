@@ -14,6 +14,19 @@ from botocore.exceptions import ClientError
 from dotenv import load_dotenv
 from mongoengine import disconnect
 
+# Configuración de Logging
+if not os.path.exists('logs'):
+    os.mkdir('logs')
+
+logger = logging.getLogger('app')
+logger.setLevel(logging.INFO)
+
+if not logger.handlers:
+    handler = logging.FileHandler('logs/app.log')
+    handler.setLevel(logging.INFO)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 # Establece la ruta del certificado SSL para evitar errores de verificación de MongoDB
 os.environ['SSL_CERT_FILE'] = certifi.where()
@@ -40,7 +53,11 @@ def create_app():
     app = Flask(__name__)
 
     # Configuración básica
-    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'default-secret-key')
+    secret_key = os.environ.get('SECRET_KEY', 'default-secret-key')
+    if not isinstance(secret_key, (str, bytes)):
+        raise ValueError("SECRET_KEY debe ser una cadena o bytes.")
+    app.config['SECRET_KEY'] = secret_key.encode('utf-8') if isinstance(secret_key, str) else secret_key
+
     app.config['MONGODB_SETTINGS'] = {
         'host': os.environ.get('MONGO_URI', 'mongodb://localhost:27017/edfcatalogoqr'),
         'connect': False  # MongoEngine se conectará automáticamente a través de init_app
@@ -59,8 +76,12 @@ def create_app():
     app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
     app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER')
 
+    # Validación de configuraciones críticas
+    if not app.config['MAIL_USERNAME'] or not app.config['MAIL_PASSWORD']:
+        app.logger.warning("MAIL_USERNAME o MAIL_PASSWORD no están configurados correctamente.")
+
     # Inicialización de extensiones con la app
-    db.init_app(app)  # Deja que flask_mongoengine maneje la conexión automáticamente
+    db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
@@ -84,7 +105,7 @@ def create_app():
     from app.users.routes import users_bp
     from app.admin.routes import admin_bp
     from app.errors.handlers import errors
-    
+
     app.register_blueprint(main_bp)
     app.register_blueprint(users_bp, url_prefix='/users')
     app.register_blueprint(admin_bp, url_prefix='/admin')

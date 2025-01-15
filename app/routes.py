@@ -204,33 +204,6 @@ def account():
 
     return render_template('account.html', title='Cuenta', image_file=image_file, form=form)
 
-@main.route("/reset_password", methods=['GET', 'POST'])
-def reset_request():
-    form = RequestResetForm()
-    if form.validate_on_submit():
-        user = User.objects(email=form.email.data).first()
-        if user:
-            send_reset_email(user)
-            flash('Se ha enviado un correo electrónico con instrucciones para restablecer su contraseña.', 'info')
-        else:
-            flash('No hay ninguna cuenta con ese correo electrónico. Primero debes registrarte.', 'warning')
-        return redirect(url_for('main.home'))
-    return render_template('reset_request.html', form=form)
-
-@main.route("/reset_password/<token>", methods=['GET', 'POST'])
-def reset_token(token):
-    user = User.verify_reset_token(token)
-    if user is None:
-        flash('Ese es un token no válido o caducado', 'warning')
-        return redirect(url_for('main.reset_request'))
-    form = ResetPasswordForm()
-    if form.validate_on_submit():
-        user.set_password(form.password.data)
-        user.save()  # Asegúrate de que el usuario se guarda en la base de datos
-        flash('¡Su contraseña ha sido actualizada!', 'success')
-        return redirect(url_for('users.login'))
-    return render_template('reset_password.html', form=form)
-
 @main.route("/contacto", methods=['GET', 'POST'])
 def contacto():
     form = ContactForm()

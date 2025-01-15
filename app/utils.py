@@ -243,42 +243,21 @@ def save_qr_image(data: str, container_name: str) -> Path:
     
     return qr_path
 
-def send_reset_email(user) -> None:
-    """
-    Envía un correo electrónico para restablecer la contraseña.
-    
-    Args:
-        user: Usuario que solicita el restablecimiento de contraseña.
-    
-    Raises:
-        ValueError: Si SECURITY_PASSWORD_SALT no está definido.
-        Exception: Si hay error al enviar el correo.
-    """
-    try:
-        salt = current_app.config.get('SECURITY_PASSWORD_SALT')
-        if not salt:
-            raise ValueError("SECURITY_PASSWORD_SALT no está definido")
-
-        token = user.get_reset_token()
-        msg = Message(
-            'Solicitud de Restablecimiento de Contraseña',
-            sender=current_app.config['MAIL_DEFAULT_SENDER'],
-            recipients=[user.email]
-        )
-        msg.body = f'''Para restablecer tu contraseña, haz clic en el siguiente enlace:
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Solicitud de Restablecimiento de Contraseña',
+                  sender=current_app.config['MAIL_DEFAULT_SENDER'],
+                  recipients=[user.email])
+    msg.body = f'''Para restablecer tu contraseña, visita el siguiente enlace:
 {url_for('users.reset_token', token=token, _external=True)}
-Si no solicitaste este cambio, simplemente ignora este mensaje.
-Este enlace expirará en 30 minutos.
-'''
-        mail.send(msg)
-        logger.info(f"Correo de restablecimiento enviado a {user.email}")
 
-    except KeyError as e:
-        logger.error(f"Error al enviar correo de restablecimiento: {e}")
-        raise
+Si no solicitaste este cambio, simplemente ignora este correo electrónico y no se realizarán cambios.
+'''
+    try:
+        mail.send(msg)
+        current_app.logger.info(f"Correo de restablecimiento de contraseña enviado a {user.email}")
     except Exception as e:
-        logger.error(f"Error al enviar correo de restablecimiento: {e}")
-        raise
+        current_app.logger.error(f"Error al enviar correo de restablecimiento: {str(e)}")
 
 def verify_image_path(image_path: Union[str, Path]) -> bool:
     """

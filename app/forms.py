@@ -10,6 +10,10 @@ from wtforms.validators import (
 from flask_wtf.file import FileAllowed, FileSize
 from app.models import User, Container
 from flask_login import current_user
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 # Constantes para validaciones
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
@@ -27,10 +31,15 @@ class BaseUserForm(FlaskForm):
                 raise ValidationError('Este nombre de usuario ya está en uso. Por favor, elige otro.')
 
     def validate_email(self, email):
-        if current_user.is_authenticated and email.data != current_user.email:
+        try:
             user = User.objects(email=email.data).first()
-            if user:
-                raise ValidationError('Este correo electrónico ya está registrado. Por favor, usa otro.')
+        except Exception as e:
+            logger.error(f"Error al validar email: {e}")
+        raise ValidationError("Hubo un problema al validar el correo.")
+        if user is None:
+            raise ValidationError("No existe un usuario con ese correo.")
+        if user:
+            raise ValidationError('Este correo electrónico ya está registrado. Por favor, usa otro.')
 
 class RegistrationForm(BaseUserForm):
     """Formulario de registro de usuario."""
@@ -157,28 +166,17 @@ class EditContainerForm(FlaskForm):
                 raise ValidationError('Ya tienes un contenedor con este nombre. Por favor, elige otro.')
 
 class RequestResetForm(FlaskForm):
-    """Formulario para solicitar restablecimiento de contraseña."""
-    email = StringField('Email', validators=[
-        DataRequired(),
-        Email(message="Por favor, introduce un email válido.")
-    ])
-    submit = SubmitField('Solicitar Restablecimiento')
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Solicitar Restablecimiento de Contraseña')
 
     def validate_email(self, email):
         user = User.objects(email=email.data).first()
-        if not user:
-            raise ValidationError('No existe una cuenta con ese email.')
+        if user is None:
+            raise ValidationError('No existe una cuenta con ese email. Debes registrarte primero.')
 
 class ResetPasswordForm(FlaskForm):
-    """Formulario para restablecer contraseña."""
-    password = PasswordField('Nueva Contraseña', validators=[
-        DataRequired(),
-        Length(min=8, message="La contraseña debe tener al menos 8 caracteres.")
-    ])
-    confirm_password = PasswordField('Confirmar Nueva Contraseña', validators=[
-        DataRequired(),
-        EqualTo('password', message='Las contraseñas deben coincidir.')
-    ])
+    password = PasswordField('Contraseña', validators=[DataRequired(), Length(min=6, max=20)])
+    confirm_password = PasswordField('Confirmar Contraseña', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Restablecer Contraseña')
 
 class DeleteAccountForm(FlaskForm):

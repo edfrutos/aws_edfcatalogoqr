@@ -242,9 +242,10 @@ body {
 }
 
 .btn-danger {
-  background-color: #dc3545;
-  margin: 0 auto;
-  width: 240px;
+  color: #fff !important;
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  width: 20vw !important;
 }
 
 .btn-danger:hover {

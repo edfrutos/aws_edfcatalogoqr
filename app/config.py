@@ -55,7 +55,7 @@ def validate_config():
         'MAIL_PASSWORD'
     ]
     
-    missing_vars = [var for var in required_vars if not os.environ.get(var)]
+    missing_vars = [var for var in required_vars if not os.getenv(var)]
     
     if missing_vars:
         raise ValueError(f"Faltan las siguientes variables de entorno: {', '.join(missing_vars)}")

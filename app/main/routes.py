@@ -12,10 +12,26 @@ from flask_mail import Message
 
 from app.models import Container
 from app.forms import ContainerForm, EditContainerForm, DeleteImageForm, SearchContainerForm, ContactForm
-from app.utils import save_container_picture, handle_errors, normalize_name
+from app.utils import save_container_picture, handle_errors, normalize_name, verify_image_path
 from app.extensions import mail
 
 main_bp = Blueprint('main', __name__)
+
+def verify_image_path(image_path):
+    """
+    Verifica si una ruta de imagen existe y es accesible.
+
+    Args:
+        image_path: Ruta de la imagen a verificar
+
+    Returns:
+        bool: True si la imagen existe y es accesible
+    """
+    try:
+        return os.path.exists(image_path) and os.access(image_path, os.R_OK)
+    except Exception as e:
+        current_app.logger.error(f"Error verificando ruta de imagen {image_path}: {e}")
+        return False
 
 # Configuración del logger
 def setup_logger():
@@ -243,56 +259,49 @@ def print_detail(container_id):
         # Obtener el contenedor
         container = Container.objects(id=container_id, is_deleted=False).first()
         if not container:
-            logging.warning(f"Intento de acceder a un contenedor no existente con ID {container_id}")
-            abort(404)
+            abort(404, description="Contenedor no encontrado")
 
-        # Verificar permisos: permitir acceso si el usuario es el propietario o es administrador
+        # Verificar permisos
         if container.user.id != current_user.id and not current_user.is_admin:
-            logging.warning(f"Acceso no autorizado al contenedor {container_id} por el usuario {current_user.id}")
-            abort(403)
+            abort(403, description="No autorizado")
 
-        # Verificar imágenes válidas
+        # Validar imágenes
         valid_images = []
-        for image in container.image_files or []:  # Asegurarse de que image_files no sea None
+        for image in container.image_files or []:
             image_path = os.path.join(current_app.root_path, 'static', 'container_pics', image)
-            if os.path.exists(image_path):
+            if verify_image_path(image_path):
                 valid_images.append(image)
-            else:
-                logging.warning(f"Imagen no encontrada: {image_path}")
 
-        # Asegúrate de que items sea una lista
-        items_list = []
-        if container.items:
-            if callable(container.items):
-                items_list = container.items()  # Llama al método si es necesario
-            elif isinstance(container.items, (list, tuple)):
-                items_list = list(container.items)  # Convertir a lista si es necesario
-            elif isinstance(container.items, str):
-                items_list = [item.strip() for item in container.items.split(',') if item.strip()]
+        # Procesar los items
+        items_list = (
+            container.items if isinstance(container.items, list) else
+            [item.strip() for item in container.items.split(',') if item.strip()] if isinstance(container.items, str) else
+            []
+        )
 
-        # Crear el diccionario con los datos del contenedor
+         # Preparar los datos del contenedor
+        created_at = 'No disponible'
+        try:
+            created_at_dt = datetime.fromisoformat(container.created_at)
+            created_at_dt = datetime.strptime(container.created_at, '%Y-%m-%d')
+        except ValueError:
+                current_app.logger.warning(f"Formato no válido en created_at: {container.created_at}")
+
         container_data = {
             'id': str(container.id),
-            'name': getattr(container, 'name', 'Sin nombre'),
-            'location': getattr(container, 'location', 'No especificada'),
+            'name': container.name or 'Sin nombre',
+            'location': container.location or 'No especificada',
             'items': items_list,
             'image_files': valid_images,
-            'qr_image': getattr(container, 'qr_image', None),
-            'created_at': container.created_at.strftime('%d/%m/%Y') if container.created_at else None  # Formato de fecha
+            'qr_image': container.qr_image,
+            'created_at': created_at
         }
-
-        logging.debug(f"Container data prepared: {container_data}")
 
         return render_template('print_detail.html', title='Imprimir Detalle', container=container_data)
 
-    except (ValueError, TypeError) as e:
-        logging.error(f"Error en print_detail: {str(e)}")
-        flash("Error al preparar la vista de impresión", "danger")
-        return redirect(url_for('main.list_containers'))
     except Exception as e:
-        logging.error(f"Error inesperado en print_detail: {str(e)}")
-        flash("Error inesperado al preparar la vista de impresión", "danger")
-        return redirect(url_for('main.list_containers'))
+        flash(f"Error inesperado: {str(e)}", "danger")
+        return redirect(url_for("main.list_containers"))
 
 # Rutas de manipulación de contenedores
 @main_bp.route("/containers/<container_id>/delete", methods=['POST'])

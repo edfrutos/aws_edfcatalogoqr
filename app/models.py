@@ -1,6 +1,6 @@
 import logging
 from datetime import datetime
-from itsdangerous import TimedSerializer as Serializer
+from itsdangerous import URLSafeTimedSerializer as Serializer
 from flask_login import UserMixin
 from flask import current_app
 from mongoengine import (
@@ -41,7 +41,7 @@ class User(Document, UserMixin):
     email = StringField(max_length=50, unique=True, required=True)
     password = StringField(required=True)
     image_file = StringField(default='default.jpg')
-    image_files = StringField(default='default.jpg')
+    image_files = ListField(StringField())
     address = StringField()
     phone = StringField()
     is_admin = BooleanField(default=False)
@@ -73,36 +73,22 @@ class User(Document, UserMixin):
             return False
 
     def get_reset_token(self, expires_sec=1800):
-        """Genera un token de reseteo de contraseña."""
+        """Genera un token para resetear la contraseña."""
+        logger.debug(f"Generando token para el usuario {self.username} con ID {self.id}")
         try:
-            logger.debug(f"Generando token de reseteo para {self.username}")
-            salt = current_app.config.get('SECURITY_PASSWORD_SALT')
-            if not salt:
-                raise ValueError("SECURITY_PASSWORD_SALT no está definido")
             s = Serializer(current_app.config['SECRET_KEY'])
-            return s.dumps(
-                {'user_id': str(self.id)}, 
-                salt=salt
-            )
-        except KeyError as e:
-            logger.error(f"Error al generar token: {e}")
-            raise
+            return s.dumps({'user_id': str(self.id)})
         except Exception as e:
             logger.error(f"Error al generar token: {e}")
-            raise
+            raise RuntimeError("Fallo al generar el token de reseteo.") from e
 
     @staticmethod
-    def verify_reset_token(token, expires_sec=1800):
+    def verify_reset_token(token):
         """Verifica el token de reseteo de contraseña."""
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
-            user_id = s.loads(
-                token, 
-                salt=current_app.config['SECURITY_PASSWORD_SALT'], 
-                max_age=expires_sec
-            )['user_id']
-            logger.info(f"Token válido para usuario ID: {user_id}")
-            return User.objects(id=user_id).first()
+            data = s.loads(token)
+            return User.objects(id=data.get('user_id')).first()
         except Exception as e:
             logger.error(f"Error al verificar token: {e}")
             return None
