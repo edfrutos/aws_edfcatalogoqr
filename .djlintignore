@@ -1,0 +1,2 @@
+app/templates/admin/*.html
+app/templates/*.html
