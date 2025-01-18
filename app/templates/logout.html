@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logout - EDF Catalogación QR</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="container-logout">
-        <div class="alert alert-info text-center" role="alert">
-            Has cerrado sesión exitosamente.
-            <button type="button" class="close-alert" data-dismiss="alert">
-                <span>×</span>
-              </button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Logout - EDF Catalogación QR</title>
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/style.css') }}" />
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              rel="stylesheet" />
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/style.css') }}" />
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container-logout">
+            <div class="alert alert-info text-center" role="alert">
+                Has cerrado sesión exitosamente.
+                <button type="button" class="close-alert" data-dismiss="alert">
+                    <span>×</span>
+                </button>
+            </div>
         </div>
-    </div>
-    
-    <!-- Modal de Despedida -->
-    <div class="modal fade" id="farewellModal" tabindex="-1" role="dialog" aria-labelledby="farewellModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="farewellModalLabel">Hasta pronto!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Gracias por visitarnos. Esperamos verte de nuevo pronto.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="window.location.href='{{ url_for('main.home') }}'">Cerrar</button>
+        <!-- Modal de Despedida -->
+        <div class="modal fade"
+             id="farewellModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="farewellModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="farewellModalLabel">Hasta pronto!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Gracias por visitarnos. Esperamos verte de nuevo pronto.</div>
+                    <div class="modal-footer">
+                        <button type="button"
+                                class="btn btn-primary"
+                                data-dismiss="modal"
+                                onclick="window.location.href='{{ url_for("main.home") }}'">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        $(document).ready(function(){
-            $('#farewellModal').modal('show');
-        });
-    </script>
-</body>
+        <script>
+            $(document).ready(function () {
+                $('#farewellModal').modal('show');
+            });
+        </script>
+    </body>
 </html>

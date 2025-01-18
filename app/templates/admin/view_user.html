@@ -1,20 +1,53 @@
-{% extends "layout.html" %}
-{% block title %}Detalles de Usuario{% endblock %}
+{% extends "layout.html" %} {% block title %}Detalles de Usuario{% endblock %}
 {% block content %}
 <div class="container mt-5">
     <h1>Detalles de Usuario</h1>
     <div class="card">
         <div class="card-body text-center">
-            <h5 class="card-title" style="font-size: 1.5em; font-weight: bold;">{{ user.username }}</h5>
-            <p class="card-text" style="margin-left: 20px;"><strong>Email:</strong> {{ user.email }}</p>
-            <p class="card-text" style="margin-left: 20px;"><strong>Dirección:</strong> {{ user.address }}</p>
-            <p class="card-text" style="margin-left: 20px;"><strong>Teléfono:</strong> {{ user.phone }}</p>
-            <p class="card-text"><strong>Foto de Perfil:</strong></p>
-            <img src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}" alt="Foto de Perfil" class="img-fluid mx-auto d-block" />
+            <h5 class="card-title" style="font-size: 1.5em; font-weight: bold">
+                {{ user.username }}
+            </h5>
+            <p class="card-text" style="margin-left: 20px">
+                <strong>Email:</strong>
+                {{ user.email }}
+            </p>
+            <p class="card-text" style="margin-left: 20px">
+                <strong>Dirección:</strong>
+                {{ user.address }}
+            </p>
+            <p class="card-text" style="margin-left: 20px">
+                <strong>Teléfono:</strong>
+                {{ user.phone }}
+            </p>
+            <p class="card-text">
+                <strong>Foto de Perfil:</strong>
+            </p>
+            <img
+                src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}"
+                alt="Foto de Perfil"
+                class="img-fluid mx-auto d-block"
+            />
             <div class="button-group">
-                <button onclick="printCard()" class="btn btn-primary" style="width: 100%;">Imprimir</button>
-                <button onclick="downloadCard()" class="btn btn-secondary" style="width: 100%;">Descargar</button>
-                <a href="{{ url_for('admin.list_users') }}" class="btn btn-info">Volver a la lista de usuarios</a>
+                <button
+                    onclick="printCard()"
+                    class="btn btn-primary"
+                    style="width: 100%"
+                >
+                    Imprimir
+                </button>
+                <button
+                    onclick="downloadCard()"
+                    class="btn btn-secondary"
+                    style="width: 100%"
+                >
+                    Descargar
+                </button>
+                <a
+                    href="{{ url_for('admin.list_users') }}"
+                    class="btn btn-info"
+                >
+                    Volver a la lista de usuarios
+                </a>
             </div>
         </div>
     </div>
@@ -28,13 +61,20 @@
     function downloadCard() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-        doc.text("Detalles del Usuario", 10, 10);
-        doc.text("Nombre: {{ user.username }}", 10, 20);
-        doc.text("Email: {{ user.email }}", 10, 30);
-        doc.text("Dirección: {{ user.address }}", 10, 40);
-        doc.text("Teléfono: {{ user.phone }}", 10, 50);
-        doc.addImage("{{ url_for('static', filename='profile_pics/' + user.image_file) }}", 'JPEG', 10, 60, 50, 50);
-        doc.save("usuario.pdf");
+        doc.text('Detalles del Usuario', 10, 10);
+        doc.text('Nombre: {{ user.username }}', 10, 20);
+        doc.text('Email: {{ user.email }}', 10, 30);
+        doc.text('Dirección: {{ user.address }}', 10, 40);
+        doc.text('Teléfono: {{ user.phone }}', 10, 50);
+        doc.addImage(
+            "{{ url_for('static', filename='profile_pics/' + user.image_file) }}",
+            'JPEG',
+            10,
+            60,
+            50,
+            50,
+        );
+        doc.save('usuario.pdf');
     }
 </script>
 {% endblock %}

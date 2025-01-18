@@ -1,7 +1,26 @@
 {
-  "code-runner.executorMap": {
-    "python": ".venv\\Scripts\\python.exe -u"
-  },
-  "cSpell.words": ["describedby", "endwith", "levellevel", "minmax", "onscroll", "renderizado", "rgba", "stylesheet"],
-  "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "code-runner.executorMap": {
+        "python": ".venv\\Scripts\\python.exe -u"
+    },
+    "cSpell.words": [
+        "BIDI",
+        "Bitstream",
+        "describedby",
+        "elif",
+        "endmacro",
+        "endwith",
+        "fieldset",
+        "fldt",
+        "levellevel",
+        "minmax",
+        "onscroll",
+        "pprint",
+        "renderizado",
+        "rgba",
+        "stylesheet",
+        "tbody",
+        "tfoot",
+        "thead"
+    ],
+    "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

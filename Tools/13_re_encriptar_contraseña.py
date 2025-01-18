@@ -20,7 +20,9 @@ with app.app_context():
         # Verificar si la contraseña no está encriptada con bcrypt
         if not user.password.startswith("$2b$"):
             original_password = "contraseña_plana"  # Deberás obtener la contraseña original de alguna manera segura
-            hashed_password = bcrypt.generate_password_hash(original_password).decode('utf-8')
+            hashed_password = bcrypt.generate_password_hash(original_password).decode(
+                "utf-8"
+            )
             user.password = hashed_password
             user.save()
             print(f"Re-encriptada contraseña para usuario {user.username}")

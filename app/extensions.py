@@ -11,5 +11,5 @@ login_manager = LoginManager()
 mail = Mail()
 csrf = CSRFProtect()
 
-login_manager.login_view = 'users.login'
-login_manager.login_message_category = 'info'
+login_manager.login_view = "users.login"
+login_manager.login_message_category = "info"

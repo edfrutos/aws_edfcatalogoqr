@@ -1,21 +1,20 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <div class="container-admin-search">
     <h2>Buscar Contenedores</h2>
-    <form method="POST" action="{{ url_for('admin.admin_search_containers_view') }}">
+    <form
+        method="POST"
+        action="{{ url_for('admin.admin_search_containers_view') }}"
+    >
         {{ form.hidden_tag() }}
         <div class="form-group">
-            {{ form.search_query.label(class="form-label") }}
-            {{ form.search_query(class="form-control") }}
-            {% for error in form.search_query.errors %}
+            {{ form.search_query.label(class="form-label") }} {{
+            form.search_query(class="form-control") }} {% for error in
+            form.search_query.errors %}
             <div class="text-danger">{{ error }}</div>
             {% endfor %}
         </div>
-        <div class="form-group">
-            {{ form.submit(class="btn btn-primary") }}
-        </div>
+        <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
     </form>
-
     {% if containers %}
     <h3>Resultados de la búsqueda:</h3>
     <table class="table table-striped">
@@ -29,15 +28,16 @@
             {% for container in containers %}
             <tr>
                 <td>
-                    <a href="{{ url_for('main.container_preview', container_id=container.id) }}">
+                    <a
+                        href="{{ url_for('main.container_preview', container_id=container.id) }}"
+                    >
                         {{ container.name }}
                     </a>
                 </td>
                 <td>
-                    {% if container.user %}
-                        {{ container.user.username }}
-                    {% else %}
-                        <span class="text-danger">Usuario no encontrado</span>
+                    {% if container.user %} {{ container.user.username }} {%
+                    else %}
+                    <span class="text-danger">Usuario no encontrado</span>
                     {% endif %}
                 </td>
             </tr>

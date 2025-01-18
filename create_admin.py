@@ -13,11 +13,12 @@ DB_URI = os.getenv("MONGO_URI")
 disconnect()  # Desconectar si ya hay una conexión existente
 db.connect(host=DB_URI)
 
+
 class User(db.Document):
     username = db.StringField(max_length=50, unique=True, required=True)
     email = db.StringField(max_length=50, unique=True, required=True)
     password = db.StringField(required=True)
-    image_file = db.StringField(default='default.jpg')
+    image_file = db.StringField(default="default.jpg")
     address = db.StringField()
     phone = db.StringField()
     is_admin = db.BooleanField(default=False)
@@ -29,9 +30,10 @@ class User(db.Document):
         return check_password_hash(self.password, password)
 
     def save(self, *args, **kwargs):
-        if self.password and not self.password.startswith('pbkdf2:sha256:'):
+        if self.password and not self.password.startswith("pbkdf2:sha256:"):
             self.password = generate_password_hash(self.password)
         super().save(*args, **kwargs)
+
 
 # Verificar si el usuario admin ya existe
 existing_admin = User.objects(username="administrador").first()
@@ -41,9 +43,7 @@ if existing_admin:
 else:
     # Crear el usuario admin
     admin_user = User(
-        username="administrador",
-        email="admin@example.com",
-        is_admin=True
+        username="administrador", email="admin@example.com", is_admin=True
     )
     admin_user.set_password("adminpassword")
     admin_user.save()

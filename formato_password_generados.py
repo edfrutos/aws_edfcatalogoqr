@@ -26,9 +26,9 @@ except Exception as e:
 usuario = User.objects.first()  # Obtén el primer usuario o uno específico
 
 if usuario:
-    if usuario.password.startswith('pbkdf2:sha256:'):
+    if usuario.password.startswith("pbkdf2:sha256:"):
         print("La contraseña está generada con werkzeug.security.")
-    elif usuario.password.startswith('$2b$') or usuario.password.startswith('$2a$'):
+    elif usuario.password.startswith("$2b$") or usuario.password.startswith("$2a$"):
         print("La contraseña está generada con bcrypt.")
     else:
         print("Formato de contraseña desconocido.")

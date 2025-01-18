@@ -22,6 +22,7 @@ DB_URI = os.getenv("MONGO_URI")
 connect(host=DB_URI)
 print("Conexión a MongoDB establecida.")
 
+
 def update_password(username, new_password):
     try:
         user = User.objects.get(username=username)
@@ -34,10 +35,12 @@ def update_password(username, new_password):
     except Exception as e:
         print(f"Error inesperado: {e}")
 
+
 def main():
     username = input("Introduce el nombre de usuario: ")
     new_password = getpass("Introduce la nueva contraseña: ")
     update_password(username, new_password)
+
 
 if __name__ == "__main__":
     main()

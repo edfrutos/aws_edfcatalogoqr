@@ -1,55 +1,83 @@
 {% extends "layout.html" %} {% block content %}
 <div class="container-list">
-  <h2 class="text-center">Mis Contenedores</h2>
-
-  <!-- Formulario de búsqueda -->
-  <form method="GET" action="{{ url_for('main.list_containers') }}" class="mb-3">
-    {{ form.hidden_tag() }}
-    <div class="input-group-list">
-      {{ form.search_query(class="form-control", placeholder="Buscar contenedor...") }}
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="submit">Buscar</button>
-      </div>
-    </div>
-  </form>
-
-  <a href="{{ url_for('main.create_container') }}" class="btn btn-primary mb-3">Crear Contenedor</a>
-  <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary mt-1">Volver</a>
-
-  {% if containers %}
-  <div class="list-group">
-    {% for container in containers %}
-    <div class="list-group-item">
-      <h3>{{ container.name }}</h3>
-      <p>Localización: {{ container.location }}</p>
-      <p>Objetos: {{ container.items | join(', ') }}</p>
-      <a href="{{ url_for('main.container_detail', container_id=container.id) }}" class="btn1 btn-primary">
-        Ver Detalles
-      </a>
-      <a href="{{ url_for('main.edit_container', container_id=container.id) }}" class="btn1 btn-warning">Editar</a>
-      <a href="{{ url_for('main.download_qr', container_id=container.id) }}" class="btn1 btn-info">Descargar QR</a>
-      <a href="{{ url_for('main.print_detail', container_id=container.id) }}" class="btn1 btn-secondary">
-        Imprimir Detalle
-      </a>
-      <form
-        method="POST"
-        action="{{ url_for('main.delete_container', container_id=container.id) }}"
-        style="display: inline"
-      >
+    <h2 class="text-center">Mis Contenedores</h2>
+    <!-- Formulario de búsqueda -->
+    <form
+        method="GET"
+        action="{{ url_for('main.list_containers') }}"
+        class="mb-3"
+    >
         {{ form.hidden_tag() }}
-        <button
-          type="submit"
-          class="btn1 btn-danger"
-          onclick="return confirm('¿Seguro que quieres eliminar este contenedor?');"
-        >
-          Eliminar
-        </button>
-      </form>
+        <div class="input-group-list">
+            {{ form.search_query(class="form-control", placeholder="Buscar
+            contenedor...") }}
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </div>
+    </form>
+    <a
+        href="{{ url_for('main.create_container') }}"
+        class="btn btn-primary mb-3"
+    >
+        Crear Contenedor
+    </a>
+    <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary mt-1">
+        Volver
+    </a>
+    {% if containers %}
+    <div class="list-group">
+        {% for container in containers %}
+        <div class="list-group-item">
+            <h3>{{ container.name }}</h3>
+            <p>Localización: {{ container.location }}</p>
+            <p>Objetos: {{ container.items | join(", ") }}</p>
+            <a
+                href="{{ url_for('main.container_detail', container_id=container.id) }}"
+                class="btn1 btn-primary"
+            >
+                Ver Detalles
+            </a>
+            <a
+                href="{{ url_for('main.edit_container', container_id=container.id) }}"
+                class="btn1 btn-warning"
+            >
+                Editar
+            </a>
+            <a
+                href="{{ url_for('main.download_qr', container_id=container.id) }}"
+                class="btn1 btn-info"
+            >
+                Descargar QR
+            </a>
+            <a
+                href="{{ url_for('main.print_detail', container_id=container.id) }}"
+                class="btn1 btn-secondary"
+            >
+                Imprimir Detalle
+            </a>
+            <form
+                method="POST"
+                action="{{ url_for('main.delete_container', container_id=container.id) }}"
+                style="display: inline"
+            >
+                {{ form.hidden_tag() }}
+                <button
+                    type="submit"
+                    class="btn1 btn-danger"
+                    onclick="return confirm('¿Seguro que quieres eliminar este contenedor?');"
+                >
+                    Eliminar
+                </button>
+            </form>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-  {% else %}
-  <p class="text-center">No se encontraron contenedores con el criterio de búsqueda proporcionado.</p>
-  {% endif %}
+    {% else %}
+    <p class="text-center">
+        No se encontraron contenedores con el criterio de búsqueda
+        proporcionado.
+    </p>
+    {% endif %}
 </div>
 {% endblock %}

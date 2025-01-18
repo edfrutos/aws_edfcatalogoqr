@@ -23,6 +23,12 @@ body {
   margin-bottom: 0rem;
 }
 
+.alert-dismissible {
+  padding-right: 4rem;
+  margin-top: 2rem;
+  margin-bottom: -5rem;
+}
+
 .container {
   width: 100%;
   padding-right: 15px;
@@ -633,9 +639,9 @@ span#mod .landscape-home {
   color: #000;
 }
 
-/* 
+/*
   Estilos para las clases de iconos de Font Awesome (.fa, .fab, .fad, .fal, .far, .fas).
-  
+
   - -webkit-font-smoothing: Habilita el renderizado de fuentes antialiased para una mejor calidad visual en navegadores WebKit.
   - display: inline-block; Permite que el elemento se trate como un elemento en línea mientras mantiene propiedades de bloque.
   - font-style: normal; Establece el estilo de la fuente como normal, sobrescribiendo cualquier estilo en cursiva u oblicuo.

@@ -5,10 +5,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Verificar variables de entorno
-MONGO_URI = os.getenv('MONGO_URI')
-SECRET_KEY = os.getenv('SECRET_KEY')
-EMAIL_USER = os.getenv('EMAIL_USER')
-EMAIL_PASS = os.getenv('EMAIL_PASS')
+MONGO_URI = os.getenv("MONGO_URI")
+SECRET_KEY = os.getenv("SECRET_KEY")
+EMAIL_USER = os.getenv("EMAIL_USER")
+EMAIL_PASS = os.getenv("EMAIL_PASS")
 
 print(f"MONGO_URI: {MONGO_URI}")
 print(f"SECRET_KEY: {SECRET_KEY}")

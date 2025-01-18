@@ -8,6 +8,6 @@ logging.basicConfig(level=logging.INFO)
 app = create_app()
 
 with app.app_context():
-    secret_key = app.config['SECRET_KEY']
+    secret_key = app.config["SECRET_KEY"]
     logging.info(f"SECRET_KEY cargado: {secret_key}")
     print(f"SECRET_KEY cargado: {secret_key}")

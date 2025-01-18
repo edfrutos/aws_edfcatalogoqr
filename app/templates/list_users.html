@@ -1,5 +1,4 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <div class="container">
     <h2 class="text-center">Lista de Usuarios</h2>
     <table class="table">
@@ -18,7 +17,12 @@
                 <td>{{ user.email }}</td>
                 <td>{{ 'Sí' if user.is_admin else 'No' }}</td>
                 <td>
-                    <a href="{{ url_for('admin.edit_user', user_id=user.id) }}" class="btn btn-secondary">Editar</a>
+                    <a
+                        href="{{ url_for('admin.edit_user', user_id=user.id) }}"
+                        class="btn btn-secondary"
+                    >
+                        Editar
+                    </a>
                 </td>
             </tr>
             {% endfor %}

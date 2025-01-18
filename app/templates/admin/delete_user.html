@@ -1,20 +1,30 @@
-{% extends "layout.html" %}
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% extends "layout.html" %} {% block content %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+/>
 <div class="container">
     <h2>Eliminar Usuario</h2>
-    <form method="POST" action="{{ url_for('admin.delete_user', user_id=user.id) }}">
+    <form
+        method="POST"
+        action="{{ url_for('admin.delete_user', user_id=user.id) }}"
+    >
         {{ form.hidden_tag() }}
         <div class="alert alert-warning">
-            <strong>¿Estás seguro de que quieres eliminar al usuario "{{ user.username }}"?</strong>
+            <strong>
+                ¿Estás seguro de que quieres eliminar al usuario "{{
+                user.username }}"?
+            </strong>
             Esta acción no se puede deshacer.
         </div>
         <div class="form-group">
-            {{ form.confirm.label(class="form-check-label") }}
-            {{ form.confirm(class="form-check-input") }}
+            {{ form.confirm.label(class="form-check-label") }} {{
+            form.confirm(class="form-check-input") }}
         </div>
         <button type="submit" class="btn btn-danger">Eliminar Usuario</button>
-        <a href="{{ url_for('admin.list_users') }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ url_for('admin.list_users') }}" class="btn btn-secondary">
+            Cancelar
+        </a>
     </form>
 </div>
 {% endblock %}

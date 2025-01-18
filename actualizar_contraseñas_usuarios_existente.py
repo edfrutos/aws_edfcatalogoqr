@@ -10,8 +10,10 @@ connect(host=DB_URI)
 # Actualiza las contraseñas de los usuarios existentes
 users = User.objects()
 for user in users:
-    if user.password and '$pbkdf2-sha256$' not in user.password:
-        user.password = generate_password_hash(user.password, method='pbkdf2:sha256', salt_length=8)
+    if user.password and "$pbkdf2-sha256$" not in user.password:
+        user.password = generate_password_hash(
+            user.password, method="pbkdf2:sha256", salt_length=8
+        )
         user.save()
 
 print("Contraseñas actualizadas correctamente.")

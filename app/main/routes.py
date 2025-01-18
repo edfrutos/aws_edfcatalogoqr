@@ -1,4 +1,16 @@
-from flask import Blueprint, render_template, url_for, flash, redirect, request, abort, send_file, jsonify, current_app, session
+from flask import (
+    Blueprint,
+    render_template,
+    url_for,
+    flash,
+    redirect,
+    request,
+    abort,
+    send_file,
+    jsonify,
+    current_app,
+    session,
+)
 from flask_login import current_user, login_required
 import os
 import qrcode
@@ -8,14 +20,27 @@ import re
 from datetime import datetime
 from werkzeug.datastructures import FileStorage
 from mongoengine.errors import NotUniqueError, DoesNotExist
+from mongoengine.base.datastructures import BaseList
 from flask_mail import Message
 
 from app.models import Container
-from app.forms import ContainerForm, EditContainerForm, DeleteImageForm, SearchContainerForm, ContactForm
-from app.utils import save_container_picture, handle_errors, normalize_name, verify_image_path
+from app.forms import (
+    ContainerForm,
+    EditContainerForm,
+    DeleteImageForm,
+    SearchContainerForm,
+    ContactForm,
+)
+from app.utils import (
+    save_container_picture,
+    handle_errors,
+    normalize_name,
+    verify_image_path,
+)
 from app.extensions import mail
 
-main_bp = Blueprint('main', __name__)
+main_bp = Blueprint("main", __name__)
+
 
 def verify_image_path(image_path):
     """
@@ -33,29 +58,29 @@ def verify_image_path(image_path):
         current_app.logger.error(f"Error verificando ruta de imagen {image_path}: {e}")
         return False
 
+
 # Configuración del logger
 def setup_logger():
     logger = logging.getLogger(__name__)
     if not logger.handlers:
         logger.setLevel(logging.INFO)
-        os.makedirs('logs', exist_ok=True)
-        
+        os.makedirs("logs", exist_ok=True)
+
         file_handler = logging.handlers.RotatingFileHandler(
-            'logs/app.log',
-            maxBytes=1024 * 1024,
-            backupCount=10,
-            encoding='utf-8'
+            "logs/app.log", maxBytes=1024 * 1024, backupCount=10, encoding="utf-8"
         )
-        
+
         formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
         )
         file_handler.setFormatter(formatter)
-        
+
         logger.addHandler(file_handler)
     return logger
 
+
 logger = setup_logger()
+
 
 # Funciones auxiliares
 def generate_qr_code(container_data, safe_name):
@@ -67,7 +92,7 @@ def generate_qr_code(container_data, safe_name):
             f"Objetos: {container_data['items']}"
         )
         qr_img_path = os.path.join(
-            current_app.root_path, 'static', 'qr_codes', f"{safe_name}.png"
+            current_app.root_path, "static", "qr_codes", f"{safe_name}.png"
         )
         qr_img = qrcode.make(qr_data)
         qr_img.save(qr_img_path)
@@ -75,6 +100,7 @@ def generate_qr_code(container_data, safe_name):
     except Exception as e:
         logger.error(f"Error generando código QR: {e}")
         raise
+
 
 def process_container_images(form_pictures):
     """Procesa y guarda las imágenes del contenedor."""
@@ -90,29 +116,33 @@ def process_container_images(form_pictures):
                 raise
     return picture_files
 
+
 # Rutas básicas
 @main_bp.route("/")
 @main_bp.route("/home")
 def home():
     try:
-        session.pop('show_welcome_modal', None)
+        session.pop("show_welcome_modal", None)
         current_year = datetime.now().year
-        return render_template('home.html', title='Inicio', current_year=current_year)
+        return render_template("home.html", title="Inicio", current_year=current_year)
     except Exception as e:
         logger.error(f"Error en la ruta home: {e}")
         raise
 
+
 @main_bp.route("/about")
 def about():
-    return render_template('about.html', title='Acerca de')
+    return render_template("about.html", title="Acerca de")
+
 
 @main_bp.route("/welcome")
 @login_required
 def welcome():
-    return render_template('welcome.html')
+    return render_template("welcome.html")
+
 
 # Rutas de contenedores
-@main_bp.route('/create_container', methods=['GET', 'POST'])
+@main_bp.route("/create_container", methods=["GET", "POST"])
 @login_required
 def create_container():
     form = ContainerForm()
@@ -120,17 +150,22 @@ def create_container():
         try:
             # Procesar imágenes
             picture_files = process_container_images(form.pictures.data)
-            
+
             # Generar nombre seguro para QR
-            safe_name = re.sub(r'[^\w\s-]', '', form.name.data).strip().replace(' ', '_')
-            
+            safe_name = (
+                re.sub(r"[^\w\s-]", "", form.name.data).strip().replace(" ", "_")
+            )
+
             # Generar QR
-            qr_filename = generate_qr_code({
-                'name': form.name.data,
-                'location': form.location.data,
-                'items': form.items.data
-            }, safe_name)
-            
+            qr_filename = generate_qr_code(
+                {
+                    "name": form.name.data,
+                    "location": form.location.data,
+                    "items": form.items.data,
+                },
+                safe_name,
+            )
+
             # Crear contenedor
             container = Container(
                 name=form.name.data,
@@ -138,20 +173,21 @@ def create_container():
                 items=[item.strip() for item in form.items.data.split(",")],
                 image_files=picture_files,
                 qr_image=qr_filename,
-                user=current_user._get_current_object()
+                user=current_user._get_current_object(),
             )
-            
+
             container.save()
-            flash('Contenedor creado exitosamente.', 'success')
-            return redirect(url_for('main.container_detail', container_id=container.id))
-            
+            flash("Contenedor creado exitosamente.", "success")
+            return redirect(url_for("main.container_detail", container_id=container.id))
+
         except NotUniqueError:
-            flash('El nombre del contenedor ya está en uso.', 'danger')
+            flash("El nombre del contenedor ya está en uso.", "danger")
         except Exception as e:
             logger.error(f"Error creando contenedor: {e}")
-            flash('Error al crear el contenedor.', 'danger')
-    
-    return render_template('create_container.html', form=form)
+            flash("Error al crear el contenedor.", "danger")
+
+    return render_template("create_container.html", form=form)
+
 
 @main_bp.route("/containers/<container_id>/edit", methods=["GET", "POST"])
 @login_required
@@ -175,7 +211,7 @@ def edit_container(container_id):
                 "edit_container.html",
                 container=container,
                 form=form,
-                delete_form=delete_form
+                delete_form=delete_form,
             )
 
         if form.validate_on_submit():
@@ -183,7 +219,11 @@ def edit_container(container_id):
                 updates = {
                     "name": form.name.data.strip(),
                     "location": form.location.data.strip(),
-                    "items": [item.strip() for item in form.items.data.split(',') if item.strip()]
+                    "items": [
+                        item.strip()
+                        for item in form.items.data.split(",")
+                        if item.strip()
+                    ],
                 }
 
                 # Procesar nuevas imágenes
@@ -197,7 +237,9 @@ def edit_container(container_id):
                 container.reload()
 
                 flash("Contenedor actualizado correctamente", "success")
-                return redirect(url_for("main.container_detail", container_id=container.id))
+                return redirect(
+                    url_for("main.container_detail", container_id=container.id)
+                )
 
             except Exception as e:
                 logger.error(f"Error actualizando contenedor: {e}")
@@ -207,13 +249,14 @@ def edit_container(container_id):
             "edit_container.html",
             container=container,
             form=form,
-            delete_form=delete_form
+            delete_form=delete_form,
         )
 
     except Exception as e:
         logger.error(f"Error inesperado: {e}")
         flash("Ha ocurrido un error inesperado", "danger")
         return redirect(url_for("main.list_containers"))
+
 
 # Rutas de visualización y listado
 @main_bp.route("/containers/<container_id>")
@@ -224,102 +267,132 @@ def container_detail(container_id):
         if not container:
             logger.warning(f"Contenedor {container_id} no encontrado")
             abort(404)
-        
+
         if container.user.id != current_user.id and not current_user.is_admin:
             logger.warning(f"Acceso no autorizado al contenedor {container_id}")
             abort(403)
-            
-        return render_template('container_detail.html', container=container)
+
+        return render_template("container_detail.html", container=container)
     except Exception as e:
         logger.error(f"Error en container_detail: {e}")
         flash("Error al cargar los detalles del contenedor", "danger")
-        return redirect(url_for('main.list_containers'))
+        return redirect(url_for("main.list_containers"))
+
 
 @main_bp.route("/containers")
 @login_required
 def list_containers():
     try:
         form = SearchContainerForm()
-        search_query = request.args.get('search_query', '').strip()
-        
+        search_query = request.args.get("search_query", "").strip()
+
         containers = Container.objects(user=current_user._get_current_object())
         if search_query:
             containers = containers.filter(name__icontains=search_query)
-            
-        return render_template('list_containers.html', containers=containers, form=form)
+
+        return render_template("list_containers.html", containers=containers, form=form)
     except Exception as e:
         logger.error(f"Error en list_containers: {e}")
         flash("Error al cargar la lista de contenedores", "danger")
-        return redirect(url_for('main.home'))
+        return redirect(url_for("main.home"))
 
-@main_bp.route("/containers/<container_id>/print_detail", methods=['GET'])
+
+@main_bp.route("/containers/<container_id>/print_detail", methods=["GET"])
 @login_required
 def print_detail(container_id):
+    container_data = {}  # Inicialización como diccionario vacío
+
     try:
         # Obtener el contenedor
         container = Container.objects(id=container_id, is_deleted=False).first()
+        current_app.logger.info(f"Contenedor obtenido: {container}")
+        current_app.logger.info(
+            f"ID del contenedor: {container.id if container else 'None'}"
+        )
+
+        # Validar que el contenedor exista
         if not container:
+            current_app.logger.error(f"Contenedor no encontrado con ID: {container_id}")
             abort(404, description="Contenedor no encontrado")
 
-        # Verificar permisos
-        if container.user.id != current_user.id and not current_user.is_admin:
-            abort(403, description="No autorizado")
+        # Convertir datos a tipos estándar
+        container.items = (
+            list(container.items) if hasattr(container.items, "__iter__") else []
+        )
+        container.image_files = (
+            list(container.image_files)
+            if hasattr(container.image_files, "__iter__")
+            else []
+        )
 
         # Validar imágenes
         valid_images = []
-        for image in container.image_files or []:
-            image_path = os.path.join(current_app.root_path, 'static', 'container_pics', image)
+        for image in container.image_files:
+            image_path = os.path.join(
+                current_app.root_path, "static", "container_pics", image
+            )
             if verify_image_path(image_path):
                 valid_images.append(image)
 
-        # Procesar los items
-        items_list = (
-            container.items if isinstance(container.items, list) else
-            [item.strip() for item in container.items.split(',') if item.strip()] if isinstance(container.items, str) else
-            []
-        )
+        # Procesar fecha de creación
+        created_at = "No disponible"
+        created_at_is_datetime = False
 
-         # Preparar los datos del contenedor
-        created_at = 'No disponible'
-        try:
-            created_at_dt = datetime.fromisoformat(container.created_at)
-            created_at_dt = datetime.strptime(container.created_at, '%Y-%m-%d')
-        except ValueError:
-                current_app.logger.warning(f"Formato no válido en created_at: {container.created_at}")
+        if isinstance(container.created_at, datetime):
+            created_at = container.created_at.strftime("%d/%m/%Y")
+            created_at_is_datetime = True
 
+        # Preparar los datos del contenedor
         container_data = {
-            'id': str(container.id),
-            'name': container.name or 'Sin nombre',
-            'location': container.location or 'No especificada',
-            'items': items_list,
-            'image_files': valid_images,
-            'qr_image': container.qr_image,
-            'created_at': created_at
+            "id": str(container.id),
+            "name": container.name or "Sin nombre",
+            "location": container.location or "No especificada",
+            "items": container.items,
+            "image_files": valid_images,
+            "qr_image": container.qr_image or "default.png",
+            "created_at": created_at,
+            "created_at_is_datetime": created_at_is_datetime,
+            "items_type": str(type(container.items)),  # Tipo de items
+            "image_files_type": str(type(container.image_files)),  # Tipo de image_files
         }
 
-        return render_template('print_detail.html', title='Imprimir Detalle', container=container_data)
+        # Log de los datos finales
+        for key, value in container_data.items():
+            current_app.logger.info(
+                f"Clave: {key}, Tipo: {type(value)}, Valor: {value}"
+            )
+
+        return render_template(
+            "print_detail.html", title="Imprimir Detalle", container=container_data
+        )
 
     except Exception as e:
+        current_app.logger.error(f"Error en print_detail: {e}")
         flash(f"Error inesperado: {str(e)}", "danger")
         return redirect(url_for("main.list_containers"))
 
+
 # Rutas de manipulación de contenedores
-@main_bp.route("/containers/<container_id>/delete", methods=['POST'])
+@main_bp.route("/containers/<container_id>/delete", methods=["POST"])
 @login_required
 def delete_container(container_id):
     try:
         container = Container.objects(id=container_id).first()
         if not container:
             abort(404, description="Contenedor no encontrado")
-        
+
         if container.user.id != current_user.id and not current_user.is_admin:
-            logger.warning(f"Intento de eliminación no autorizado del contenedor {container_id}")
+            logger.warning(
+                f"Intento de eliminación no autorizado del contenedor {container_id}"
+            )
             abort(403)
 
         # Eliminar imágenes asociadas
         for image in container.image_files:
             try:
-                image_path = os.path.join(current_app.root_path, 'static', 'container_pics', image)
+                image_path = os.path.join(
+                    current_app.root_path, "static", "container_pics", image
+                )
                 if os.path.exists(image_path):
                     os.remove(image_path)
             except Exception as e:
@@ -328,19 +401,22 @@ def delete_container(container_id):
         # Eliminar código QR
         if container.qr_image:
             try:
-                qr_path = os.path.join(current_app.root_path, 'static', 'qr_codes', container.qr_image)
+                qr_path = os.path.join(
+                    current_app.root_path, "static", "qr_codes", container.qr_image
+                )
                 if os.path.exists(qr_path):
                     os.remove(qr_path)
             except Exception as e:
                 logger.warning(f"Error al eliminar QR {container.qr_image}: {e}")
 
         container.delete()
-        flash('Contenedor eliminado exitosamente', 'success')
-        return redirect(url_for('main.list_containers'))
+        flash("Contenedor eliminado exitosamente", "success")
+        return redirect(url_for("main.list_containers"))
     except Exception as e:
         logger.error(f"Error al eliminar contenedor: {e}")
-        flash('Error al eliminar el contenedor', 'danger')
-        return redirect(url_for('main.list_containers'))
+        flash("Error al eliminar el contenedor", "danger")
+        return redirect(url_for("main.list_containers"))
+
 
 @main_bp.route("/containers/<container_id>/delete_image/<image_name>", methods=["POST"])
 @login_required
@@ -354,7 +430,9 @@ def delete_container_image(container_id, image_name):
             return jsonify({"success": False, "error": "No autorizado"}), 403
 
         # Eliminar archivo físico
-        image_path = os.path.join(current_app.root_path, 'static/container_pics', image_name)
+        image_path = os.path.join(
+            current_app.root_path, "static/container_pics", image_name
+        )
         if os.path.exists(image_path):
             os.remove(image_path)
 
@@ -366,6 +444,7 @@ def delete_container_image(container_id, image_name):
     except Exception as e:
         logger.error(f"Error eliminando imagen: {e}")
         return jsonify({"success": False, "error": str(e)}), 500
+
 
 # Rutas de descarga y QR
 @main_bp.route("/containers/<container_id>/download_qr")
@@ -381,43 +460,47 @@ def download_qr(container_id):
             logger.warning(f"Acceso no autorizado al QR del contenedor {container_id}")
             abort(403)
 
-        qr_path = os.path.join(current_app.root_path, 'static/qr_codes', container.qr_image)
+        qr_path = os.path.join(
+            current_app.root_path, "static/qr_codes", container.qr_image
+        )
         if not os.path.exists(qr_path):
             logger.error(f"QR no encontrado: {container.qr_image}")
-            flash('Código QR no encontrado', 'danger')
-            return redirect(url_for('main.container_detail', container_id=container_id))
+            flash("Código QR no encontrado", "danger")
+            return redirect(url_for("main.container_detail", container_id=container_id))
 
         return send_file(qr_path, as_attachment=True, download_name=container.qr_image)
     except Exception as e:
         logger.error(f"Error en download_qr: {e}")
         flash("Error al descargar el código QR", "danger")
-        return redirect(url_for('main.container_detail', container_id=container_id))
+        return redirect(url_for("main.container_detail", container_id=container_id))
+
 
 # Ruta de contacto
-@main_bp.route("/contacto", methods=['GET', 'POST'])
+@main_bp.route("/contacto", methods=["GET", "POST"])
 def contacto():
     form = ContactForm()
     if form.validate_on_submit():
         try:
             msg = Message(
                 subject=f"Nuevo mensaje de contacto de {form.name.data}",
-                sender=current_app.config['MAIL_USERNAME'],
-                recipients=[current_app.config['MAIL_DEFAULT_SENDER']],
+                sender=current_app.config["MAIL_USERNAME"],
+                recipients=[current_app.config["MAIL_DEFAULT_SENDER"]],
                 reply_to=form.email.data,
-                body=f'''
+                body=f"""
                 Nombre: {form.name.data}
                 Email: {form.email.data}
                 Mensaje:
                 {form.message.data}
-                '''
+                """,
             )
             mail.send(msg)
-            flash('Mensaje enviado exitosamente!', 'success')
-            return redirect(url_for('main.home'))
+            flash("Mensaje enviado exitosamente!", "success")
+            return redirect(url_for("main.home"))
         except Exception as e:
             logger.error(f"Error enviando email: {e}")
-            flash('Error al enviar el mensaje', 'danger')
-    return render_template('contacto.html', form=form)
+            flash("Error al enviar el mensaje", "danger")
+    return render_template("contacto.html", form=form)
+
 
 # Ruta de vista previa
 @main_bp.route("/containers/<container_id>/preview", methods=["GET"])
@@ -425,48 +508,52 @@ def contacto():
 def container_preview(container_id):
     try:
         container = Container.objects.get(id=container_id)
-        
+
         # Verificar si el contenedor existe
         if not container:
             logger.warning(f"Contenedor {container_id} no encontrado")
             flash("Contenedor no encontrado", "danger")
-            return redirect(url_for('main.list_containers'))
-        
+            return redirect(url_for("main.list_containers"))
+
         # Verificar si el usuario tiene acceso
         if str(container.user.id) != str(current_user.id) and not current_user.is_admin:
             logger.warning(f"Acceso no autorizado al contenedor {container_id}")
             flash("No tienes permiso para ver este contenedor", "danger")
-            return redirect(url_for('main.list_containers'))
-        
-        return render_template('container_preview.html', container=container)
-    
+            return redirect(url_for("main.list_containers"))
+
+        return render_template("container_preview.html", container=container)
+
     except DoesNotExist:
         logger.error(f"Contenedor {container_id} no encontrado")
         flash("Contenedor no encontrado", "danger")
-        return redirect(url_for('main.list_containers'))
+        return redirect(url_for("main.list_containers"))
     except Exception as e:
         logger.error(f"Error en container_preview: {str(e)}")
         flash("Error al cargar la vista previa", "danger")
-        return redirect(url_for('main.list_containers'))
+        return redirect(url_for("main.list_containers"))
+
 
 # Manejadores de error
 @main_bp.errorhandler(404)
 def not_found_error(error):
-    return render_template('errors/404.html'), 404
+    return render_template("errors/404.html"), 404
+
 
 @main_bp.errorhandler(403)
 def forbidden_error(error):
-    return render_template('errors/403.html'), 403
+    return render_template("errors/403.html"), 403
+
 
 @main_bp.errorhandler(500)
 def internal_error(error):
-    return render_template('errors/500.html'), 500
+    return render_template("errors/500.html"), 500
+
 
 # Ruta para habilitar la Pro Version
-@main_bp.route('/enable_pro', methods=['POST'])
+@main_bp.route("/enable_pro", methods=["POST"])
 def enable_pro():
     """
     Endpoint to enable Pro version for the user.
     """
     # Logic to enable Pro version goes here
-    return jsonify({'message': 'Pro version enabled successfully!'})
+    return jsonify({"message": "Pro version enabled successfully!"})

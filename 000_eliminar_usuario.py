@@ -18,14 +18,16 @@ except Exception as e:
     print(f"Error al conectar a la base de datos: {e}")
     exit(1)
 
+
 class User(db.Document):
     username = db.StringField(max_length=50, unique=True, required=True)
     email = db.StringField(max_length=50, unique=True, required=True)
     password = db.StringField(required=True)
-    image_file = db.StringField(default='default.jpg')
+    image_file = db.StringField(default="default.jpg")
     address = db.StringField()
     phone = db.StringField()
     is_admin = db.BooleanField(default=False)
+
 
 try:
     # Solicitar el nombre de usuario a eliminar

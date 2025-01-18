@@ -14,15 +14,21 @@ app.app_context().push()
 for user in User.objects:
     try:
         # Intentar verificar la contraseña con el formato antiguo
-        if not bcrypt.checkpw("test_password".encode('utf-8'), user.password.encode('utf-8')):
+        if not bcrypt.checkpw(
+            "test_password".encode("utf-8"), user.password.encode("utf-8")
+        ):
             # Si falla, generamos un nuevo hash para la contraseña existente
-            new_hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+            new_hashed_password = bcrypt.hashpw(
+                user.password.encode("utf-8"), bcrypt.gensalt()
+            ).decode("utf-8")
             user.password = new_hashed_password
             user.save()
             print(f"Contraseña actualizada para el usuario: {user.username}")
     except ValueError:
         # Si ocurre un ValueError, significa que la contraseña está en el formato antiguo
-        new_hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        new_hashed_password = bcrypt.hashpw(
+            user.password.encode("utf-8"), bcrypt.gensalt()
+        ).decode("utf-8")
         user.password = new_hashed_password
         user.save()
         print(f"Contraseña actualizada para el usuario: {user.username}")

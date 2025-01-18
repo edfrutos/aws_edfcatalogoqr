@@ -1,9 +1,11 @@
 from pymongo import MongoClient
 
 # Conexión a la base de datos
-client = MongoClient("mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority&appName=Cluster0")
-db = client['app-qr-catalogacion']
-collection = db['containers']
+client = MongoClient(
+    "mongodb+srv://edfrutos:8TrFzqaQxiXkyxFy@cluster0.i5wdlhj.mongodb.net/app-qr-catalogacion?retryWrites=true&w=majority&appName=Cluster0"
+)
+db = client["app-qr-catalogacion"]
+collection = db["containers"]
 
 # Muestra los primeros 10 documentos en la colección
 for container in collection.find().limit(10):

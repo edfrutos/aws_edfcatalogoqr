@@ -6,8 +6,8 @@ from app.models import User
 try:
     disconnect()  # Desconectar cualquier conexión previa
     connect(
-        host=os.environ.get('MONGO_URI', 'mongodb://localhost:27017/edfcatalogoqr'),
-        alias='default'
+        host=os.environ.get("MONGO_URI", "mongodb://localhost:27017/edfcatalogoqr"),
+        alias="default",
     )
     print("Conexión establecida con MongoDB.")
 except Exception as e:
@@ -23,12 +23,16 @@ try:
         print("Usuario encontrado:")
         print(f"Username: {usuario.username}")
         print(f"Email: {usuario.email}")
-        print(f"Es administrador: {usuario.is_admin}")  # Muestra si el usuario es administrador (si tienes este campo)
-        print(f"Imagen de perfil: {usuario.image_file}")  # Muestra la imagen de perfil (si tienes este campo)
+        print(
+            f"Es administrador: {usuario.is_admin}"
+        )  # Muestra si el usuario es administrador (si tienes este campo)
+        print(
+            f"Imagen de perfil: {usuario.image_file}"
+        )  # Muestra la imagen de perfil (si tienes este campo)
     else:
         print("Usuario no encontrado.")
 except Exception as e:
     print("Error al buscar el usuario:", e)
 finally:
-    disconnect(alias='default')
+    disconnect(alias="default")
     print("Conexión a MongoDB cerrada.")

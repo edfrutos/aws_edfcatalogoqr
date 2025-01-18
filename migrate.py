@@ -10,17 +10,19 @@ disconnect()
 # Conectar a la base de datos
 connect(host=DB_URI)
 
+
 # Migrar documentos Container
 def migrate_containers():
     containers = Container.objects()
 
     for container in containers:
-        if hasattr(container, 'image_file'):
+        if hasattr(container, "image_file"):
             print(f"Migrating container: {container.name}")
             container.image_files = [container.image_file]
             del container.image_file
-            
+
             container.save()
+
 
 if __name__ == "__main__":
     migrate_containers()

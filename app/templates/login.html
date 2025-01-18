@@ -1,108 +1,123 @@
 {% extends "layout.html" %} {% block content %}
 <link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/style.css') }}"
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
 />
-
 <div class="login">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header text-center">
-          <h2>Iniciar Sesión</h2>
-        </div>
-        <div class="card-body">
-          <form method="POST" action="{{ url_for('users.login') }}">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-              {{ form.email_or_username.label(class="form-control-label") }} {{
-              form.email_or_username(class="form-control") }}
-            </div>
-            <div class="form-group">
-              {{ form.password.label(class="form-control-label") }}
-              <div class="input-group">
-                {{ form.password(class="form-control", id="password") }}
-                <div class="input-group-append">
-                  <span
-                    class="input-group-text"
-                    onclick="togglePassword('password')"
-                  >
-                    <i class="fa fa-eye" id="togglePasswordIcon"></i>
-                  </span>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Iniciar Sesión</h2>
                 </div>
-              </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('users.login') }}">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                            {{
+                            form.email_or_username.label(class="form-control-label")
+                            }} {{ form.email_or_username(class="form-control")
+                            }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.password.label(class="form-control-label")
+                            }}
+                            <div class="input-group">
+                                {{ form.password(class="form-control",
+                                id="password") }}
+                                <div class="input-group-append">
+                                    <span
+                                        class="input-group-text"
+                                        onclick="togglePassword('password')"
+                                    >
+                                        <i
+                                            class="fa fa-eye"
+                                            id="togglePasswordIcon"
+                                        ></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-check">
+                            {{ form.remember(class="form-check-login") }} {{
+                            form.remember.label(class="form-check-label") }}
+                        </div>
+                        <button type="submit" class="btn btn-login">
+                            Iniciar Sesión
+                        </button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <small>
+                        ¿No tienes una cuenta?
+                        <a href="{{ url_for('users.register') }}">
+                            Regístrate aquí
+                        </a>
+                    </small>
+                    <br />
+                    <small>
+                        <a href="{{ url_for('users.reset_request') }}">
+                            ¿Olvidaste tu contraseña?
+                        </a>
+                    </small>
+                </div>
             </div>
-            <div class="form-group form-check">
-              {{ form.remember(class="form-check-login") }} {{
-              form.remember.label(class="form-check-label") }}
-            </div>
-            <button type="submit" class="btn btn-login">Iniciar Sesión</button>
-          </form>
         </div>
-        <div class="card-footer text-center">
-          <small>
-            ¿No tienes una cuenta?
-            <a href="{{ url_for('users.register') }}">Regístrate aquí</a>
-          </small>
-          <br />
-          <small>
-            <a href="{{ url_for('users.reset_request') }}">
-              ¿Olvidaste tu contraseña?
-            </a>
-          </small>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
-
 <!-- Modal de éxito de registro -->
 {% if session.get('registered') %}
 <div class="modal" tabindex="-1" role="dialog" id="successModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Registro Exitoso</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Registro efectuado exitosamente. Ahora puedes iniciar sesión.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">
-          Cerrar
-        </button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Registro Exitoso</h5>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Registro efectuado exitosamente. Ahora puedes iniciar
+                    sesión.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-dismiss="modal"
+                >
+                    Cerrar
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <script>
-  $(document).ready(function () {
-    $("#successModal").modal("show");
-  });
+    $(document).ready(function () {
+        $('#successModal').modal('show');
+    });
 </script>
 {% endif %}
-
 <script>
-  function togglePassword(fieldId) {
-    const field = document.getElementById(fieldId);
-    const icon = field.nextElementSibling.querySelector("i");
-    if (field.type === "password") {
-      field.type = "text";
-      icon.classList.remove("fa-eye");
-      icon.classList.add("fa-eye-slash");
-    } else {
-      field.type = "password";
-      icon.classList.remove("fa-eye-slash");
-      icon.classList.add("fa-eye");
+    function togglePassword(fieldId) {
+        const field = document.getElementById(fieldId);
+        const icon = field.nextElementSibling.querySelector('i');
+        if (field.type === 'password') {
+            field.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            field.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
     }
-  }
 </script>
 {% endblock %}

@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = new User({
             username: req.body.username,
-            password: hashedPassword
+            password: hashedPassword,
         });
         const newUser = await user.save();
         res.status(201).json(newUser);
@@ -23,11 +23,15 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username });
-        if (user && await bcrypt.compare(req.body.password, user.password)) {
-            const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        if (user && (await bcrypt.compare(req.body.password, user.password))) {
+            const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+                expiresIn: '1h',
+            });
             res.json({ token });
         } else {
-            res.status(400).json({ message: 'Usuario o contraseña incorrectos' });
+            res.status(400).json({
+                message: 'Usuario o contraseña incorrectos',
+            });
         }
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -40,7 +44,9 @@ router.post('/forgot-password', async (req, res) => {
     const { email } = req.body;
 
     if (!email) {
-        return res.status(400).json({ message: 'El campo de correo electrónico es obligatorio' });
+        return res
+            .status(400)
+            .json({ message: 'El campo de correo electrónico es obligatorio' });
     }
 
     try {
@@ -51,7 +57,9 @@ router.post('/forgot-password', async (req, res) => {
 
         // Aquí puedes añadir la lógica para enviar un correo de recuperación de contraseña
 
-        res.status(200).json({ message: 'Se ha enviado un correo de recuperación de contraseña' });
+        res.status(200).json({
+            message: 'Se ha enviado un correo de recuperación de contraseña',
+        });
     } catch (error) {
         res.status(500).json({ message: 'Error al recuperar la contraseña' });
     }

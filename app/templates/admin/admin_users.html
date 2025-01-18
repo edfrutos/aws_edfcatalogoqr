@@ -1,8 +1,9 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <h1>List Users</h1>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+/>
 <table class="table">
     <thead>
         <tr>
@@ -17,8 +18,18 @@
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>
-                <a href="{{ url_for('admin.edit_user', user_id=user.id) }}" class="btn btn-primary">Edit</a>
-                <a href="{{ url_for('admin.view_user', user_id=user.id) }}" class="btn btn-secondary">View</a>
+                <a
+                    href="{{ url_for('admin.edit_user', user_id=user.id) }}"
+                    class="btn btn-primary"
+                >
+                    Edit
+                </a>
+                <a
+                    href="{{ url_for('admin.view_user', user_id=user.id) }}"
+                    class="btn btn-secondary"
+                >
+                    View
+                </a>
             </td>
         </tr>
         {% endfor %}

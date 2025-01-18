@@ -1,299 +1,118 @@
 {% extends "layout.html" %} {% block content %}
-<div class="print-container">
-  <!-- Header -->
-  <div class="container-header">
-    <h2 class="container-title">{{ container.name|default('Sin nombre', true) }}</h2>
-    <div class="container-info">
-      <p>
-        <i class="fas fa-map-marker-alt"></i>
-        <strong>Ubicación:</strong>
-        {{ container.location|default('No especificada', true) }}
-      </p>
-      <p>
-        <i class="fas fa-calendar-alt"></i>
-        <strong>Fecha de registro:</strong>
-        {% if container.created_at %} {{ container.created_at.strftime('%d/%m/%Y') }} {% else %} No disponible {% endif
-        %}
-      </p>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Items Section -->
-    <div class="items-section">
-      <h3>
-        <i class="fas fa-box"></i>
-        Contenido del Contenedor
-      </h3>
-      {% if container.items and container.items|length %}
-      <div class="items-grid">
-        {% for item in container.items %}
-        <div class="item-card">
-          <div class="item-image-container">
-            {% if container.image_files and loop.index0 < container.image_files|length %}
-            <img
-              src="{{ url_for('static', filename='container_pics/' + container.image_files[loop.index0]) }}"
-              alt="Imagen de {{ item }}"
-              class="item-image"
-              loading="lazy"
-              onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}';"
-            />
-            {% else %}
-            <img src="{{ url_for('static', filename='default.png') }}" alt="Imagen por defecto" class="item-image" />
-            {% endif %}
-          </div>
-          <div class="item-details">
-            <p class="item-name">{{ item }}</p>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-      {% else %}
-      <div class="no-items-message">
-        <p>
-          <i class="fas fa-info-circle"></i>
-          No hay objetos registrados en este contenedor.
-        </p>
-      </div>
-      {% endif %}
-    </div>
-
-    <!-- QR Code Section -->
-    {% if container.qr_image %}
-    <div class="qr-section">
-      <h3>
-        <i class="fas fa-qrcode"></i>
-        Código QR
-      </h3>
-      <div class="qr-container">
-        <img
-          src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}"
-          alt="Código QR del contenedor"
-          class="qr-code"
-          loading="lazy"
-        />
-      </div>
-    </div>
-    {% endif %}
-  </div>
-
-  <!-- Action Buttons -->
-  <div class="action-buttons no-print">
-    <button class="btn btn-primary" onclick="handlePrint()">
-      <i class="fas fa-print"></i>
-      Imprimir
-    </button>
-    <a class="btn btn-secondary" href="{{ url_for('main.list_containers') }}">
-      <i class="fas fa-arrow-left"></i>
-      Volver
-    </a>
-  </div>
+<div>
+    <h3>Depuración:</h3>
+    <p>Tipo de items: {{ container.items_type }}</p>
+    <p>Valor de items: {{ container.items }}</p>
+    <p>Tipo de image_files: {{ container.image_files_type }}</p>
+    <p>Valor de image_files: {{ container.image_files }}</p>
 </div>
-
-<style>
-  /* General Styles */
-  .print-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Header Styles */
-  .container-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid #eee;
-  }
-
-  .container-title {
-    color: #2c3e50;
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    font-weight: 600;
-  }
-
-  .container-info {
-    color: #34495e;
-    line-height: 1.6;
-  }
-
-  .container-info i {
-    width: 20px;
-    text-align: center;
-    margin-right: 8px;
-    color: #3498db;
-  }
-
-  /* Items Grid Styles */
-  .items-section {
-    margin: 2rem 0;
-  }
-
-  .items-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin: 1rem 0;
-  }
-
-  .item-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-
-  .item-image-container {
-    height: 200px;
-    overflow: hidden;
-    background: #f8f9fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .item-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .item-details {
-    padding: 1rem;
-    background: #fff;
-  }
-
-  .item-name {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #2c3e50;
-    font-weight: 500;
-    text-align: center;
-  }
-
-  /* QR Code Styles */
-  .qr-section {
-    margin: 2rem 0;
-    text-align: center;
-  }
-
-  .qr-container {
-    display: inline-block;
-    padding: 1rem;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .qr-code {
-    max-width: 200px;
-    height: auto;
-  }
-
-  /* Buttons and Messages */
-  .action-buttons {
-    margin-top: 2rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-
-  .btn {
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .no-items-message {
-    text-align: center;
-    padding: 2rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    color: #6c757d;
-  }
-
-  /* Print Styles */
-  @media print {
-    @page {
-      size: A4;
-      margin: 1cm;
-    }
-
-    body {
-      background: white;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .print-container {
-      width: 100%;
-      max-width: none;
-      padding: 0;
-      margin: 0;
-      box-shadow: none;
-    }
-
-    .no-print {
-      display: none !important;
-    }
-
-    .items-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
-
-    .item-card,
-    .qr-container {
-      break-inside: avoid;
-      page-break-inside: avoid;
-      border: 1px solid #ddd;
-      box-shadow: none;
-    }
-
-    .container-header,
-    .items-section h3 {
-      break-after: avoid;
-      page-break-after: avoid;
-    }
-  }
-</style>
-
+<div class="print-container">
+    <!-- Header -->
+    <div class="container-header">
+        <h2 class="container-title">
+            {{ container.name|default('Sin nombre', true) }}
+        </h2>
+        <div class="container-info">
+            <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <strong>Ubicación:</strong>
+                {{ container.location|default('No especificada', true) }}
+            </p>
+            <p>
+                <i class="fas fa-calendar-alt"></i>
+                <strong>Fecha de registro:</strong>
+                {% if container.created_at_is_datetime %} {{
+                container.created_at }} {% else %} No disponible {% endif %}
+            </p>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Items Section -->
+        <div class="items-section">
+            <h3>
+                <i class="fas fa-box"></i>
+                Contenido del Contenedor
+            </h3>
+            {% if container.items and container.items is iterable and
+            container.items|length > 0 %}
+            <div class="items-grid">
+                {% for item in container.items %}
+                <div class="item-card">
+                    <div class="item-image-container">
+                        {% set image_index = loop.index0 %} {% if
+                        container.image_files and container.image_files|length >
+                        image_index %}
+                        <img
+                            src="{{ url_for('static', filename='container_pics/' + container.image_files[image_index]) }}"
+                            alt="Imagen de {{ item }}"
+                        />
+                        {% else %}
+                        <img
+                            src="{{ url_for('static', filename='default.png') }}"
+                            alt="Imagen por defecto"
+                        />
+                        {% endif %}
+                    </div>
+                    <div class="item-details">
+                        <p class="item-name">{{ item }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No hay objetos registrados en este contenedor.</p>
+            {% endif %}
+        </div>
+        <!-- QR Code Section -->
+        {% if container.qr_image %}
+        <div class="qr-section">
+            <h3>
+                <i class="fas fa-qrcode"></i>
+                Código QR
+            </h3>
+            <div class="qr-container">
+                <img
+                    src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}"
+                    alt="Código QR del contenedor"
+                    class="qr-code"
+                    loading="lazy"
+                />
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <!-- Action Buttons -->
+    <div class="action-buttons no-print">
+        <button class="btn btn-primary" onclick="handlePrint()">
+            <i class="fas fa-print"></i>
+            Imprimir
+        </button>
+        <a
+            class="btn btn-secondary"
+            href="{{ url_for('main.list_containers') }}"
+        >
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+    </div>
+</div>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Handle image load errors
-    const images = document.querySelectorAll('.item-image');
-    images.forEach((img) => {
-      img.addEventListener('error', function () {
-        if (!this.classList.contains('error-handled')) {
-          this.src = "{{ url_for('static', filename='default.png') }}";
-          this.classList.add('error-handled');
-        }
-      });
-    });
-  });
-
-  // Enhanced print handling function
-  function handlePrint() {
-    // Prepare for printing
-    document.querySelectorAll('.item-card').forEach((card) => {
-      card.style.pageBreakInside = 'avoid';
+    document.addEventListener('DOMContentLoaded', function () {
+        const images = document.querySelectorAll('.item-image');
+        images.forEach((img) => {
+            img.addEventListener('error', function () {
+                if (!this.classList.contains('error-handled')) {
+                    this.src =
+                        "{{ url_for('static', filename='default.png') }}";
+                    this.classList.add('error-handled');
+                }
+            });
+        });
     });
 
-    // Print
-    window.print();
-  }
+    function handlePrint() {
+        window.print();
+    }
 </script>
 {% endblock %}

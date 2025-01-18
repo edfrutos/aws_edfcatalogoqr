@@ -5,4 +5,5 @@ except ImportError:
     from flask.json.provider import DefaultJSONProvider as JSONEncoder
 
 import flask_mongoengine.json
-flask_mongoengine.json.JSONEncoder = JSONEncoder    
+
+flask_mongoengine.json.JSONEncoder = JSONEncoder

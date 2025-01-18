@@ -1,25 +1,33 @@
-{% extends "layout.html" %}
-{% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% extends "layout.html" %} {% block content %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+/>
 <!-- Bloque para mostrar los mensajes flash -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-    <div class="container mt-3">
-        <div class="alert-container">
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endfor %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%}
+<div class="container mt-3">
+    <div class="alert-container">
+        {% for category, message in messages %}
+        <div
+            class="alert alert-{{ category }} alert-dismissible fade show"
+            role="alert"
+        >
+            {{ message }}
+            <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
+        {% endfor %}
     </div>
-{% endif %}
-{% endwith %}
-<div class="admin-user">
 </div>
+{% endif %} {% endwith %}
+<div class="admin-user"></div>
 <!-- Fin del Bloque para mostrar los mensajes flash -->
 <h2>Lista de Usuarios</h2>
 <table>
@@ -36,8 +44,12 @@
             <td>{{ user.username }}</td>
             <td>{{ user.email }}</td>
             <td>
-                <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">Editar</a>
-                <a href="{{ url_for('admin.view_user', user_id=user.id) }}">Ver</a>
+                <a href="{{ url_for('admin.edit_user', user_id=user.id) }}">
+                    Editar
+                </a>
+                <a href="{{ url_for('admin.view_user', user_id=user.id) }}">
+                    Ver
+                </a>
             </td>
         </tr>
         {% endfor %}

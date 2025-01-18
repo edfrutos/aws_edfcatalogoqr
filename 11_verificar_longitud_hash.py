@@ -10,6 +10,8 @@ connect(host=DB_URI)
 users = User.objects()
 for user in users:
     if len(user.password) != 60:
-        print(f"Usuario {user.username} tiene un hash de contraseña inválido: {user.password}")
+        print(
+            f"Usuario {user.username} tiene un hash de contraseña inválido: {user.password}"
+        )
     else:
         print(f"Usuario {user.username} tiene un hash de contraseña válido")

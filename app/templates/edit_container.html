@@ -1,353 +1,394 @@
 {% extends 'layout.html' %} {% block content %}
-
 <!-- Estilos -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+/>
 <!-- Metadatos de seguridad -->
 <meta
-  http-equiv="Content-Security-Policy"
-  content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline';"
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline';"
 />
 <meta http-equiv="X-Frame-Options" content="DENY" />
 <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-
 <!-- Contenedor principal -->
 <div class="edit-container" role="main" aria-label="Editar Contenedor">
-  <h2 class="text-center mb-4" id="pageTitle">Editar Contenedor</h2>
-
-  <!-- Sistema de mensajes flash -->
-  {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in
-  messages %}
-  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-    {{ message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-  </div>
-  {% endfor %} {% endif %} {% endwith %}
-
-  <!-- Formulario principal -->
-  <form
-    role="form"
-    method="POST"
-    action="{{ url_for('main.edit_container', container_id=container.id) }}"
-    enctype="multipart/form-data"
-    id="editContainerForm"
-    aria-labelledby="pageTitle"
-    novalidate
-  >
-    <!-- Tokens de seguridad -->
-    {{ form.csrf_token }} {{ form.hidden_tag() }}
-
-    <!-- Campo: Nombre del contenedor -->
-    <div class="form-group mb-3">
-      {{ form.name.label(class="form-label") }} {{ form.name(class="form-control" + (" is-invalid" if form.name.errors
-      else ""), required=true, aria_required="true", id="name") }} {% if form.name.errors %} {% for error in
-      form.name.errors %}
-      <div class="invalid-feedback">{{ error }}</div>
-      {% endfor %} {% endif %}
+    <h2 class="text-center mb-4" id="pageTitle">Editar Contenedor</h2>
+    <!-- Sistema de mensajes flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+        class="alert alert-{{ category }} alert-dismissible fade show"
+        role="alert"
+    >
+        {{ message }}
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Cerrar"
+        ></button>
     </div>
-
-    <!-- Campo: Ubicación del contenedor -->
-    <div class="form-group mb-3">
-      {{ form.location.label(class="form-label") }} {{ form.location(class="form-control" + (" is-invalid" if
-      form.location.errors else ""), required=true, aria_required="true", id="location") }} {% if form.location.errors
-      %} {% for error in form.location.errors %}
-      <div class="invalid-feedback">{{ error }}</div>
-      {% endfor %} {% endif %}
-    </div>
-
-    <!-- Campo: Objetos del contenedor -->
-    <div class="form-group mb-3">
-      {{ form.items.label(class="form-label") }} {{ form.items(class="form-control" + (" is-invalid" if
-      form.items.errors else ""), id="items") }}
-      <small class="form-text text-muted">Separa los objetos con comas</small>
-      {% if form.items.errors %} {% for error in form.items.errors %}
-      <div class="invalid-feedback">{{ error }}</div>
-      {% endfor %} {% endif %}
-    </div>
-
-    <!-- Campo: Carga de imágenes -->
-    <div class="form-group mb-4">
-      {{ form.pictures.label(class="form-label") }} {{ form.pictures(class="form-control-picture", multiple=True,
-      accept="image/*", aria_describedby="pictureHelp", id="pictures") }}
-      <small id="pictureHelp" class="form-text text-muted">
-        Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 5MB
-      </small>
-      <div id="imagePreview" class="row mt-2">
-        <div class="loading-indicator d-none">
-          <span class="spinner-border spinner-border-sm"></span>
-          Cargando...
+    {% endfor %} {% endif %} {% endwith %}
+    <!-- Formulario principal -->
+    <form
+        role="form"
+        method="POST"
+        action="{{ url_for('main.edit_container', container_id=container.id) }}"
+        enctype="multipart/form-data"
+        id="editContainerForm"
+        aria-labelledby="pageTitle"
+        novalidate
+    >
+        <!-- Tokens de seguridad -->
+        {{ form.csrf_token }} {{ form.hidden_tag() }}
+        <!-- Campo: Nombre del contenedor -->
+        <div class="form-group mb-3">
+            {{ form.name.label(class="form-label") }} {{
+            form.name(class="form-control" + (" is-invalid" if form.name.errors
+            else "") , required=true, aria_required="true", id="name") }} {% if
+            form.name.errors %} {% for error in form.name.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %} {% endif %}
         </div>
-      </div>
-      {% if form.pictures.errors %} {% for error in form.pictures.errors %}
-      <div class="text-danger">{{ error }}</div>
-      {% endfor %} {% endif %}
-    </div>
-
-    <!-- Visualización de imágenes existentes -->
-    {% if container.image_files %}
-    <div class="form-group mb-4">
-      <h5>Imágenes actuales:</h5>
-      <div class="row" id="existingImages">
-        {% for image_file in container.image_files %}
-        <div class="col-md-4 mb-3" id="image-container-{{ image_file }}">
-          <div class="card-edit">
-            <img
-              src="{{ url_for('static', filename='container_pics/' + image_file) }}"
-              alt="Imagen del contenedor"
-              class="card-img-top"
-              loading="lazy"
-              width="300"
-              height="200"
-              style="object-fit: cover; cursor: pointer"
-              onclick="showPreview('{{ url_for('static', filename='container_pics/' + image_file) }}')"
-              onerror="this.src='/static/images/error-image.jpg'"
-            />
-            <div class="card-body">
-              <button
-                type="button"
-                class="btn btn-danger btn-sm w-100"
-                onclick="deleteImage('{{ container.id }}', '{{ image_file }}')"
-              >
-                <i class="fas fa-trash-alt"></i>
-                Eliminar
-              </button>
+        <!-- Campo: Ubicación del contenedor -->
+        <div class="form-group mb-3">
+            {{ form.location.label(class="form-label") }} {{
+            form.location(class="form-control" + (" is-invalid" if
+            form.location.errors else "") , required=true, aria_required="true",
+            id="location") }} {% if form.location.errors %} {% for error in
+            form.location.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %} {% endif %}
+        </div>
+        <!-- Campo: Objetos del contenedor -->
+        <div class="form-group mb-3">
+            {{ form.items.label(class="form-label") }} {{
+            form.items(class="form-control" + (" is-invalid" if
+            form.items.errors else "") , id="items") }}
+            <small class="form-text text-muted">
+                Separa los objetos con comas
+            </small>
+            {% if form.items.errors %} {% for error in form.items.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %} {% endif %}
+        </div>
+        <!-- Campo: Carga de imágenes -->
+        <div class="form-group mb-4">
+            {{ form.pictures.label(class="form-label") }} {{
+            form.pictures(class="form-control-picture", multiple=True,
+            accept="image/*", aria_describedby="pictureHelp", id="pictures") }}
+            <small id="pictureHelp" class="form-text text-muted">
+                Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 5MB
+            </small>
+            <div id="imagePreview" class="row mt-2">
+                <div class="loading-indicator d-none">
+                    <span class="spinner-border spinner-border-sm"></span>
+                    Cargando...
+                </div>
             </div>
-          </div>
+            {% if form.pictures.errors %} {% for error in form.pictures.errors
+            %}
+            <div class="text-danger">{{ error }}</div>
+            {% endfor %} {% endif %}
         </div>
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
-
-    <!-- Botones de acción -->
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">
-        <i class="fas fa-save"></i>
-        Guardar Cambios
-      </button>
-      <a href="{{ url_for('main.list_containers') }}" class="btn btn-secondary">
-        <i class="fas fa-list"></i>
-        Volver a la Lista
-      </a>
-    </div>
-  </form>
+        <!-- Visualización de imágenes existentes -->
+        {% if container.image_files %}
+        <div class="form-group mb-4">
+            <h5>Imágenes actuales:</h5>
+            <div class="row" id="existingImages">
+                {% for image_file in container.image_files %}
+                <div
+                    class="col-md-4 mb-3"
+                    id="image-container-{{ image_file }}"
+                >
+                    <div class="card-edit">
+                        <img
+                            src="{{ url_for('static', filename='container_pics/' + image_file) }}"
+                            alt="Imagen del contenedor"
+                            class="card-img-top"
+                            loading="lazy"
+                            width="300"
+                            height="200"
+                            style="object-fit: cover; cursor: pointer"
+                            onclick="showPreview('{{ url_for('static', filename='container_pics/' + image_file) }}')"
+                            onerror="this.src='/static/images/error-image.jpg'"
+                        />
+                        <div class="card-body">
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm w-100"
+                                onclick="deleteImage('{{ container.id }}', '{{ image_file }}')"
+                            >
+                                <i class="fas fa-trash-alt"></i>
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <!-- Botones de acción -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+                Guardar Cambios
+            </button>
+            <a
+                href="{{ url_for('main.list_containers') }}"
+                class="btn btn-secondary"
+            >
+                <i class="fas fa-list"></i>
+                Volver a la Lista
+            </a>
+        </div>
+    </form>
 </div>
-
 <!-- Modal de vista previa -->
 <div
-  class="modal fade"
-  id="imagePreviewModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modalLabel"
-  aria-hidden="true"
+    class="modal fade"
+    id="imagePreviewModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="modalLabel"
+    aria-hidden="true"
 >
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">Vista Previa</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-      <div class="modal-body">
-        <img id="modalImage" src="" alt="Vista Previa" class="img-fluid" />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Vista Previa</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Cerrar"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <img
+                    id="modalImage"
+                    src=""
+                    alt="Vista Previa"
+                    class="img-fluid"
+                />
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                >
+                    Cerrar
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
 <!-- Scripts -->
 <script>
-  // Función para validar inputs
-  function validateInput(input) {
-    const value = input.value.trim();
-    if (!value) {
-      input.classList.add('is-invalid');
-      showAlert(`El campo ${input.name} es obligatorio`, 'danger');
-      return false;
-    }
-    input.classList.remove('is-invalid');
-    return true;
-  }
-
-  // Función para validar tamaño de archivo
-  function validateFileSize(file, maxSize = 5 * 1024 * 1024) {
-    if (file.size > maxSize) {
-      showAlert(`El archivo ${file.name} excede el tamaño máximo permitido de 5MB`, 'danger');
-      return false;
-    }
-    return true;
-  }
-
-  // Función para eliminar imagen
-  function deleteImage(containerId, imageName) {
-    if (!containerId || !imageName) {
-      showAlert('Datos de imagen inválidos', 'danger');
-      return;
-    }
-
-    if (!confirm('¿Estás seguro de que deseas eliminar esta imagen?')) {
-      return;
-    }
-
-    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
-    if (!csrfToken) {
-      showAlert('Error de seguridad: Token CSRF no encontrado', 'danger');
-      return;
-    }
-
-    fetch(`/containers/${containerId}/delete_image/${imageName}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': csrfToken,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error('Error en la respuesta del servidor');
-        return response.json();
-      })
-      .then((data) => {
-        if (data.success) {
-          document.getElementById(`image-container-${imageName}`).remove();
-          showAlert('Imagen eliminada correctamente', 'success');
-        } else {
-          throw new Error(data.error || 'Error al eliminar la imagen');
+    // Función para validar inputs
+    function validateInput(input) {
+        const value = input.value.trim();
+        if (!value) {
+            input.classList.add('is-invalid');
+            showAlert(`El campo ${input.name} es obligatorio`, 'danger');
+            return false;
         }
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        showAlert(`Error: ${error.message}`, 'danger');
-      });
-  }
+        input.classList.remove('is-invalid');
+        return true;
+    }
 
-  // Función para mostrar alertas
-  function showAlert(message, type) {
-    const alertDiv = document.createElement('div');
-    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
-    alertDiv.innerHTML = `
+    // Función para validar tamaño de archivo
+    function validateFileSize(file, maxSize = 5 * 1024 * 1024) {
+        if (file.size > maxSize) {
+            showAlert(
+                `El archivo ${file.name} excede el tamaño máximo permitido de 5MB`,
+                'danger',
+            );
+            return false;
+        }
+        return true;
+    }
+
+    // Función para eliminar imagen
+    function deleteImage(containerId, imageName) {
+        if (!containerId || !imageName) {
+            showAlert('Datos de imagen inválidos', 'danger');
+            return;
+        }
+
+        if (!confirm('¿Estás seguro de que deseas eliminar esta imagen?')) {
+            return;
+        }
+
+        const csrfToken = document.querySelector(
+            'input[name="csrf_token"]',
+        ).value;
+        if (!csrfToken) {
+            showAlert('Error de seguridad: Token CSRF no encontrado', 'danger');
+            return;
+        }
+
+        fetch(`/containers/${containerId}/delete_image/${imageName}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken,
+            },
+        })
+            .then((response) => {
+                if (!response.ok)
+                    throw new Error('Error en la respuesta del servidor');
+                return response.json();
+            })
+            .then((data) => {
+                if (data.success) {
+                    document
+                        .getElementById(`image-container-${imageName}`)
+                        .remove();
+                    showAlert('Imagen eliminada correctamente', 'success');
+                } else {
+                    throw new Error(
+                        data.error || 'Error al eliminar la imagen',
+                    );
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                showAlert(`Error: ${error.message}`, 'danger');
+            });
+    }
+
+    // Función para mostrar alertas
+    function showAlert(message, type) {
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+        alertDiv.innerHTML = `
         ${message}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
     `;
-    document.querySelector('.edit-container').insertBefore(alertDiv, document.querySelector('form'));
-    setTimeout(() => alertDiv.remove(), 3000);
-  }
-
-  // Variable global para el modal actual
-  let currentModal = null;
-
-  // Función para mostrar vista previa en el modal
-  function showPreview(imageUrl) {
-    const modalImage = document.getElementById('modalImage');
-    modalImage.src = imageUrl;
-
-    // Si hay un modal previo abierto, cerrarlo
-    if (currentModal) {
-      currentModal.hide();
+        document
+            .querySelector('.edit-container')
+            .insertBefore(alertDiv, document.querySelector('form'));
+        setTimeout(() => alertDiv.remove(), 3000);
     }
 
-    // Crear y mostrar el nuevo modal
-    const modalElement = document.getElementById('imagePreviewModal');
-    currentModal = new bootstrap.Modal(modalElement);
-    currentModal.show();
+    // Variable global para el modal actual
+    let currentModal = null;
 
-    // Agregar evento para limpiar la referencia cuando se cierre el modal
-    modalElement.addEventListener('hidden.bs.modal', function () {
-      currentModal = null;
-      modalImage.src = '';
-    });
-  }
+    // Función para mostrar vista previa en el modal
+    function showPreview(imageUrl) {
+        const modalImage = document.getElementById('modalImage');
+        modalImage.src = imageUrl;
 
-  // Vista previa de imágenes nuevas
-  document.querySelector('input[type="file"]').addEventListener('change', function (event) {
-    const preview = document.getElementById('imagePreview');
-    preview.innerHTML = '';
+        // Si hay un modal previo abierto, cerrarlo
+        if (currentModal) {
+            currentModal.hide();
+        }
 
-    Array.from(event.target.files).forEach((file) => {
-      if (!file.type.startsWith('image/')) {
-        showAlert('Por favor, selecciona solo archivos de imagen', 'warning');
-        return;
-      }
+        // Crear y mostrar el nuevo modal
+        const modalElement = document.getElementById('imagePreviewModal');
+        currentModal = new bootstrap.Modal(modalElement);
+        currentModal.show();
 
-      if (!validateFileSize(file)) {
-        return;
-      }
+        // Agregar evento para limpiar la referencia cuando se cierre el modal
+        modalElement.addEventListener('hidden.bs.modal', function () {
+            currentModal = null;
+            modalImage.src = '';
+        });
+    }
 
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const col = document.createElement('div');
-        col.className = 'col-md-4 mb-3';
-        col.innerHTML = `
+    // Vista previa de imágenes nuevas
+    document
+        .querySelector('input[type="file"]')
+        .addEventListener('change', function (event) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+
+            Array.from(event.target.files).forEach((file) => {
+                if (!file.type.startsWith('image/')) {
+                    showAlert(
+                        'Por favor, selecciona solo archivos de imagen',
+                        'warning',
+                    );
+                    return;
+                }
+
+                if (!validateFileSize(file)) {
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const col = document.createElement('div');
+                    col.className = 'col-md-4 mb-3';
+                    col.innerHTML = `
                 <div class="card">
-                    <img src="${e.target.result}" 
-                         class="card-img-top" 
-                         style="height: 200px; object-fit: cover"
-                         alt="Vista previa"
-                         onclick="showPreview('${e.target.result}')"
-                         style="cursor: pointer">
+                    <img src="${e.target.result}" class="card-img-top" style="height: 200px; object-fit: cover" alt="Vista previa" onclick="showPreview('${e.target.result}')" style="cursor: pointer">
                     <div class="card-body">
                         <p class="card-text small">${file.name}</p>
                     </div>
                 </div>
             `;
-        preview.appendChild(col);
-      };
-      reader.readAsDataURL(file);
-    });
-  });
+                    preview.appendChild(col);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
 
-  // Eventos adicionales para el modal
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape' && currentModal) {
-      currentModal.hide();
-    }
-  });
-
-  // Cerrar modal al hacer clic fuera de él
-  document.addEventListener('click', function (event) {
-    const modalDialog = document.querySelector('.modal-dialog');
-    if (currentModal && !modalDialog.contains(event.target)) {
-      currentModal.hide();
-    }
-  });
-
-  // Evento para los botones de cierre del modal
-  document.querySelectorAll('[data-bs-dismiss="modal"]').forEach((button) => {
-    button.addEventListener('click', function () {
-      if (currentModal) {
-        currentModal.hide();
-      }
-    });
-  });
-
-  // Validación del formulario
-  document.getElementById('editContainerForm').addEventListener('submit', function (e) {
-    const camposRequeridos = ['name', 'location'];
-    const isValid = camposRequeridos.every((campo) => {
-      const input = this.querySelector(`#${campo}`);
-      return validateInput(input);
+    // Eventos adicionales para el modal
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && currentModal) {
+            currentModal.hide();
+        }
     });
 
-    if (!isValid) {
-      e.preventDefault();
-    }
-  });
-
-  // Manejador global de errores
-  window.addEventListener('error', function (e) {
-    console.error('Error:', e.error);
-    showAlert('Ha ocurrido un error inesperado', 'danger');
-  });
-  // Agregar al final de tu script
-  document.querySelectorAll('[data-bs-dismiss="modal"]').forEach((button) => {
-    button.addEventListener('click', function () {
-      if (currentModal) {
-        currentModal.hide();
-      }
+    // Cerrar modal al hacer clic fuera de él
+    document.addEventListener('click', function (event) {
+        const modalDialog = document.querySelector('.modal-dialog');
+        if (currentModal && !modalDialog.contains(event.target)) {
+            currentModal.hide();
+        }
     });
-  });
+
+    // Evento para los botones de cierre del modal
+    document.querySelectorAll('[data-bs-dismiss="modal"]').forEach((button) => {
+        button.addEventListener('click', function () {
+            if (currentModal) {
+                currentModal.hide();
+            }
+        });
+    });
+
+    // Validación del formulario
+    document
+        .getElementById('editContainerForm')
+        .addEventListener('submit', function (e) {
+            const camposRequeridos = ['name', 'location'];
+            const isValid = camposRequeridos.every((campo) => {
+                const input = this.querySelector(`#${campo}`);
+                return validateInput(input);
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
+
+    // Manejador global de errores
+    window.addEventListener('error', function (e) {
+        console.error('Error:', e.error);
+        showAlert('Ha ocurrido un error inesperado', 'danger');
+    });
+    // Agregar al final de tu script
+    document.querySelectorAll('[data-bs-dismiss="modal"]').forEach((button) => {
+        button.addEventListener('click', function () {
+            if (currentModal) {
+                currentModal.hide();
+            }
+        });
+    });
 </script>
-
 {% endblock content %}

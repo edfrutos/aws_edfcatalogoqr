@@ -15,23 +15,27 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 # Conectar a la base de datos
-DB_URI = os.getenv('MONGO_URI')
+DB_URI = os.getenv("MONGO_URI")
 disconnect()
 connect(host=DB_URI)
+
 
 # Función para enviar correo de restablecimiento de contraseña
 def send_reset_email(user):
     token = user.get_reset_token()
-    msg = Message('Solicitud de restablecimiento de contraseña',
-                  sender=app.config['MAIL_USERNAME'],
-                  recipients=[user.email])
-    msg.body = f'''Para restablecer tu contraseña, visita el siguiente enlace:
+    msg = Message(
+        "Solicitud de restablecimiento de contraseña",
+        sender=app.config["MAIL_USERNAME"],
+        recipients=[user.email],
+    )
+    msg.body = f"""Para restablecer tu contraseña, visita el siguiente enlace:
 {url_for('main.change_pass', token=token, _external=True)}
 
 Si no solicitaste este cambio, simplemente ignora este mensaje y no se realizará ningún cambio.
-'''
+"""
     with app.app_context():
         mail.send(msg)
+
 
 # Script para enviar correos de restablecimiento
 with app.app_context():

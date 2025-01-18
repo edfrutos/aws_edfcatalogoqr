@@ -11,17 +11,19 @@ disconnect()
 db.connect(host=DB_URI)
 bcrypt = Bcrypt()
 
+
 class User(db.Document):
     username = db.StringField(max_length=50, unique=True, required=True)
     email = db.StringField(max_length=50, unique=True, required=True)
     password = db.StringField(required=True)
-    image_file = db.StringField(default='default.jpg')
+    image_file = db.StringField(default="default.jpg")
     address = db.StringField()
     phone = db.StringField()
     is_admin = db.BooleanField(default=False)
 
     def set_password(self, password):
-        self.password = bcrypt.generate_password_hash(password).decode('utf-8')
+        self.password = bcrypt.generate_password_hash(password).decode("utf-8")
+
 
 def update_passwords(new_password):
     users = User.objects()
@@ -31,6 +33,7 @@ def update_passwords(new_password):
         user.set_password(new_password)
         user.save()
         print(f"Contraseña actualizada para el usuario {user.username}")
+
 
 if __name__ == "__main__":
     print("Conexión exitosa a MongoDB")
