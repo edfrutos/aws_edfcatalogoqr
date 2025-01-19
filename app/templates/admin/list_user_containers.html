@@ -97,7 +97,7 @@
         if (images.length > 0 && images[0] !== '') {
           images.forEach((image) => {
             const imgElement = document.createElement('img');
-            imgElement.src = '{{ url_for('static', filename='container_pics/') }}' + image.trim(); // Asegúrate de que la ruta de la imagen sea correcta
+            imgElement.src = '{{ url_for('static', filename='container_pics/") }}' + image.trim(); // Asegúrate de que la ruta de la imagen sea correcta
             imgElement.alt = 'Imagen del contenedor';
             imgElement.style.width = '100px'; // Ajustar el tamaño según sea necesario
             imgElement.style.margin = '5px';

@@ -1,85 +1,66 @@
-{% extends "layout.html" %} {% block content %}
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}"
-/>
-<div class="container">
-    <h2 class="text-center">Mis Contenedores</h2>
-    <div class="list-group">
-        {% for container in containers %}
-        <div class="list-group-item contenedor mb-3">
-            <!-- Agregado mb-3 para margen inferior -->
-            <h3>{{ container.name }}</h3>
-            <p class="localizacion">Localización: {{ container.location }}</p>
-            <h5 class="h5-detail">Objetos:</h5>
-            <ul
-                style="
-                    list-style-type: disc;
-                    padding-left: 20px;
-                    margin-bottom: 10px;
-                "
-            >
-                {% for item in container.items %}
-                <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-            {% if container.image_files %}
-            <h5>Imágenes:</h5>
-            <p>Número de imágenes: {{ container.image_files|length }}</p>
-            <div class="row">
-                {% for image_file in container.image_files %}
-                <div class="col">
-                    <img
-                        src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
-                        alt="Imagen del Objeto"
-                        class="img-fluid"
-                        loading="lazy"
-                        onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}';"
-                    />
+{% extends "layout.html" %}
+{% block content %}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}" />
+    <div class="container">
+        <h2 class="text-center">Mis Contenedores</h2>
+        <div class="list-group">
+            {% for container in containers %}
+                <div class="list-group-item contenedor mb-3">
+                    <!-- Agregado mb-3 para margen inferior -->
+                    <h3>{{ container.name }}</h3>
+                    <p class="localizacion">Localización: {{ container.location }}</p>
+                    <h5 class="h5-detail">Objetos:</h5>
+                    <ul style="list-style-type: disc;
+                               padding-left: 20px;
+                               margin-bottom: 10px">
+                        {% for item in container.items %}<li>{{ item }}</li>{% endfor %}
+                    </ul>
+                    {% if container.image_files %}
+                        <h5>Imágenes:</h5>
+                        <p>Número de imágenes: {{ container.image_files|length }}</p>
+                        <div class="row">
+                            {% for image_file in container.image_files %}
+                                <div class="col">
+                                    <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
+                                         alt="Imagen del Objeto"
+                                         class="img-fluid"
+                                         loading="lazy"
+                                         onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png") }}';" />
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No se encontraron imágenes.</p>
+                    {% endif %}
+                    <div class="btn-group" role="group">
+                        {% for action, label in [('main.container_detail', 'Ver
+                            Detalles'), ('main.edit_container', 'Editar'),
+                            ('main.print_container', 'Imprimir'),
+                            ('main.download_container', 'Descargar')] %}
+                            <a href="{{ url_for(action, container_id=container.id) }}"
+                               class="btn btn-{{ loop.index == 1 and 'primary' or loop.index == 2 and 'secondary' or loop.index == 3 and 'info' or 'success' }}">
+                                {{ label }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <form action="{{ url_for('main.delete_container', container_id=container.id) }}"
+                          method="POST"
+                          style="display: inline">
+                        {{ form.hidden_tag() }}
+                        <input type="checkbox"
+                               id="confirmDelete{{ container.id }}"
+                               name="confirmDelete"
+                               required />
+                        <label for="confirmDelete{{ container.id }}">Confirmar eliminación</label>
+                        <button type="submit"
+                                class="btn btn-danger"
+                                onclick="return confirm('¿Estás seguro de que deseas eliminar este contenedor?');">
+                            Eliminar
+                        </button>
+                    </form>
                 </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <p>No se encontraron imágenes.</p>
-            {% endif %}
-            <div class="btn-group" role="group">
-                {% for action, label in [('main.container_detail', 'Ver
-                Detalles'), ('main.edit_container', 'Editar'),
-                ('main.print_container', 'Imprimir'),
-                ('main.download_container', 'Descargar')] %}
-                <a
-                    href="{{ url_for(action, container_id=container.id) }}"
-                    class="btn btn-{{ loop.index == 1 and 'primary' or loop.index == 2 and 'secondary' or loop.index == 3 and 'info' or 'success' }}"
-                >
-                    {{ label }}
-                </a>
-                {% endfor %}
-            </div>
-            <form
-                action="{{ url_for('main.delete_container', container_id=container.id) }}"
-                method="POST"
-                style="display: inline"
-            >
-                {{ form.hidden_tag() }}
-                <input
-                    type="checkbox"
-                    id="confirmDelete{{ container.id }}"
-                    name="confirmDelete"
-                    required
-                />
-                <label for="confirmDelete{{ container.id }}">
-                    Confirmar eliminación
-                </label>
-                <button
-                    type="submit"
-                    class="btn btn-danger"
-                    onclick="return confirm('¿Estás seguro de que deseas eliminar este contenedor?');"
-                >
-                    Eliminar
-                </button>
-            </form>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
 {% endblock %}

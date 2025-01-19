@@ -3,14 +3,15 @@ repos:
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
-        args: ["--markdown-linebreak-ext=md"]  # Incluye corrección específica para Markdown si lo usas.
+        args: ["--markdown-linebreak-ext=md"]
+        exclude: "^(app/templates/|.*/\\.html)$"  # Excluye plantillas y archivos HTML
       - id: end-of-file-fixer
 
   - repo: https://github.com/psf/black
     rev: 24.10.0
     hooks:
       - id: black
-        args: ["--line-length=88"]  # Ajusta el límite de longitud de línea si es necesario.
+        args: ["--line-length=88"]
 
 #  - repo: local
 #    hooks:
@@ -19,4 +20,4 @@ repos:
 #        entry: ./format.sh
 #        language: system
 #        types: [file]
-#        verbose: true  # Agrega verbosidad para un mejor diagnóstico en caso de problemas.
+#        verbose: true

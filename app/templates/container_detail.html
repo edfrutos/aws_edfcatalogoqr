@@ -1,88 +1,65 @@
-{% extends 'layout.html' %} {% block content %}
-<div class="container-detail">
-    <div class="row justify-content-center">
-        <div class="col-md-detail">
-            <div class="card">
-                <div class="card-header text-center">
-                    <h2>Detalles del Contenedor</h2>
-                </div>
-                <div class="card-body">
-                    <h4 class="h4-detail">Nombre: {{ container.name }}</h4>
-                    <h5 class="h5-detail">
-                        Ubicación: {{ container.location }}
-                    </h5>
-                    <h5 class="h5-detail">Objetos:</h5>
-                    {% for item in container.items %}
-                    <li>{{ item }}</li>
-                    {% endfor %} {% if container.image_files %}
-                    <h5>Imágenes:</h5>
-                    <p>
-                        Número de imágenes: {{ container.image_files|length }}
-                    </p>
-                    <div class="row">
-                        {% for image_file in container.image_files %}
-                        <div class="col">
-                            <img
-                                src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
-                                alt="Imagen del Objeto"
-                                class="img-fluid"
-                                loading="lazy"
-                                onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}';"
-                            />
-                        </div>
-                        {% endfor %}
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="container-detail">
+        <div class="row justify-content-center">
+            <div class="col-md-detail">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Detalles del Contenedor</h2>
                     </div>
-                    {% else %}
-                    <p>No se encontraron imágenes.</p>
-                    {% endif %}
-                    <h5 class="h5-detail">Código QR:</h5>
-                    {% if container.qr_image %}
-                    <img
-                        src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}"
-                        alt="Código QR"
-                        class="img-fluid"
-                        style="width: 150px; height: 150px"
-                    />
-                    {% else %}
-                    <p>No se ha generado código QR para este contenedor.</p>
-                    {% endif %}
-                </div>
-                <div class="card-footer text-center">
-                    <a
-                        href="{{ url_for('main.list_containers') }}"
-                        class="btn btn-primary"
-                    >
-                        Listado Contenedores
-                    </a>
-                    <a
-                        href="{{ url_for('main.create_container') }}"
-                        class="btn btn-primary"
-                    >
-                        Crear Contenedor
-                    </a>
-                    <a
-                        href="{{ url_for('main.welcome') }}"
-                        class="btn btn-primary"
-                    >
-                        Opciones Generales
-                    </a>
+                    <div class="card-body">
+                        <h4 class="h4-detail">Nombre: {{ container.name }}</h4>
+                        <h5 class="h5-detail">Ubicación: {{ container.location }}</h5>
+                        <h5 class="h5-detail">Objetos:</h5>
+                        {% for item in container.items %}<li>{{ item }}</li>{% endfor %}
+                        {% if container.image_files %}
+                            <h5>Imágenes:</h5>
+                            <p>Número de imágenes: {{ container.image_files|length }}</p>
+                            <div class="row">
+                                {% for image_file in container.image_files %}
+                                    <div class="col">
+                                        <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
+                                             alt="Imagen del Objeto"
+                                             class="img-fluid"
+                                             loading="lazy"
+                                             onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png") }}';" />
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p>No se encontraron imágenes.</p>
+                        {% endif %}
+                        <h5 class="h5-detail">Código QR:</h5>
+                        {% if container.qr_image %}
+                            <img src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}"
+                                 alt="Código QR"
+                                 class="img-fluid"
+                                 style="width: 150px;
+                                        height: 150px" />
+                        {% else %}
+                            <p>No se ha generado código QR para este contenedor.</p>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="{{ url_for('main.list_containers') }}" class="btn btn-primary">Listado Contenedores</a>
+                        <a href="{{ url_for('main.create_container') }}" class="btn btn-primary">Crear Contenedor</a>
+                        <a href="{{ url_for('main.welcome') }}" class="btn btn-primary">Opciones Generales</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div id="previewModal" class="modal-detail">
-    <span class="close-detail" onclick="closePreview()">&times;</span>
-    <div class="modal-content">
-        <img
-            id="previewImage"
-            src=""
-            alt="Vista Previa"
-            style="width: 100%; height: auto"
-        />
+    <div id="previewModal" class="modal-detail">
+        <span class="close-detail" onclick="closePreview()">&times;</span>
+        <div class="modal-content">
+            <img id="previewImage"
+                 src=""
+                 alt="Vista Previa"
+                 style="width: 100%;
+                        height: auto" />
+        </div>
     </div>
-</div>
-<style>
+    <style>
     .modal-detail {
         display: none;
         position: fixed;
@@ -114,8 +91,8 @@
             font-size: 24px;
         }
     }
-</style>
-<script>
+    </style>
+    <script>
     function showPreview(imageUrl) {
         if (imageUrl) {
             document.getElementById('previewImage').src = imageUrl;
@@ -134,5 +111,5 @@
             closePreview();
         }
     };
-</script>
+    </script>
 {% endblock %}

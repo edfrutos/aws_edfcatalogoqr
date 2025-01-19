@@ -1,46 +1,42 @@
-{% extends 'layout.html' %} {% block content %}
-<div class="container-contacto">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h2 class="mb-0">Contacto</h2>
-                </div>
-                <div class="card-body">
-                    <form
-                        method="POST"
-                        action="{{ url_for('main.contacto') }}"
-                        class="needs-validation"
-                        novalidate
-                    >
-                        {{ form.hidden_tag() }}
-                        <!-- Nombre -->
-                        <div class="form-group mb-3">
-                            {{ form.name.label(class='form-label') }} {{
-                            form.name(class='form-control' + (' is-invalid' if
-                            form.name.errors else '') , placeholder='Ingrese su
-                            nombre') }} {% for error in form.name.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
-                            {% endfor %}
-                        </div>
-                        <!-- Email -->
-                        <div class="form-group mb-3">
-                            {{ form.email.label(class='form-label') }} {{
-                            form.email(class='form-control' + (' is-invalid' if
-                            form.email.errors else '') ,
-                            placeholder='ejemplo@email.com', type='email') }} {%
-                            for error in form.email.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="container-contacto">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0">Contacto</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST"
+                              action="{{ url_for('main.contacto') }}"
+                              class="needs-validation"
+                              novalidate>
+                            {{ form.hidden_tag() }}
+                            <!-- Nombre -->
+                            <div class="form-group mb-3">
+                                {{ form.name.label(class='form-label") }} {{ form.name(class='form-control' + (' is-invalid' if
+                                 form.name.errors else '') , placeholder='Ingrese su
+                                nombre") }}
+                                {% for error in form.name.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                            </div>
+                            <!-- Email -->
+                            <div class="form-group mb-3">
+                                {{ form.email.label(class='form-label") }} {{ form.email(class='form-control' + (' is-invalid' if
+                                 form.email.errors else '') ,
+                                placeholder='ejemplo@email.com', type='email") }} {%
+                                for error in form.email.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <!-- Mensaje -->
                         <div class="form-group mb-4">
-                            {{ form.message.label(class='form-label') }} {{
-                            form.message(class='form-control' + (' is-invalid'
-                            if form.message.errors else '') , rows='5',
-                            placeholder='Escriba su mensaje aquí...') }} {% for
-                            error in form.message.errors %}
-                            <div class="invalid-feedback">{{ error }}</div>
+                            {{ form.message.label(class='form-label") }} {{ form.message(class='form-control' + (' is-invalid'
+                             if form.message.errors else '') , rows='5',
+                            placeholder='Escriba su mensaje aquí...") }}
+                            {% for
+                                error in form.message.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
                             {% endfor %}
                         </div>
                         <!-- Botones -->
@@ -49,10 +45,7 @@
                                 <i class="fas fa-paper-plane me-2"></i>
                                 Enviar
                             </button>
-                            <a
-                                href="{{ url_for('main.welcome') }}"
-                                class="btn btn-secondary"
-                            >
+                            <a href="{{ url_for('main.welcome') }}" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left me-2"></i>
                                 Volver a Opciones
                             </a>

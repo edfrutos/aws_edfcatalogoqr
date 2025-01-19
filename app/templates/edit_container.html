@@ -1,193 +1,163 @@
-{% extends 'layout.html' %} {% block content %}
-<!-- Estilos -->
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}"
-/>
-<!-- Metadatos de seguridad -->
-<meta
-    http-equiv="Content-Security-Policy"
-    content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline';"
-/>
-<meta http-equiv="X-Frame-Options" content="DENY" />
-<meta http-equiv="X-Content-Type-Options" content="nosniff" />
-<!-- Contenedor principal -->
-<div class="edit-container" role="main" aria-label="Editar Contenedor">
-    <h2 class="text-center mb-4" id="pageTitle">Editar Contenedor</h2>
-    <!-- Sistema de mensajes flash -->
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %}
-    <div
-        class="alert alert-{{ category }} alert-dismissible fade show"
-        role="alert"
-    >
-        {{ message }}
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Cerrar"
-        ></button>
-    </div>
-    {% endfor %} {% endif %} {% endwith %}
-    <!-- Formulario principal -->
-    <form
-        role="form"
-        method="POST"
-        action="{{ url_for('main.edit_container', container_id=container.id) }}"
-        enctype="multipart/form-data"
-        id="editContainerForm"
-        aria-labelledby="pageTitle"
-        novalidate
-    >
-        <!-- Tokens de seguridad -->
-        {{ form.csrf_token }} {{ form.hidden_tag() }}
-        <!-- Campo: Nombre del contenedor -->
-        <div class="form-group mb-3">
-            {{ form.name.label(class="form-label") }} {{
-            form.name(class="form-control" + (" is-invalid" if form.name.errors
-            else "") , required=true, aria_required="true", id="name") }} {% if
-            form.name.errors %} {% for error in form.name.errors %}
-            <div class="invalid-feedback">{{ error }}</div>
-            {% endfor %} {% endif %}
-        </div>
-        <!-- Campo: Ubicación del contenedor -->
-        <div class="form-group mb-3">
-            {{ form.location.label(class="form-label") }} {{
-            form.location(class="form-control" + (" is-invalid" if
-            form.location.errors else "") , required=true, aria_required="true",
-            id="location") }} {% if form.location.errors %} {% for error in
-            form.location.errors %}
-            <div class="invalid-feedback">{{ error }}</div>
-            {% endfor %} {% endif %}
-        </div>
-        <!-- Campo: Objetos del contenedor -->
-        <div class="form-group mb-3">
-            {{ form.items.label(class="form-label") }} {{
-            form.items(class="form-control" + (" is-invalid" if
-            form.items.errors else "") , id="items") }}
-            <small class="form-text text-muted">
-                Separa los objetos con comas
-            </small>
-            {% if form.items.errors %} {% for error in form.items.errors %}
-            <div class="invalid-feedback">{{ error }}</div>
-            {% endfor %} {% endif %}
-        </div>
-        <!-- Campo: Carga de imágenes -->
-        <div class="form-group mb-4">
-            {{ form.pictures.label(class="form-label") }} {{
-            form.pictures(class="form-control-picture", multiple=True,
-            accept="image/*", aria_describedby="pictureHelp", id="pictures") }}
-            <small id="pictureHelp" class="form-text text-muted">
-                Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 5MB
-            </small>
-            <div id="imagePreview" class="row mt-2">
-                <div class="loading-indicator d-none">
-                    <span class="spinner-border spinner-border-sm"></span>
-                    Cargando...
-                </div>
+{% extends 'layout.html' %}
+{% block content %}
+    <!-- Estilos -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- Metadatos de seguridad -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline';" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- Contenedor principal -->
+    <div class="edit-container" role="main" aria-label="Editar Contenedor">
+        <h2 class="text-center mb-4" id="pageTitle">Editar Contenedor</h2>
+        <!-- Sistema de mensajes flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if
+                messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show"
+                         role="alert">
+                        {{ message }}
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="Cerrar"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <!-- Formulario principal -->
+        <form role="form"
+              method="POST"
+              action="{{ url_for('main.edit_container', container_id=container.id) }}"
+              enctype="multipart/form-data"
+              id="editContainerForm"
+              aria-labelledby="pageTitle"
+              novalidate>
+            <!-- Tokens de seguridad -->
+            {{ form.csrf_token }} {{ form.hidden_tag() }}
+            <!-- Campo: Nombre del contenedor -->
+            <div class="form-group mb-3">
+                {{ form.name.label(class="form-label") }} {{ form.name(class="form-control" + (" is-invalid" if form.name.errors
+                 else "") , required=true, aria_required="true", id="name") }}
+                {% if
+                    form.name.errors %}
+                    {% for error in form.name.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                {% endif %}
             </div>
-            {% if form.pictures.errors %} {% for error in form.pictures.errors
-            %}
-            <div class="text-danger">{{ error }}</div>
-            {% endfor %} {% endif %}
-        </div>
-        <!-- Visualización de imágenes existentes -->
-        {% if container.image_files %}
-        <div class="form-group mb-4">
-            <h5>Imágenes actuales:</h5>
-            <div class="row" id="existingImages">
-                {% for image_file in container.image_files %}
-                <div
-                    class="col-md-4 mb-3"
-                    id="image-container-{{ image_file }}"
-                >
-                    <div class="card-edit">
-                        <img
-                            src="{{ url_for('static', filename='container_pics/' + image_file) }}"
-                            alt="Imagen del contenedor"
-                            class="card-img-top"
-                            loading="lazy"
-                            width="300"
-                            height="200"
-                            style="object-fit: cover; cursor: pointer"
-                            onclick="showPreview('{{ url_for('static', filename='container_pics/' + image_file) }}')"
-                            onerror="this.src='/static/images/error-image.jpg'"
-                        />
-                        <div class="card-body">
-                            <button
-                                type="button"
-                                class="btn btn-danger btn-sm w-100"
-                                onclick="deleteImage('{{ container.id }}', '{{ image_file }}')"
-                            >
-                                <i class="fas fa-trash-alt"></i>
-                                Eliminar
-                            </button>
-                        </div>
+            <!-- Campo: Ubicación del contenedor -->
+            <div class="form-group mb-3">
+                {{ form.location.label(class="form-label") }} {{ form.location(class="form-control" + (" is-invalid" if
+                 form.location.errors else "") , required=true, aria_required="true",
+                id="location") }}
+                {% if form.location.errors %}
+                    {% for error in
+                        form.location.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <!-- Campo: Objetos del contenedor -->
+            <div class="form-group mb-3">
+                {{ form.items.label(class="form-label") }} {{ form.items(class="form-control" + (" is-invalid" if
+                 form.items.errors else "") , id="items") }}
+                <small class="form-text text-muted">Separa los objetos con comas</small>
+                {% if form.items.errors %}
+                    {% for error in form.items.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+                {% endif %}
+            </div>
+            <!-- Campo: Carga de imágenes -->
+            <div class="form-group mb-4">
+                {{ form.pictures.label(class="form-label") }} {{ form.pictures(class="form-control-picture", multiple=True,
+                 accept="image/*", aria_describedby="pictureHelp", id="pictures") }}
+                <small id="pictureHelp" class="form-text text-muted">Formatos permitidos: JPG, PNG, GIF. Tamaño máximo: 5MB</small>
+                <div id="imagePreview" class="row mt-2">
+                    <div class="loading-indicator d-none">
+                        <span class="spinner-border spinner-border-sm"></span>
+                        Cargando...
                     </div>
                 </div>
-                {% endfor %}
+                {% if form.pictures.errors %}
+                    {% for error in form.pictures.errors
+                        %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
             </div>
-        </div>
-        {% endif %}
-        <!-- Botones de acción -->
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save"></i>
-                Guardar Cambios
-            </button>
-            <a
-                href="{{ url_for('main.list_containers') }}"
-                class="btn btn-secondary"
-            >
-                <i class="fas fa-list"></i>
-                Volver a la Lista
-            </a>
-        </div>
-    </form>
-</div>
-<!-- Modal de vista previa -->
-<div
-    class="modal fade"
-    id="imagePreviewModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="modalLabel"
-    aria-hidden="true"
->
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Vista Previa</h5>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Cerrar"
-                ></button>
-            </div>
-            <div class="modal-body">
-                <img
-                    id="modalImage"
-                    src=""
-                    alt="Vista Previa"
-                    class="img-fluid"
-                />
-            </div>
-            <div class="modal-footer">
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                >
-                    Cerrar
+            <!-- Visualización de imágenes existentes -->
+            {% if container.image_files %}
+                <div class="form-group mb-4">
+                    <h5>Imágenes actuales:</h5>
+                    <div class="row" id="existingImages">
+                        {% for image_file in container.image_files %}
+                            <div class="col-md-4 mb-3" id="image-container-{{ image_file }}">
+                                <div class="card-edit">
+                                    <img src="{{ url_for('static', filename='container_pics/' + image_file) }}"
+                                         alt="Imagen del contenedor"
+                                         class="card-img-top"
+                                         loading="lazy"
+                                         width="300"
+                                         height="200"
+                                         style="object-fit: cover;
+                                                cursor: pointer"
+                                         onclick="showPreview('{{ url_for('static', filename='container_pics/' + image_file) }}')"
+                                         onerror="this.src='/static/images/error-image.jpg'" />
+                                    <div class="card-body">
+                                        <button type="button"
+                                                class="btn btn-danger btn-sm w-100"
+                                                onclick="deleteImage('{{ container.id }}', '{{ image_file }}')">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            <!-- Botones de acción -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Guardar Cambios
                 </button>
+                <a href="{{ url_for('main.list_containers') }}"
+                   class="btn btn-secondary">
+                    <i class="fas fa-list"></i>
+                    Volver a la Lista
+                </a>
+            </div>
+        </form>
+    </div>
+    <!-- Modal de vista previa -->
+    <div class="modal fade"
+         id="imagePreviewModal"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="modalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Vista Previa</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="Vista Previa" class="img-fluid" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Scripts -->
-<script>
+    <!-- Scripts -->
+    <script>
     // Función para validar inputs
     function validateInput(input) {
         const value = input.value.trim();
@@ -390,5 +360,5 @@
             }
         });
     });
-</script>
+    </script>
 {% endblock content %}

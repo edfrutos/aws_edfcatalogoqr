@@ -1,25 +1,22 @@
-{% extends "layout.html" %} {% block content %} {% block title %} Eliminar
-Cuenta {% endblock %}
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}"
-/>
-<div class="card">
-    <div class="card-header">Eliminar Cuenta</div>
-    <div class="card-body">
-        <form method="POST" action="{{ url_for('main.delete_account') }}">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.confirm.label(class="form-control-label") }} {{
-                form.confirm(class="form-control") }}
-            </div>
-            <button type="submit" class="btn btn-danger">
-                Eliminar Cuenta
-            </button>
-            <a href="{{ url_for('users.account') }}" class="btn btn-secondary">
-                Cancelar
-            </a>
-        </form>
+{% extends "layout.html" %}
+{% block content %}
+    {% block title %}
+        Eliminar
+        Cuenta
+    {% endblock %}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}" />
+    <div class="card">
+        <div class="card-header">Eliminar Cuenta</div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('main.delete_account') }}">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.confirm.label(class="form-control-label") }} {{ form.confirm(class="form-control") }}
+                </div>
+                <button type="submit" class="btn btn-danger">Eliminar Cuenta</button>
+                <a href="{{ url_for('users.account') }}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}

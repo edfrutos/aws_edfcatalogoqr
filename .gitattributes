@@ -3,3 +3,4 @@
 *.css text eol=lf
 *.js text eol=lf
 *.py text eol=lf
+*.yaml text eol=lf

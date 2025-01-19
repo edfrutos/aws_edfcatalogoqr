@@ -27,8 +27,10 @@
                     registro con la identificación del objeto buscado.
                 </h5>
                 <div class="btn-modal-home">
-                    <button onclick="location.href='{{ url_for("main.contacto") }}'">Contacto</button>
-                    <button onclick="location.href='{{ url_for("main.welcome") }}'">Cerrar</button>
+                    <button onclick="location.href="{{ url_for('main.contacto') }}">Contacto
+                    </button>
+                    <button onclick="location.href="{{ url_for('main.welcome') }}">Cerrar
+                    </button>
                 </div>
             </div>
         </div>

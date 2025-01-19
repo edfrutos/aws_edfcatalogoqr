@@ -1,22 +1,17 @@
-{% extends "layout.html" %} {% block content %}
-<div class="container">
-    <h2 class="text-center">Panel de Administración</h2>
-    <ul>
-        <li>
-            <a href="{{ url_for('admin.list_users') }}">Listar Usuarios</a>
-        </li>
-        <li>
-            <a href="{{ url_for('admin.admin_search_containers') }}">
-                Buscar Contenedores
-            </a>
-        </li>
-        <li>
-            <a
-                href="{{ url_for('admin.list_user_containers', user_id=current_user.id) }}"
-            >
-                Contenedores de Mi Usuario
-            </a>
-        </li>
-    </ul>
-</div>
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container">
+        <h2 class="text-center">Panel de Administración</h2>
+        <ul>
+            <li>
+                <a href="{{ url_for('admin.list_users') }}">Listar Usuarios</a>
+            </li>
+            <li>
+                <a href="{{ url_for('admin.admin_search_containers') }}">Buscar Contenedores</a>
+            </li>
+            <li>
+                <a href="{{ url_for('admin.list_user_containers', user_id=current_user.id) }}">Contenedores de Mi Usuario</a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}

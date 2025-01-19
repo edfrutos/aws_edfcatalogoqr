@@ -1,27 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{% block title %}EDF Catalogación QR{% endblock %}</title>
-        <link
-            rel="stylesheet"
-            href="{{ url_for('static', filename='css/style.css') }}"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        />
-        <link
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
+        <title>
+            {% block title %}EDF Catalogación QR{% endblock %}
+        </title>
+        <link rel="stylesheet"
+              href="{{ url_for('static', filename='css/style.css') }}" />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              rel="stylesheet" />
         <!-- Favicon -->
-        <link
-            rel="icon"
-            href="{{ url_for('static', filename='favicon.ico') }}"
-            type="image/x-icon"
-        />
+        <link rel="icon"
+              href="{{ url_for('static', filename='favicon.ico') }}"
+              type="image/x-icon" />
         <!-- CSS -->
         <style>
             body,
@@ -90,134 +84,67 @@
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url_for('main.home') }}">
-                        <img
-                            src="{{ url_for('static', filename='images/logo.png') }}"
-                            width="50"
-                            height="50"
-                            class="d-inline-block align-middle"
-                            alt="EDF Logo"
-                        />
+                        <img src="{{ url_for('static', filename='images/logo.png') }}"
+                             width="50"
+                             height="50"
+                             class="d-inline-block align-middle"
+                             alt="EDF Logo" />
                         EDF Catalogación QR
                     </a>
-                    <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarNav"
-                    >
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarNav">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('main.home') }}"
-                                >
-                                    Inicio
-                                </a>
+                                <a class="nav-link" href="{{ url_for('main.home') }}">Inicio</a>
                             </li>
                             {% if current_user.is_authenticated %}
-                            <!-- Menú para usuarios autenticados -->
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('users.account') }}"
-                                >
-                                    Cuenta
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('main.create_container') }}"
-                                >
-                                    Crear Contenedor
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('main.list_containers') }}"
-                                >
-                                    Mis Contenedores
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('main.about') }}"
-                                >
-                                    Acerca de
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('main.contacto') }}"
-                                >
-                                    Contacto
-                                </a>
-                            </li>
-                            {% if current_user.is_admin %}
-                            <!-- Menú de administrador -->
-                            <li class="nav-item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="adminDropdown"
-                                    data-toggle="dropdown"
-                                >
-                                    Admin
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ url_for('admin.search_user') }}"
-                                    >
-                                        Buscar Usuario
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ url_for('admin.list_users') }}"
-                                    >
-                                        Listar Usuarios
-                                    </a>
-                                    <a
-                                        class="dropdown-item"
-                                        href="{{ url_for('admin.admin_search_containers') }}"
-                                    >
-                                        Contenedores
-                                    </a>
-                                </div>
-                            </li>
-                            {% endif %}
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('users.logout') }}"
-                                >
-                                    Cerrar Sesión
-                                </a>
-                            </li>
+                                <!-- Menú para usuarios autenticados -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('users.account') }}">Cuenta</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('main.create_container') }}">Crear Contenedor</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('main.list_containers') }}">Mis Contenedores</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('main.about') }}">Acerca de</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('main.contacto') }}">Contacto</a>
+                                </li>
+                                {% if current_user.is_admin %}
+                                    <!-- Menú de administrador -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle"
+                                           href="#"
+                                           id="adminDropdown"
+                                           data-toggle="dropdown">Admin</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{{ url_for('admin.search_user') }}">Buscar Usuario</a>
+                                            <a class="dropdown-item" href="{{ url_for('admin.list_users') }}">Listar Usuarios</a>
+                                            <a class="dropdown-item"
+                                               href="{{ url_for('admin.admin_search_containers') }}">Contenedores</a>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('users.logout') }}">Cerrar Sesión</a>
+                                </li>
                             {% else %}
-                            <!-- Menú para usuarios no autenticados -->
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('users.login') }}"
-                                >
-                                    Iniciar Sesión
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link"
-                                    href="{{ url_for('users.register') }}"
-                                >
-                                    Registrarse
-                                </a>
-                            </li>
+                                <!-- Menú para usuarios no autenticados -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('users.login') }}">Iniciar Sesión</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('users.register') }}">Registrarse</a>
+                                </li>
                             {% endif %}
                         </ul>
                     </div>
@@ -225,30 +152,30 @@
             </nav>
         </div>
         <!-- Mensajes Flash -->
-        {% with messages = get_flashed_messages(with_categories=true) %} {% if
-        messages %}
-        <div class="container alert-container">
-            {% for category, message in messages %}
-            <div
-                class="alert alert-{{ category }} alert-dismissible fade show"
-                role="alert"
-            >
-                {{ message }}
-                <button type="button" class="close-alert" data-dismiss="alert">
-                    <span>&times;</span>
-                </button>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %} {% endwith %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if
+                messages %}
+                <div class="container alert-container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show"
+                             role="alert">
+                            {{ message }}
+                            <button type="button" class="close-alert" data-dismiss="alert">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         <!-- Contenido Principal -->
-        <div class="container-content">{% block content %}{% endblock %}</div>
+        <div class="container-content">
+            {% block content %}{% endblock %}
+        </div>
         <!-- Footer -->
         <footer class="text-center">
             <div class="container-footer">
-                <a href="{{ url_for('main.contacto') }}" class="text-white">
-                    Contacto - Eugenio de Frutos
-                </a>
+                <a href="{{ url_for('main.contacto') }}" class="text-white">Contacto - Eugenio de Frutos</a>
                 <p class="mb-0">
                     &copy; {{ current_year }} EDF Proyectos. Todos los derechos
                     reservados.
@@ -256,11 +183,7 @@
             </div>
         </footer>
         <!-- Botón Scroll Top -->
-        <button
-            onclick="scrollToTop()"
-            id="scrollTopBtn"
-            class="btn btn-primary"
-        >
+        <button onclick="scrollToTop()" id="scrollTopBtn" class="btn btn-primary">
             <i class="fas fa-arrow-up"></i>
         </button>
         <!-- Scripts -->

@@ -19,3 +19,5 @@ dist/
 build/
 app/templates/admin/*.html
 app/templates/*.html
+app/templates/**/*.html
+app/templates/**/*.html

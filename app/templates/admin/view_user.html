@@ -1,59 +1,41 @@
-{% extends "layout.html" %} {% block title %}Detalles de Usuario{% endblock %}
+{% extends "layout.html" %}
+{% block title %}Detalles de Usuario{% endblock %}
 {% block content %}
-<div class="container mt-5">
-    <h1>Detalles de Usuario</h1>
-    <div class="card">
-        <div class="card-body text-center">
-            <h5 class="card-title" style="font-size: 1.5em; font-weight: bold">
-                {{ user.username }}
-            </h5>
-            <p class="card-text" style="margin-left: 20px">
-                <strong>Email:</strong>
-                {{ user.email }}
-            </p>
-            <p class="card-text" style="margin-left: 20px">
-                <strong>Dirección:</strong>
-                {{ user.address }}
-            </p>
-            <p class="card-text" style="margin-left: 20px">
-                <strong>Teléfono:</strong>
-                {{ user.phone }}
-            </p>
-            <p class="card-text">
-                <strong>Foto de Perfil:</strong>
-            </p>
-            <img
-                src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}"
-                alt="Foto de Perfil"
-                class="img-fluid mx-auto d-block"
-            />
-            <div class="button-group">
-                <button
-                    onclick="printCard()"
-                    class="btn btn-primary"
-                    style="width: 100%"
-                >
-                    Imprimir
-                </button>
-                <button
-                    onclick="downloadCard()"
-                    class="btn btn-secondary"
-                    style="width: 100%"
-                >
-                    Descargar
-                </button>
-                <a
-                    href="{{ url_for('admin.list_users') }}"
-                    class="btn btn-info"
-                >
-                    Volver a la lista de usuarios
-                </a>
+    <div class="container mt-5">
+        <h1>Detalles de Usuario</h1>
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title" style="font-size: 1.5em; font-weight: bold">{{ user.username }}</h5>
+                <p class="card-text" style="margin-left: 20px">
+                    <strong>Email:</strong>
+                    {{ user.email }}
+                </p>
+                <p class="card-text" style="margin-left: 20px">
+                    <strong>Dirección:</strong>
+                    {{ user.address }}
+                </p>
+                <p class="card-text" style="margin-left: 20px">
+                    <strong>Teléfono:</strong>
+                    {{ user.phone }}
+                </p>
+                <p class="card-text">
+                    <strong>Foto de Perfil:</strong>
+                </p>
+                <img src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}"
+                     alt="Foto de Perfil"
+                     class="img-fluid mx-auto d-block" />
+                <div class="button-group">
+                    <button onclick="printCard()" class="btn btn-primary" style="width: 100%">Imprimir</button>
+                    <button onclick="downloadCard()"
+                            class="btn btn-secondary"
+                            style="width: 100%">Descargar</button>
+                    <a href="{{ url_for('admin.list_users') }}" class="btn btn-info">Volver a la lista de usuarios</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
     function printCard() {
         window.print();
     }
@@ -76,5 +58,5 @@
         );
         doc.save('usuario.pdf');
     }
-</script>
+    </script>
 {% endblock %}

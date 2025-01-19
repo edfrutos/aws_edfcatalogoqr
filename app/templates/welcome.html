@@ -29,13 +29,17 @@
             <h4>Has iniciado sesión correctamente.</h4>
             <div class="button-group-welcome mt-4">
                 <button class="btn1btn-primary"
-                        onclick="location.href='{{ url_for("users.account") }}'">Cuenta</button>
+                        onclick="location.href='{{ url_for('users.account") }}'">Cuenta
+                </button>
                 <button class="btn1btn-primary"
-                        onclick="location.href='{{ url_for("main.list_containers") }}'">Mis Contenedores</button>
+                        onclick="location.href='{{ url_for('main.list_containers") }}'">Mis Contenedores
+                </button>
                 <button class="btn1btn-primary"
-                        onclick="location.href='{{ url_for("main.create_container") }}'">Crear Contenedor</button>
+                        onclick="location.href='{{ url_for('main.create_container") }}'">Crear Contenedor
+                </button>
                 <button class="btn1btn-primary"
-                        onclick="location.href='{{ url_for("main.contacto") }}'">Contacto</button>
+                        onclick="location.href='{{ url_for('main.contacto") }}'">Contacto
+                </button>
             </div>
         </div>
     </div>

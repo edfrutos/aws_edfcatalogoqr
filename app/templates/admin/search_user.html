@@ -1,15 +1,16 @@
-{% extends "layout.html" %} {% block content %}
-<h1>{{ title }}</h1>
-<form method="POST" action="{{ url_for('admin.search_user') }}">
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-        {{ form.search_query.label(class="form-label") }} {{
-        form.search_query(class="form-control") }}
-    </div>
-    <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
-</form>
-{% if user %}
-<h2>Resultados de la búsqueda:</h2>
-<p>Nombre de usuario: {{ user.username }}</p>
-<p>Email: {{ user.email }}</p>
-{% endif %} {% endblock %}
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form method="POST" action="{{ url_for('admin.search_user') }}">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.search_query.label(class="form-label") }} {{ form.search_query(class="form-control") }}
+        </div>
+        <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
+    </form>
+    {% if user %}
+        <h2>Resultados de la búsqueda:</h2>
+        <p>Nombre de usuario: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+    {% endif %}
+{% endblock %}
