@@ -100,7 +100,7 @@
             img.addEventListener('error', function () {
                 if (!this.classList.contains('error-handled')) {
                     this.src =
-                        "{{ url_for('static', filename='default.png') }}";
+                        "{{ url_for('static', filename='default.png') }}"
                     this.classList.add('error-handled');
                 }
             });

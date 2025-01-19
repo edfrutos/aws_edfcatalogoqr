@@ -30,7 +30,7 @@
                     <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
                          alt="Imagen del Objeto"
                          class="img-fluid mb-2"
-                         onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png") }}';" />
+                         onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}"/>
                 {% endfor %}
             {% else %}
                 <p>No se encontraron imágenes.</p>

@@ -301,7 +301,6 @@ def list_containers():
 @login_required
 def print_detail(container_id):
     container_data = {}  # Inicialización como diccionario vacío
-
     try:
         # Obtener el contenedor
         container = Container.objects(id=container_id, is_deleted=False).first()
@@ -334,7 +333,7 @@ def print_detail(container_id):
             if verify_image_path(image_path):
                 valid_images.append(image)
 
-        # Procesar fecha de creación
+        # Preparar los datos del contenedor
         created_at = "No disponible"
         created_at_is_datetime = False
 
@@ -342,7 +341,6 @@ def print_detail(container_id):
             created_at = container.created_at.strftime("%d/%m/%Y")
             created_at_is_datetime = True
 
-        # Preparar los datos del contenedor
         container_data = {
             "id": str(container.id),
             "name": container.name or "Sin nombre",
@@ -352,11 +350,9 @@ def print_detail(container_id):
             "qr_image": container.qr_image or "default.png",
             "created_at": created_at,
             "created_at_is_datetime": created_at_is_datetime,
-            "items_type": str(type(container.items)),  # Tipo de items
-            "image_files_type": str(type(container.image_files)),  # Tipo de image_files
         }
 
-        # Log de los datos finales
+        # Log detallado de los datos enviados al template
         for key, value in container_data.items():
             current_app.logger.info(
                 f"Clave: {key}, Tipo: {type(value)}, Valor: {value}"
