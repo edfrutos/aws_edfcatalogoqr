@@ -330,8 +330,8 @@ def print_detail(container_id):
             image_path = os.path.join(
                 current_app.root_path, "static", "container_pics", image
             )
-            if verify_image_path(image_path):
-                valid_images.append(image)
+        if verify_image_path(image_path):  # Esta función verifica si la imagen existe
+            valid_images.append(image)
 
         # Preparar los datos del contenedor
         created_at = "No disponible"

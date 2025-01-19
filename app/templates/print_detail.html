@@ -41,23 +41,29 @@
                     container.items|length > 0 %}
                     <div class="items-grid">
                         {% for item in container.items %}
-                            <div class="item-card">
-                                <div class="item-image-container">
-                                    {% set image_index = loop.index0 %}
-                                    {% if
-                                        container.image_files and container.image_files|length >
-                                        image_index %}
-                                        <img src="{{ url_for('static', filename='container_pics/' + container.image_files[image_index]) }}"
-                                             alt="Imagen de {{ item }}" />
-                                    {% else %}
-                                        <img src="{{ url_for('static', filename='default.png') }}"
-                                             alt="Imagen por defecto" />
-                                    {% endif %}
-                                </div>
-                                <div class="item-details">
-                                    <p class="item-name">{{ item }}</p>
-                                </div>
+                        <div class="item-card">
+                            <div class="item-image-container">
+                                {% set image_index = loop.index0 %}
+                                {% if container.image_files and image_index < container.image_files|length %}
+                                <img
+                                    src="{{ url_for('static', filename='container_pics/' + container.image_files[image_index]) }}"
+                                    alt="Imagen de {{ item }}"
+                                    class="item-image"
+                                    loading="lazy"
+                                    onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}';"
+                                />
+                                {% else %}
+                                <img
+                                    src="{{ url_for('static', filename='default.png') }}"
+                                    alt="Imagen por defecto"
+                                    class="item-image"
+                                />
+                                {% endif %}
                             </div>
+                            <div class="item-details">
+                                <p>{{ item }}</p>
+                            </div>
+                        </div>
                         {% endfor %}
                     </div>
                 {% else %}
