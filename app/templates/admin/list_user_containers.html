@@ -18,14 +18,13 @@
                             data-id="{{ container.id }}"
                             data-name="{{ container.name }}"
                             data-location="{{ container.location }}"
-                            data-items="{{ container.items | join(", ') }}"
-                            data-images="{{ container.image_files | join(", ') }}">
+                            data-items="{{ container.items | join(', ') }}"
+                            data-images="{{ container.image_files | join(', ') }}">
                             <td>{{ container.id }}</td>
                             <td>{{ container.name }}</td>
                             <td>{{ container.location }}</td>
-                            <td>{{ container.items | join(", ") }}</td>
+                            <td>{{ container.items | join(', ') }}</td>
                         </tr>
-                    {% endfor %}
                 {% endfor %}
             </tbody>
         </table>
