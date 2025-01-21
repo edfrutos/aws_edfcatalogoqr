@@ -1,112 +1,109 @@
 {% extends "layout.html" %}
+
 {% block content %}
-    <div>
-        <h3>Depuración:</h3>
-        <p>Tipo de items: {{ container.items_type }}</p>
-        <p>Valor de items: {{ container.items }}</p>
-        <p>Tipo de image_files: {{ container.image_files_type }}</p>
-        <p>Valor de image_files: {{ container.image_files }}</p>
-    </div>
-    <div class="print-container">
-        <!-- Header -->
-        <div class="container-header">
-            <h2 class="container-title">{{ container.name|default('Sin nombre', true) }}</h2>
-            <div class="container-info">
-                <p>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <strong>Ubicación:</strong>
-                    {{ container.location|default('No especificada', true) }}
-                </p>
-                <p>
-                    <i class="fas fa-calendar-alt"></i>
-                    <strong>Fecha de registro:</strong>
-                    {% if container.created_at_is_datetime %}
-                        {{
-                        container.created_at }}
-                    {% else %}
-                        No disponible
-                    {% endif %}
-                </p>
-            </div>
+<div>
+    <h3>Depuración:</h3>
+    <p>Tipo de items: {{ container.items }}</p>
+    <p>Valor de items: {{ container.items }}</p>
+    <p>Tipo de image_files: {{ container.image_files }}</p>
+    <p>Valor de image_files: {{ container.image_files }}</p>
+</div>
+<div class="print-container">
+    <!-- Header -->
+    <div class="container-header">
+        <h2 class="container-title">
+            {{ container.name|default('Sin nombre', true) }}
+        </h2>
+        <div class="container-info">
+            <p>
+                <i class="fas fa-map-marker-alt"></i>
+                <strong>Ubicación:</strong>
+                {{ container.location|default('No especificada', true) }}
+            </p>
+            <p>
+                <i class="fas fa-calendar-alt"></i>
+                <strong>Fecha de registro:</strong>
+                {% if container.created_at_is_datetime %}
+                    {{ container.created_at }}
+                {% else %}
+                    No disponible
+                {% endif %}
+            </p>
         </div>
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Items Section -->
-            <div class="items-section">
-                <h3>
-                    <i class="fas fa-box"></i>
-                    Contenido del Contenedor
-                </h3>
-                {% if container.items and container.items is iterable and
-                    container.items|length > 0 %}
-                    <div class="items-grid">
-                        {% for item in container.items %}
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Items Section -->
+        <div class="items-section">
+            <h3>
+                <i class="fas fa-box"></i>
+                Contenido del Contenedor
+            </h3>
+            {% if container.items and container.items is iterable and container.items|length > 0 %}
+                <div class="items-grid">
+                    {% for item in container.items %}
                         <div class="item-card">
                             <div class="item-image-container">
                                 {% set image_index = loop.index0 %}
-                                {% if container.image_files and image_index < container.image_files|length %}
-                                <img
-                                    src="{{ url_for('static', filename='container_pics/' + container.image_files[image_index]) }}"
-                                    alt="Imagen de {{ item }}"
-                                    class="item-image"
-                                    loading="lazy"
-                                    onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}';"
-                                />
-                                {% else %}
-                                <img
-                                    src="{{ url_for('static', filename='default.png') }}"
-                                    alt="Imagen por defecto"
-                                    class="item-image"
-                                />
-                                {% endif %}
+                                <h2>Imágenes</h2>
+{% if container.image_files and container.image_files|length > 0 %}
+    <div>
+        {% for image in container.image_files %}
+            <img src="{{ url_for('static', filename='container_pics/' + image) }}" alt="Imagen del objeto" class="img-fluid">
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No hay imágenes disponibles.</p>
+{% endif %}
+
                             </div>
                             <div class="item-details">
-                                <p>{{ item }}</p>
+                                <p class="item-name">{{ item }}</p>
                             </div>
                         </div>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    <p>No hay objetos registrados en este contenedor.</p>
-                {% endif %}
-            </div>
-            <!-- QR Code Section -->
-            {% if container.qr_image %}
-                <div class="qr-section">
-                    <h3>
-                        <i class="fas fa-qrcode"></i>
-                        Código QR
-                    </h3>
-                    <div class="qr-container">
-                        <img src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}"
-                             alt="Código QR del contenedor"
-                             class="qr-code"
-                             loading="lazy" />
-                    </div>
+                    {% endfor %}
                 </div>
+            {% else %}
+                <p>No hay objetos registrados en este contenedor.</p>
             {% endif %}
         </div>
-        <!-- Action Buttons -->
-        <div class="action-buttons no-print">
-            <button class="btn btn-primary" onclick="handlePrint()">
-                <i class="fas fa-print"></i>
-                Imprimir
-            </button>
-            <a class="btn btn-secondary"
-               href="{{ url_for('main.list_containers') }}">
-                <i class="fas fa-arrow-left"></i>
-                Volver
-            </a>
-        </div>
+        <!-- QR Code Section -->
+        {% if container.qr_image %}
+            <div class="qr-section">
+                <h3>
+                    <i class="fas fa-qrcode"></i>
+                    Código QR
+                </h3>
+                <div class="qr-container">
+                    <img
+                        src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}"
+                        alt="Código QR del contenedor"
+                        class="qr-code"
+                        loading="lazy"
+                    />
+                </div>
+            </div>
+        {% endif %}
     </div>
-    <script>
+    <!-- Action Buttons -->
+    <div class="action-buttons no-print">
+        <button class="btn btn-primary" onclick="handlePrint()">
+            <i class="fas fa-print"></i>
+            Imprimir
+        </button>
+        <a class="btn btn-secondary" href="{{ url_for('main.list_containers') }}">
+            <i class="fas fa-arrow-left"></i>
+            Volver
+        </a>
+    </div>
+</div>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         const images = document.querySelectorAll('.item-image');
         images.forEach((img) => {
             img.addEventListener('error', function () {
                 if (!this.classList.contains('error-handled')) {
-                    this.src =
-                        "{{ url_for('static', filename='default.png') }}"
+                    this.src = "{{ url_for('static', filename='default.png') }}";
                     this.classList.add('error-handled');
                 }
             });
@@ -116,5 +113,5 @@
     function handlePrint() {
         window.print();
     }
-    </script>
+</script>
 {% endblock %}

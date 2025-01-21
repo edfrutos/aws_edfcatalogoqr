@@ -36,6 +36,7 @@ from app.utils import (
     handle_errors,
     normalize_name,
     verify_image_path,
+    process_container_images,
 )
 from app.extensions import mail
 
@@ -43,15 +44,6 @@ main_bp = Blueprint("main", __name__)
 
 
 def verify_image_path(image_path):
-    """
-    Verifica si una ruta de imagen existe y es accesible.
-
-    Args:
-        image_path: Ruta de la imagen a verificar
-
-    Returns:
-        bool: True si la imagen existe y es accesible
-    """
     try:
         return os.path.exists(image_path) and os.access(image_path, os.R_OK)
     except Exception as e:
@@ -84,12 +76,11 @@ logger = setup_logger()
 
 # Funciones auxiliares
 def generate_qr_code(container_data, safe_name):
-    """Genera y guarda un código QR para un contenedor."""
     try:
         qr_data = (
             f"Contenedor: {container_data['name']}\n"
             f"Ubicación: {container_data['location']}\n"
-            f"Objetos: {container_data['items']}"
+            f"Objetos: {', '.join(container_data['items'])}"
         )
         qr_img_path = os.path.join(
             current_app.root_path, "static", "qr_codes", f"{safe_name}.png"
@@ -103,7 +94,6 @@ def generate_qr_code(container_data, safe_name):
 
 
 def process_container_images(form_pictures):
-    """Procesa y guarda las imágenes del contenedor."""
     picture_files = []
     for picture in form_pictures:
         if isinstance(picture, FileStorage) and picture.filename:
@@ -115,6 +105,71 @@ def process_container_images(form_pictures):
                 logger.error(f"Error guardando imagen {picture.filename}: {e}")
                 raise
     return picture_files
+
+
+@main_bp.route("/containers/<container_id>/print_detail", methods=["GET"])
+@login_required
+def print_detail(container_id):
+    try:
+        # Buscar el contenedor en la base de datos
+        container = Container.objects(id=container_id, is_deleted=False).first()
+
+        if not container:
+            current_app.logger.error(f"Contenedor no encontrado con ID: {container_id}")
+            abort(404, description="Contenedor no encontrado")
+
+        # Validar y procesar items
+        items = container.items if isinstance(container.items, (list, BaseList)) else []
+        if not isinstance(items, list):
+            items = list(items) if hasattr(items, "__iter__") else []
+
+        # Validar y procesar imágenes
+        image_files = (
+            container.image_files
+            if isinstance(container.image_files, (list, BaseList))
+            else []
+        )
+        if not isinstance(image_files, list):
+            image_files = list(image_files) if hasattr(image_files, "__iter__") else []
+
+        valid_images = []
+        for image in image_files:
+            image_path = os.path.join(
+                current_app.root_path, "static", "container_pics", image
+            )
+            if verify_image_path(image_path):
+                valid_images.append(image)
+            else:
+                logger.warning(f"Imagen no encontrada o inaccesible: {image}")
+
+        logger.info(f"Imágenes válidas para imprimir: {valid_images}")
+
+        # Formatear fecha de creación
+        created_at = (
+            container.created_at.strftime("%d/%m/%Y")
+            if isinstance(container.created_at, datetime)
+            else "No disponible"
+        )
+
+        # Preparar datos del contenedor para la plantilla
+        container_data = {
+            "id": str(container.id),
+            "name": container.name or "Sin nombre",
+            "location": container.location or "No especificada",
+            "items": items,
+            "image_files": valid_images,
+            "qr_image": container.qr_image or "default.png",
+            "created_at": created_at,
+        }
+
+        return render_template(
+            "print_detail.html", title="Imprimir Detalle", container=container_data
+        )
+
+    except Exception as e:
+        current_app.logger.error(f"Error en print_detail: {e}")
+        flash(f"Error inesperado: {str(e)}", "danger")
+        return redirect(url_for("main.list_containers"))
 
 
 # Rutas básicas
@@ -295,77 +350,6 @@ def list_containers():
         logger.error(f"Error en list_containers: {e}")
         flash("Error al cargar la lista de contenedores", "danger")
         return redirect(url_for("main.home"))
-
-
-@main_bp.route("/containers/<container_id>/print_detail", methods=["GET"])
-@login_required
-def print_detail(container_id):
-    container_data = {}  # Inicialización como diccionario vacío
-    try:
-        # Obtener el contenedor
-        container = Container.objects(id=container_id, is_deleted=False).first()
-        current_app.logger.info(f"Contenedor obtenido: {container}")
-        current_app.logger.info(
-            f"ID del contenedor: {container.id if container else 'None'}"
-        )
-
-        # Validar que el contenedor exista
-        if not container:
-            current_app.logger.error(f"Contenedor no encontrado con ID: {container_id}")
-            abort(404, description="Contenedor no encontrado")
-
-        # Convertir datos a tipos estándar
-        container.items = (
-            list(container.items) if hasattr(container.items, "__iter__") else []
-        )
-        container.image_files = (
-            list(container.image_files)
-            if hasattr(container.image_files, "__iter__")
-            else []
-        )
-
-        # Validar imágenes
-        valid_images = []
-        for image in container.image_files:
-            image_path = os.path.join(
-                current_app.root_path, "static", "container_pics", image
-            )
-        if verify_image_path(image_path):  # Esta función verifica si la imagen existe
-            valid_images.append(image)
-
-        # Preparar los datos del contenedor
-        created_at = "No disponible"
-        created_at_is_datetime = False
-
-        if isinstance(container.created_at, datetime):
-            created_at = container.created_at.strftime("%d/%m/%Y")
-            created_at_is_datetime = True
-
-        container_data = {
-            "id": str(container.id),
-            "name": container.name or "Sin nombre",
-            "location": container.location or "No especificada",
-            "items": container.items,
-            "image_files": valid_images,
-            "qr_image": container.qr_image or "default.png",
-            "created_at": created_at,
-            "created_at_is_datetime": created_at_is_datetime,
-        }
-
-        # Log detallado de los datos enviados al template
-        for key, value in container_data.items():
-            current_app.logger.info(
-                f"Clave: {key}, Tipo: {type(value)}, Valor: {value}"
-            )
-
-        return render_template(
-            "print_detail.html", title="Imprimir Detalle", container=container_data
-        )
-
-    except Exception as e:
-        current_app.logger.error(f"Error en print_detail: {e}")
-        flash(f"Error inesperado: {str(e)}", "danger")
-        return redirect(url_for("main.list_containers"))
 
 
 # Rutas de manipulación de contenedores

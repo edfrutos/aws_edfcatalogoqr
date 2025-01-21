@@ -261,6 +261,22 @@ def save_qr_image(data: str, container_name: str) -> Path:
     return qr_path
 
 
+def process_container_images(form_pictures):
+    picture_files = []
+    for picture in form_pictures:
+        if isinstance(picture, FileStorage) and picture.filename:
+            try:
+                picture_file = save_container_picture(picture)
+                if picture_file:
+                    picture_files.append(picture_file)
+            except Exception as e:
+                logger.error(f"Error guardando imagen {picture.filename}: {e}")
+                raise
+    # Añade este registro
+    logger.info(f"Imágenes procesadas correctamente: {picture_files}")
+    return picture_files
+
+
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message(
@@ -284,7 +300,7 @@ Si no solicitaste este cambio, simplemente ignora este correo electrónico y no 
         )
 
 
-def verify_image_path(image_path: Union[str, Path]) -> bool:
+def verify_image_path(image_path):
     """
     Verifica si una ruta de imagen existe y es accesible.
 
@@ -295,8 +311,11 @@ def verify_image_path(image_path: Union[str, Path]) -> bool:
         bool: True si la imagen existe y es accesible
     """
     try:
-        path = Path(image_path)
-        return path.exists() and os.access(path, os.R_OK)
+        valid = os.path.exists(image_path) and os.access(image_path, os.R_OK)
+        logger.info(
+            f"Verificando imagen: {image_path} - {'Válida' if valid else 'Inválida'}"
+        )
+        return valid
     except Exception as e:
         logger.error(f"Error verificando ruta de imagen {image_path}: {e}")
         return False

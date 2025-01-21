@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
+
 {% block content %}
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
     <div class="container-home">
         <div id="modal" class="modal-home">
             <div class="modal-content-home">
@@ -13,9 +14,9 @@
                     EDF Catalogación QR
                 </h1>
                 <h5>
-                    Aplicación con la que sabrás en cualquier momento donde están
+                    Aplicación con la que sabrás en cualquier momento dónde están
                     todos tus objetos guardados en los diferentes contenedores que
-                    tu registres en esta misma aplicación.
+                    tú registres en esta misma aplicación.
                     <br />
                     <br />
                     De esta forma, puedes obtener información de en qué contenedor
@@ -27,14 +28,14 @@
                     registro con la identificación del objeto buscado.
                 </h5>
                 <div class="btn-modal-home">
-                    <button onclick="location.href="{{ url_for('main.contacto') }}">Contacto
-                    </button>
-                    <button onclick="location.href="{{ url_for('main.welcome') }}">Cerrar
-                    </button>
+                    <button onclick="location.href='{{ url_for('main.contacto', _external=true) }}'">Contacto</button>
+                    <button onclick="location.href='{{ url_for('main.welcome') }}'">Cerrar</button>
                 </div>
             </div>
         </div>
-        <script>
+    </div>
+
+    <script>
         function mostrarMensaje(id) {
             var mensaje = document.getElementById(id);
             if (mensaje) {
@@ -51,11 +52,7 @@
 
         // Mostrar el mensaje de bienvenida al cargar la página
         window.onload = function () {
-            mostrarMensaje('mensaje-bienvenida');
-            setTimeout(function () {
-                mostrarMensaje('mensaje-hasta-pronto');
-            }, 5000); // Muestra "Hasta pronto" después de 5 segundos
+            mostrarMensaje('modal'); // Asegúrate de que el ID coincida con el modal que deseas mostrar
         };
-        </script>
-    {% endblock %}
-</div>
+    </script>
+{% endblock %}

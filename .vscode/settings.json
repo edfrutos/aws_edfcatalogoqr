@@ -3,6 +3,7 @@
         "python": ".venv\\Scripts\\python.exe -u"
     },
     "cSpell.words": [
+        "anyio",
         "BIDI",
         "Bienvenid",
         "Bitstream",
@@ -16,8 +17,10 @@
         "fldt",
         "levellevel",
         "minmax",
+        "novalidate",
         "onscroll",
         "pprint",
+        "Redirección",
         "renderizado",
         "rgba",
         "stylesheet",
@@ -25,5 +28,8 @@
         "tfoot",
         "thead"
     ],
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "[csv]": {
+        "editor.inlayHints.maximumLength": 0
+    }
 }
