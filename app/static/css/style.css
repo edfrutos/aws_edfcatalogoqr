@@ -214,13 +214,15 @@ body {
   display: flex;
   font-weight: 400;
   color: #212529;
-  text-align: center;
+  text-align: center !important;
   justify-content: center;
   margin-top: 1rem !important;
   border-radius: 5px;
   padding: 9px;
   line-height: 1.5;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: color .15sease-in-out, background-color .15sease-in-out, border-color .15sease-in-out, box-shadow .15sease-in-out;
+  align-content: center;
+  align-items: center;
 }
 
 .btn-primary {
@@ -251,7 +253,7 @@ body {
   color: #fff !important;
   background-color: #dc3545 !important;
   border-color: #dc3545 !important;
-  width: 20vw !important;
+  width: 12vw !important;
 }
 
 .btn-danger:hover {
@@ -540,8 +542,13 @@ span#mod .landscape-home {
 }
 
 .navbar-brand {
-  display: flex !important;
-  align-items: center !important;
+  display: inline-block;
+  padding-top: .3125rem;
+  padding-bottom: .3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
 }
 
 .navbar-brand img {
