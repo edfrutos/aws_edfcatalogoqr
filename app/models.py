@@ -114,7 +114,7 @@ class Container(Document):
 
     name = StringField(required=True)
     location = StringField(required=True)
-    items = ListField(StringField())
+    items = ListField(StringField(), default=list)
     image_files = ListField(StringField())
     qr_image = StringField()
     user = ReferenceField("User", required=True, reverse_delete_rule=CASCADE)

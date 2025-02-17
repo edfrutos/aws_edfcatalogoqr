@@ -46,15 +46,18 @@
                             <div class="item-image-container">
                                 {% set image_index = loop.index0 %}
                                 <h2>Imágenes</h2>
-{% if container.image_files and container.image_files|length > 0 %}
-    <div>
-        {% for image in container.image_files %}
-            <img src="{{ url_for('static', filename='container_pics/' + image) }}" alt="Imagen del objeto" class="img-fluid">
-        {% endfor %}
-    </div>
-{% else %}
-    <p>No hay imágenes disponibles.</p>
-{% endif %}
+                                {% if container.image_files and container.image_files|length > 0 %}
+                                    <div class="images-grid">
+                                        {% for image in container.image_files %}
+                                            <img src="{{ url_for('static', filename='container_pics/' + image) }}" 
+                                                 alt="Imagen del objeto" 
+                                                 class="img-fluid container-image"
+                                                 style="max-width: 200px; height: auto; margin: 10px; object-fit: contain;">
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <p>No hay imágenes disponibles.</p>
+                                {% endif %}
 
                             </div>
                             <div class="item-details">
@@ -75,12 +78,11 @@
                     Código QR
                 </h3>
                 <div class="qr-container">
-                    <img
-                        src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}"
-                        alt="Código QR del contenedor"
-                        class="qr-code"
-                        loading="lazy"
-                    />
+                    <img src="{{ url_for('static', filename='qr_codes/' + container.qr_image) }}"
+                         alt="Código QR del contenedor"
+                         class="qr-code"
+                         style="width: 100px; height: 100px;"
+                         loading="lazy" />
                 </div>
             </div>
         {% endif %}

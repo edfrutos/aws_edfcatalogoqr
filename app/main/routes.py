@@ -118,17 +118,18 @@ def print_detail(container_id):
             current_app.logger.error(f"Contenedor no encontrado con ID: {container_id}")
             abort(404, description="Contenedor no encontrado")
 
+        # Verificar permisos
+        if container.user.id != current_user.id and not current_user.is_admin:
+            logger.warning(f"Acceso no autorizado al contenedor {container_id}")
+            abort(403)
+
         # Validar y procesar items
-        items = container.items if isinstance(container.items, (list, BaseList)) else []
+        items = container.items if container.items else []
         if not isinstance(items, list):
             items = list(items) if hasattr(items, "__iter__") else []
 
         # Validar y procesar imágenes
-        image_files = (
-            container.image_files
-            if isinstance(container.image_files, (list, BaseList))
-            else []
-        )
+        image_files = container.image_files if container.image_files else []
         if not isinstance(image_files, list):
             image_files = list(image_files) if hasattr(image_files, "__iter__") else []
 
@@ -144,26 +145,17 @@ def print_detail(container_id):
 
         logger.info(f"Imágenes válidas para imprimir: {valid_images}")
 
-        # Formatear fecha de creación
-        created_at = (
-            container.created_at.strftime("%d/%m/%Y")
-            if isinstance(container.created_at, datetime)
-            else "No disponible"
-        )
-
-        # Preparar datos del contenedor para la plantilla
-        container_data = {
-            "id": str(container.id),
-            "name": container.name or "Sin nombre",
-            "location": container.location or "No especificada",
-            "items": items,
-            "image_files": valid_images,
-            "qr_image": container.qr_image or "default.png",
-            "created_at": created_at,
-        }
-
         return render_template(
-            "print_detail.html", title="Imprimir Detalle", container=container_data
+            "print_detail.html",
+            title="Imprimir Detalle",
+            container={
+                "id": str(container.id),
+                "name": container.name,
+                "location": container.location,
+                "items": items,
+                "image_files": valid_images,
+                "qr_image": container.qr_image,
+            }
         )
 
     except Exception as e:
@@ -501,7 +493,28 @@ def container_preview(container_id):
             flash("No tienes permiso para ver este contenedor", "danger")
             return redirect(url_for("main.list_containers"))
 
-        return render_template("container_preview.html", container=container)
+        # Validar y procesar imágenes
+        image_files = (
+            container.image_files
+            if isinstance(container.image_files, (list, BaseList))
+            else []
+        )
+        if not isinstance(image_files, list):
+            image_files = list(image_files) if hasattr(image_files, "__iter__") else []
+
+        valid_images = []
+        for image in image_files:
+            image_path = os.path.join(
+                current_app.root_path, "static", "container_pics", image
+            )
+            if verify_image_path(image_path):
+                valid_images.append(image)
+            else:
+                logger.warning(f"Imagen no encontrada o inaccesible: {image}")
+
+        logger.info(f"Imágenes válidas para vista previa: {valid_images}")
+
+        return render_template("container_preview.html", container=container, valid_images=valid_images)
 
     except DoesNotExist:
         logger.error(f"Contenedor {container_id} no encontrado")

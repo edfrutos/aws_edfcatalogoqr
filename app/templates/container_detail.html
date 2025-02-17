@@ -20,9 +20,11 @@
                                     <div class="col">
                                         <img src="{{ url_for('static', filename='container_pics/' ~ image_file) }}"
                                              alt="Imagen del Objeto"
-                                             class="img-fluid"
+                                             class="img-fluid container-image"
                                              loading="lazy"
-                                             onerror="this.onerror=null; this.src="{{ url_for('static', filename='default.png') }}"/>
+                                             style="max-width: 200px; height: auto; margin: 10px; object-fit: contain;"
+                                             onerror="this.onerror=null; this.src='{{ url_for('static', filename='default.png') }}'"
+                                             onclick="showPreview(this.src)"/>
                                     </div>
                                 {% endfor %}
                             </div>
@@ -34,8 +36,8 @@
                             <img src="{{ url_for('static', filename='qr_codes/' ~ container.qr_image) }}"
                                  alt="Código QR"
                                  class="img-fluid"
-                                 style="width: 150px;
-                                        height: 150px" />
+                                 style="width: 100px;
+                                        height: 100px" />
                         {% else %}
                             <p>No se ha generado código QR para este contenedor.</p>
                         {% endif %}
