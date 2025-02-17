@@ -31,5 +31,6 @@
     "CodeGPT.apiKey": "CodeGPT Plus Beta",
     "[csv]": {
         "editor.inlayHints.maximumLength": 0
-    }
+    },
+    "bitoAI.codeCompletion.enableAutoCompletion": false
 }
