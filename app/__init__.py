@@ -1,3 +1,5 @@
+import mongoengine_patch  # Importar el parche para flask_mongoengine
+# ... código existente ...
 from flask import Flask, render_template
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
@@ -12,7 +14,6 @@ from dotenv import load_dotenv
 from mongoengine import disconnect
 import os
 import logging
-import mongoengine_patch  # Importar el parche para flask_mongoengine
 from logging.handlers import RotatingFileHandler
 
 

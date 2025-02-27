@@ -1,9 +1,9 @@
 # mongoengine_patch.py
-try:
-    from flask.json import JSONEncoder
-except ImportError:
-    from flask.json.provider import DefaultJSONProvider as JSONEncoder
+from flask.json import JSONEncoder as BaseJSONEncoder
+
+class CustomJSONEncoder(BaseJSONEncoder):
+    pass
 
 import flask_mongoengine.json
 
-flask_mongoengine.json.JSONEncoder = JSONEncoder
+flask_mongoengine.json.JSONEncoder = CustomJSONEncoder
