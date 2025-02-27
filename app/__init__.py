@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 from mongoengine import disconnect
 import os
 import logging
+import mongoengine_patch  # Importar el parche para flask_mongoengine
 from logging.handlers import RotatingFileHandler
 
 
