@@ -1,6 +1,7 @@
 from flask import Flask
 from app import create_app
 from logging.handlers import RotatingFileHandler
+import os
 
 # Crear la aplicación Flask
 app = create_app()
@@ -13,7 +14,10 @@ def main():
     """
     try:
         # Ejecutar la aplicación
-        app.run(host="127.0.0.1", port=5001, debug=True)
+        app.run(
+            host=os.getenv("FLASK_RUN_HOST", "127.0.0.1"),
+            port=int(os.getenv("FLASK_RUN_PORT", 5001)),
+            debug=True)
     except OSError as e:
         print(f"Error al iniciar la aplicación: {e}")
         print(
