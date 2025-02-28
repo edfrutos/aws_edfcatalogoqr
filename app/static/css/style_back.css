@@ -1,4 +1,8 @@
-/* Estilos generales */
+/* body {
+  font-family: Arial, sans-serif;
+  background-color: #28a74578 !important;
+} */
+
 body {
   font-family: Arial, sans-serif;
   background-color: #28a74578 !important;
@@ -52,6 +56,11 @@ body {
   text-align: center !important;
 }
 
+/*.container-login {
+  margin-top: 10% !important;
+  margin-bottom: 5% !important;
+}*/
+
 .container-logout {
   padding-left: 10%;
   padding-right: 10%;
@@ -86,6 +95,8 @@ body {
   margin-right: 0rem;
   margin-bottom: 8rem;
   width: 86%;
+  width: 86%;
+  margin-bottom: 8rem;
 }
 
 .content-section {
@@ -153,6 +164,8 @@ body {
   gap: 10px;
 }
 
+
+
 .container-admin-user {
   margin-top: 0rem;
   margin-left: 12rem;
@@ -207,7 +220,7 @@ body {
   border-radius: 5px;
   padding: 9px;
   line-height: 1.5;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: color .15sease-in-out, background-color .15sease-in-out, border-color .15sease-in-out, box-shadow .15sease-in-out;
   align-content: center;
   align-items: center;
 }
@@ -283,6 +296,7 @@ body {
   margin: 10px auto !important;
 }
 
+
 h2 {
   margin-bottom: 20px;
 }
@@ -317,6 +331,7 @@ button {
   justify-content: center;
   align-items: center;
   height: calc(100vh - 140px);
+  /* Ajuste para header y footer fijos */
   text-align: center;
   z-index: 1000;
 }
@@ -469,14 +484,20 @@ span#mod .landscape-home {
 
 .navbar {
   position: relative;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 4px;
   z-index: 9999 !important;
   background-color: #093d74;
 }
+
+/* Estilos agregados por chatGPT */
 
 .card {
   max-width: 100%;
@@ -488,7 +509,9 @@ span#mod .landscape-home {
 
 .card-edit {
   position: relative;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-direction: column;
   flex-direction: column;
   width: 15vw;
   word-wrap: break-word;
@@ -588,6 +611,7 @@ span#mod .landscape-home {
   cursor: pointer;
 }
 
+/* Estilos básicos para los mensajes */
 .mensaje-home {
   position: fixed;
   top: 10%;
@@ -611,6 +635,7 @@ span#mod .landscape-home {
   z-index: 1000;
 }
 
+/* Estilos para el botón de cerrar */
 .cerrar-home {
   float: right;
   cursor: pointer;
@@ -621,6 +646,17 @@ span#mod .landscape-home {
   color: #000;
 }
 
+/*
+  Estilos para las clases de iconos de Font Awesome (.fa, .fab, .fad, .fal, .far, .fas).
+
+  - -webkit-font-smoothing: Habilita el renderizado de fuentes antialiased para una mejor calidad visual en navegadores WebKit.
+  - display: inline-block; Permite que el elemento se trate como un elemento en línea mientras mantiene propiedades de bloque.
+  - font-style: normal; Establece el estilo de la fuente como normal, sobrescribiendo cualquier estilo en cursiva u oblicuo.
+  - font-variant: normal; Asegura que la variante de la fuente esté configurada como normal, evitando cualquier variación como las pequeñas mayúsculas.
+  - text-rendering: auto; Permite que el navegador decida la mejor manera de renderizar el texto.
+  - line-height: 1; Establece la altura de la línea en 1, asegurando que la altura de la línea sea igual al tamaño de la fuente.
+  - margin-right: 0.5rem; Añade un margen derecho de 0.5rem para el espaciado entre iconos o elementos de texto.
+*/
 .fa,
 .fab,
 .fad,
@@ -645,6 +681,11 @@ span#mod .landscape-home {
   margin-top: -0.5rem !important;
 }
 
+/*
+  Clases de utilidad para el espaciado de márgenes.
+  .mt-5: establece el margen superior en 0rem con! Importante para anular otros estilos.
+  .my-5: establece el margen vertical (superior e inferior) en 0rem con !important para anular otros estilos.
+*/
 .mt-5,
 .my-5 {
   margin-top: 0rem !important;
@@ -652,6 +693,11 @@ span#mod .landscape-home {
 
 .mb-4 {
   margin-bottom: 1.5rem;
+}
+
+.mt-5,
+.my-5 {
+  margin-top: 0rem !important;
 }
 
 .h4-detail {
@@ -695,10 +741,20 @@ span#mod .landscape-home {
   padding: 5px;
 }
 
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: 0px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  align-items: stretch;
+}
+
 .input-group-list {
   position: relative;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -ms-flex-align: stretch;
   align-items: stretch;
   width: 100%;
 }
@@ -722,9 +778,13 @@ span#mod .landscape-home {
 }
 
 .form-label {
+  /* Ajusta este valor según tus necesidades */
   height: auto;
+  /* Mantener la proporción de la imagen */
   border-radius: 10px;
+  /* Si deseas bordes redondeados */
   margin-top: 10px;
+  /* Espaciado opcional */
 }
 
 .form-control {
@@ -752,7 +812,9 @@ span#mod .landscape-home {
 }
 
 .row {
+  display: -ms-flexbox !important;
   display: flex !important;
+  -ms-flex-wrap: wrap !important;
   flex-wrap: wrap !important;
   margin-right: 0px !important;
   margin-left: 0px !important;
@@ -763,6 +825,7 @@ span#mod .landscape-home {
   margin-top: 6rem;
   display: flex;
   justify-content: center;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-right: 0px;
   margin-left: 17rem;
@@ -795,14 +858,19 @@ span#mod .landscape-home {
 .navbar .container-md,
 .navbar .container-sm,
 .navbar .container-xl {
+  display: -ms-flexbox !important;
   display: flex !important;
+  -ms-flex-wrap: wrap !important;
   flex-wrap: wrap !important;
+  -ms-flex-align: center !important;
   align-items: center !important;
+  -ms-flex-pack: justify !important;
   justify-content: space-between !important;
   margin-top: 20px !important;
   margin-bottom: 20px !important;
   padding-top: 10px !important;
   padding-bottom: 10px !important;
+  border: 10px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -823,13 +891,17 @@ span#mod .landscape-home {
 
 .navbar-content {
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -ms-flex-align: center;
   align-items: center;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-left: 20px;
   padding-bottom: 2px;
+  border: 10px;
   background-color: #99d5a6;
   padding-right: 20px;
   padding-top: 2px;
@@ -882,6 +954,9 @@ footer {
   }
 
   .container-home {
+    /* justify-content: center; */
+    /* align-items: normal; */
+    /* display: flex; */
     margin-top: 15rem;
     margin-left: 5rem;
   }
@@ -911,6 +986,7 @@ footer {
   }
 }
 
+/* Ajustes para pantallas más pequeñas */
 @media (max-width: 1024px) {
   .login {
     margin-top: 0rem;
@@ -931,12 +1007,16 @@ footer {
   }
 
   .container-home {
+    /* justify-content: center; */
+    /* align-items: normal; */
+    /* display: flex; */
     margin-top: 10rem !important;
     margin-left: 4rem;
   }
 
   .container-account {
     padding-top: 12rem;
+    /* margin-bottom: 7% !important; */
     margin-left: 4rem !important;
     width: 93% !important;
   }
@@ -1060,17 +1140,24 @@ footer {
     margin-right: 0rem !important;
   }
 
+  /*.form-group {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: grid;
+  }*/
+
   .login {
     margin-top: 8rem !important;
     margin-left: 1rem;
   }
 
   .container-content {
-    /* padding-left: 1%; */
-    /* padding-right: 1%; */
-    margin-left: 0rem;
-    margin-top: 0rem;
-}
+    padding-left: 1%;
+    padding-right: 1%;
+    margin-left: 8rem;
+    margin-top: 9rem;
+  }
 
   .reset-password-container {
     padding-left: 0%;
@@ -1209,6 +1296,7 @@ footer {
   bottom: 70px;
 }
 
+/* Añade estos estilos a tu archivo CSS */
 .modal {
   background-color: rgba(0, 0, 0, 0.5);
 }

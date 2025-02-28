@@ -1,7 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}" />
     <div class="container-account">
         <h1>Cuenta de {{ current_user.username }}</h1>
         <div class="row">
