@@ -8,8 +8,8 @@ logs/*.log*.pyc
 app.log
 
 # Ignorar directorios de entornos virtuales
-venv/
-.env
+# venv/
+# ∫.env
 
 # Ignorar archivos de configuración de VSCode
 .vscode/
