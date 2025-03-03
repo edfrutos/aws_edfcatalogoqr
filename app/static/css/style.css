@@ -62,7 +62,7 @@ body {
   margin-top: 2rem !important;
   margin-bottom: 3rem !important;
   width: 52% !important;
-  margin-left: 21rem !important;
+  margin: 0 auto !important;
 }
 
 .container-containers {
@@ -72,12 +72,13 @@ body {
 
 .container-list {
   padding-top: 100px;
-  max-width: 75vw;
+  max-width: 55vw;
   margin: 0 auto;
   padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10rem;
 }
 
 .edit-container {
@@ -162,12 +163,13 @@ body {
 }
 
 .container-admin-list {
-  display: block;
+  /* display: block; */
   margin-top: 0rem;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   margin: 0 auto;
-  width: 60%;
+  width: 45%;
+  margin-bottom: 10rem;
 }
 
 .reset-password {
@@ -266,6 +268,7 @@ body {
 .btn-warning {
   color: #212529 !important;
   background-color: #ffc107 !important;
+  background-color: #ffc107 !important;
   border-color: #ffc107 !important;
 }
 
@@ -285,6 +288,14 @@ body {
 
 h2 {
   margin-bottom: 20px;
+}
+
+.h2, h2 {
+  font-size: 2rem;
+  /* margin: 0 auto !important; */
+  display: flex
+;
+  justify-content: center;
 }
 
 img {
@@ -705,8 +716,8 @@ span#mod .landscape-home {
 
 .reset-request {
   margin-top: 5rem !important;
-  margin-left: 5rem !important;
-  margin-right: 5rem !important;
+  width: 40%;
+  margin: 0 auto;
 }
 
 .form-check-input {
@@ -1164,7 +1175,12 @@ footer {
   margin-top: 1rem;
   margin-left: 15rem;
   margin-right: 1rem;
-  width: 75%;
+  width: 55%;
+  margin: 0 auto;
+}
+
+.container-admin-list {
+  margin-top: 0rem;;
 }
 
 .m-5 {
@@ -1231,4 +1247,24 @@ footer {
 .modal-body img {
   max-width: 100%;
   height: auto;
+}
+
+h1.buscar-usuario {
+  width: 50%;
+  margin: 0 auto;
+}
+
+form.form-buscar {
+  width: 50%;
+  margin: 0 auto;
+}
+
+form.form-search {
+  width: 45%;
+  margin: 0 auto;
+}
+
+p.admin-search {
+  width: 50%;
+  margin: 0 auto;
 }

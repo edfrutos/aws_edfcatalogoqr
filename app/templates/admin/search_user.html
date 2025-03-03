@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>{{ title }}</h1>
-    <form method="POST" action="{{ url_for('admin.search_user') }}">
+    <h1 class="buscar-usuario">{{ title }}</h1>
+    <form method="POST" action="{{ url_for('admin.search_user') }}" class="form-buscar">
         {{ form.hidden_tag() }}
         <div class="form-group">
             {{ form.search_query.label(class="form-label") }} {{ form.search_query(class="form-control") }}
