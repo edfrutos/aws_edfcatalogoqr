@@ -31,7 +31,7 @@
                         <p>No se encontraron imágenes.</p>
                     {% endif %}
                     <div class="btn-group" role="group">
-                        {% for action, label in [('main.container_detail', 'Ver Detalles'), ('main.edit_container', 'Editar'), ('main.print_container', 'Imprimir'), ('main.download_container', 'Descargar')] %}
+                        {% for action, label in [('main.container_detail', 'Ver Detalles'), ('main.edit_container', 'Editar'), ('main.print_detail', 'Imprimir'), ('main.download_qr', 'Descargar')] %}
                             <a href="{{ url_for(action, container_id=container.id) }}"
                                class="btn btn-{{ loop.index == 1 and 'primary' or loop.index == 2 and 'secondary' or loop.index == 3 and 'info' or 'success' }}">
                                 {{ label }}
